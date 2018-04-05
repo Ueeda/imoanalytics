@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<title>ImoAnalytics - Criar interessado</title>
+		<title>ImoAnalytics - Criar proprietário</title>
 
 		<!-- Bootstrap -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -96,16 +96,70 @@
 		<div class="container">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">Cadastrar imóvel</h3>
+					<h3 class="panel-title">Cadastrar fiador</h3>
 				</div>
 				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Nome do fiador</label>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>CPF do fiador</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>RG do fiador</label>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Data de nascimento do fiador</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Telefone de contato do fiador</label>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>CEP atual do fiador</label>
+							</div>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-md-8">
 							<div class="group">
 								<input type="text" required>
 								<span class="highlight"></span>
 								<span class="bar"></span>
-								<label>Endereço</label>
+								<label>Endereço atual do fiador</label>
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -123,7 +177,7 @@
 								<input type="text" required>
 								<span class="highlight"></span>
 								<span class="bar"></span>
-								<label>Complemento</label>
+								<label>Bairro atual do fiador</label>
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -131,7 +185,7 @@
 								<input type="text" required>
 								<span class="highlight"></span>
 								<span class="bar"></span>
-								<label>Bairro</label>
+								<label>Cidade atual do fiador</label>
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -139,139 +193,8 @@
 								<input type="text" required>
 								<span class="highlight"></span>
 								<span class="bar"></span>
-								<label>CEP</label>
+								<label>Estado atual do fiador</label>
 							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-4">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Cidade</label>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Estado</label>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Ano de construção</label>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="col-sm-4" style="margin: 30px 0;">
-								<p>Disponível para: </p>
-							</div>
-							<div class="col-sm-4">
-								<div class="md-checkbox">
-									<input id="i2" type="checkbox" checked>
-									<label for="i2">Venda</label>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="md-checkbox">
-									<input id="i" type="checkbox" checked>
-									<label for="i">Aluguel</label>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Área privada (em m²)</label>
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Área de lazer (em m²)</label>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<select>
-								<option value="" selected="">Tipo de imóvel</option>
-								<option value="andar-corporativo">Andar corporativo</option>
-								<option value="apartamento">Apartamento</option>
-								<option value="apartamento-duplex">Apartamento duplex</option>
-								<option value="apartamento-garden">Apartamento garden</option>
-								<option value="barracao">Barracão</option>
-								<option value="box-garagem">Box-Garagem</option>
-								<option value="casa">Casa</option>
-								<option value="chacara">Chácara</option>
-								<option value="cobertura">Cobertura</option>
-								<option value="conjunto">Conjunto</option>
-								<option value="fazenda">Fazenda</option>
-								<option value="flat">Flat</option>
-								<option value="kitnet">Kitnet</option>
-								<option value="loja">Loja</option>
-								<option value="ponto">Ponto</option>
-								<option value="pousada">Pousada</option>
-								<option value="predio">Prédio</option>
-								<option value="sala">Sala</option>
-								<option value="sobrado">Sobrado</option>
-								<option value="studio">Studio</option>
-								<option value="sitio">Sítio</option>
-								<option value="terreno">Terreno</option>
-							</select>
-						</div>
-						<div class="col-md-4">
-							<div class="group">
-								<input type="number" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Vagas de garagem</label>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="group">
-								<input type="number" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Quantidade de banheiros</label>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<div class="group">
-								<input type="number" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Quantidade de dormitórios</label>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="group">
-								<input type="number" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Quantidade de suítes</label>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<select>
-								<option value="" selected="">Selecione um proprietário</option>
-								<option value="primeiro-proprietario">Rafael Ueda</option>
-								<option value="segundo-proprietario">Eduardo Souza</option>
-							</select>
 						</div>
 					</div>
 					<div class="row buttons-row">

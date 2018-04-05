@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<title>ImoAnalytics</title>
+		<title>ImoAnalytics - Criar interessado</title>
 
 		<!-- Bootstrap -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 		<!-- Custom style -->
-		<link href="C:/www/imoanalytics/prototypes/assets/style.css" rel="stylesheet">
+		<link href="assets/style.css" rel="stylesheet">
 	</head>
 
 	<header>
@@ -47,6 +47,13 @@
 						</ul>
 					</li>
 					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Fiadores  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarFiador.html" class="primary-color">Novo fiador</a></li>
+							<li><a href="listarFiador.html" class="primary-color">Procurar fiador</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
 						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Vendas  <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="criarVenda.html" class="primary-color">Nova venda</a></li>
@@ -58,6 +65,13 @@
 						<ul class="dropdown-menu">
 							<li><a href="criarAluguel.html" class="primary-color">Novo aluguel</a></li>
 							<li><a href="listarAluguel.html" class="primary-color">Procurar aluguel ativo</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Visitas  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarVisita.html" class="primary-color">Nova visita</a></li>
+							<li><a href="listarVisita.html" class="primary-color">Procurar visitas</a></li>
 						</ul>
 					</li>
 					<li><a href="relatorios.html" class="primary-color">Relatórios</a></li>
@@ -79,7 +93,91 @@
 	</header>
 
 	<body>
-
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Cadastrar Aluguel</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Data do fechamento do contrato</label>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Valor do aluguel</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Data de início do contrato</label>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Data de fim do contrato</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<select>
+								<option value="" selected="">Interessado</option>
+								<option value="primeiro-imovel">INT1 - Rafael Ueda</option>
+								<option value="segundo-imovel">INT2 - Eduardo Souza</option>
+							</select>
+						</div>
+						<div class="col-md-6">
+							<select>
+								<option value="" selected="">Fiador</option>
+								<option value="primeiro-imovel">FIA1 - Katsutoshi Toyofuku</option>
+								<option value="segundo-imovel">FIA2 - Tania Ueda</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<select>
+								<option value="" selected="">Corretor</option>
+								<option value="primeiro-imovel">COR1 - Sergio Ueda</option>
+								<option value="segundo-imovel">COR2	 - Ricardo Toyofuku</option>
+							</select>
+						</div>
+						<div class="col-md-6">
+							<select>
+								<option value="" selected="">Código do imóvel</option>
+								<option value="primeiro-imovel">IMO-1</option>
+								<option value="segundo-imovel">IMO-2</option>
+							</select>
+						</div>
+					</div>
+					<div class="row buttons-row">
+						<div class="col-md-6 center">
+							<div class="principal-button"><a href="">Cadastrar</a></div>
+						</div>
+						<div class="col-md-6 center">
+							<div class="principal-button"><a href="">Limpar</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 
 </html>
