@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<title>ImoAnalytics</title>
+		<title>ImoAnalytics - Criar proprietário</title>
 
 		<!-- Bootstrap -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 		<!-- Custom style -->
-		<link href="C:/www/imoanalytics/prototypes/assets/style.css" rel="stylesheet">
+		<link href="assets/style.css" rel="stylesheet">
 	</head>
 
 	<header>
@@ -47,6 +47,13 @@
 						</ul>
 					</li>
 					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Fiadores  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarFiador.html" class="primary-color">Novo fiador</a></li>
+							<li><a href="listarFiador.html" class="primary-color">Procurar fiador</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
 						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Vendas  <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="criarVenda.html" class="primary-color">Nova venda</a></li>
@@ -58,6 +65,13 @@
 						<ul class="dropdown-menu">
 							<li><a href="criarAluguel.html" class="primary-color">Novo aluguel</a></li>
 							<li><a href="listarAluguel.html" class="primary-color">Procurar aluguel ativo</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Visitas  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarVisita.html" class="primary-color">Nova visita</a></li>
+							<li><a href="listarVisita.html" class="primary-color">Procurar visitas</a></li>
 						</ul>
 					</li>
 					<li><a href="relatorios.html" class="primary-color">Relatórios</a></li>
@@ -79,7 +93,129 @@
 	</header>
 
 	<body>
-
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-8">
+							<h3 class="panel-title">Código: PRO1</h3>
+						</div>
+						<div class="col-md-4 icons-edit-remove">
+							<a href="" title="Editar proprietário"><i class="fa fa-edit"></i></a>
+							<a href="" title="Remover proprietário"><i class="fa fa-trash"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" disabled value="Rafael Akira Ueda">
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Nome</label>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" disabled value="048.410.299-07">
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>CPF</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" disabled value="9.743.118-3">
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>RG</label>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" disabled value="06/10/1996">
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Data de nascimento</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" disabled value="(41)99134-7743">
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Telefone de contato</label>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" disabled value="80610-310">
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>CEP</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-8">
+							<div class="group">
+								<input type="text" disabled value="Rua Arion Niepce da Silva">
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Endereço</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="group">
+								<input type="text" disabled value="250">
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Número</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="group">
+								<input type="text" disabled value="Portão">
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Bairro</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="group">
+								<input type="text" disabled value="Curitiba">
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Cidade</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="group">
+								<input type="text" disabled value="Paraná">
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Estado</label>
+							</div>
+						</div>
+					</div>
+					<div class="row buttons-row">
+						<div class="col-md-6 center">
+							<div class="principal-button"><a href="">Cadastrar</a></div>
+						</div>
+						<div class="col-md-6 center">
+							<div class="principal-button"><a href="">Limpar</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 
 </html>

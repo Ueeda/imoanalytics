@@ -4,6 +4,46 @@
   color: #ee3236;
 }
 
+.header-row
+{
+  background-color: #ee3236;
+}
+
+.header-row p{
+	color: #fff;
+	margin: 0;
+	padding: 10px 0px
+}
+
+.primary-color-row
+{
+  background-color: #fff;
+}
+
+.primary-color-row p{
+	color: #000;
+	margin: 0;
+	padding: 10px 0px
+}
+
+.secondary-color-row
+{
+  background-color: #f3f3f3;
+}
+
+.secondary-color-row p{
+	color: #000;
+	margin: 0;
+	padding: 10px 0px
+}
+
+.more-button{
+	width: 60%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -179,6 +219,18 @@ body{
 	margin: 20px 0px;
 }
 
+.group input[type=submit]{
+	height: 50px;
+	width: 50px;
+	background-size: 20px;
+	background-image: url(images/search.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	color: transparent;
+	background-color: transparent;
+	border: 0;
+}
+
 .group input[type=text],
 .group input[type=number]
 {
@@ -212,7 +264,9 @@ body{
 
 .group input[type=text]:focus ~ label,
 .group input[type=text]:valid ~ label,
+.group input[type=text]:disabled ~ label,
 .group input[type=number]:focus ~ label,
+.group input[type=number]:disabled ~ label,
 .group input[type=number]:valid ~ label
 {
 	top:-20px;
@@ -440,5 +494,47 @@ select{
 }
 
 select:focus{
-	outline: none;
+	outline-color: #ee3236;
+}
+
+/* Textarea customizado */
+textarea
+{
+	width: 100%;
+	height: 100px;
+	padding: 10px;
+	resize: none;
+	outline-color: #ee3236;
+	border-color: #eee;
+}
+
+textarea::-webkit-input-placeholder{
+	color: #000;
+}
+
+/* Single page */
+.icons-edit-remove{
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.icons-edit-remove a{
+	color: #fff;
+	transition: all .3s ease-in-out;
+}
+
+.icons-edit-remove a:hover{
+	color: #000;
+}
+
+.icons-edit-remove .fa{
+	font-size: 20px;
+	position: absolute;
+    right: 70px;
+    top: 0px;
+}
+
+.icons-edit-remove a:last-child .fa{
+	right: 10px;
 }

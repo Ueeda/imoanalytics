@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<title>ImoAnalytics</title>
+		<title>ImoAnalytics - Criar interessado</title>
 
 		<!-- Bootstrap -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 		<!-- Custom style -->
-		<link href="C:/www/imoanalytics/prototypes/assets/style.css" rel="stylesheet">
+		<link href="assets/style.css" rel="stylesheet">
 	</head>
 
 	<header>
@@ -47,6 +47,13 @@
 						</ul>
 					</li>
 					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Fiadores  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarFiador.html" class="primary-color">Novo fiador</a></li>
+							<li><a href="listarFiador.html" class="primary-color">Procurar fiador</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
 						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Vendas  <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="criarVenda.html" class="primary-color">Nova venda</a></li>
@@ -58,6 +65,13 @@
 						<ul class="dropdown-menu">
 							<li><a href="criarAluguel.html" class="primary-color">Novo aluguel</a></li>
 							<li><a href="listarAluguel.html" class="primary-color">Procurar aluguel ativo</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Visitas  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarVisita.html" class="primary-color">Nova visita</a></li>
+							<li><a href="listarVisita.html" class="primary-color">Procurar visitas</a></li>
 						</ul>
 					</li>
 					<li><a href="relatorios.html" class="primary-color">Relatórios</a></li>
@@ -79,7 +93,87 @@
 	</header>
 
 	<body>
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Procurar proprietário</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-3">
+							<select>
+								<option value="nome">Procurar por nome</option>
+							</select>
+						</div>
+						<div class="col-md-8">
+							<div class="group">
+								<input type="text" required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Nome do proprietário</label>
+							</div>
+						</div>
+						<div class="col-md-1">
+							<div class="group">
+								<input type="submit" value="pesquisar">
+							</div>
+						</div>
+					</div>
 
+					<div class="header-row row">
+						<div class="col-md-1">
+							<p>Código</p>
+						</div>
+						<div class="col-md-4">
+							<p>Nome</p>
+						</div>
+						<div class="col-md-3">
+							<p>Telefone</p>
+						</div>
+						<div class="col-md-3">
+							<p>E-mail</p>
+						</div>
+					</div>
+
+					<div class="primary-color-row row">
+						<div class="col-md-1">
+							<p>PRO1</p>
+						</div>
+						<div class="col-md-4">
+							<p>Rafael Akira Ueda</p>
+						</div>
+						<div class="col-md-3">
+							<p>(41) 99134-7743</p>
+						</div>
+						<div class="col-md-3">
+							<p>rafaueda@hotmail.com</p>
+						</div>
+						<div class="col-md-1">
+							<a class="link-more" href="proprietario.html" title="Mais informações"><img src="assets/images/ellipsis-h.svg" class="more-button"></a>
+						</div>
+					</div>
+
+					<div class="secondary-color-row row">
+						<div class="col-md-1">
+							<p>PRO2</p>
+						</div>
+						<div class="col-md-4">
+							<p>Eduardo Henrique Souza</p>
+						</div>
+						<div class="col-md-3">
+							<p>(41) 99999-9999</p>
+						</div>
+						<div class="col-md-3">
+							<p>ehsouza@hotmail.com</p>
+						</div>
+						<div class="col-md-1">
+							<a class="link-more" href="proprietario.html" title="Mais informações"><img src="assets/images/ellipsis-h.svg" class="more-button"></a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
 	</body>
 
 </html>
