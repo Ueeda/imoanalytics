@@ -14,6 +14,7 @@
 		<!-- Font awesome -->
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
+		<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 		<!-- Custom style -->
 		<link href="assets/style.css" rel="stylesheet">
 	</head>
@@ -93,98 +94,164 @@
 	</header>
 
 	<body>
-		<div class="container">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title">Vendas</h3>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="panel panel-primary filter">
+						<div class="panel-heading">
+							<h3 class="panel-title">Filtros</h3>
+						</div>
+						<div class="panel-body">
+							<div class="primary-color-row row">
+								<div class="col-sm-12">
+									<p>Tipo de transação: </p>
+								</div>
+								<div class="col-sm-6">
+									<div class="md-checkbox">
+										<input id="i2" type="checkbox" checked>
+										<label for="i2">Venda</label>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="md-checkbox">
+										<input id="i" type="checkbox" checked>
+										<label for="i">Aluguel</label>
+									</div>
+								</div>
+							</div>
+							<div class="secondary-color-row row">
+								<div class="col-md-12">
+									<p>Tipo de imóvel</p>
+									<select>
+										<option value="" selected="">Qualquer tipo de imóvel</option>
+									</select>
+								</div>
+							</div>
+							<div class="primary-color-row row">
+								<div class="col-md-12">
+									<p>Bairro</p>
+									<select>
+										<option value="" selected="">Qualquer bairro</option>
+									</select>
+								</div>
+							</div>
+							<div class="secondary-color-row row">
+								<div class="col-md-12">
+									<p>Número de quartos</p>
+									<div class="group">
+										<input type="number" value="0" required>
+										<span class="highlight"></span>
+										<span class="bar"></span>
+									</div>
+								</div>
+							</div>
+							<div class="primary-color-row row">
+								<div class="col-md-12">
+									<p>Número de suítes</p>
+									<div class="group">
+										<input type="number" value="0" required>
+										<span class="highlight"></span>
+										<span class="bar"></span>
+									</div>
+								</div>
+							</div>
+							<div class="secondary-color-row row">
+								<div class="col-md-12">
+									<p>Número de vagas de garagem</p>
+									<div class="group">
+										<input type="number" value="0" required>
+										<span class="highlight"></span>
+										<span class="bar"></span>
+									</div>
+								</div>
+							</div>
+							<div class="primary-color-row row">
+								<div class="col-md-12">
+									<p>Número de banheiros</p>
+									<div class="group">
+										<input type="number" value="0" required>
+										<span class="highlight"></span>
+										<span class="bar"></span>
+									</div>
+								</div>
+							</div>
+							<div class="row buttons-row">
+								<div class="col-md-12 center">
+									<div class="principal-button"><a href="">Procurar</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-md-7">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Bairro</label>
-							</div>
+				<div class="col-md-9">
+					<div class="panel panel-primary filter">
+						<div class="panel-heading">
+							<h3 class="panel-title">Relatório com filtros</h3>
 						</div>
-						<div class="col-md-2">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Valor mínimo</label>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Valor máximo</label>
-							</div>
-						</div>
-						<div class="col-md-1">
-							<div class="group">
-								<input type="submit" value="pesquisar">
-							</div>
-						</div>
+						<div id="myChart"></div>
 					</div>
-
-					<div class="header-row row">
-						<div class="col-md-4">
-							<p>Imóvel</p>
-						</div>
-						<div class="col-md-2">
-							<p>Bairro</p>
-						</div>
-						<div class="col-md-3">
-							<p>Comprador</p>
-						</div>
-						<div class="col-md-2">
-							<p>Valor</p>
-						</div>
-					</div>
-
-					<div class="primary-color-row row">
-						<div class="col-md-4">
-							<p>IMO1 - Rua Arion Niepce da Silva</p>
-						</div>
-						<div class="col-md-2">
-							<p>Portão</p>
-						</div>
-						<div class="col-md-3">
-							<p>Celia Toyofuku Tossa</p>
-						</div>
-						<div class="col-md-2">
-							<p>R$350.000,00</p>
-						</div>
-						<div class="col-md-1">
-							<a class="link-more" href="venda.html" title="Mais informações"><img src="assets/images/ellipsis-h.svg" class="more-button"></a>
-						</div>
-					</div>
-
-					<div class="secondary-color-row row">
-						<div class="col-md-4">
-							<p>IMO2 - Avenida República Argentina</p>
-						</div>
-						<div class="col-md-2">
-							<p>Capão Raso</p>
-						</div>
-						<div class="col-md-3">
-							<p>Tânia Toyofuku Ueda</p>
-						</div>
-						<div class="col-md-2">
-							<p>R$300.000,00</p>
-						</div>
-						<div class="col-md-1">
-							<a class="link-more" href="venda.html" title="Mais informações"><img src="assets/images/ellipsis-h.svg" class="more-button"></a>
-						</div>
-					</div>
-
 				</div>
 			</div>
 		</div>
 	</body>
-
+	<footer>
+		<script>
+		var myChart = {
+			"type": "bar",
+			"title": {
+			"text": "Comparação entre vendas e locações"
+			},
+			"plot": {
+			"value-box": {
+			  "text": "%v"
+			},
+			"tooltip": {
+			  "text": "%v"
+			}
+			},
+			"legend": {
+			"toggle-action": "hide",
+			"header": {
+			  "text": "Legenda"
+			},
+			"item": {
+			  "cursor": "pointer"
+			},
+			"draggable": true,
+			"drag-handler": "icon"
+			},
+			"scale-x": {
+			"values": [
+			  "2015",
+			  "2016",
+			  "2017"
+			]
+			},
+			"series": [
+			{
+			  "values": [
+				80,
+				60,
+				90
+			  ],
+			  "text": "locações"
+			},
+			{
+			  "values": [
+				10,
+				14,
+				15
+			  ],
+			  "text": "vendas"
+			}
+			]
+			};
+			zingchart.render({
+			id: "myChart",
+			data: myChart,
+			height: "480",
+			width: "100%"
+			});
+		</script>
+	</footer>
 </html>

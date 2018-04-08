@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-BR">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>ImoAnalytics - Criar interessado</title>
+
+		<!-- Bootstrap -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<!-- Font awesome -->
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+		<!-- Custom style -->
+		<link href="assets/style.css" rel="stylesheet">
+	</head>
+
+	<header>
+		<div class="container-fluid header">
+			<div class="col-md-2 center">
+				<h1 class="primary-color brand-text">ImoAnalytics</h1>
+			</div>
+			<div class="col-md-8 center">
+				<ul class="nav nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle primary-color" data-toggle="dropdown">Imóveis  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarImovel.html" class="primary-color">Novo imóvel</a></li>
+							<li><a href="listarImovel.html" class="primary-color">Procurar imóveis</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Proprietários  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarProprietario.html" class="primary-color">Novo proprietário</a></li>
+							<li><a href="listarProprietario.html" class="primary-color">Procurar proprietário</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Interessados  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarInteressado.html" class="primary-color">Novo interessado</a></li>
+							<li><a href="listarInteressado.html" class="primary-color">Procurar interessado</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Fiadores  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarFiador.html" class="primary-color">Novo fiador</a></li>
+							<li><a href="listarFiador.html" class="primary-color">Procurar fiador</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Vendas  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarVenda.html" class="primary-color">Nova venda</a></li>
+							<li><a href="listarVenda.html" class="primary-color">Procurar venda</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Aluguéis  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarAluguel.html" class="primary-color">Novo aluguel</a></li>
+							<li><a href="listarAluguel.html" class="primary-color">Procurar aluguel ativo</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Visitas  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarVisita.html" class="primary-color">Nova visita</a></li>
+							<li><a href="listarVisita.html" class="primary-color">Procurar visitas</a></li>
+						</ul>
+					</li>
+					<li><a href="relatorios.html" class="primary-color">Relatórios</a></li>
+				</ul>
+				</nav>
+			</div>
+			<div class="col-md-2 center">
+				<ul class="nav nav-pills">
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
+						<ul class="dropdown-menu">
+							<li><a>Alterar senha</a></li>
+							<li><a>Log off</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="panel panel-primary filter">
+						<div class="panel-heading">
+							<h3 class="panel-title">Filtros</h3>
+						</div>
+						<div class="panel-body">
+							<div class="primary-color-row row">
+								<div class="col-sm-12">
+									<p>Disponível para: </p>
+								</div>
+								<div class="col-sm-6">
+									<div class="md-checkbox">
+										<input id="i2" type="checkbox" checked>
+										<label for="i2">Venda</label>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="md-checkbox">
+										<input id="i" type="checkbox" checked>
+										<label for="i">Aluguel</label>
+									</div>
+								</div>
+							</div>
+							<div class="secondary-color-row row">
+								<div class="col-md-12">
+									<p>Preço venda</p>
+								</div>
+								<div class="col-md-6">
+									<div class="group">
+										<input type="text" placeholder="Min" required>
+										<span class="highlight"></span>
+										<span class="bar"></span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="group">
+										<input type="text" placeholder="Max" required>
+										<span class="highlight"></span>
+										<span class="bar"></span>
+									</div>
+								</div>
+							</div>
+							<div class="primary-color-row row">
+								<div class="col-md-12">
+									<p>Preço aluguel</p>
+								</div>
+								<div class="col-md-6">
+									<div class="group">
+										<input type="text" placeholder="Min" required>
+										<span class="highlight"></span>
+										<span class="bar"></span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="group">
+										<input type="text" placeholder="Max" required>
+										<span class="highlight"></span>
+										<span class="bar"></span>
+									</div>
+								</div>
+							</div>
+							<div class="secondary-color-row row">
+								<div class="col-md-12">
+									<p>Tipo de imóvel</p>
+									<select>
+										<option value="" selected="">Qualquer tipo de imóvel</option>
+									</select>
+								</div>
+							</div>
+							<div class="primary-color-row row">
+								<div class="col-md-12">
+									<p>Endereço</p>
+									<div class="group">
+										<input type="text" required>
+										<span class="highlight"></span>
+										<span class="bar"></span>
+									</div>
+								</div>
+							</div>
+							<div class="secondary-color-row row">
+								<div class="col-md-12">
+									<p>Bairro</p>
+									<select>
+										<option value="" selected="">Qualquer bairro</option>
+									</select>
+								</div>
+							</div>
+							<div class="primary-color-row row">
+								<div class="col-md-12">
+									<p>Número de quartos</p>
+									<div class="group">
+										<input type="number" value="0" required>
+										<span class="highlight"></span>
+										<span class="bar"></span>
+									</div>
+								</div>
+							</div>
+							<div class="secondary-color-row row">
+								<div class="col-md-12">
+									<p>Número de suítes</p>
+									<div class="group">
+										<input type="number" value="0" required>
+										<span class="highlight"></span>
+										<span class="bar"></span>
+									</div>
+								</div>
+							</div>
+							<div class="primary-color-row row">
+								<div class="col-md-12">
+									<p>Número de vagas de garagem</p>
+									<div class="group">
+										<input type="number" value="0" required>
+										<span class="highlight"></span>
+										<span class="bar"></span>
+									</div>
+								</div>
+							</div>
+							<div class="secondary-color-row row">
+								<div class="col-md-12">
+									<p>Número de banheiros</p>
+									<div class="group">
+										<input type="number" value="0" required>
+										<span class="highlight"></span>
+										<span class="bar"></span>
+									</div>
+								</div>
+							</div>
+							<div class="row buttons-row">
+								<div class="col-md-12 center">
+									<div class="principal-button"><a href="">Procurar</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="panel panel-primary filter">
+						<div class="panel-heading">
+							<h3 class="panel-title">Lista de imóveis</h3>
+						</div>
+						<div class="row" style="padding: 10px;">
+							<div class="col-md-4">
+								<div class="product-item">
+									<a href="">
+										<div class="build-picture">
+											<img src="assets/images/apartament.jpg" class="build-image">
+										</div>
+									</a>
+									<div class="build-description">
+										<a href=""><h4 class="build-title">Apartamento residencial à venda</h4></a>
+										<p>Endereço: Rua Quinze de Novembro, 2050 - Alto da Rua XV - Curitiba/PR</p>
+										<p class="preco">Valor: <b>R$ 119.000</b></p>
+										<p class="preco">IPTU: <b>R$ 192,78/ano</b></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="product-item">
+									<a href="">
+										<div class="build-picture">
+											<img src="assets/images/apartament.jpg" class="build-image">
+										</div>
+									</a>
+									<div class="build-description">
+										<a href=""><h4 class="build-title">Apartamento residencial à venda</h4></a>
+										<p>Endereço: Rua Quinze de Novembro, 2050 - Alto da Rua XV - Curitiba/PR</p>
+										<p class="preco">Valor: <b>R$ 119.000</b></p>
+										<p class="preco">IPTU: <b>R$ 192,78/ano</b></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="product-item">
+									<a href="">
+										<div class="build-picture">
+											<img src="assets/images/apartament.jpg" class="build-image">
+										</div>
+									</a>
+									<div class="build-description">
+										<a href=""><h4 class="build-title">Apartamento residencial à venda</h4></a>
+										<p>Endereço: Rua Quinze de Novembro, 2050 - Alto da Rua XV - Curitiba/PR</p>
+										<p class="preco">Valor: <b>R$ 119.000</b></p>
+										<p class="preco">IPTU: <b>R$ 192,78/ano</b></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" style="padding: 10px;">
+							<div class="col-md-4">
+								<div class="product-item">
+									<a href="">
+										<div class="build-picture">
+											<img src="assets/images/apartament.jpg" class="build-image">
+										</div>
+									</a>
+									<div class="build-description">
+										<a href=""><h4 class="build-title">Apartamento residencial à venda</h4></a>
+										<p>Endereço: Rua Quinze de Novembro, 2050 - Alto da Rua XV - Curitiba/PR</p>
+										<p class="preco">Valor: <b>R$ 119.000</b></p>
+										<p class="preco">IPTU: <b>R$ 192,78/ano</b></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="product-item">
+									<a href="">
+										<div class="build-picture">
+											<img src="assets/images/apartament.jpg" class="build-image">
+										</div>
+									</a>
+									<div class="build-description">
+										<a href=""><h4 class="build-title">Apartamento residencial à venda</h4></a>
+										<p>Endereço: Rua Quinze de Novembro, 2050 - Alto da Rua XV - Curitiba/PR</p>
+										<p class="preco">Valor: <b>R$ 119.000</b></p>
+										<p class="preco">IPTU: <b>R$ 192,78/ano</b></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="product-item">
+									<a href="">
+										<div class="build-picture">
+											<img src="assets/images/apartament.jpg" class="build-image">
+										</div>
+									</a>
+									<div class="build-description">
+										<a href=""><h4 class="build-title">Apartamento residencial à venda</h4></a>
+										<p>Endereço: Rua Quinze de Novembro, 2050 - Alto da Rua XV - Curitiba/PR</p>
+										<p class="preco">Valor: <b>R$ 119.000</b></p>
+										<p class="preco">IPTU: <b>R$ 192,78/ano</b></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" style="padding: 10px;">
+							<div class="col-md-4">
+								<div class="product-item">
+									<a href="">
+										<div class="build-picture">
+											<img src="assets/images/apartament.jpg" class="build-image">
+										</div>
+									</a>
+									<div class="build-description">
+										<a href=""><h4 class="build-title">Apartamento residencial à venda</h4></a>
+										<p>Endereço: Rua Quinze de Novembro, 2050 - Alto da Rua XV - Curitiba/PR</p>
+										<p class="preco">Valor: <b>R$ 119.000</b></p>
+										<p class="preco">IPTU: <b>R$ 192,78/ano</b></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="product-item">
+									<a href="">
+										<div class="build-picture">
+											<img src="assets/images/apartament.jpg" class="build-image">
+										</div>
+									</a>
+									<div class="build-description">
+										<a href=""><h4 class="build-title">Apartamento residencial à venda</h4></a>
+										<p>Endereço: Rua Quinze de Novembro, 2050 - Alto da Rua XV - Curitiba/PR</p>
+										<p class="preco">Valor: <b>R$ 119.000</b></p>
+										<p class="preco">IPTU: <b>R$ 192,78/ano</b></p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="product-item">
+									<a href="">
+										<div class="build-picture">
+											<img src="assets/images/apartament.jpg" class="build-image">
+										</div>
+									</a>
+									<div class="build-description">
+										<a href=""><h4 class="build-title">Apartamento residencial à venda</h4></a>
+										<p>Endereço: Rua Quinze de Novembro, 2050 - Alto da Rua XV - Curitiba/PR</p>
+										<p class="preco">Valor: <b>R$ 119.000</b></p>
+										<p class="preco">IPTU: <b>R$ 192,78/ano</b></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

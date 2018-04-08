@@ -16,6 +16,8 @@
 
 		<!-- Custom style -->
 		<link href="assets/style.css" rel="stylesheet">
+
+		<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 	</head>
 
 	<header>
@@ -96,95 +98,72 @@
 		<div class="container">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">Vendas</h3>
+					<h3 class="panel-title">Relarório de vendas dos últimos três meses</h3>
 				</div>
 				<div class="panel-body">
-					<div class="row">
-						<div class="col-md-7">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Bairro</label>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Valor mínimo</label>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Valor máximo</label>
-							</div>
-						</div>
-						<div class="col-md-1">
-							<div class="group">
-								<input type="submit" value="pesquisar">
-							</div>
-						</div>
-					</div>
-
-					<div class="header-row row">
-						<div class="col-md-4">
-							<p>Imóvel</p>
-						</div>
-						<div class="col-md-2">
-							<p>Bairro</p>
-						</div>
-						<div class="col-md-3">
-							<p>Comprador</p>
-						</div>
-						<div class="col-md-2">
-							<p>Valor</p>
-						</div>
-					</div>
-
-					<div class="primary-color-row row">
-						<div class="col-md-4">
-							<p>IMO1 - Rua Arion Niepce da Silva</p>
-						</div>
-						<div class="col-md-2">
-							<p>Portão</p>
-						</div>
-						<div class="col-md-3">
-							<p>Celia Toyofuku Tossa</p>
-						</div>
-						<div class="col-md-2">
-							<p>R$350.000,00</p>
-						</div>
-						<div class="col-md-1">
-							<a class="link-more" href="venda.html" title="Mais informações"><img src="assets/images/ellipsis-h.svg" class="more-button"></a>
-						</div>
-					</div>
-
-					<div class="secondary-color-row row">
-						<div class="col-md-4">
-							<p>IMO2 - Avenida República Argentina</p>
-						</div>
-						<div class="col-md-2">
-							<p>Capão Raso</p>
-						</div>
-						<div class="col-md-3">
-							<p>Tânia Toyofuku Ueda</p>
-						</div>
-						<div class="col-md-2">
-							<p>R$300.000,00</p>
-						</div>
-						<div class="col-md-1">
-							<a class="link-more" href="venda.html" title="Mais informações"><img src="assets/images/ellipsis-h.svg" class="more-button"></a>
-						</div>
-					</div>
-
+					<div class="row" id="myChart"></div>
 				</div>
 			</div>
 		</div>
 	</body>
-
+	<footer>
+		<script>
+		var myChart = {
+			"type": "bar",
+			"title": {
+			"text": "Vendas dos últimos três meses"
+			},
+			"plot": {
+			"value-box": {
+			  "text": "%v"
+			},
+			"tooltip": {
+			  "text": "%v"
+			}
+			},
+			"legend": {
+			"toggle-action": "hide",
+			"header": {
+			  "text": "Legenda"
+			},
+			"item": {
+			  "cursor": "pointer"
+			},
+			"draggable": true,
+			"drag-handler": "icon"
+			},
+			"scale-x": {
+			"values": [
+			  "Janeiro",
+			  "Fevereiro",
+			  "Março"
+			]
+			},
+			"series": [
+			{
+			  "values": [
+				3,
+				6,
+				9
+			  ],
+			  "text": "apartamentos"
+			},
+			{
+			  "values": [
+				1,
+				4,
+				3
+			  ],
+			  "text": "casas"
+			}
+			]
+			};
+			zingchart.render({
+			id: "myChart",
+			data: myChart,
+			height: "480",
+			width: "100%"
+			});
+		</script>
+	</footer>
 </html>
