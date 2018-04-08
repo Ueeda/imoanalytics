@@ -96,67 +96,81 @@
 		<div class="container">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">Cadastrar Venda</h3>
+					<h3 class="panel-title">Procurar Venda</h3>
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-3">
+							<select>
+								<option value="nome">Procurar por Bairro</option>
+							</select>
+						</div>
+						<div class="col-md-8">
 							<div class="group">
 								<input type="text" required>
 								<span class="highlight"></span>
 								<span class="bar"></span>
-								<label>Data do fechamento da venda</label>
+								<label>Bairro</label>
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-1">
 							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Valor da venda</label>
+								<input type="submit" value="pesquisar">
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<select>
-								<option value="" selected="">Interessado</option>
-								<option value="primeiro-imovel">INT3 - Celia Toyofuku Tossa</option>
-								<option value="segundo-imovel">INT4 - Tânia Toyofuku Ueda</option>
-							</select>
+
+					<div class="header-row row">
+						<div class="col-md-4">
+							<p>Imóvel</p>
 						</div>
-						<div class="col-md-6">
-							<select>
-								<option value="" selected="">Fiador</option>
-								<option value="primeiro-imovel">FIA1 - Katsutoshi Toyofuku</option>
-								<option value="segundo-imovel">FIA2 - Saeco Ueda</option>
-							</select>
+						<div class="col-md-2">
+							<p>Bairro</p>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<select>
-								<option value="" selected="">Corretor</option>
-								<option value="primeiro-imovel">COR1 - Sergio Ueda</option>
-								<option value="segundo-imovel">COR2	 - Ricardo Toyofuku</option>
-							</select>
+						<div class="col-md-3">
+							<p>Comprador</p>
 						</div>
-						<div class="col-md-6">
-							<select>
-								<option value="" selected="">Código do imóvel</option>
-								<option value="primeiro-imovel">IMO1 - Rua Arion Niepce da Silva</option>
-								<option value="segundo-imovel">IMO2 - Avenida República Argentina</option>
-							</select>
+						<div class="col-md-2">
+							<p>Valor</p>
 						</div>
 					</div>
-					<div class="row buttons-row">
-						<div class="col-md-6 center">
-							<div class="principal-button"><a href="">Cadastrar</a></div>
+
+					<div class="primary-color-row row">
+						<div class="col-md-4">
+							<p>IMO1 - Rua Arion Niepce da Silva</p>
 						</div>
-						<div class="col-md-6 center">
-							<div class="principal-button"><a href="">Limpar</a></div>
+						<div class="col-md-2">
+							<p>Portão</p>
+						</div>
+						<div class="col-md-3">
+							<p>Celia Toyofuku Tossa</p>
+						</div>
+						<div class="col-md-2">
+							<p>R$350.000,00</p>
+						</div>
+						<div class="col-md-1">
+							<a class="link-more" href="venda.html" title="Mais informações"><img src="assets/images/ellipsis-h.svg" class="more-button"></a>
 						</div>
 					</div>
+
+					<div class="secondary-color-row row">
+						<div class="col-md-4">
+							<p>IMO2 - Avenida República Argentina</p>
+						</div>
+						<div class="col-md-2">
+							<p>Capão Raso</p>
+						</div>
+						<div class="col-md-3">
+							<p>Tânia Toyofuku Ueda</p>
+						</div>
+						<div class="col-md-2">
+							<p>R$300.000,00</p>
+						</div>
+						<div class="col-md-1">
+							<a class="link-more" href="venda.html" title="Mais informações"><img src="assets/images/ellipsis-h.svg" class="more-button"></a>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>

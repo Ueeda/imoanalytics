@@ -96,13 +96,20 @@
 		<div class="container">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">Cadastrar Venda</h3>
+					<div class="row">
+						<div class="col-md-8">
+							<h3 class="panel-title">Dados da venda</h3>
+						</div>
+						<div class="col-md-4 icons-edit-remove">
+							<a href="" title="Editar venda"><i class="fa fa-edit"></i></a>
+						</div>
+					</div>
 				</div>
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-md-6">
 							<div class="group">
-								<input type="text" required>
+								<input type="text" disabled value="02/04/2018">
 								<span class="highlight"></span>
 								<span class="bar"></span>
 								<label>Data do fechamento da venda</label>
@@ -110,7 +117,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="group">
-								<input type="text" required>
+								<input type="text" disabled value="R$350.000,00">
 								<span class="highlight"></span>
 								<span class="bar"></span>
 								<label>Valor da venda</label>
@@ -119,15 +126,13 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6">
-							<select>
-								<option value="" selected="">Interessado</option>
+							<select disabled>
 								<option value="primeiro-imovel">INT3 - Celia Toyofuku Tossa</option>
 								<option value="segundo-imovel">INT4 - Tânia Toyofuku Ueda</option>
 							</select>
 						</div>
 						<div class="col-md-6">
-							<select>
-								<option value="" selected="">Fiador</option>
+							<select disabled>
 								<option value="primeiro-imovel">FIA1 - Katsutoshi Toyofuku</option>
 								<option value="segundo-imovel">FIA2 - Saeco Ueda</option>
 							</select>
@@ -135,26 +140,16 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6">
-							<select>
-								<option value="" selected="">Corretor</option>
+							<select disabled>
 								<option value="primeiro-imovel">COR1 - Sergio Ueda</option>
 								<option value="segundo-imovel">COR2	 - Ricardo Toyofuku</option>
 							</select>
 						</div>
 						<div class="col-md-6">
-							<select>
-								<option value="" selected="">Código do imóvel</option>
+							<select disabled>
 								<option value="primeiro-imovel">IMO1 - Rua Arion Niepce da Silva</option>
-								<option value="segundo-imovel">IMO2 - Avenida República Argentina</option>
+								<option value="segundo-imovel">IMO2 - </option>
 							</select>
-						</div>
-					</div>
-					<div class="row buttons-row">
-						<div class="col-md-6 center">
-							<div class="principal-button"><a href="">Cadastrar</a></div>
-						</div>
-						<div class="col-md-6 center">
-							<div class="principal-button"><a href="">Limpar</a></div>
 						</div>
 					</div>
 				</div>

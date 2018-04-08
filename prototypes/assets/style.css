@@ -219,6 +219,10 @@ body{
 	margin: 20px 0px;
 }
 
+.group input[type=file]{
+	padding: 8px 0;
+}
+
 .group input[type=submit]{
 	height: 50px;
 	width: 50px;
@@ -488,13 +492,17 @@ body{
 /* Select customizado */
 select{
 	width: 100%;
-	margin: 12px 0px;
-	padding: 15px 5px;
+	margin: 20px 0px;
+    padding: 11px 5px;
 	border-color: #eee;
 }
 
 select:focus{
 	outline-color: #ee3236;
+}
+
+select:disabled{
+	background-color: #ebebe4;
 }
 
 /* Textarea customizado */
