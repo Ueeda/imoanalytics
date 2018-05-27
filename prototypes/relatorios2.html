@@ -16,6 +16,8 @@
 
 		<!-- Custom style -->
 		<link href="assets/style.css" rel="stylesheet">
+
+		<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 	</head>
 
 	<header>
@@ -96,64 +98,68 @@
 		<div class="container">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">Cadastrar Venda</h3>
+					<h3 class="panel-title">Relarório de vendas dos últimos três meses</h3>
 				</div>
 				<div class="panel-body">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Data do fechamento da venda</label>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Valor da venda</label>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<select>
-								<option value="" selected="">Interessado</option>
-								<option value="primeiro-imovel">INT3 - Celia Toyofuku Tossa</option>
-								<option value="segundo-imovel">INT4 - Tânia Toyofuku Ueda</option>
-							</select>
-						</div>
-						<div class="col-md-6">
-							<select>
-								<option value="" selected="">Corretor</option>
-								<option value="primeiro-imovel">COR1 - Sergio Ueda</option>
-								<option value="segundo-imovel">COR2	 - Ricardo Toyofuku</option>
-							</select>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="group">
-								<input type="text" required>
-								<span class="highlight"></span>
-								<span class="bar"></span>
-								<label>Código do imóvel</label>
-							</div>
-						</div>
-					</div>
-					<div class="row buttons-row">
-						<div class="col-md-6 center">
-							<div class="principal-button"><a href="">Cadastrar</a></div>
-						</div>
-						<div class="col-md-6 center">
-							<div class="principal-button"><a href="">Limpar</a></div>
-						</div>
-					</div>
+					<div class="row" id="myChart"></div>
 				</div>
 			</div>
 		</div>
 	</body>
-
+	<footer>
+		<script>
+		var myChart = {
+			"type": "bar",
+			"title": {
+			"text": "Preço dos imóveis para venda na região Portão"
+			},
+			"plot": {
+			"value-box": {
+			  "text": "%v"
+			},
+			"tooltip": {
+			  "text": "%v"
+			}
+			},
+			"legend": {
+			"toggle-action": "hide",
+			"header": {
+			  "text": "Legenda"
+			},
+			"item": {
+			  "cursor": "pointer"
+			},
+			"draggable": true,
+			"drag-handler": "icon"
+			},
+			"scale-x": {
+			"values": [
+			  "Apartamento",
+			  "Casa",
+			  "Terreno",
+			  "Flat",
+			  "Sobrado"
+			]
+			},
+			"series": [
+			{
+			  "values": [
+				50000,
+				120000,
+				500000,
+				20000,
+				300000
+			  ],
+			  "text": "preço médio"
+			}
+			]
+			};
+			zingchart.render({
+			id: "myChart",
+			data: myChart,
+			height: "480",
+			width: "100%"
+			});
+		</script>
+	</footer>
 </html>

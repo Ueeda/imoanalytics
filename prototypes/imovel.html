@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-BR">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>ImoAnalytics - Criar interessado</title>
+
+		<!-- Bootstrap -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<!-- Font awesome -->
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+		<!-- Custom style -->
+		<link href="assets/style.css" rel="stylesheet">
+	</head>
+
+	<header>
+		<div class="container-fluid header">
+			<div class="col-md-2 center">
+				<h1 class="primary-color brand-text">ImoAnalytics</h1>
+			</div>
+			<div class="col-md-8 center">
+				<ul class="nav nav-pills">
+					<li class="dropdown">
+						<a class="dropdown-toggle primary-color" data-toggle="dropdown">Imóveis  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarImovel.html" class="primary-color">Novo imóvel</a></li>
+							<li><a href="listarImovel.html" class="primary-color">Procurar imóveis</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Proprietários  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarProprietario.html" class="primary-color">Novo proprietário</a></li>
+							<li><a href="listarProprietario.html" class="primary-color">Procurar proprietário</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Interessados  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarInteressado.html" class="primary-color">Novo interessado</a></li>
+							<li><a href="listarInteressado.html" class="primary-color">Procurar interessado</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Fiadores  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarFiador.html" class="primary-color">Novo fiador</a></li>
+							<li><a href="listarFiador.html" class="primary-color">Procurar fiador</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Vendas  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarVenda.html" class="primary-color">Nova venda</a></li>
+							<li><a href="listarVenda.html" class="primary-color">Procurar venda</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Locações  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarLocacao.html" class="primary-color">Nova locação</a></li>
+							<li><a href="listarLocacao.html" class="primary-color">Procurar locação ativa</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Visitas  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="criarVisita.html" class="primary-color">Nova visita</a></li>
+							<li><a href="listarVisita.html" class="primary-color">Procurar visitas</a></li>
+						</ul>
+					</li>
+					<li><a href="relatorios.html" class="primary-color">Relatórios</a></li>
+				</ul>
+				</nav>
+			</div>
+			<div class="col-md-2 center">
+				<ul class="nav nav-pills">
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
+						<ul class="dropdown-menu">
+							<li><a>Alterar senha</a></li>
+							<li><a>Log off</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+
+	<body>
+		<div class="container-fluid">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-md-8">
+							<h3 class="panel-title">Código: IMO5</h3>
+						</div>
+						<div class="col-md-4 icons-edit-remove">
+							<a href="" title="Editar imóvel"><i class="fa fa-edit"></i></a>
+							<a href="" title="Remover imóvel"><i class="fa fa-trash"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-6">
+							<img src="assets/images/apartament.jpg" class="build-image">
+						</div>
+						<div class="col-md-6">
+							<div class="primary-color-row row">
+								<div class="col-md-6">
+									<p>Valor de locação: N/A</p>
+								</div>
+								<div class="col-md-6">
+									<p>Valor de venda: R$ 119.000</p>
+								</div>
+							</div>
+							<div class="secondary-color-row row">
+								<div class="col-md-12">
+									<p>Endereço: Rua Quinze de Novembro</p>
+								</div>
+							</div>
+							<div class="primary-color-row row">
+								<div class="col-md-4">
+									<p>Número: 2050</p>
+								</div>
+								<div class="col-md-4">
+									<p>Bairro: Alto da Rua XV</p>
+								</div>
+								<div class="col-md-4">
+									<p>CEP: 80800-800</p>
+								</div>
+							</div>
+							<div class="secondary-color-row row">
+								<div class="col-md-4">
+									<p>Cidade: Curitiba</p>
+								</div>
+								<div class="col-md-4">
+									<p>Estado: Paraná</p>
+								</div>
+								<div class="col-md-4">
+									<p>IPTU: R$192,78/ano</p>
+								</div>
+							</div>
+							<div class="primary-color-row row">
+								<div class="col-md-6">
+									<p>Proprietário: Rafael Akira Ueda</p>
+								</div>
+								<div class="col-md-6">
+									<p>Valor do condomínio: R$250,00</p>
+								</div>
+							</div>
+							<div class="secondary-color-row row">
+								<div class="col-md-12">
+									<p>Tipo de imóvel: Apartamento</p>
+								</div>
+							</div>
+							<div class="primary-color-row row">
+								<div class="col-md-8">
+									<p>Nome do prédio/condomínio: Condomínio do prédio</p>
+								</div>
+								<div class="col-md-4">
+									<p>Ano de construção: 2005</p>
+								</div>
+							</div>
+							<div class="secondary-color-row row">
+								<div class="col-md-4">
+									<p>Área total: 140m²</p>
+								</div>
+								<div class="col-md-4">
+									<p>Área privada: 110m²</p>
+								</div>
+								<div class="col-md-4">
+									<p>Quantidade de quartos: 2</p>
+								</div>
+							</div>
+							<div class="primary-color-row row">
+								<div class="col-md-4">
+									<p>Quantidade de sítes: 1</p>
+								</div>
+								<div class="col-md-4">
+									<p>Quantidade de banheiros: 2</p>
+								</div>
+								<div class="col-md-4">
+									<p>Vagas de garagem: 2</p>
+								</div>
+							</div>
+							<div class="secondary-color-row row">
+								<div class="col-md-6">
+									<p>Cartório de registro do imóvel: 5° Cartório de Registro De Imóveis de Curitiba</p>
+								</div>
+								<div class="col-md-6">
+									<p>Número de registro do imóvel: 112025</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Descrição do Imóvel</h3>
+				</div>
+				<div class="panel-body">
+					<p>Espaço para colocar uma descrição sobre o imóvel</p>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Visitas feitas ao imóvel</h3>
+					</div>
+					<div class="panel-body">
+						<div class="header-row row">
+							<div class="col-md-7">
+								<p>Interessado</p>
+							</div>
+							<div class="col-md-4">
+								<p>Data</p>
+							</div>
+						</div>
+						<div class="primary-color-row row">
+							<div class="col-md-7">
+								<p>INT1 - Vinicius Ueda</p>
+							</div>
+							<div class="col-md-4">
+								<p>03/03/2018</p>
+							</div>
+							<div class="col-md-1">
+								<a class="link-more" href="visita.html" title="Mais informações"><img style="height: 35px;" src="assets/images/ellipsis-h.svg" class="more-button"></a>
+							</div>
+						</div>
+						<div class="secondary-color-row row">
+							<div class="col-md-7">
+								<p>INT1 - Vinicius Ueda</p>
+							</div>
+							<div class="col-md-4">
+								<p>01/03/2018</p>
+							</div>
+							<div class="col-md-1">
+								<a class="link-more" href="proprietario.html" title="Mais informações"><img style="height: 35px;" src="assets/images/ellipsis-h.svg" class="more-button"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-md-8">
+								<h3 class="panel-title">Propostas feitas ao imóvel</h3>
+							</div>
+							<div class="col-md-4 icons-edit-remove">
+								<a href="criarProposta.html" title="Adicionar proposta"><i class="fa fa-plus"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="header-row row">
+							<div class="col-md-4">
+								<p>Interessado</p>
+							</div>
+							<div class="col-md-4">
+								<p>Valor</p>
+							</div>
+							<div class="col-md-4">
+								<p>Data</p>
+							</div>
+						</div>
+						<div class="primary-color-row row">
+							<div class="col-md-4">
+								<p>INT1 - Vinicius Ueda</p>
+							</div>
+							<div class="col-md-4">
+								<p>RS101.000,00</p>
+							</div>
+							<div class="col-md-4">
+								<p>02/03/2018</p>
+							</div>
+						</div>
+						<div class="secondary-color-row row">
+							<div class="col-md-4">
+								<p>INT1 - Vinicius Ueda</p>
+							</div>
+							<div class="col-md-4">
+								<p>RS111.000,00</p>
+							</div>
+							<div class="col-md-4">
+								<p>04/03/2018</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

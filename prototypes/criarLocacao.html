@@ -64,7 +64,7 @@
 						<a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Locações  <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="criarLocacao.html" class="primary-color">Nova locação</a></li>
-							<li><a href="listarLocacao.html" class="primary-color">Procurar locação ativa</a></li>
+							<li><a href="listarLocacao.html" class="primary-color">Procurar locação ativo</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -96,7 +96,7 @@
 		<div class="container">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">Cadastrar Venda</h3>
+					<h3 class="panel-title">Cadastrar locação</h3>
 				</div>
 				<div class="panel-body">
 					<div class="row">
@@ -105,7 +105,7 @@
 								<input type="text" required>
 								<span class="highlight"></span>
 								<span class="bar"></span>
-								<label>Data do fechamento da venda</label>
+								<label>Data do fechamento do contrato</label>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -113,7 +113,25 @@
 								<input type="text" required>
 								<span class="highlight"></span>
 								<span class="bar"></span>
-								<label>Valor da venda</label>
+								<label>Valor da locação</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Data de início do contrato</label>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="group">
+								<input type="text" required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label>Data de fim do contrato</label>
 							</div>
 						</div>
 					</div>
@@ -121,10 +139,19 @@
 						<div class="col-md-6">
 							<select>
 								<option value="" selected="">Interessado</option>
-								<option value="primeiro-imovel">INT3 - Celia Toyofuku Tossa</option>
-								<option value="segundo-imovel">INT4 - Tânia Toyofuku Ueda</option>
+								<option value="primeiro-imovel">INT1 - Rafael Ueda</option>
+								<option value="segundo-imovel">INT2 - Eduardo Souza</option>
 							</select>
 						</div>
+						<div class="col-md-6">
+							<select>
+								<option value="" selected="">Fiador</option>
+								<option value="primeiro-imovel">FIA1 - Katsutoshi Toyofuku</option>
+								<option value="segundo-imovel">FIA2 - Tania Ueda</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
 						<div class="col-md-6">
 							<select>
 								<option value="" selected="">Corretor</option>
@@ -132,14 +159,47 @@
 								<option value="segundo-imovel">COR2	 - Ricardo Toyofuku</option>
 							</select>
 						</div>
+						<div class="col-md-6">
+							<select>
+								<option value="" selected="">Código do imóvel</option>
+								<option value="primeiro-imovel">IMO-1</option>
+								<option value="segundo-imovel">IMO-2</option>
+							</select>
+						</div>
 					</div>
 					<div class="row">
+						<div class="col-md-6">
+							<select>
+								<option value="" selected="">Corretor</option>
+								<option value="primeiro-imovel">COR1 - Sergio Ueda</option>
+								<option value="segundo-imovel">COR2	 - Ricardo Toyofuku</option>
+							</select>
+						</div>
 						<div class="col-md-6">
 							<div class="group">
 								<input type="text" required>
 								<span class="highlight"></span>
 								<span class="bar"></span>
-								<label>Código do imóvel</label>
+								<label>Dia para pagamento do boleto</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="col-md-4" style="margin: 30px 0;">
+								<p>Boleto virtual: </p>
+							</div>
+							<div class="col-sm-3">
+								<div class="md-radio">
+									<input id="2" type="radio" name="g">
+									<label for="2">Sim</label>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="md-radio">
+									<input id="2" type="radio" name="g">
+									<label for="2">Não</label>
+								</div>
 							</div>
 						</div>
 					</div>
