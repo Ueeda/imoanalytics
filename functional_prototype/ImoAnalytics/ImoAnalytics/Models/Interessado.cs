@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace ImoAnalytics.Models
 {
-    public class Proprietario
+    public class Interessado
     {
         [Key]
         public int ID { get; set; }
@@ -47,21 +46,6 @@ namespace ImoAnalytics.Models
 
         [Required(ErrorMessage = "O estado é obrigatório.")]
         public String Estado { get; set; }
-
-        [Required(ErrorMessage = "A conta bancária é obrigatóra.")]
-        public String ContaBancaria { get; set; }
-
-        [Required(ErrorMessage = "A agência é obrigatória.")]
-        public String Agencia { get; set; }
-
-        [Required(ErrorMessage = "O banco é obrigatório.")]
-        public String Banco { get; set; }
-
-        [ForeignKey("ProprietarioId")]
-        public virtual ICollection<Imovel> Imoveis { get; set; }
-
-        [Required]
-        public Boolean Ativo { get; set; }
 
         [Required(ErrorMessage = "O email é obrigatório.")]
         [EmailAddress]

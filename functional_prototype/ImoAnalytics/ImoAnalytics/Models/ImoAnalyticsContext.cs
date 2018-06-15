@@ -25,5 +25,9 @@ namespace ImoAnalytics.Models
         public virtual DbSet<Cartorio> Cartorio { get; set; }
 
         public virtual DbSet<Proprietario> Proprietario { get; set; }
+
+        public System.Data.Entity.DbSet<ImoAnalytics.Models.Corretor> Corretors { get; set; }
+
+        public System.Data.Entity.DbSet<ImoAnalytics.Models.Interessado> Interessadoes { get; set; }
     }
 }

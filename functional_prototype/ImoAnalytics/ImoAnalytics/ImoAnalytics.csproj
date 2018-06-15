@@ -157,8 +157,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartorioController.cs" />
+    <Compile Include="Controllers\CorretorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImovelController.cs" />
+    <Compile Include="Controllers\InteressadoController.cs" />
     <Compile Include="Controllers\ProprietarioController.cs" />
     <Compile Include="Controllers\TipoImovelController.cs" />
     <Compile Include="Global.asax.cs">
@@ -166,8 +168,10 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cartorio.cs" />
+    <Compile Include="Models\Corretor.cs" />
     <Compile Include="Models\ImoAnalyticsContext.cs" />
     <Compile Include="Models\Imovel.cs" />
+    <Compile Include="Models\Interessado.cs" />
     <Compile Include="Models\Proprietario.cs" />
     <Compile Include="Models\TipoImovel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -231,6 +235,16 @@
     <Content Include="Views\Proprietario\Details.cshtml" />
     <Content Include="Views\Proprietario\Edit.cshtml" />
     <Content Include="Views\Proprietario\Index.cshtml" />
+    <Content Include="Views\Corretor\Create.cshtml" />
+    <Content Include="Views\Corretor\Delete.cshtml" />
+    <Content Include="Views\Corretor\Details.cshtml" />
+    <Content Include="Views\Corretor\Edit.cshtml" />
+    <Content Include="Views\Corretor\Index.cshtml" />
+    <Content Include="Views\Interessado\Create.cshtml" />
+    <Content Include="Views\Interessado\Delete.cshtml" />
+    <Content Include="Views\Interessado\Details.cshtml" />
+    <Content Include="Views\Interessado\Edit.cshtml" />
+    <Content Include="Views\Interessado\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

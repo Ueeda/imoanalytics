@@ -1,4 +1,4 @@
-﻿@model ImoAnalytics.Models.Proprietario
+﻿@model ImoAnalytics.Models.Corretor
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Proprietario</h4>
+    <h4>Corretor</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -99,35 +99,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ContaBancaria)
+            @Html.DisplayNameFor(model => model.Creci)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ContaBancaria)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Agencia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Agencia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Banco)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Banco)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Ativo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ativo)
+            @Html.DisplayFor(model => model.Creci)
         </dd>
 
         <dt>
@@ -137,12 +113,13 @@
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
+
         <dt>
-            Quantidade de imóveis
+            @Html.DisplayNameFor(model => model.Senha)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Imoveis.Count)
+            @Html.DisplayFor(model => model.Senha)
         </dd>
 
     </dl>

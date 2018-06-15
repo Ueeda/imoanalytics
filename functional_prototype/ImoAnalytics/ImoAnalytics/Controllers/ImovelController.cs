@@ -49,7 +49,7 @@ namespace ImoAnalytics.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ProprietarioId,TipoImovelId,CartorioId")] Imovel imovel)
+        public ActionResult Create([Bind(Include = "ID,TituloImovel,Endereco,Complemento,Numero,Cep,Bairro,AnoConstrucao,Venda,Locacao,AreaPrivada,AreaTotal,VagasGaragem,QntBanheiros,QntDormitorios,QntSuites,Disponivel,Reservado,ValorVenda,ValorLocacao,ValorIptu,NomeCondominio,ValorCondominio,NumeroRegistroImovel,DescricaoImovel,ProprietarioId,TipoImovelId,CartorioId")] Imovel imovel)
         {
             ViewBag.ProprietarioId = new SelectList(db.Proprietario, "ID", "NomeCompleto");
             ViewBag.TipoImovelId = new SelectList(db.TipoImovel, "ID", "Tipo");
@@ -87,7 +87,7 @@ namespace ImoAnalytics.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ProprietarioId,TipoImovelId,CartorioId")] Imovel imovel)
+        public ActionResult Edit([Bind(Include = "ID,,TituloImovel,Endereco,Complemento,Numero,Cep,Bairro,AnoConstrucao,Venda,Locacao,AreaPrivada,AreaTotal,VagasGaragem,QntBanheiros,QntDormitorios,QntSuites,Disponivel,Reservado,ValorVenda,ValorLocacao,ValorIptu,NomeCondominio,ValorCondominio,NumeroRegistroImovel,DescricaoImovel,ProprietarioId,TipoImovelId,CartorioId")] Imovel imovel)
         {
             ViewBag.ProprietarioId = new SelectList(db.Proprietario, "ID", "NomeCompleto", imovel.ProprietarioId);
             ViewBag.TipoImovelId = new SelectList(db.TipoImovel, "ID", "Tipo", imovel.TipoImovelId);
