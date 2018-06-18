@@ -1,0 +1,58 @@
+﻿@model ImoAnalytics.Models.Visita
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Visita</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Corretor.NomeCompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Corretor.NomeCompleto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imovel.TituloImovel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imovel.TituloImovel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interessado.NomeCompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interessado.NomeCompleto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

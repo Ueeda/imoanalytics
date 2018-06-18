@@ -157,23 +157,35 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartorioController.cs" />
+    <Compile Include="Controllers\ContratoDeLocacaoController.cs" />
     <Compile Include="Controllers\CorretorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImovelController.cs" />
     <Compile Include="Controllers\InteressadoController.cs" />
+    <Compile Include="Controllers\LocacaoController.cs" />
+    <Compile Include="Controllers\PropostaController.cs" />
     <Compile Include="Controllers\ProprietarioController.cs" />
     <Compile Include="Controllers\TipoImovelController.cs" />
+    <Compile Include="Controllers\VendaController.cs" />
+    <Compile Include="Controllers\VisitaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cartorio.cs" />
+    <Compile Include="Models\ContratoDeLocacao.cs" />
     <Compile Include="Models\Corretor.cs" />
+    <Compile Include="Models\Fiador.cs" />
+    <Compile Include="Controllers\FiadorController.cs" />
     <Compile Include="Models\ImoAnalyticsContext.cs" />
     <Compile Include="Models\Imovel.cs" />
     <Compile Include="Models\Interessado.cs" />
+    <Compile Include="Models\Locacao.cs" />
+    <Compile Include="Models\Proposta.cs" />
     <Compile Include="Models\Proprietario.cs" />
     <Compile Include="Models\TipoImovel.cs" />
+    <Compile Include="Models\Venda.cs" />
+    <Compile Include="Models\Visita.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +257,36 @@
     <Content Include="Views\Interessado\Details.cshtml" />
     <Content Include="Views\Interessado\Edit.cshtml" />
     <Content Include="Views\Interessado\Index.cshtml" />
+    <Content Include="Views\Fiador\Create.cshtml" />
+    <Content Include="Views\Fiador\Delete.cshtml" />
+    <Content Include="Views\Fiador\Details.cshtml" />
+    <Content Include="Views\Fiador\Edit.cshtml" />
+    <Content Include="Views\Fiador\Index.cshtml" />
+    <Content Include="Views\ContratoDeLocacao\Create.cshtml" />
+    <Content Include="Views\ContratoDeLocacao\Delete.cshtml" />
+    <Content Include="Views\ContratoDeLocacao\Details.cshtml" />
+    <Content Include="Views\ContratoDeLocacao\Edit.cshtml" />
+    <Content Include="Views\ContratoDeLocacao\Index.cshtml" />
+    <Content Include="Views\Proposta\Create.cshtml" />
+    <Content Include="Views\Proposta\Delete.cshtml" />
+    <Content Include="Views\Proposta\Details.cshtml" />
+    <Content Include="Views\Proposta\Edit.cshtml" />
+    <Content Include="Views\Proposta\Index.cshtml" />
+    <Content Include="Views\Venda\Create.cshtml" />
+    <Content Include="Views\Venda\Delete.cshtml" />
+    <Content Include="Views\Venda\Details.cshtml" />
+    <Content Include="Views\Venda\Edit.cshtml" />
+    <Content Include="Views\Venda\Index.cshtml" />
+    <Content Include="Views\Visita\Create.cshtml" />
+    <Content Include="Views\Visita\Delete.cshtml" />
+    <Content Include="Views\Visita\Details.cshtml" />
+    <Content Include="Views\Visita\Edit.cshtml" />
+    <Content Include="Views\Visita\Index.cshtml" />
+    <Content Include="Views\Locacao\Create.cshtml" />
+    <Content Include="Views\Locacao\Delete.cshtml" />
+    <Content Include="Views\Locacao\Details.cshtml" />
+    <Content Include="Views\Locacao\Edit.cshtml" />
+    <Content Include="Views\Locacao\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

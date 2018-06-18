@@ -26,8 +26,20 @@ namespace ImoAnalytics.Models
 
         public virtual DbSet<Proprietario> Proprietario { get; set; }
 
-        public System.Data.Entity.DbSet<ImoAnalytics.Models.Corretor> Corretors { get; set; }
+        public virtual DbSet<Corretor> Corretor { get; set; }
 
-        public System.Data.Entity.DbSet<ImoAnalytics.Models.Interessado> Interessadoes { get; set; }
+        public virtual DbSet<Interessado> Interessado { get; set; }
+
+        public virtual DbSet<Fiador> Fiador { get; set; }
+
+        public virtual DbSet<ContratoDeLocacao> ContratoDeLocacao { get; set; }
+
+        public virtual DbSet<Proposta> Proposta { get; set; }
+
+        public DbSet<Venda> Venda { get; set; }
+
+        public DbSet<Visita> Visita { get; set; }
+
+        public DbSet<Locacao> Locacao { get; set; }
     }
 }

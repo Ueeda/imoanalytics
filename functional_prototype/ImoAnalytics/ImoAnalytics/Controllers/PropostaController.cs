@@ -10,107 +10,116 @@ using ImoAnalytics.Models;
 
 namespace ImoAnalytics.Controllers
 {
-    public class CorretorController : Controller
+    public class PropostaController : Controller
     {
         private ImoAnalyticsContext db = new ImoAnalyticsContext();
 
-        // GET: Corretor
+        // GET: Proposta
         public ActionResult Index()
         {
-            return View(db.Corretor.ToList());
+            var propostas = db.Proposta.Include(p => p.Imovel).Include(p => p.Interessado);
+            return View(propostas.ToList());
         }
 
-        // GET: Corretor/Details/5
+        // GET: Proposta/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Corretor corretor = db.Corretor.Find(id);
-            if (corretor == null)
+            Proposta proposta = db.Proposta.Find(id);
+            if (proposta == null)
             {
                 return HttpNotFound();
             }
-            return View(corretor);
+            return View(proposta);
         }
 
-        // GET: Corretor/Create
+        // GET: Proposta/Create
         public ActionResult Create()
         {
+            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel");
+            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto");
             return View();
         }
 
-        // POST: Corretor/Create
+        // POST: Proposta/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NomeCompleto,Cpf,Rg,DataNascimento,Telefone,Cep,Endereco,Numero,Bairro,Cidade,Estado,Creci,Email,Senha")] Corretor corretor)
+        public ActionResult Create([Bind(Include = "ID,InteressadoId,ImovelId,Valor")] Proposta proposta)
         {
             if (ModelState.IsValid)
             {
-                db.Corretor.Add(corretor);
+                db.Proposta.Add(proposta);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(corretor);
+            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", proposta.ImovelId);
+            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", proposta.InteressadoId);
+            return View(proposta);
         }
 
-        // GET: Corretor/Edit/5
+        // GET: Proposta/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Corretor corretor = db.Corretor.Find(id);
-            if (corretor == null)
+            Proposta proposta = db.Proposta.Find(id);
+            if (proposta == null)
             {
                 return HttpNotFound();
             }
-            return View(corretor);
+            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", proposta.ImovelId);
+            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", proposta.InteressadoId);
+            return View(proposta);
         }
 
-        // POST: Corretor/Edit/5
+        // POST: Proposta/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NomeCompleto,Cpf,Rg,DataNascimento,Telefone,Cep,Endereco,Numero,Bairro,Cidade,Estado,Creci,Email,Senha")] Corretor corretor)
+        public ActionResult Edit([Bind(Include = "ID,InteressadoId,ImovelId,Valor")] Proposta proposta)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(corretor).State = EntityState.Modified;
+                db.Entry(proposta).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(corretor);
+            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", proposta.ImovelId);
+            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", proposta.InteressadoId);
+            return View(proposta);
         }
 
-        // GET: Corretor/Delete/5
+        // GET: Proposta/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Corretor corretor = db.Corretor.Find(id);
-            if (corretor == null)
+            Proposta proposta = db.Proposta.Find(id);
+            if (proposta == null)
             {
                 return HttpNotFound();
             }
-            return View(corretor);
+            return View(proposta);
         }
 
-        // POST: Corretor/Delete/5
+        // POST: Proposta/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Corretor corretor = db.Corretor.Find(id);
-            db.Corretor.Remove(corretor);
+            Proposta proposta = db.Proposta.Find(id);
+            db.Proposta.Remove(proposta);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

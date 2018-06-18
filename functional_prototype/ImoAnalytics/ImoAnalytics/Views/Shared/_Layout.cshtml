@@ -6,27 +6,81 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <header>
+        <div class="container-fluid header">
+            <div class="col-md-2 center">
+                <h1 class="primary-color brand-text">ImoAnalytics</h1>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <div class="col-md-8 center">
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle primary-color" data-toggle="dropdown">Imóveis  <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Criar imóvel", "Create", "Imóvel")</li>
+                            <li>@Html.ActionLink("Lista de imóvel", "Index", "Imóvel")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Proprietários  <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Criar proprietário", "Create", "Proprietario")</li>
+                            <li>@Html.ActionLink("Lista de proprietários", "Index", "Proprietario")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Interessados  <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Criar interessado", "Create", "Interessado")</li>
+                            <li>@Html.ActionLink("Lista de interessados", "Index", "Interessado")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Fiadores  <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Criar fiador", "Create", "Fiador")</li>
+                            <li>@Html.ActionLink("Lista de fiadores", "Index", "Fiador")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Vendas  <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Criar venda", "Create", "Venda")</li>
+                            <li>@Html.ActionLink("Lista de vendas", "Index", "Venda")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Locações  <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Criar locação", "Create", "Locacao")</li>
+                            <li>@Html.ActionLink("Lista de locações", "Index", "Locacao")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Visitas  <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Criar visita", "Create", "Visita")</li>
+                            <li>@Html.ActionLink("Lista de visitas", "Index", "Visita")</li>
+                        </ul>
+                    </li>
+                    <li><a href="relatorios.html" class="primary-color">Relatórios</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 center">
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a>Alterar senha</a></li>
+                            <li><a>Log off</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
-    </div>
+    </header>
     <div class="container body-content">
         @RenderBody()
         <hr />

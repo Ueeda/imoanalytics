@@ -1,0 +1,75 @@
+﻿@model ImoAnalytics.Models.Venda
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Venda</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Corretor.NomeCompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Corretor.NomeCompleto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imovel.TituloImovel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imovel.TituloImovel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interessado.NomeCompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interessado.NomeCompleto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataVenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataVenda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorVenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorVenda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComissaoImobiliaria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComissaoImobiliaria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComissaoCorretor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComissaoCorretor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

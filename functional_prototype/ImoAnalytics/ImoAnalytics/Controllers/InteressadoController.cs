@@ -17,7 +17,7 @@ namespace ImoAnalytics.Controllers
         // GET: Interessado
         public ActionResult Index()
         {
-            return View(db.Interessadoes.ToList());
+            return View(db.Interessado.ToList());
         }
 
         // GET: Interessado/Details/5
@@ -27,7 +27,7 @@ namespace ImoAnalytics.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Interessado interessado = db.Interessadoes.Find(id);
+            Interessado interessado = db.Interessado.Find(id);
             if (interessado == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace ImoAnalytics.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Interessadoes.Add(interessado);
+                db.Interessado.Add(interessado);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace ImoAnalytics.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Interessado interessado = db.Interessadoes.Find(id);
+            Interessado interessado = db.Interessado.Find(id);
             if (interessado == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace ImoAnalytics.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Interessado interessado = db.Interessadoes.Find(id);
+            Interessado interessado = db.Interessado.Find(id);
             if (interessado == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace ImoAnalytics.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Interessado interessado = db.Interessadoes.Find(id);
-            db.Interessadoes.Remove(interessado);
+            Interessado interessado = db.Interessado.Find(id);
+            db.Interessado.Remove(interessado);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

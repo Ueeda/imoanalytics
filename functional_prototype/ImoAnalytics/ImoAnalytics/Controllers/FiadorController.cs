@@ -6,111 +6,110 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ImoAnalytics.Models;
 
-namespace ImoAnalytics.Controllers
+namespace ImoAnalytics.Models
 {
-    public class CorretorController : Controller
+    public class FiadorController : Controller
     {
         private ImoAnalyticsContext db = new ImoAnalyticsContext();
 
-        // GET: Corretor
+        // GET: Fiador
         public ActionResult Index()
         {
-            return View(db.Corretor.ToList());
+            return View(db.Fiador.ToList());
         }
 
-        // GET: Corretor/Details/5
+        // GET: Fiador/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Corretor corretor = db.Corretor.Find(id);
-            if (corretor == null)
+            Fiador fiador = db.Fiador.Find(id);
+            if (fiador == null)
             {
                 return HttpNotFound();
             }
-            return View(corretor);
+            return View(fiador);
         }
 
-        // GET: Corretor/Create
+        // GET: Fiador/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Corretor/Create
+        // POST: Fiador/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NomeCompleto,Cpf,Rg,DataNascimento,Telefone,Cep,Endereco,Numero,Bairro,Cidade,Estado,Creci,Email,Senha")] Corretor corretor)
+        public ActionResult Create([Bind(Include = "ID,NomeCompleto,Cpf,Rg,DataNascimento,Telefone,Cep,Endereco,Numero,Bairro,Cidade,Estado,Email,RegistroDeImovel,Renda")] Fiador fiador)
         {
             if (ModelState.IsValid)
             {
-                db.Corretor.Add(corretor);
+                db.Fiador.Add(fiador);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(corretor);
+            return View(fiador);
         }
 
-        // GET: Corretor/Edit/5
+        // GET: Fiador/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Corretor corretor = db.Corretor.Find(id);
-            if (corretor == null)
+            Fiador fiador = db.Fiador.Find(id);
+            if (fiador == null)
             {
                 return HttpNotFound();
             }
-            return View(corretor);
+            return View(fiador);
         }
 
-        // POST: Corretor/Edit/5
+        // POST: Fiador/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NomeCompleto,Cpf,Rg,DataNascimento,Telefone,Cep,Endereco,Numero,Bairro,Cidade,Estado,Creci,Email,Senha")] Corretor corretor)
+        public ActionResult Edit([Bind(Include = "ID,NomeCompleto,Cpf,Rg,DataNascimento,Telefone,Cep,Endereco,Numero,Bairro,Cidade,Estado,Email,RegistroDeImovel,Renda")] Fiador fiador)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(corretor).State = EntityState.Modified;
+                db.Entry(fiador).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(corretor);
+            return View(fiador);
         }
 
-        // GET: Corretor/Delete/5
+        // GET: Fiador/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Corretor corretor = db.Corretor.Find(id);
-            if (corretor == null)
+            Fiador fiador = db.Fiador.Find(id);
+            if (fiador == null)
             {
                 return HttpNotFound();
             }
-            return View(corretor);
+            return View(fiador);
         }
 
-        // POST: Corretor/Delete/5
+        // POST: Fiador/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Corretor corretor = db.Corretor.Find(id);
-            db.Corretor.Remove(corretor);
+            Fiador fiador = db.Fiador.Find(id);
+            db.Fiador.Remove(fiador);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
