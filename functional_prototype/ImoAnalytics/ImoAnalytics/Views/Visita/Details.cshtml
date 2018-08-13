@@ -4,55 +4,63 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Visita</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Corretor.NomeCompleto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Corretor.NomeCompleto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Imovel.TituloImovel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Imovel.TituloImovel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Interessado.NomeCompleto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Interessado.NomeCompleto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Data)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Data)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
-
-    </dl>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="panel-title">Detalhes da visita</h3>
+            </div>
+            <div class="col-md-4 icons-edit-remove">
+                <a href="@Url.Action("Edit", "Visita", new { id = Model.ID })" title="Editar visita"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("Delete", "Visita", new { id = Model.ID })" title="Remover visita"><i class="fa fa-trash"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Corretor.NomeCompleto)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Corretor.NomeCompleto)</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>Código do @Html.DisplayNameFor(model => model.Imovel)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Imovel.ID)</p>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Interessado)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Interessado.NomeCompleto)</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Data)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Data)</p>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Html.DisplayNameFor(model => model.Descricao)</h3>
+    </div>
+    <div class="panel-body">
+        <p>@Html.DisplayFor(model => model.Descricao)</p>
+    </div>
+</div>
+
+<a href="@Url.Action("Index", "Visita")" title="Voltar para a listagem" class="voltar-icon"><i class="fa fa-arrow-left"></i></a>

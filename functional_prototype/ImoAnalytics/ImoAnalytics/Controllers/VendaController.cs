@@ -54,6 +54,8 @@ namespace ImoAnalytics.Controllers
         {
             if (ModelState.IsValid)
             {
+                venda.ComissaoImobiliaria = venda.ValorVenda * 0.06;
+                venda.ComissaoCorretor = venda.ComissaoImobiliaria * 0.2;
                 db.Venda.Add(venda);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -92,6 +94,8 @@ namespace ImoAnalytics.Controllers
         {
             if (ModelState.IsValid)
             {
+                venda.ComissaoImobiliaria = venda.ValorVenda * 0.06;
+                venda.ComissaoCorretor = venda.ComissaoImobiliaria * 0.2;
                 db.Entry(venda).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

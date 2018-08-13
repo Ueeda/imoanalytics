@@ -3,30 +3,35 @@
 @{
     ViewBag.Title = "Delete";
 }
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>TipoImovel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Tipo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tipo)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="panel-title">Tem certeza que quer deletar esse tipo do imóvel?</h3>
+            </div>
+            <div class="col-md-4 icons-edit-remove">
+                <a href="@Url.Action("Edit", "TipoImovel", new { id = Model.ID })" title="Editar venda"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("Delete", "TipoImovel", new { id = Model.ID })" title="Remover venda"><i class="fa fa-trash"></i></a>
+            </div>
         </div>
-    }
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Tipo)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Tipo)</p>
+            </div>
+        </div>
+    </div>
 </div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Deletar" class="principal-button" /> <br /><br />
+        <a href="@Url.Action("Details", "TipoImovel", new { id = Model.ID })" title="Voltar para os detalhes" class="voltar-icon"><i class="fa fa-arrow-left"></i></a>
+    </div>
+}

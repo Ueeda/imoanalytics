@@ -4,30 +4,24 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NomeCartorio)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeCartorio)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Vendas</h3>
+    </div>
+    <div class="header-row row">
+        <div class="col-md-11">
+            <p>@Html.DisplayNameFor(model => model.NomeCartorio)</p>
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="primary-color-row row">
+            <div class="col-md-11">
+                <p>@Html.DisplayFor(modelItem => item.NomeCartorio)</p>
+            </div>
+            <div class="col-md-1">
+                <a class="link-more" href="@Url.Action("Details", "Cartorio", new { id = item.ID })" title="Mais informações"><i class="fa fa-ellipsis-h"></i></a>
+            </div>
+        </div>
+    }
+</div>
