@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27703.2018
+VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImoAnalyticsSystem", "ImoAnalyticsSystem\ImoAnalyticsSystem.csproj", "{3093C34A-59CB-4C98-AEAE-0793B0D1A7CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImoAnalyticsSystem", "ImoAnalyticsSystem\ImoAnalyticsSystem.csproj", "{69E3325C-1136-430A-9CDE-2661B8D41935}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3093C34A-59CB-4C98-AEAE-0793B0D1A7CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3093C34A-59CB-4C98-AEAE-0793B0D1A7CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3093C34A-59CB-4C98-AEAE-0793B0D1A7CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3093C34A-59CB-4C98-AEAE-0793B0D1A7CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69E3325C-1136-430A-9CDE-2661B8D41935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69E3325C-1136-430A-9CDE-2661B8D41935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69E3325C-1136-430A-9CDE-2661B8D41935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69E3325C-1136-430A-9CDE-2661B8D41935}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {02864F64-E9E3-4B54-AF9A-461A1264D63E}
+		SolutionGuid = {717EAFD8-3749-4609-A763-535269835EB0}
 	EndGlobalSection
 EndGlobal
