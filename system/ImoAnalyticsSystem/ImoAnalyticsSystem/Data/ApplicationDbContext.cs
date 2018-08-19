@@ -8,10 +8,11 @@ using System.Web;
 
 namespace ImoAnalyticsSystem.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<Corretor>
+    public class ApplicationDbContext : IdentityDbContext<Corretor, RoleIntPk, int,
+        UserLoginIntPk, UserRoleIntPk, UserClaimIntPk>
     {
         public ApplicationDbContext()
-            : base("ImoAnalyticsSystemConnection", throwIfV1Schema: false)
+            : base("ImoAnalyticsSystemConnection")
         {
         }
 
