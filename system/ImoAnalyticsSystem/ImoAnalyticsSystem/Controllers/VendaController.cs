@@ -39,7 +39,7 @@ namespace ImoAnalyticsSystem.Controllers
         // GET: Venda/Create
         public ActionResult Create()
         {
-            ViewBag.CorretorId = new SelectList(db.Corretor, "ID", "NomeCompleto");
+            ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto");
             ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID");
             ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto");
             return View();
@@ -61,7 +61,7 @@ namespace ImoAnalyticsSystem.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CorretorId = new SelectList(db.Corretor, "ID", "NomeCompleto", venda.CorretorId);
+            ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", venda.CorretorId);
             ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID", venda.ImovelId);
             ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", venda.InteressadoId);
             return View(venda);
@@ -79,7 +79,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CorretorId = new SelectList(db.Corretor, "ID", "NomeCompleto", venda.CorretorId);
+            ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", venda.CorretorId);
             ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID", venda.ImovelId);
             ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", venda.InteressadoId);
             return View(venda);
@@ -100,7 +100,7 @@ namespace ImoAnalyticsSystem.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CorretorId = new SelectList(db.Corretor, "ID", "NomeCompleto", venda.CorretorId);
+            ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", venda.CorretorId);
             ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID", venda.ImovelId);
             ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", venda.InteressadoId);
             return View(venda);

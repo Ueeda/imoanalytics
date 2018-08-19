@@ -28,8 +28,6 @@ namespace ImoAnalyticsSystem.Data
 
         public virtual DbSet<Proprietario> Proprietario { get; set; }
 
-        public virtual DbSet<Corretor> Corretor { get; set; }
-
         public virtual DbSet<Interessado> Interessado { get; set; }
 
         public virtual DbSet<Fiador> Fiador { get; set; }
@@ -43,5 +41,7 @@ namespace ImoAnalyticsSystem.Data
         public virtual DbSet<Visita> Visita { get; set; }
 
         public virtual DbSet<Locacao> Locacao { get; set; }
+
+        public System.Data.Entity.DbSet<ImoAnalyticsSystem.Models.Imobiliaria> Imobiliarias { get; set; }
     }
 }

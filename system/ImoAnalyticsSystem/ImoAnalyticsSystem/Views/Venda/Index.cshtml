@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ImoAnalyticsSystem.Models.Venda>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Vendas</h3>
+    </div>
+    <div class="header-row row">
+        <div class="col-md-4">
+            <p>Código do @Html.DisplayNameFor(model => model.Imovel)</p>
+        </div>
+        <div class="col-md-2">
+            <p>@Html.DisplayNameFor(model => model.Imovel.Bairro)</p>
+        </div>
+        <div class="col-md-3">
+            <p>@Html.DisplayNameFor(model => model.Interessado)</p>
+        </div>
+        <div class="col-md-2">
+            <p>@Html.DisplayNameFor(model => model.ValorVenda)</p>
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="primary-color-row row">
+            <div class="col-md-4">
+                <p>@Html.DisplayFor(modelItem => item.Imovel.ID)</p>
+            </div>
+            <div class="col-md-2">
+                <p>@Html.DisplayFor(modelItem => item.Imovel.Bairro)</p>
+            </div>
+            <div class="col-md-3">
+                <p>@Html.DisplayFor(modelItem => item.Interessado.NomeCompleto)</p>
+            </div>
+            <div class="col-md-2">
+                <p>R$@Html.DisplayFor(modelItem => item.ValorVenda)</p>
+            </div>
+            <div class="col-md-1">
+                <a class="link-more" href="@Url.Action("Details", "Venda", new { id = item.ID })" title="Mais informações"><i class="fa fa-ellipsis-h"></i></a>
+            </div>
+        </div>
+    }
+</div>
+

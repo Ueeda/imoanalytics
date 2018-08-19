@@ -1,0 +1,66 @@
+﻿@model ImoAnalyticsSystem.Models.Visita
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="panel-title">Detalhes da visita</h3>
+            </div>
+            <div class="col-md-4 icons-edit-remove">
+                <a href="@Url.Action("Edit", "Visita", new { id = Model.ID })" title="Editar visita"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("Delete", "Visita", new { id = Model.ID })" title="Remover visita"><i class="fa fa-trash"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Corretor.NomeCompleto)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Corretor.NomeCompleto)</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>Código do @Html.DisplayNameFor(model => model.Imovel)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Imovel.ID)</p>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Interessado)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Interessado.NomeCompleto)</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Data)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Data)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Html.DisplayNameFor(model => model.Descricao)</h3>
+    </div>
+    <div class="panel-body">
+        <p>@Html.DisplayFor(model => model.Descricao)</p>
+    </div>
+</div>
+
+<a href="@Url.Action("Index", "Visita")" title="Voltar para a listagem" class="voltar-icon"><i class="fa fa-arrow-left"></i></a>

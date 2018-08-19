@@ -1,0 +1,65 @@
+﻿@model ImoAnalyticsSystem.Models.Locacao
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Locacao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ContratoDeLocacao.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContratoDeLocacao.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fiador.NomeCompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fiador.NomeCompleto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imovel.TituloImovel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imovel.TituloImovel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interessado.NomeCompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interessado.NomeCompleto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataLocacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataLocacao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

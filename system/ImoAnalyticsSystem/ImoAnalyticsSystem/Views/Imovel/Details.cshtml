@@ -1,0 +1,259 @@
+﻿@model ImoAnalyticsSystem.Models.Imovel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Imovel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TituloImovel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TituloImovel)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Endereco)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Complemento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Complemento)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cep)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bairro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bairro)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AnoConstrucao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnoConstrucao)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Venda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venda)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Locacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Locacao)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaPrivada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AreaPrivada)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AreaTotal)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VagasGaragem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VagasGaragem)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QntBanheiros)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QntBanheiros)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QntDormitorios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QntDormitorios)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QntSuites)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QntSuites)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Disponivel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Disponivel)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Reservado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reservado)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorVenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorVenda)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorLocacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorLocacao)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorIptu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorIptu)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeCondominio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeCondominio)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorCondominio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorCondominio)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroRegistroImovel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroRegistroImovel)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoImovelId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoImovel.Tipo)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CartorioId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cartorio.NomeCartorio)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProprietarioId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proprietario.NomeCompleto)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

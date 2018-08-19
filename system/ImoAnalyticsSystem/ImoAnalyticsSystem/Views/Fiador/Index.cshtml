@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ImoAnalyticsSystem.Models.Fiador>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Fiadores</h3>
+    </div>
+    <div class="header-row row">
+        <div class="col-md-4">
+            <p>@Html.DisplayNameFor(model => model.NomeCompleto)</p>
+        </div>
+        <div class="col-md-3">
+            <p>@Html.DisplayNameFor(model => model.Telefone)</p>
+        </div>
+        <div class="col-md-4">
+            <p>@Html.DisplayNameFor(model => model.Email)</p>
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="primary-color-row row">
+            <div class="col-md-4">
+                <p>@Html.DisplayFor(modelItem => item.NomeCompleto)</p>
+            </div>
+            <div class="col-md-3">
+                <p>@Html.DisplayFor(modelItem => item.Telefone)</p>
+            </div>
+            <div class="col-md-4">
+                <p>@Html.DisplayFor(modelItem => item.Email)</p>
+            </div>
+            <div class="col-md-1">
+                <a class="link-more" href="@Url.Action("Details", "Proprietario", new { id = item.ID })" title="Mais informações"><i class="fa fa-ellipsis-h"></i></a>
+            </div>
+        </div>
+    }
+</div>

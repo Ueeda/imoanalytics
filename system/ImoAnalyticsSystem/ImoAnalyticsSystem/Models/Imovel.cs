@@ -78,7 +78,7 @@ namespace ImoAnalyticsSystem.Models
 
         public Boolean Disponivel { get; set; } = true;
 
-        public Boolean Reservado { get; set; }
+        public Boolean Reservado { get; set; } = false;
 
         [Display(Name = "Valor de venda")]
         [Required(ErrorMessage = "O campo valor de venda é obrigatório.")]

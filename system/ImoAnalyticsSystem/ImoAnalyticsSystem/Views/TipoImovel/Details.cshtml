@@ -1,0 +1,31 @@
+﻿@model ImoAnalyticsSystem.Models.TipoImovel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="panel-title">Detalhes do tipo do imóvel</h3>
+            </div>
+            <div class="col-md-4 icons-edit-remove">
+                <a href="@Url.Action("Edit", "TipoImovel", new { id = Model.ID })" title="Editar tipo de imóvel"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("Delete", "TipoImovel", new { id = Model.ID })" title="Remover tipo de imóvel"><i class="fa fa-trash"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Tipo)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Tipo)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="@Url.Action("Index", "TipoImovel")" title="Voltar para a listagem" class="voltar-icon"><i class="fa fa-arrow-left"></i></a>

@@ -1,0 +1,31 @@
+﻿@model ImoAnalyticsSystem.Models.Cartorio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="panel-title">Detalhes do tipo do imóvel</h3>
+            </div>
+            <div class="col-md-4 icons-edit-remove">
+                <a href="@Url.Action("Edit", "Cartorio", new { id = Model.ID })" title="Editar cartório"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("Delete", "Cartorio", new { id = Model.ID })" title="Remover cartório"><i class="fa fa-trash"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.NomeCartorio)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.NomeCartorio)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="@Url.Action("Index", "Cartorio")" title="Voltar para a listagem" class="voltar-icon"><i class="fa fa-arrow-left"></i></a>

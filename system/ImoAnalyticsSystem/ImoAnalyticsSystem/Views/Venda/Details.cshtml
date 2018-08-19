@@ -1,0 +1,82 @@
+﻿@model ImoAnalyticsSystem.Models.Venda
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="panel-title">Detalhes da venda</h3>
+            </div>
+            <div class="col-md-4 icons-edit-remove">
+                <a href="@Url.Action("Edit", "Venda", new { id = Model.ID })" title="Editar venda"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("Delete", "Venda", new { id = Model.ID })" title="Remover venda"><i class="fa fa-trash"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Corretor.NomeCompleto)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Corretor.NomeCompleto)</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>Código do @Html.DisplayNameFor(model => model.Imovel)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Imovel.ID)</p>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Interessado)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Interessado.NomeCompleto)</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.DataVenda)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.DataVenda)</p>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-4">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.ValorVenda)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>R$@Html.DisplayFor(model => model.ValorVenda)</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.ComissaoImobiliaria)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>R$@Html.DisplayFor(model => model.ComissaoImobiliaria)</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.ComissaoCorretor)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>R$@Html.DisplayFor(model => model.ComissaoCorretor)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="@Url.Action("Index", "Venda")" title="Voltar para a listagem" class="voltar-icon"><i class="fa fa-arrow-left"></i></a>

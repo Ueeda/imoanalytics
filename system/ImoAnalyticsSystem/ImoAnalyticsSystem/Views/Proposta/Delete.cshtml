@@ -1,0 +1,49 @@
+﻿@model ImoAnalyticsSystem.Models.Proposta
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Proposta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Imovel.TituloImovel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imovel.TituloImovel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interessado.NomeCompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interessado.NomeCompleto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

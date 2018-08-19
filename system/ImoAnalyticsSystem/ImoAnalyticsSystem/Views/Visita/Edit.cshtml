@@ -1,0 +1,70 @@
+﻿@model ImoAnalyticsSystem.Models.Visita
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Editar Visita</h3>
+        </div>
+        <div class="panel-body">
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-sm-4" style="display: flex; height: 75px; align-items: center; justify-content: center;">
+                        @Html.LabelFor(model => model.InteressadoId, htmlAttributes: new { @class = "control-label col-md-2", @style = "display: flex; width: 100%; font-size: 14px; align-items: center;" })
+                    </div>
+                    <div class="col-md-8">
+                        @Html.DropDownList("InteressadoId", null, htmlAttributes: new { @class = "" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-sm-4" style="display: flex; height: 75px; align-items: center; justify-content: center;">
+                        <label style="display: flex; width: 100%; font-size: 14px; align-items: center;">Código do Imóvel</label>
+                    </div>
+                    <div class="col-md-8">
+                        @Html.DropDownList("ImovelId", null, htmlAttributes: new { @class = "   " })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-sm-4" style="display: flex; height: 75px; align-items: center; justify-content: center;">
+                        @Html.LabelFor(model => model.CorretorId, htmlAttributes: new { @class = "control-label col-md-2", @style = "display: flex; width: 100%; font-size: 14px; align-items: center;" })
+                    </div>
+                    <div class="col-md-8">
+                        @Html.DropDownList("CorretorId", null, htmlAttributes: new { @class = "" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="group">
+                        @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @type = "text" } })
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextAreaFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control", cols = 40, rows = 10, placeholder = "Descrição da visita" } })
+                </div>
+            </div>
+            <div class="row buttons-row">
+                <div class="col-md-12 center">
+                    <input type="submit" value="Salvar" class="principal-button" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,74 @@
+﻿@model ImoAnalyticsSystem.Models.Imobiliaria
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Imobiliaria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeImobiliaria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeImobiliaria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Endereco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailContato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailContato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefoneContato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelefoneContato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComissaoImobiliariaVenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComissaoImobiliariaVenda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComissaoCorretorVenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComissaoCorretorVenda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaxaAdministracaoLocacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaxaAdministracaoLocacao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

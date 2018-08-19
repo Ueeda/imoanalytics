@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ImoAnalyticsSystem.Models.Imobiliaria>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeImobiliaria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailContato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelefoneContato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComissaoImobiliariaVenda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComissaoCorretorVenda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaxaAdministracaoLocacao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeImobiliaria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Endereco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailContato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelefoneContato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComissaoImobiliariaVenda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComissaoCorretorVenda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxaAdministracaoLocacao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
