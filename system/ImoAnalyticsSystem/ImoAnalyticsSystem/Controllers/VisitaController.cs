@@ -17,6 +17,7 @@ namespace ImoAnalyticsSystem.Controllers
         VisitaBusiness vb = new VisitaBusiness();
 
         // GET: Visita
+        [Authorize]
         public ActionResult Index()
         {
             var visitas = db.Visita.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado);
@@ -24,6 +25,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Visita/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -53,6 +55,7 @@ namespace ImoAnalyticsSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,InteressadoId,CorretorId,ImovelId,Data,Horario,Descricao")] Visita visita)
         {
             int create = 1;
@@ -76,6 +79,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Visita/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,6 +102,7 @@ namespace ImoAnalyticsSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,InteressadoId,CorretorId,ImovelId,Data,Descricao")] Visita visita)
         {
             if (ModelState.IsValid)
@@ -113,6 +118,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Visita/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -130,6 +136,7 @@ namespace ImoAnalyticsSystem.Controllers
         // POST: Visita/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Visita visita = db.Visita.Find(id);

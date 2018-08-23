@@ -15,12 +15,14 @@ namespace ImoAnalyticsSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: TipoImovel
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.TipoImovel.ToList());
         }
 
         // GET: TipoImovel/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: TipoImovel/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace ImoAnalyticsSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,Tipo")] TipoImovel tipoImovel)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: TipoImovel/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace ImoAnalyticsSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,Tipo")] TipoImovel tipoImovel)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: TipoImovel/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace ImoAnalyticsSystem.Controllers
         // POST: TipoImovel/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             TipoImovel tipoImovel = db.TipoImovel.Find(id);

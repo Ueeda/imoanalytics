@@ -15,6 +15,7 @@ namespace ImoAnalyticsSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Venda
+        [Authorize]
         public ActionResult Index()
         {
             var vendas = db.Venda.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado);
@@ -22,6 +23,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Venda/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Venda/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto");
@@ -50,6 +53,7 @@ namespace ImoAnalyticsSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,DataVenda,ImovelId,CorretorId,InteressadoId,ValorVenda,ComissaoImobiliaria,ComissaoCorretor")] Venda venda)
         {
             if (ModelState.IsValid)
@@ -68,6 +72,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Venda/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +95,7 @@ namespace ImoAnalyticsSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,DataVenda,ImovelId,CorretorId,InteressadoId,ValorVenda,ComissaoImobiliaria,ComissaoCorretor")] Venda venda)
         {
             if (ModelState.IsValid)
@@ -107,6 +113,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Venda/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -122,6 +129,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // POST: Venda/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -15,12 +15,14 @@ namespace ImoAnalyticsSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Imovel
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Imovel.ToList());
         }
 
         // GET: Imovel/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Imovel/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.ProprietarioId = new SelectList(db.Proprietario, "ID", "NomeCompleto");
@@ -49,6 +52,7 @@ namespace ImoAnalyticsSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,TituloImovel,Endereco,Complemento,Numero,Cep,Bairro,AnoConstrucao,Venda,Locacao,AreaPrivada,AreaTotal,VagasGaragem,QntBanheiros,QntDormitorios,QntSuites,Disponivel,Reservado,ValorVenda,ValorLocacao,ValorIptu,NomeCondominio,ValorCondominio,NumeroRegistroImovel,DescricaoImovel,ProprietarioId,TipoImovelId,CartorioId")] Imovel imovel)
         {
             ViewBag.ProprietarioId = new SelectList(db.Proprietario, "ID", "NomeCompleto");
@@ -65,6 +69,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Imovel/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,6 +92,7 @@ namespace ImoAnalyticsSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,,TituloImovel,Endereco,Complemento,Numero,Cep,Bairro,AnoConstrucao,Venda,Locacao,AreaPrivada,AreaTotal,VagasGaragem,QntBanheiros,QntDormitorios,QntSuites,Disponivel,Reservado,ValorVenda,ValorLocacao,ValorIptu,NomeCondominio,ValorCondominio,NumeroRegistroImovel,DescricaoImovel,ProprietarioId,TipoImovelId,CartorioId")] Imovel imovel)
         {
             ViewBag.ProprietarioId = new SelectList(db.Proprietario, "ID", "NomeCompleto", imovel.ProprietarioId);
@@ -102,6 +108,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Imovel/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -119,6 +126,7 @@ namespace ImoAnalyticsSystem.Controllers
         // POST: Imovel/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Imovel imovel = db.Imovel.Find(id);

@@ -15,6 +15,7 @@ namespace ImoAnalyticsSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Locacao
+        [Authorize]
         public ActionResult Index()
         {
             var locacaos = db.Locacao.Include(l => l.ContratoDeLocacao).Include(l => l.Fiador).Include(l => l.Imovel).Include(l => l.Interessado);
@@ -22,6 +23,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Locacao/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Locacao/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.ContratoDeLocacaoId = new SelectList(db.ContratoDeLocacao, "ID", "ID");
@@ -51,6 +54,7 @@ namespace ImoAnalyticsSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,DataLocacao,ImovelId,InteressadoId,ContratoDeLocacaoId,FiadorId")] Locacao locacao)
         {
             if (ModelState.IsValid)
@@ -68,6 +72,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Locacao/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -91,6 +96,7 @@ namespace ImoAnalyticsSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,DataLocacao,ImovelId,InteressadoId,ContratoDeLocacaoId,FiadorId")] Locacao locacao)
         {
             if (ModelState.IsValid)
@@ -107,6 +113,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Locacao/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -124,6 +131,7 @@ namespace ImoAnalyticsSystem.Controllers
         // POST: Locacao/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Locacao locacao = db.Locacao.Find(id);

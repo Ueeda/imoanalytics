@@ -15,6 +15,7 @@ namespace ImoAnalyticsSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Proposta
+        [Authorize]
         public ActionResult Index()
         {
             var propostas = db.Proposta.Include(p => p.Imovel).Include(p => p.Interessado);
@@ -22,6 +23,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Proposta/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Proposta/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel");
@@ -49,6 +52,7 @@ namespace ImoAnalyticsSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,InteressadoId,ImovelId,Valor")] Proposta proposta)
         {
             if (ModelState.IsValid)
@@ -64,6 +68,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Proposta/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +90,7 @@ namespace ImoAnalyticsSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,InteressadoId,ImovelId,Valor")] Proposta proposta)
         {
             if (ModelState.IsValid)
@@ -99,6 +105,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Proposta/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,6 +123,7 @@ namespace ImoAnalyticsSystem.Controllers
         // POST: Proposta/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Proposta proposta = db.Proposta.Find(id);
