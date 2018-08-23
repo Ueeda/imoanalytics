@@ -131,6 +131,9 @@ namespace ImoAnalyticsSystem.ViewModels.IdentityViewModels
         [Display(Name = "Creci")]
         [Required(ErrorMessage = "O creci é obrigatório.")]
         public int Creci { get; set; }
+
+        [Display(Name = "Gerente")]
+        public Boolean IsGerente { get; set; }
     }
 
     public class ResetPasswordViewModel

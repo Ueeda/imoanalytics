@@ -10,7 +10,7 @@ using System.Web;
 
 namespace ImoAnalyticsSystem.Models
 {
-    public class Corretor : IdentityUser<int, UserLoginIntPk, UserRoleIntPk, UserClaimIntPk>
+    public class Corretor : IdentityUser
     {
         // Propriedades do corretor
         public String NomeCompleto { get; set; }
@@ -27,7 +27,7 @@ namespace ImoAnalyticsSystem.Models
         public bool Ativo { get; set; }
 
         //Métodos auto gerados pelo módulo Identity do Entity Framework
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Corretor, int> manager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Corretor> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
@@ -35,40 +35,5 @@ namespace ImoAnalyticsSystem.Models
             return userIdentity;
         }
     }
-
-    //New drived classes 
-    public class UserRoleIntPk : IdentityUserRole<int>
-    {
-    }
-
-    public class UserClaimIntPk : IdentityUserClaim<int>
-    {
-    }
-
-    public class UserLoginIntPk : IdentityUserLogin<int>
-    {
-    }
-
-    public class RoleIntPk : IdentityRole<int, UserRoleIntPk>
-    {
-        public RoleIntPk() { }
-        public RoleIntPk(string name) { Name = name; }
-    }
-
-    public class UserStoreIntPk : UserStore<Corretor, RoleIntPk, int,
-        UserLoginIntPk, UserRoleIntPk, UserClaimIntPk>
-    {
-        public UserStoreIntPk(ApplicationDbContext context)
-            : base(context)
-        {
-        }
-    }
-
-    public class RoleStoreIntPk : RoleStore<RoleIntPk, int, UserRoleIntPk>
-    {
-        public RoleStoreIntPk(ApplicationDbContext context)
-            : base(context)
-        {
-        }
-    }
+    
 }

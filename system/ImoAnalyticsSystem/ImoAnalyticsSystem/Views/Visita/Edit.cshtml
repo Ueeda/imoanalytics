@@ -51,6 +51,16 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-6">
+                    <div class="group">
+                        @Html.EditorFor(model => model.Horario, new { htmlAttributes = new { @type = "text" } })
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        @Html.LabelFor(model => model.Horario, htmlAttributes: new { @class = "control-label" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label" })
                     @Html.TextAreaFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control", cols = 40, rows = 10, placeholder = "Descrição da visita" } })

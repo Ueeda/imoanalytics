@@ -17,7 +17,7 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Corretor")]
         [Required(ErrorMessage = "O corretor responsável pela visita é obrigatório.")]
-        public int CorretorId { get; set; }
+        public string CorretorId { get; set; }
 
         [Display(Name = "Imóvel")]
         [Required(ErrorMessage = "O imóvel que receberá a visita é obrigatório.")]
@@ -25,7 +25,13 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Data da visita")]
         [Required(ErrorMessage = "A data da visita é obrigatória.")]
+        [DataType(DataType.Date)]
         public DateTime Data { get; set; }
+
+        [Display(Name = "Hora da visita")]
+        [Required(ErrorMessage = "A hora da visita é obrigatória.")]
+        [DataType(DataType.Time)]
+        public DateTime Horario { get; set; }
 
         [Display(Name = "Descrição da visita")]
         public String Descricao { get; set; }

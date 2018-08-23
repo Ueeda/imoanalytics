@@ -172,13 +172,16 @@ namespace ImoAnalyticsSystem.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                        
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    if(model.IsGerente)
+                        await this.UserManager.AddToRoleAsync(user.Id, "Gerente");
+                    else
+                        await this.UserManager.AddToRoleAsync(user.Id, "Corretor");
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -191,7 +194,7 @@ namespace ImoAnalyticsSystem.Controllers
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(int userId, string code)
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
             {
@@ -304,7 +307,7 @@ namespace ImoAnalyticsSystem.Controllers
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
-            if (userId == 0)
+            if (userId == null)
             {
                 return View("Error");
             }
@@ -471,11 +474,11 @@ namespace ImoAnalyticsSystem.Controllers
         internal class ChallengeResult : HttpUnauthorizedResult
         {
             public ChallengeResult(string provider, string redirectUri)
-                : this(provider, redirectUri, 0)
+                : this(provider, redirectUri, null)
             {
             }
 
-            public ChallengeResult(string provider, string redirectUri, int userId)
+            public ChallengeResult(string provider, string redirectUri, string userId)
             {
                 LoginProvider = provider;
                 RedirectUri = redirectUri;
@@ -484,14 +487,14 @@ namespace ImoAnalyticsSystem.Controllers
 
             public string LoginProvider { get; set; }
             public string RedirectUri { get; set; }
-            public int UserId { get; set; }
+            public string UserId { get; set; }
 
             public override void ExecuteResult(ControllerContext context)
             {
                 var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
-                if (UserId != 0)
+                if (UserId != null)
                 {
-                    properties.Dictionary[XsrfKey] = UserId.ToString();
+                    properties.Dictionary[XsrfKey] = UserId;
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }

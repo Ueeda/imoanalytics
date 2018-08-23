@@ -21,7 +21,7 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Corretor")]
         [Required(ErrorMessage = "O corretor que vendeu o imóvel é obrigatório.")]
-        public int CorretorId { get; set; }
+        public string CorretorId { get; set; }
 
         [Display(Name = "Interessado")]
         [Required(ErrorMessage = "O interessado que comprou o imóvel é obrigatório.")]

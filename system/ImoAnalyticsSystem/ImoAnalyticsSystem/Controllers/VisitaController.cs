@@ -1,4 +1,5 @@
-﻿using ImoAnalyticsSystem.Data;
+﻿using ImoAnalyticsSystem.Business;
+using ImoAnalyticsSystem.Data;
 using ImoAnalyticsSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace ImoAnalyticsSystem.Controllers
     public class VisitaController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        VisitaBusiness vb = new VisitaBusiness();
 
         // GET: Visita
         public ActionResult Index()
@@ -37,6 +39,7 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Visita/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.CorretorId = new SelectList(db.Users, "Id", "NomeCompleto");
@@ -50,15 +53,22 @@ namespace ImoAnalyticsSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,InteressadoId,CorretorId,ImovelId,Data,Descricao")] Visita visita)
+        public ActionResult Create([Bind(Include = "ID,InteressadoId,CorretorId,ImovelId,Data,Horario,Descricao")] Visita visita)
         {
+            int create = 1;
             if (ModelState.IsValid)
             {
-                db.Visita.Add(visita);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                create = vb.Create(visita);
+                if(create == 0)
+                    return RedirectToAction("Index");
             }
 
+            if(create == 1)
+                ModelState.AddModelError("Imovel", "O imóvel já possui visita agendada para essa data e hora");
+            else if (create == 2)
+                ModelState.AddModelError("Corretor", "O corretor já possui visita agendada para essa data e hora");
+            else if (create == 3)
+                ModelState.AddModelError("Imovel", "O imóvel e o corretor já possuem visita agendada para essa data e hora");
             ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", visita.CorretorId);
             ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID", visita.ImovelId);
             ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", visita.InteressadoId);

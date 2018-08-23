@@ -34,18 +34,18 @@ namespace ImoAnalyticsSystem
     }
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class ApplicationUserManager : UserManager<Corretor, int>
+    public class ApplicationUserManager : UserManager<Corretor>
     {
-        public ApplicationUserManager(IUserStore<Corretor, int> store)
+        public ApplicationUserManager(IUserStore<Corretor> store)
             : base(store)
         {
         }
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserStoreIntPk(context.Get<ApplicationDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<Corretor>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<Corretor, int>(manager)
+            manager.UserValidator = new UserValidator<Corretor>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -68,11 +68,11 @@ namespace ImoAnalyticsSystem
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
-            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<Corretor, int>
+            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<Corretor>
             {
                 MessageFormat = "Your security code is {0}"
             });
-            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<Corretor, int>
+            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<Corretor>
             {
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
@@ -83,14 +83,14 @@ namespace ImoAnalyticsSystem
             if (dataProtectionProvider != null)
             {
                 manager.UserTokenProvider = 
-                    new DataProtectorTokenProvider<Corretor, int>(dataProtectionProvider.Create("ASP.NET Identity"));
+                    new DataProtectorTokenProvider<Corretor>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
         }
     }
 
     // Configure the application sign-in manager which is used in this application.
-    public class ApplicationSignInManager : SignInManager<Corretor, int>
+    public class ApplicationSignInManager : SignInManager<Corretor, string>
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)
