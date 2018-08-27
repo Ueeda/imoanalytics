@@ -1,4 +1,5 @@
-﻿using ImoAnalyticsSystem.Data;
+﻿using ImoAnalyticsSystem.Business;
+using ImoAnalyticsSystem.Data;
 using ImoAnalyticsSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace ImoAnalyticsSystem.Controllers
     public class FiadorController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private FiadorBusiness fb = new FiadorBusiness();
 
         // GET: Fiador
         [Authorize]
@@ -52,13 +54,15 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "ID,NomeCompleto,Cpf,Rg,DataNascimento,Telefone,Cep,Endereco,Numero,Bairro,Cidade,Estado,Email,RegistroDeImovel,Renda")] Fiador fiador)
         {
+            string create = "";
             if (ModelState.IsValid)
             {
-                db.Fiador.Add(fiador);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                create = fb.Create(fiador);
+                if(create.Equals("OK"))
+                    return RedirectToAction("Index");
             }
 
+            ModelState.AddModelError("Erro ao criar o fiador: ", create);
             return View(fiador);
         }
 

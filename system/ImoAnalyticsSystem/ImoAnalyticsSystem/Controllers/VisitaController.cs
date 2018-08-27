@@ -58,20 +58,15 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "ID,InteressadoId,CorretorId,ImovelId,Data,Horario,Descricao")] Visita visita)
         {
-            int create = 1;
+            string create = "";
             if (ModelState.IsValid)
             {
                 create = vb.Create(visita);
-                if(create == 0)
+                if(create.Equals("OK"))
                     return RedirectToAction("Index");
             }
 
-            if(create == 1)
-                ModelState.AddModelError("Imovel", "O imóvel já possui visita agendada para essa data e hora");
-            else if (create == 2)
-                ModelState.AddModelError("Corretor", "O corretor já possui visita agendada para essa data e hora");
-            else if (create == 3)
-                ModelState.AddModelError("Imovel", "O imóvel e o corretor já possuem visita agendada para essa data e hora");
+            ModelState.AddModelError("Erro ao criar a visita: ", create);
             ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", visita.CorretorId);
             ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID", visita.ImovelId);
             ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", visita.InteressadoId);

@@ -1,7 +1,7 @@
 ﻿@model ImoAnalyticsSystem.Models.Fiador
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar detalhes do fiador " + Model.NomeCompleto;
 }
 
 @using (Html.BeginForm())
@@ -17,132 +17,104 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.NomeCompleto, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.NomeCompleto, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.NomeCompleto, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.NomeCompleto).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Cpf, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.Cpf, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Cpf, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Cpf).ToHtmlString()), @class = "effect-1 js-cpf" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Rg, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.Rg, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Rg, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Rg).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.DataNascimento).ToHtmlString()), @class = "effect-1 js-data" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Telefone).ToHtmlString()), @class = "effect-1 js-telefone" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.Cep, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Cep).ToHtmlString()), @class = "effect-1 js-cep" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.Endereco, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Endereco).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Numero).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Bairro).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.Cidade, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Cidade).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Estado).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Email).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.RegistroDeImovel, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.RegistroDeImovel, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.RegistroDeImovel, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.RegistroDeImovel).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Renda, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.Renda, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Renda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Renda).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
             </div>
             <div class="row buttons-row">
                 <div class="col-md-12 center">
-                    <input type="submit" value="Cadastrar" class="principal-button" />
+                    <input type="submit" value="Editar" class="principal-button" />
                 </div>
             </div>
         </div>

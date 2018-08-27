@@ -1,11 +1,8 @@
 ﻿@model ImoAnalyticsSystem.Models.Cartorio
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Cadastrar cartório";
 }
-
-<h2>Create</h2>
-
 
 @using (Html.BeginForm())
 {
@@ -13,17 +10,15 @@
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Cadastrar Tipo de imóvel</h3>
+            <h3 class="panel-title">Cadastrar cartório</h3>
         </div>
         <div class="panel-body">
             @Html.ValidationSummary(false, "", new { @class = "text-danger" })
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.NomeCartorio, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.NomeCartorio, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.NomeCartorio, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.NomeCartorio).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
             </div>

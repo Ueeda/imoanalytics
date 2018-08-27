@@ -1,7 +1,7 @@
 ﻿@model ImoAnalyticsSystem.Models.Visita
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Cadastrar visita";
 }
 
 @using (Html.BeginForm())
@@ -10,7 +10,7 @@
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Cadastrar Visita</h3>
+            <h3 class="panel-title">Cadastrar visita</h3>
         </div>
         <div class="panel-body">
             @Html.ValidationSummary(false, "", new { @class = "text-danger" })
@@ -43,20 +43,16 @@
                 </div>
                 <div class="col-md-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Data).ToHtmlString()), @class = "effect-1 js-data" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Horario, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.Horario, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Horario, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Horario).ToHtmlString()), @class = "effect-1 js-horario" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
             </div>

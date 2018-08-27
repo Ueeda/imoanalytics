@@ -1,4 +1,5 @@
-﻿using ImoAnalyticsSystem.Data;
+﻿using ImoAnalyticsSystem.Business;
+using ImoAnalyticsSystem.Data;
 using ImoAnalyticsSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace ImoAnalyticsSystem.Controllers
     public class ProprietarioController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private ProprietarioBusiness pb = new ProprietarioBusiness();
 
         // GET: Proprietario
         [Authorize]
@@ -52,13 +54,15 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "ID,NomeCompleto,Cpf,Rg,DataNascimento,Telefone,Cep,Endereco,Numero,Bairro,Cidade,Estado,ContaBancaria,Agencia,Banco,Ativo,Email")] Proprietario proprietario)
         {
+            string create = "";
             if (ModelState.IsValid)
             {
-                db.Proprietario.Add(proprietario);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                create = pb.Create(proprietario);
+                if (create.Equals("OK"))
+                    return RedirectToAction("Index");
             }
 
+            ModelState.AddModelError("Erro ao criar o proprietário: ", create);
             return View(proprietario);
         }
 

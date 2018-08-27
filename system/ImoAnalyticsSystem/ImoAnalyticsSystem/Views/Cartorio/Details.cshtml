@@ -1,14 +1,14 @@
 ﻿@model ImoAnalyticsSystem.Models.Cartorio
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes do cartório " + Model.NomeCartorio;
 }
 
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
             <div class="col-md-8">
-                <h3 class="panel-title">Detalhes do tipo do imóvel</h3>
+                <h3 class="panel-title">Detalhes do cartório</h3>
             </div>
             <div class="col-md-4 icons-edit-remove">
                 <a href="@Url.Action("Edit", "Cartorio", new { id = Model.ID })" title="Editar cartório"><i class="fa fa-edit"></i></a>

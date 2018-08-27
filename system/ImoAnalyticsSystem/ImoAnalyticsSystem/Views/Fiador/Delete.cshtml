@@ -1,7 +1,7 @@
 ﻿@model ImoAnalyticsSystem.Models.Fiador
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Deletar fiador " + Model.NomeCompleto;
 }
 
 <div class="panel panel-primary">
@@ -146,6 +146,6 @@
 
     <div class="form-actions no-color">
         <input type="submit" value="Deletar" class="principal-button" /> <br /><br />
-        <a href="@Url.Action("Details", "Proprietario", new { id = Model.ID })" title="Voltar para os detalhes" class="voltar-icon"><i class="fa fa-arrow-left"></i></a>
+        <a href="@Url.Action("Details", "Fiador", new { id = Model.ID })" title="Voltar para os detalhes do fiador" class="voltar-icon"><i class="fa fa-arrow-left"></i></a>
     </div>
 }

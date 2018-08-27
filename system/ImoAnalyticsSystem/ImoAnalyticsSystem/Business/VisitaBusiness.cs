@@ -11,7 +11,7 @@ namespace ImoAnalyticsSystem.Business
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public int Create(Visita visita)
+        public string Create(Visita visita)
         {
             var imovel = db.Visita.Where
                 (
@@ -23,19 +23,25 @@ namespace ImoAnalyticsSystem.Business
                     v => v.Data == visita.Data && v.Horario == visita.Horario && v.CorretorId == visita.CorretorId
                 ).ToList();
 
-            if (imovel.Count() == 0 && corretor.Count() == 0)
+            var interessado = db.Visita.Where
+                (
+                    v => v.Data == visita.Data && v.InteressadoId == visita.InteressadoId
+                );
+
+            if (imovel.Count() == 0 && corretor.Count() == 0 && interessado.Count() == 0)
             {
                 db.Visita.Add(visita);
                 db.SaveChanges();
-                return 0;
+                return "OK";
             }
-
-            if (corretor.Count() != 0 && imovel.Count() != 0)
-                return 3;
+            string response = "";
+            if (imovel.Count() != 0)
+                response += "o imóvel já possui visita agendada para esse horário. ";
+            if (interessado.Count() != 0)
+                response += "O interessado já possui visita agendada para esse horário. ";
             if (corretor.Count() != 0)
-                return 2;
-
-            return 1;
+                response += "O corretor já possui visita agendada para esse horário. ";
+            return response;
         }
     }
 }

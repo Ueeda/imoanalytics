@@ -16,7 +16,7 @@ namespace ImoAnalyticsSystem.Models
         public String NomeCompleto { get; set; }
 
         [Required(ErrorMessage = "O CPF é obrigatório.")]
-        [MaxLength(11, ErrorMessage = "O tamanho máximo do CPF é de 11 caracteres.")]
+        [MaxLength(14, ErrorMessage = "O tamanho máximo do CPF é de 14 caracteres.")]
         public String Cpf { get; set; }
 
         [Required(ErrorMessage = "O RG é obrigatório.")]

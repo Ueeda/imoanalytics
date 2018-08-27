@@ -1,4 +1,5 @@
-﻿using ImoAnalyticsSystem.Data;
+﻿using ImoAnalyticsSystem.Business;
+using ImoAnalyticsSystem.Data;
 using ImoAnalyticsSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace ImoAnalyticsSystem.Controllers
     public class TipoImovelController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private TipoImovelBusiness tb = new TipoImovelBusiness();
 
         // GET: TipoImovel
         [Authorize]
@@ -52,13 +54,15 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "ID,Tipo")] TipoImovel tipoImovel)
         {
+            string create = "";
             if (ModelState.IsValid)
             {
-                db.TipoImovel.Add(tipoImovel);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                create = tb.Create(tipoImovel);
+                if(create.Equals("OK"))
+                    return RedirectToAction("Index");
             }
 
+            ModelState.AddModelError("Erro ao criar o tipo de imóvel: ", create);
             return View(tipoImovel);
         }
 

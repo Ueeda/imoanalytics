@@ -11,14 +11,14 @@ namespace ImoAnalyticsSystem.Models
         [Key]
         public int ID { get; set; }
 
-        [Display(Name = "Nome do corretor")]
+        [Display(Name = "Nome do fiador")]
         [Required(ErrorMessage = "O nome completo é obrigatório")]
         [MaxLength(250, ErrorMessage = "O tamanho máximo do nome é de 250 caracteres.")]
         public String NomeCompleto { get; set; }
 
         [Display(Name = "CPF")]
         [Required(ErrorMessage = "O CPF é obrigatório.")]
-        [MaxLength(11, ErrorMessage = "O tamanho máximo do CPF é de 11 caracteres.")]
+        [MaxLength(14, ErrorMessage = "O tamanho máximo do CPF é de 14 caracteres.")]
         public String Cpf { get; set; }
 
         [Display(Name = "RG")]

@@ -1,10 +1,8 @@
 ﻿@model ImoAnalyticsSystem.Models.Cartorio
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar cartório + " + Model.NomeCartorio;
 }
-
-<h2>Edit</h2>
 
 
 @using (Html.BeginForm())
@@ -20,16 +18,14 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.NomeCartorio, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.NomeCartorio, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.NomeCartorio, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.NomeCartorio).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
                     </div>
                 </div>
             </div>
             <div class="row buttons-row">
                 <div class="col-md-12 center">
-                    <input type="submit" value="Cadastrar" class="principal-button" />
+                    <input type="submit" value="Salvar" class="principal-button" />
                 </div>
             </div>
         </div>

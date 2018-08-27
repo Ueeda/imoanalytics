@@ -1,18 +1,14 @@
 ﻿@model ImoAnalyticsSystem.Models.Cartorio
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Excluir cartório " + Model.NomeCartorio;
 }
 
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
             <div class="col-md-8">
-                <h3 class="panel-title">Tem certeza que quer excluir esse tipo de imóvel?</h3>
-            </div>
-            <div class="col-md-4 icons-edit-remove">
-                <a href="@Url.Action("Edit", "Cartorio", new { id = Model.ID })" title="Editar cartório"><i class="fa fa-edit"></i></a>
-                <a href="@Url.Action("Delete", "Cartorio", new { id = Model.ID })" title="Remover cartório"><i class="fa fa-trash"></i></a>
+                <h3 class="panel-title">Tem certeza que quer excluir esse cartório?</h3>
             </div>
         </div>
     </div>

@@ -55,9 +55,6 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "ID,TituloImovel,Endereco,Complemento,Numero,Cep,Bairro,AnoConstrucao,Venda,Locacao,AreaPrivada,AreaTotal,VagasGaragem,QntBanheiros,QntDormitorios,QntSuites,Disponivel,Reservado,ValorVenda,ValorLocacao,ValorIptu,NomeCondominio,ValorCondominio,NumeroRegistroImovel,DescricaoImovel,ProprietarioId,TipoImovelId,CartorioId")] Imovel imovel)
         {
-            ViewBag.ProprietarioId = new SelectList(db.Proprietario, "ID", "NomeCompleto");
-            ViewBag.TipoImovelId = new SelectList(db.TipoImovel, "ID", "Tipo");
-            ViewBag.CartorioId = new SelectList(db.Cartorio, "ID", "NomeCartorio");
             if (ModelState.IsValid)
             {
                 db.Imovel.Add(imovel);
@@ -65,6 +62,9 @@ namespace ImoAnalyticsSystem.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ProprietarioId = new SelectList(db.Proprietario, "ID", "NomeCompleto");
+            ViewBag.TipoImovelId = new SelectList(db.TipoImovel, "ID", "Tipo");
+            ViewBag.CartorioId = new SelectList(db.Cartorio, "ID", "NomeCartorio");
             return View(imovel);
         }
 

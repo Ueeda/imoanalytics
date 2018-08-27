@@ -1,7 +1,7 @@
 ﻿@model ImoAnalyticsSystem.Models.Fiador
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes do fiador " + Model.NomeCompleto;
 }
 
 <div class="panel panel-primary">
@@ -144,4 +144,4 @@
     </div>
 </div>
 
-<a href="@Url.Action("Index", "TipoImovel")" title="Voltar para a listagem" class="voltar-icon"><i class="fa fa-arrow-left"></i></a>
+<a href="@Url.Action("Index", "Fiador")" title="Voltar para a listagem" class="voltar-icon"><i class="fa fa-arrow-left"></i></a>

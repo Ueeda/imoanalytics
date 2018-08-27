@@ -9,7 +9,8 @@ namespace ImoAnalyticsSystem
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/functions.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate.custom.pt-br*"));
@@ -24,7 +25,15 @@ namespace ImoAnalyticsSystem
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/font-awesome.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/inputmask").Include(
+                "~/Scripts/Inputmask/inputmask.js",
+                "~/Scripts/Inputmask/jquery.inputmask.js",
+                "~/Scripts/Inputmask/inputmask.extensions.js",
+                "~/Scripts/Inputmask/inputmask.date.extensions.js",
+                "~/Scripts/Inputmask/inputmask.numeric.extensions.js"));
         }
     }
 }
