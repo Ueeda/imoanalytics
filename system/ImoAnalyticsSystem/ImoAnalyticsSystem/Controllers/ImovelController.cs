@@ -13,7 +13,6 @@ namespace ImoAnalyticsSystem.Controllers
 {
     public class ImovelController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         private ImovelBusiness imovelBusiness = new ImovelBusiness();
         private TipoImovelBusiness tipoImovelBusiness = new TipoImovelBusiness();
         private CartorioBusiness cartorioBusiness = new CartorioBusiness();
@@ -149,7 +148,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                imovelBusiness.Dispose();
             }
             base.Dispose(disposing);
         }

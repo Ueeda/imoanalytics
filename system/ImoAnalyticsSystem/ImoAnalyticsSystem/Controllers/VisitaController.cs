@@ -13,10 +13,10 @@ namespace ImoAnalyticsSystem.Controllers
 {
     public class VisitaController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         private VisitaBusiness visitaBusiness = new VisitaBusiness();
-        InteressadoBusiness interessadoBusiness = new InteressadoBusiness();
-        ImovelBusiness imovelBusiness = new ImovelBusiness();
+        private InteressadoBusiness interessadoBusiness = new InteressadoBusiness();
+        private ImovelBusiness imovelBusiness = new ImovelBusiness();
+        private CorretorBusiness corretorBusiness = new CorretorBusiness();
 
         // GET: Visita
         [Authorize]
@@ -45,7 +45,7 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.CorretorId = new SelectList(db.Users, "Id", "NomeCompleto");
+            ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "Id", "NomeCompleto");
             ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveis(), "ID", "ID");
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto");
             return View();
@@ -69,7 +69,7 @@ namespace ImoAnalyticsSystem.Controllers
 
             if (!create.Equals(""))
                 ModelState.AddModelError("Erro ao criar a visita: ", create);
-            ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", visita.CorretorId);
+            ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", visita.CorretorId);
             ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveis(), "ID", "ID", visita.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", visita.InteressadoId);
             return View(visita);
@@ -88,7 +88,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", visita.CorretorId);
+            ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", visita.CorretorId);
             ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveis(), "ID", "ID", visita.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", visita.InteressadoId);
             return View(visita);
@@ -111,7 +111,7 @@ namespace ImoAnalyticsSystem.Controllers
             }
             if (!edit.Equals(""))
                 ModelState.AddModelError("Erro ao criar a visita: ", edit);
-            ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", visita.CorretorId);
+            ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", visita.CorretorId);
             ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveis(), "ID", "ID", visita.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", visita.InteressadoId);
             return View(visita);
