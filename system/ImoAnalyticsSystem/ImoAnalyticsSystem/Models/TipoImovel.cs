@@ -13,6 +13,7 @@ namespace ImoAnalyticsSystem.Models
 
         [Required(ErrorMessage = "O tipo do imóvel precisa ser inserido")]
         [MaxLength(50)]
+        [Display(Name = "Tipo do imóvel")]
         public String Tipo { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace ImoAnalyticsSystem.Models
 
         [Required(ErrorMessage = "O nome completo é obrigatório")]
         [MaxLength(250, ErrorMessage = "O tamanho máximo do nome é de 250 caracteres.")]
-        [Display(Name = "Nome completo")]
+        [Display(Name = "Nome do proprietário")]
         public String NomeCompleto { get; set; }
 
         [Required(ErrorMessage = "O CPF é obrigatório.")]

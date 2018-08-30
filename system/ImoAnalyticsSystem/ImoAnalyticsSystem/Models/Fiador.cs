@@ -43,7 +43,7 @@ namespace ImoAnalyticsSystem.Models
         [Required(ErrorMessage = "O endereço é obrigatório.")]
         public String Endereco { get; set; }
 
-        [Display(Name = "Numero")]
+        [Display(Name = "Número")]
         [Required(ErrorMessage = "O número é obrigatório.")]
         public int Numero { get; set; }
 

@@ -41,6 +41,7 @@ namespace ImoAnalyticsSystem.Models
 
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "Data de cadastro")]
         public DateTime DataCadastro { get; set; } = DateTime.Now;
 
         [Display(Name = "Ano de construção")]
@@ -113,12 +114,15 @@ namespace ImoAnalyticsSystem.Models
 
         public Boolean Ativo { get; set; } = true;
 
+        [Display(Name = "Tipo de imóvel")]
         [Required(ErrorMessage = "Tipo do imóvel é obrigatório.")]
         public int TipoImovelId { get; set; }
 
+        [Display(Name = "Cartório")]
         [Required(ErrorMessage = "O cartório é obigatório.")]
         public int CartorioId { get; set; }
 
+        [Display(Name = "Proprietário")]
         [Required(ErrorMessage = "O proprietário precisa ser informado.")]
         public int ProprietarioId { get; set; }
 
