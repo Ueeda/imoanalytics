@@ -3,9 +3,6 @@
 @{
     ViewBag.Title = "Cadastro de corretor";
 }
-
-<h2>@ViewBag.Title.</h2>
-
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()

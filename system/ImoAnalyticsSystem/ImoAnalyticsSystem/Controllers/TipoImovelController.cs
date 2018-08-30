@@ -13,14 +13,13 @@ namespace ImoAnalyticsSystem.Controllers
 {
     public class TipoImovelController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        private TipoImovelBusiness tb = new TipoImovelBusiness();
+        private TipoImovelBusiness tipoImovelController = new TipoImovelBusiness();
 
         // GET: TipoImovel
         [Authorize]
         public ActionResult Index()
         {
-            return View(tb.GetTiposImovel());
+            return View(tipoImovelController.GetTiposImovel());
         }
 
         // GET: TipoImovel/Details/5
@@ -31,7 +30,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoImovel tipoImovel = tb.FindById(id);
+            TipoImovel tipoImovel = tipoImovelController.FindById(id);
             if (tipoImovel == null)
             {
                 return HttpNotFound();
@@ -57,7 +56,7 @@ namespace ImoAnalyticsSystem.Controllers
             string create = "";
             if (ModelState.IsValid)
             {
-                create = tb.Create(tipoImovel);
+                create = tipoImovelController.Create(tipoImovel);
                 if(create.Equals("OK"))
                     return RedirectToAction("Index");
             }
@@ -75,7 +74,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoImovel tipoImovel = tb.FindById(id);
+            TipoImovel tipoImovel = tipoImovelController.FindById(id);
             if (tipoImovel == null)
             {
                 return HttpNotFound();
@@ -94,7 +93,7 @@ namespace ImoAnalyticsSystem.Controllers
             string edit = "";
             if (ModelState.IsValid)
             {
-                edit = tb.Create(tipoImovel);
+                edit = tipoImovelController.Create(tipoImovel);
                 if (edit.Equals("OK"))
                     return RedirectToAction("Index");
             }
@@ -112,7 +111,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoImovel tipoImovel = tb.FindById(id);
+            TipoImovel tipoImovel = tipoImovelController.FindById(id);
             if (tipoImovel == null)
             {
                 return HttpNotFound();
@@ -126,8 +125,8 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            TipoImovel tipoImovel = tb.FindById(id);
-            tb.Delete(tipoImovel);
+            TipoImovel tipoImovel = tipoImovelController.FindById(id);
+            tipoImovelController.Delete(tipoImovel);
             return RedirectToAction("Index");
         }
 
@@ -135,7 +134,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (disposing)
             {
-                tb.Dispose();
+                tipoImovelController.Dispose();
             }
             base.Dispose(disposing);
         }

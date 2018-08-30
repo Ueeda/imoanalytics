@@ -195,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Business\CartorioBusiness.cs" />
+    <Compile Include="Business\CorretorBusiness.cs" />
     <Compile Include="Business\FiadorBusiness.cs" />
     <Compile Include="Business\ImovelBusiness.cs" />
     <Compile Include="Business\InteressadoBusiness.cs" />

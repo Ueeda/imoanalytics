@@ -12,13 +12,13 @@ namespace ImoAnalyticsSystem.Controllers
 {
     public class CartorioController : Controller
     {
-        private CartorioBusiness cb = new CartorioBusiness();
+        private CartorioBusiness cartorioBusiness = new CartorioBusiness();
 
         // GET: Cartorio
         [Authorize]
         public ActionResult Index()
         {
-            return View(cb.GetCartorios());
+            return View(cartorioBusiness.GetCartorios());
         }
 
         // GET: Cartorio/Details/5
@@ -29,7 +29,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cartorio cartorio = cb.FindById(id);
+            Cartorio cartorio = cartorioBusiness.FindById(id);
             if (cartorio == null)
             {
                 return HttpNotFound();
@@ -55,7 +55,7 @@ namespace ImoAnalyticsSystem.Controllers
             string create = "";
             if (ModelState.IsValid)
             {
-                create = cb.Create(cartorio);
+                create = cartorioBusiness.Create(cartorio);
                 if(create.Equals("OK"))
                     return RedirectToAction("Index");
             }
@@ -73,7 +73,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cartorio cartorio = cb.FindById(id); ;
+            Cartorio cartorio = cartorioBusiness.FindById(id); ;
             if (cartorio == null)
             {
                 return HttpNotFound();
@@ -92,7 +92,7 @@ namespace ImoAnalyticsSystem.Controllers
             string edit = "";
             if (ModelState.IsValid)
             {
-                edit = cb.Edit(cartorio);
+                edit = cartorioBusiness.Edit(cartorio);
                 if(edit.Equals("OK"))
                     return RedirectToAction("Index");
             }
@@ -110,7 +110,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cartorio cartorio = cb.FindById(id);
+            Cartorio cartorio = cartorioBusiness.FindById(id);
             if (cartorio == null)
             {
                 return HttpNotFound();
@@ -124,8 +124,8 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cartorio cartorio = cb.FindById(id);
-            cb.Delete(cartorio);
+            Cartorio cartorio = cartorioBusiness.FindById(id);
+            cartorioBusiness.Delete(cartorio);
             return RedirectToAction("Index");
         }
 
@@ -133,7 +133,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (disposing)
             {
-                cb.Dispose();
+                cartorioBusiness.Dispose();
             }
             base.Dispose(disposing);
         }
