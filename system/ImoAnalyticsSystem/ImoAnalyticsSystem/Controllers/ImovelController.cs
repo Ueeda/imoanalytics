@@ -1,4 +1,5 @@
-﻿using ImoAnalyticsSystem.Data;
+﻿using ImoAnalyticsSystem.Business;
+using ImoAnalyticsSystem.Data;
 using ImoAnalyticsSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,16 @@ namespace ImoAnalyticsSystem.Controllers
     public class ImovelController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private ImovelBusiness imovelBusiness = new ImovelBusiness();
+        private TipoImovelBusiness tipoImovelBusiness = new TipoImovelBusiness();
+        private CartorioBusiness cartorioBusiness = new CartorioBusiness();
+        private ProprietarioBusiness proprietarioBusiness = new ProprietarioBusiness();
 
         // GET: Imovel
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.Imovel.ToList());
+            return View(imovelBusiness.GetImoveis());
         }
 
         // GET: Imovel/Details/5
@@ -29,7 +34,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Imovel imovel = db.Imovel.Find(id);
+            Imovel imovel = imovelBusiness.FindById(id);
             if (imovel == null)
             {
                 return HttpNotFound();
@@ -41,9 +46,9 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.ProprietarioId = new SelectList(db.Proprietario, "ID", "NomeCompleto");
-            ViewBag.TipoImovelId = new SelectList(db.TipoImovel, "ID", "Tipo");
-            ViewBag.CartorioId = new SelectList(db.Cartorio, "ID", "NomeCartorio");
+            ViewBag.ProprietarioId = new SelectList(proprietarioBusiness.GetProprietarios(), "ID", "NomeCompleto");
+            ViewBag.TipoImovelId = new SelectList(tipoImovelBusiness.GetTiposImovel(), "ID", "Tipo");
+            ViewBag.CartorioId = new SelectList(cartorioBusiness.GetCartorios(), "ID", "NomeCartorio");
             return View();
         }
 
@@ -55,16 +60,19 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "ID,TituloImovel,Endereco,Complemento,Numero,Cep,Bairro,AnoConstrucao,Venda,Locacao,AreaPrivada,AreaTotal,VagasGaragem,QntBanheiros,QntDormitorios,QntSuites,Disponivel,Reservado,ValorVenda,ValorLocacao,ValorIptu,NomeCondominio,ValorCondominio,NumeroRegistroImovel,DescricaoImovel,ProprietarioId,TipoImovelId,CartorioId")] Imovel imovel)
         {
+            string create = "";
             if (ModelState.IsValid)
             {
-                db.Imovel.Add(imovel);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                create = imovelBusiness.Create(imovel);
+                if(create.Equals("OK"))
+                    return RedirectToAction("Index");
             }
 
-            ViewBag.ProprietarioId = new SelectList(db.Proprietario, "ID", "NomeCompleto");
-            ViewBag.TipoImovelId = new SelectList(db.TipoImovel, "ID", "Tipo");
-            ViewBag.CartorioId = new SelectList(db.Cartorio, "ID", "NomeCartorio");
+            if(!create.Equals(""))
+                ModelState.AddModelError("Erro ao criar o imovel: ", create);
+            ViewBag.ProprietarioId = new SelectList(proprietarioBusiness.GetProprietarios(), "ID", "NomeCompleto");
+            ViewBag.TipoImovelId = new SelectList(tipoImovelBusiness.GetTiposImovel(), "ID", "Tipo");
+            ViewBag.CartorioId = new SelectList(cartorioBusiness.GetCartorios(), "ID", "NomeCartorio");
             return View(imovel);
         }
 
@@ -76,14 +84,14 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Imovel imovel = db.Imovel.Find(id);
+            Imovel imovel = imovelBusiness.FindById(id);
             if (imovel == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProprietarioId = new SelectList(db.Proprietario, "ID", "NomeCompleto", imovel.ProprietarioId);
-            ViewBag.TipoImovelId = new SelectList(db.TipoImovel, "ID", "Tipo", imovel.TipoImovelId);
-            ViewBag.CartorioId = new SelectList(db.Cartorio, "ID", "NomeCartorio", imovel.CartorioId);
+            ViewBag.ProprietarioId = new SelectList(proprietarioBusiness.GetProprietarios(), "ID", "NomeCompleto", imovel.ProprietarioId);
+            ViewBag.TipoImovelId = new SelectList(tipoImovelBusiness.GetTiposImovel(), "ID", "Tipo", imovel.TipoImovelId);
+            ViewBag.CartorioId = new SelectList(cartorioBusiness.GetCartorios(), "ID", "NomeCartorio", imovel.CartorioId);
             return View(imovel);
         }
 
@@ -95,15 +103,18 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Edit([Bind(Include = "ID,,TituloImovel,Endereco,Complemento,Numero,Cep,Bairro,AnoConstrucao,Venda,Locacao,AreaPrivada,AreaTotal,VagasGaragem,QntBanheiros,QntDormitorios,QntSuites,Disponivel,Reservado,ValorVenda,ValorLocacao,ValorIptu,NomeCondominio,ValorCondominio,NumeroRegistroImovel,DescricaoImovel,ProprietarioId,TipoImovelId,CartorioId")] Imovel imovel)
         {
-            ViewBag.ProprietarioId = new SelectList(db.Proprietario, "ID", "NomeCompleto", imovel.ProprietarioId);
-            ViewBag.TipoImovelId = new SelectList(db.TipoImovel, "ID", "Tipo", imovel.TipoImovelId);
-            ViewBag.CartorioId = new SelectList(db.Cartorio, "ID", "NomeCartorio", imovel.CartorioId);
+            string edit = "";
             if (ModelState.IsValid)
             {
-                db.Entry(imovel).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                edit = imovelBusiness.Edit(imovel);
+                if (edit.Equals("OK")) 
+                    return RedirectToAction("Index");
             }
+            if (!edit.Equals(""))
+                ModelState.AddModelError("Erro ao criar o imovel: ", edit);
+            ViewBag.ProprietarioId = new SelectList(proprietarioBusiness.GetProprietarios(), "ID", "NomeCompleto", imovel.ProprietarioId);
+            ViewBag.TipoImovelId = new SelectList(tipoImovelBusiness.GetTiposImovel(), "ID", "Tipo", imovel.TipoImovelId);
+            ViewBag.CartorioId = new SelectList(cartorioBusiness.GetCartorios(), "ID", "NomeCartorio", imovel.CartorioId);
             return View(imovel);
         }
 
@@ -115,7 +126,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Imovel imovel = db.Imovel.Find(id);
+            Imovel imovel = imovelBusiness.FindById(id);
             if (imovel == null)
             {
                 return HttpNotFound();
@@ -129,9 +140,8 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            Imovel imovel = db.Imovel.Find(id);
-            db.Imovel.Remove(imovel);
-            db.SaveChanges();
+            Imovel imovel = imovelBusiness.FindById(id);
+            imovelBusiness.Delete(imovel);
             return RedirectToAction("Index");
         }
 

@@ -13,14 +13,13 @@ namespace ImoAnalyticsSystem.Controllers
 {
     public class InteressadoController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        private InteressadoBusiness ib = new InteressadoBusiness();
+        private InteressadoBusiness interessadoBusiness = new InteressadoBusiness();
 
         // GET: Interessado
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.Interessado.ToList());
+            return View(interessadoBusiness.GetInteressados());
         }
 
         // GET: Interessado/Details/5
@@ -31,7 +30,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Interessado interessado = db.Interessado.Find(id);
+            Interessado interessado = interessadoBusiness.FindById(id);
             if (interessado == null)
             {
                 return HttpNotFound();
@@ -57,12 +56,13 @@ namespace ImoAnalyticsSystem.Controllers
             string create = "";
             if (ModelState.IsValid)
             {
-                create = ib.Create(interessado);
+                create = interessadoBusiness.Create(interessado);
                 if(create.Equals("OK"))
                     return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("Erro ao criar o fiador: ", create);
+            if (!create.Equals(""))
+                ModelState.AddModelError("Erro ao criar o fiador: ", create);
             return View(interessado);
         }
 
@@ -74,7 +74,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Interessado interessado = db.Interessado.Find(id);
+            Interessado interessado = interessadoBusiness.FindById(id);
             if (interessado == null)
             {
                 return HttpNotFound();
@@ -90,12 +90,16 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Edit([Bind(Include = "ID,NomeCompleto,Cpf,Rg,DataNascimento,Telefone,Cep,Endereco,Numero,Bairro,Cidade,Estado,Email")] Interessado interessado)
         {
+            string edit = "";
             if (ModelState.IsValid)
             {
-                db.Entry(interessado).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                edit = interessadoBusiness.Edit(interessado);
+                if (edit.Equals("OK"))
+                    return RedirectToAction("Index");
             }
+
+            if (!edit.Equals(""))
+                ModelState.AddModelError("Erro ao editar o interessado: ", edit);
             return View(interessado);
         }
 
@@ -107,7 +111,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Interessado interessado = db.Interessado.Find(id);
+            Interessado interessado = interessadoBusiness.FindById(id);
             if (interessado == null)
             {
                 return HttpNotFound();
@@ -121,9 +125,8 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            Interessado interessado = db.Interessado.Find(id);
-            db.Interessado.Remove(interessado);
-            db.SaveChanges();
+            Interessado interessado = interessadoBusiness.FindById(id);
+            interessadoBusiness.Delete(interessado);
             return RedirectToAction("Index");
         }
 
@@ -131,7 +134,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                interessadoBusiness.Dispose();
             }
             base.Dispose(disposing);
         }

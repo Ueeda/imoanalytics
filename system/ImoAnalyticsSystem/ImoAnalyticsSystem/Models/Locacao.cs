@@ -13,6 +13,7 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Data da locação")]
         [Required(ErrorMessage = "A data de locação é obrigatória.")]
+        [DataType(DataType.Date)]
         public DateTime DataLocacao { get; set; }
 
         [Display(Name = "Imóvel")]

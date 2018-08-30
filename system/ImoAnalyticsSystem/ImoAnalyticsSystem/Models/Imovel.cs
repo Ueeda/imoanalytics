@@ -40,6 +40,7 @@ namespace ImoAnalyticsSystem.Models
         public String Bairro { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime DataCadastro { get; set; } = DateTime.Now;
 
         [Display(Name = "Ano de construção")]

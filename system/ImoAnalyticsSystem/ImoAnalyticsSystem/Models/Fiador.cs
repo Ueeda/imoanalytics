@@ -27,6 +27,7 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Data de nascimento")]
         [Required(ErrorMessage = "A data de nascimento é obrigatória.")]
+        [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
 
         [Display(Name = "Telefone")]

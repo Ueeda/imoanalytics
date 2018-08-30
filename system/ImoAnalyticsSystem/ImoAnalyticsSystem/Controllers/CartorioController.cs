@@ -18,7 +18,7 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View(cb.GetCartorios().ToList());
+            return View(cb.GetCartorios());
         }
 
         // GET: Cartorio/Details/5

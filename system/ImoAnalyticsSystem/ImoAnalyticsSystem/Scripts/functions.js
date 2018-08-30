@@ -4,6 +4,7 @@
     $(".js-cep").inputmask("mask", { "mask": "99999-999" });
     $(".js-data").inputmask("mask", { "mask": "99/99/9999" });
     $(".js-horario").inputmask("mask", { "mask": "99:99" });
+    $(".js-data-visita").inputmask("mask", { "mask": "99/99/9999 99:99" });
 });
 
 $('form').submit(function () {

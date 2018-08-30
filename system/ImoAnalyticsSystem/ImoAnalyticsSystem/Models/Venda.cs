@@ -13,6 +13,7 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Data da venda")]
         [Required(ErrorMessage = "A data da venda é obrigatória")]
+        [DataType(DataType.Date)]
         public DateTime DataVenda { get; set; }
 
         [Display(Name = "Imóvel")]

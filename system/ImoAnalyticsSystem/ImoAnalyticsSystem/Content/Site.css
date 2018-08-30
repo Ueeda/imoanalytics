@@ -142,7 +142,7 @@ label {
 /********************************
 Header
 ********************************/
-header {
+.header {
     padding: 0px;
     box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.1);
     height: 50px;
@@ -151,7 +151,7 @@ header {
     background-color: #fff;
 }
 
-header .brand-text {
+.header .brand-text {
     font-size: 24px;
     margin: 0;
 }
@@ -193,7 +193,6 @@ header .nav.nav-pills .dropdown .dropdown-toggle .fa-bars {
     padding: 8px 20px;
     cursor: pointer;
     transition: .3s all ease-in-out;
-    color: #000;
 }
 
 /********************************
@@ -274,7 +273,7 @@ Custom text input
     left: 0;
     width: 0;
     height: 2px;
-    background-color: #3399FF;
+    background-color: #ee3236;
     transition: 0.4s;
 }
 
@@ -438,6 +437,11 @@ Font Awesome Icons on the system
 /********************************
 Filter fields
 ********************************/
+
+.panel.panel-primary.panel-login {
+    width: 70%;
+    margin: 50px auto;
+}
 
 .panel.panel-primary.filter .panel-body {
     padding-top: 0px;

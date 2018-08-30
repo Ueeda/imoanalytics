@@ -13,14 +13,13 @@ namespace ImoAnalyticsSystem.Controllers
 {
     public class FiadorController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         private FiadorBusiness fb = new FiadorBusiness();
 
         // GET: Fiador
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.Fiador.ToList());
+            return View(fb.GetFiadores());
         }
 
         // GET: Fiador/Details/5
@@ -31,7 +30,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fiador fiador = db.Fiador.Find(id);
+            Fiador fiador = fb.FindById(id);
             if (fiador == null)
             {
                 return HttpNotFound();
@@ -62,7 +61,8 @@ namespace ImoAnalyticsSystem.Controllers
                     return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("Erro ao criar o fiador: ", create);
+            if(!create.Equals(""))
+                ModelState.AddModelError("Erro ao criar o fiador: ", create);
             return View(fiador);
         }
 
@@ -74,7 +74,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fiador fiador = db.Fiador.Find(id);
+            Fiador fiador = fb.FindById(id);
             if (fiador == null)
             {
                 return HttpNotFound();
@@ -90,12 +90,15 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Edit([Bind(Include = "ID,NomeCompleto,Cpf,Rg,DataNascimento,Telefone,Cep,Endereco,Numero,Bairro,Cidade,Estado,Email,RegistroDeImovel,Renda")] Fiador fiador)
         {
+            string edit = "";
             if (ModelState.IsValid)
             {
-                db.Entry(fiador).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                edit = fb.Edit(fiador);
+                if(edit.Equals("OK"))
+                    return RedirectToAction("Index");
             }
+            if (!edit.Equals(""))
+                ModelState.AddModelError("Erro ao editar o fiador: ", edit);
             return View(fiador);
         }
 
@@ -107,7 +110,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fiador fiador = db.Fiador.Find(id);
+            Fiador fiador = fb.FindById(id);
             if (fiador == null)
             {
                 return HttpNotFound();
@@ -121,9 +124,8 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            Fiador fiador = db.Fiador.Find(id);
-            db.Fiador.Remove(fiador);
-            db.SaveChanges();
+            Fiador fiador = fb.FindById(id);
+            fb.Delete(fiador);
             return RedirectToAction("Index");
         }
 
@@ -131,7 +133,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                fb.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -23,6 +23,7 @@ namespace ImoAnalyticsSystem.Models
         public String Rg { get; set; }
 
         [Required(ErrorMessage = "A data de nascimento é obrigatória.")]
+        [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
 
         [Required(ErrorMessage = "O telefone é obrigatório.")]

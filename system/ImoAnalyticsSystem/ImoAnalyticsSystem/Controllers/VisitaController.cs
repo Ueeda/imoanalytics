@@ -14,14 +14,15 @@ namespace ImoAnalyticsSystem.Controllers
     public class VisitaController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        VisitaBusiness vb = new VisitaBusiness();
+        private VisitaBusiness visitaBusiness = new VisitaBusiness();
+        InteressadoBusiness interessadoBusiness = new InteressadoBusiness();
+        ImovelBusiness imovelBusiness = new ImovelBusiness();
 
         // GET: Visita
         [Authorize]
         public ActionResult Index()
         {
-            var visitas = db.Visita.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado);
-            return View(visitas.ToList());
+            return View(visitaBusiness.GetVisitas());
         }
 
         // GET: Visita/Details/5
@@ -32,7 +33,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Visita visita = db.Visita.Find(id);
+            Visita visita = visitaBusiness.FindById(id);
             if (visita == null)
             {
                 return HttpNotFound();
@@ -45,8 +46,8 @@ namespace ImoAnalyticsSystem.Controllers
         public ActionResult Create()
         {
             ViewBag.CorretorId = new SelectList(db.Users, "Id", "NomeCompleto");
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID");
-            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto");
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveis(), "ID", "ID");
+            ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto");
             return View();
         }
 
@@ -61,15 +62,16 @@ namespace ImoAnalyticsSystem.Controllers
             string create = "";
             if (ModelState.IsValid)
             {
-                create = vb.Create(visita);
+                create = visitaBusiness.Create(visita);
                 if(create.Equals("OK"))
                     return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("Erro ao criar a visita: ", create);
+            if (!create.Equals(""))
+                ModelState.AddModelError("Erro ao criar a visita: ", create);
             ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", visita.CorretorId);
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID", visita.ImovelId);
-            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", visita.InteressadoId);
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveis(), "ID", "ID", visita.ImovelId);
+            ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", visita.InteressadoId);
             return View(visita);
         }
 
@@ -81,14 +83,14 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Visita visita = db.Visita.Find(id);
+            Visita visita = visitaBusiness.FindById(id);
             if (visita == null)
             {
                 return HttpNotFound();
             }
             ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", visita.CorretorId);
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID", visita.ImovelId);
-            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", visita.InteressadoId);
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveis(), "ID", "ID", visita.ImovelId);
+            ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", visita.InteressadoId);
             return View(visita);
         }
 
@@ -98,17 +100,20 @@ namespace ImoAnalyticsSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "ID,InteressadoId,CorretorId,ImovelId,Data,Descricao")] Visita visita)
+        public ActionResult Edit([Bind(Include = "ID,InteressadoId,CorretorId,ImovelId,Data,Horario,Descricao")] Visita visita)
         {
+            string edit = "";
             if (ModelState.IsValid)
             {
-                db.Entry(visita).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                edit = visitaBusiness.Edit(visita);
+                if (edit.Equals("OK"))
+                    return RedirectToAction("Index");
             }
+            if (!edit.Equals(""))
+                ModelState.AddModelError("Erro ao criar a visita: ", edit);
             ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", visita.CorretorId);
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID", visita.ImovelId);
-            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", visita.InteressadoId);
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveis(), "ID", "ID", visita.ImovelId);
+            ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", visita.InteressadoId);
             return View(visita);
         }
 
@@ -120,7 +125,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Visita visita = db.Visita.Find(id);
+            Visita visita = visitaBusiness.FindById(id);
             if (visita == null)
             {
                 return HttpNotFound();
@@ -134,9 +139,8 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            Visita visita = db.Visita.Find(id);
-            db.Visita.Remove(visita);
-            db.SaveChanges();
+            Visita visita = visitaBusiness.FindById(id);
+            visitaBusiness.Delete(visita);
             return RedirectToAction("Index");
         }
 
@@ -144,7 +148,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                visitaBusiness.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -20,7 +20,7 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.TipoImovel.ToList());
+            return View(tb.GetTiposImovel());
         }
 
         // GET: TipoImovel/Details/5
@@ -31,7 +31,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoImovel tipoImovel = db.TipoImovel.Find(id);
+            TipoImovel tipoImovel = tb.FindById(id);
             if (tipoImovel == null)
             {
                 return HttpNotFound();
@@ -62,7 +62,8 @@ namespace ImoAnalyticsSystem.Controllers
                     return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("Erro ao criar o tipo de imóvel: ", create);
+            if(!create.Equals(""))
+                ModelState.AddModelError("Erro ao criar o tipo de imóvel: ", create);
             return View(tipoImovel);
         }
 
@@ -74,7 +75,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoImovel tipoImovel = db.TipoImovel.Find(id);
+            TipoImovel tipoImovel = tb.FindById(id);
             if (tipoImovel == null)
             {
                 return HttpNotFound();
@@ -90,12 +91,16 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Edit([Bind(Include = "ID,Tipo")] TipoImovel tipoImovel)
         {
+            string edit = "";
             if (ModelState.IsValid)
             {
-                db.Entry(tipoImovel).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                edit = tb.Create(tipoImovel);
+                if (edit.Equals("OK"))
+                    return RedirectToAction("Index");
             }
+
+            if (!edit.Equals(""))
+                ModelState.AddModelError("Erro ao editar o tipo de imóvel: ", edit);
             return View(tipoImovel);
         }
 
@@ -107,7 +112,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoImovel tipoImovel = db.TipoImovel.Find(id);
+            TipoImovel tipoImovel = tb.FindById(id);
             if (tipoImovel == null)
             {
                 return HttpNotFound();
@@ -121,9 +126,8 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            TipoImovel tipoImovel = db.TipoImovel.Find(id);
-            db.TipoImovel.Remove(tipoImovel);
-            db.SaveChanges();
+            TipoImovel tipoImovel = tb.FindById(id);
+            tb.Delete(tipoImovel);
             return RedirectToAction("Index");
         }
 
@@ -131,7 +135,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                tb.Dispose();
             }
             base.Dispose(disposing);
         }

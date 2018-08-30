@@ -12,9 +12,9 @@ namespace ImoAnalyticsSystem.Business
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public DbSet<Cartorio> GetCartorios()
+        public List<Cartorio> GetCartorios()
         {
-            return db.Cartorio;
+            return db.Cartorio.ToList();
         }
 
         public Cartorio FindById(int? id)

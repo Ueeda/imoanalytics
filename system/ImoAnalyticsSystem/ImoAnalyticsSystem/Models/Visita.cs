@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -25,7 +26,9 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Data da visita")]
         [Required(ErrorMessage = "A data da visita é obrigatória.")]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
         [DataType(DataType.Date)]
+        //[Column(TypeName = "DateTime2")]
         public DateTime Data { get; set; }
 
         [Display(Name = "Hora da visita")]

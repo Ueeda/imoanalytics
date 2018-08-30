@@ -13,14 +13,13 @@ namespace ImoAnalyticsSystem.Controllers
 {
     public class ProprietarioController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         private ProprietarioBusiness pb = new ProprietarioBusiness();
 
         // GET: Proprietario
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.Proprietario.ToList());
+            return View(pb.GetProprietarios());
         }
 
         // GET: Proprietario/Details/5
@@ -31,7 +30,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Proprietario proprietario = db.Proprietario.Find(id);
+            Proprietario proprietario = pb.FindById(id);
             if (proprietario == null)
             {
                 return HttpNotFound();
@@ -62,7 +61,8 @@ namespace ImoAnalyticsSystem.Controllers
                     return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("Erro ao criar o proprietário: ", create);
+            if(!create.Equals(""))
+                ModelState.AddModelError("Erro ao criar o proprietário: ", create);
             return View(proprietario);
         }
 
@@ -74,7 +74,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Proprietario proprietario = db.Proprietario.Find(id);
+            Proprietario proprietario = pb.FindById(id);
             if (proprietario == null)
             {
                 return HttpNotFound();
@@ -90,12 +90,16 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Edit([Bind(Include = "ID,NomeCompleto,Cpf,Rg,DataNascimento,Telefone,Cep,Endereco,Numero,Bairro,Cidade,Estado,ContaBancaria,Agencia,Banco,Ativo,Email")] Proprietario proprietario)
         {
+            string edit = "";
             if (ModelState.IsValid)
             {
-                db.Entry(proprietario).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                edit = pb.Edit(proprietario);
+                if (edit.Equals("OK"))
+                    return RedirectToAction("Index");
             }
+
+            if (!edit.Equals(""))
+                ModelState.AddModelError("Erro ao editar o proprietário: ", edit);
             return View(proprietario);
         }
 
@@ -107,7 +111,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Proprietario proprietario = db.Proprietario.Find(id);
+            Proprietario proprietario = pb.FindById(id);
             if (proprietario == null)
             {
                 return HttpNotFound();
@@ -121,9 +125,8 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            Proprietario proprietario = db.Proprietario.Find(id);
-            db.Proprietario.Remove(proprietario);
-            db.SaveChanges();
+            Proprietario proprietario = pb.FindById(id);
+            pb.Delete(proprietario);
             return RedirectToAction("Index");
         }
 
@@ -131,7 +134,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                pb.Dispose();
             }
             base.Dispose(disposing);
         }
