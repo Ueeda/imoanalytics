@@ -14,9 +14,30 @@ namespace ImoAnalyticsSystem
         {
             ConfigureAuth(app);
             CreateRoles();
+            CreateImobiliaria();
         }
 
-        public void CreateRoles()
+        private void CreateImobiliaria()
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+            var imobiliaria = context.Imobiliaria.Find(1);
+
+            if(imobiliaria == null)
+            {
+                imobiliaria = new Imobiliaria();
+                imobiliaria.EmailContato = "contato@toyoimoveis.com.br";
+                imobiliaria.Endereco = "Rua Arion Niepce da Silva";
+                imobiliaria.NomeImobiliaria = "Toyo Imoveis";
+                imobiliaria.TelefoneContato = "(41) 3014-8008";
+                imobiliaria.TaxaAdministracaoLocacao = 0.1;
+                imobiliaria.ComissaoCorretorVenda = 0.6;
+                imobiliaria.ComissaoImobiliariaVenda = 0.6;
+                context.Imobiliaria.Add(imobiliaria);
+                context.SaveChanges();
+            }
+        }
+
+        private void CreateRoles()
         {
             ApplicationDbContext context = new ApplicationDbContext();
 

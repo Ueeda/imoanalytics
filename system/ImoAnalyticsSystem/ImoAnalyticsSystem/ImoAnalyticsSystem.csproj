@@ -197,6 +197,7 @@
     <Compile Include="Business\CartorioBusiness.cs" />
     <Compile Include="Business\CorretorBusiness.cs" />
     <Compile Include="Business\FiadorBusiness.cs" />
+    <Compile Include="Business\ImobiliariaBusiness.cs" />
     <Compile Include="Business\ImovelBusiness.cs" />
     <Compile Include="Business\InteressadoBusiness.cs" />
     <Compile Include="Business\ProprietarioBusiness.cs" />

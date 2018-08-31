@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ImoAnalyticsSystem.Business;
 using ImoAnalyticsSystem.Data;
 using ImoAnalyticsSystem.Models;
 
@@ -14,12 +15,13 @@ namespace ImoAnalyticsSystem.Controllers
     public class ImobiliariaController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private ImobiliariaBusiness imobiliariaBusiness = new ImobiliariaBusiness();
 
         // GET: Imobiliaria
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.Imobiliarias.ToList());
+            return RedirectToAction("Details", imobiliariaBusiness.GetInstance());
         }
 
         // GET: Imobiliaria/Details/5
@@ -30,7 +32,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Imobiliaria imobiliaria = db.Imobiliarias.Find(id);
+            Imobiliaria imobiliaria = db.Imobiliaria.Find(id);
             if (imobiliaria == null)
             {
                 return HttpNotFound();
@@ -55,7 +57,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Imobiliarias.Add(imobiliaria);
+                db.Imobiliaria.Add(imobiliaria);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -71,7 +73,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Imobiliaria imobiliaria = db.Imobiliarias.Find(id);
+            Imobiliaria imobiliaria = db.Imobiliaria.Find(id);
             if (imobiliaria == null)
             {
                 return HttpNotFound();
@@ -104,7 +106,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Imobiliaria imobiliaria = db.Imobiliarias.Find(id);
+            Imobiliaria imobiliaria = db.Imobiliaria.Find(id);
             if (imobiliaria == null)
             {
                 return HttpNotFound();
@@ -118,8 +120,8 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            Imobiliaria imobiliaria = db.Imobiliarias.Find(id);
-            db.Imobiliarias.Remove(imobiliaria);
+            Imobiliaria imobiliaria = db.Imobiliaria.Find(id);
+            db.Imobiliaria.Remove(imobiliaria);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
