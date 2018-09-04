@@ -43,5 +43,7 @@ namespace ImoAnalyticsSystem.Data
         public virtual DbSet<Locacao> Locacao { get; set; }
 
         public virtual DbSet<Imobiliaria> Imobiliaria { get; set; }
+
+        public DbSet<Imagem> Imagens { get; set; }
     }
 }

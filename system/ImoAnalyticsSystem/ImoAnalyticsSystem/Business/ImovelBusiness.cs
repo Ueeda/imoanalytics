@@ -3,6 +3,7 @@ using ImoAnalyticsSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 
 namespace ImoAnalyticsSystem.Business
@@ -18,7 +19,7 @@ namespace ImoAnalyticsSystem.Business
 
         public Imovel FindById(int? id)
         {
-            return db.Imovel.Find(id);
+            return db.Imovel.Include(s => s.Files).SingleOrDefault(s => s.ID == id);
         }
 
         public string Create(Imovel imovel)

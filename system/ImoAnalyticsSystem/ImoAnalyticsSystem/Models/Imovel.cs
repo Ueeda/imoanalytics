@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -125,6 +126,12 @@ namespace ImoAnalyticsSystem.Models
         [Display(Name = "Proprietário")]
         [Required(ErrorMessage = "O proprietário precisa ser informado.")]
         public int ProprietarioId { get; set; }
+
+        //[Required(ErrorMessage = "Please select file.")]
+        //[Display(Name = "Fotos do imóvel")]
+        //public virtual HttpPostedFileBase[] Fotos { get; set; }
+
+        public virtual ICollection<Imagem> Files { get; set; }
 
         public virtual Proprietario Proprietario { get; set; }
 

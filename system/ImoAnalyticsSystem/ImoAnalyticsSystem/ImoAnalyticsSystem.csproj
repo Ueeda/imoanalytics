@@ -206,6 +206,7 @@
     <Compile Include="Controllers\CartorioController.cs" />
     <Compile Include="Controllers\ContratoDeLocacaoController.cs" />
     <Compile Include="Controllers\FiadorController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\IdentityControllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentityControllers\ManageController.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Models\Cartorio.cs" />
     <Compile Include="Models\ContratoDeLocacao.cs" />
     <Compile Include="Models\Fiador.cs" />
+    <Compile Include="Models\Imagem.cs" />
     <Compile Include="Models\Imobiliaria.cs" />
     <Compile Include="Models\Imovel.cs" />
     <Compile Include="Models\Interessado.cs" />
@@ -414,6 +416,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

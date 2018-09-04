@@ -252,6 +252,14 @@
             @Html.DisplayFor(model => model.DataCadastro)
         </dd>
     </dl>
+        <dl class="dl-horizontal">
+            <dt>
+                Foto do imovel
+            </dt>
+            <dd>
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == ImoAnalyticsSystem.Models.FileType.Foto).ID" alt="avatar" />
+            </dd>
+        </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
