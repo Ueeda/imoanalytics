@@ -127,9 +127,13 @@ namespace ImoAnalyticsSystem.Models
         [Required(ErrorMessage = "O proprietário precisa ser informado.")]
         public int ProprietarioId { get; set; }
 
-        //[Required(ErrorMessage = "Please select file.")]
-        //[Display(Name = "Fotos do imóvel")]
-        //public virtual HttpPostedFileBase[] Fotos { get; set; }
+        [Display(Name = "Cidade")]
+        [Required(ErrorMessage = "A cidade precisa ser informada.")]
+        public string Cidade { get; set; }
+
+        [Display(Name = "Estado")]
+        [Required(ErrorMessage = "O estado precisa ser informado.")]
+        public string Estado { get; set; }
 
         public virtual ICollection<Imagem> Files { get; set; }
 

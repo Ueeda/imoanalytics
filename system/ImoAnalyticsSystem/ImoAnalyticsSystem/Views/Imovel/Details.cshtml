@@ -4,264 +4,197 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Imovel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TituloImovel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TituloImovel)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Endereco)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Endereco)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Complemento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Complemento)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Numero)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Numero)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Cep)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cep)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Bairro)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Bairro)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AnoConstrucao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AnoConstrucao)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Venda)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Venda)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Locacao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Locacao)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AreaPrivada)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AreaPrivada)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AreaTotal)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AreaTotal)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.VagasGaragem)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VagasGaragem)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.QntBanheiros)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QntBanheiros)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.QntDormitorios)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QntDormitorios)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.QntSuites)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QntSuites)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Disponivel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Disponivel)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Reservado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Reservado)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ValorVenda)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ValorVenda)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ValorLocacao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ValorLocacao)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ValorIptu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ValorIptu)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NomeCondominio)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NomeCondominio)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ValorCondominio)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ValorCondominio)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NumeroRegistroImovel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumeroRegistroImovel)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoImovelId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoImovel.Tipo)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CartorioId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cartorio.NomeCartorio)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProprietarioId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Proprietario.NomeCompleto)
-        </dd>
-    </dl>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DataCadastro)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataCadastro)
-        </dd>
-    </dl>
-        <dl class="dl-horizontal">
-            <dt>
-                Foto do imovel
-            </dt>
-            <dd>
-                <img src="~/File?id=@Model.Files.First(f => f.FileType == ImoAnalyticsSystem.Models.FileType.Foto).ID" alt="avatar" />
-            </dd>
-        </dl>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="panel-title">Imóvel código @Model.ID</h3>
+            </div>
+            <div class="col-md-4 icons-edit-remove">
+                <a href="@Url.Action("Edit", "Imovel", new { id = Model.ID })" title="Editar imóvel"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("Delete", "Imovel", new { id = Model.ID })" title="Remover imóvel"><i class="fa fa-trash"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                @if (Model.Files.Any(f => f.FileType == ImoAnalyticsSystem.Models.FileType.Foto))
+                {
+                    <img src="~/File?id=@Model.Files.First(f => f.FileType == ImoAnalyticsSystem.Models.FileType.Foto).ID" alt="foto-imovel" class="build-image" />
+                }
+            </div>
+            <div class="col-md-6">
+                <div class="primary-color-row row">
+                    <div class="col-md-6">
+                        <p>@Html.DisplayNameFor(model => model.ValorLocacao): @Html.DisplayFor(model => model.ValorLocacao)</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>@Html.DisplayNameFor(model => model.ValorVenda): @Html.DisplayFor(model => model.ValorVenda)</p>
+                    </div>
+                </div>
+                <div class="primary-color-row row">
+                    <div class="col-md-12">
+                        <p>@Html.DisplayNameFor(model => model.Endereco): @Html.DisplayFor(model => model.Endereco)</p>
+                    </div>
+                </div>
+                <div class="primary-color-row row">
+                    <div class="col-md-4">
+                        <p>@Html.DisplayNameFor(model => model.Numero): @Html.DisplayFor(model => model.Numero)</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>@Html.DisplayNameFor(model => model.Bairro): @Html.DisplayFor(model => model.Bairro)</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>@Html.DisplayNameFor(model => model.Cep): @Html.DisplayFor(model => model.Cep)</p>
+                    </div>
+                </div>
+                <div class="primary-color-row row">
+                    <div class="col-md-4">
+                        <p>@Html.DisplayNameFor(model => model.Cidade): @Html.DisplayFor(model => model.Cidade)</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>@Html.DisplayNameFor(model => model.Estado): @Html.DisplayFor(model => model.Estado)</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>@Html.DisplayNameFor(model => model.ValorIptu): @Html.DisplayFor(model => model.ValorIptu)</p>
+                    </div>
+                </div>
+                <div class="primary-color-row row">
+                    <div class="col-md-6">
+                        <p>@Html.DisplayNameFor(model => model.Proprietario): @Html.DisplayFor(model => model.Proprietario.NomeCompleto)</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>@Html.DisplayNameFor(model => model.ValorCondominio): @Html.DisplayFor(model => model.ValorCondominio)</p>
+                    </div>
+                </div>
+                <div class="primary-color-row row">
+                    <div class="col-md-12">
+                        <p>@Html.DisplayNameFor(model => model.TipoImovel): @Html.DisplayFor(model => model.TipoImovel.Tipo)</p>
+                    </div>
+                </div>
+                <div class="primary-color-row row">
+                    <div class="col-md-8">
+                        <p>@Html.DisplayNameFor(model => model.NomeCondominio): @Html.DisplayFor(model => model.NomeCondominio)</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>@Html.DisplayNameFor(model => model.AnoConstrucao): @Html.DisplayFor(model => model.AnoConstrucao)</p>
+                    </div>
+                </div>
+                <div class="primary-color-row row">
+                    <div class="col-md-4">
+                        <p>@Html.DisplayNameFor(model => model.AreaTotal): @Html.DisplayFor(model => model.AreaTotal)</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>@Html.DisplayNameFor(model => model.AreaPrivada): @Html.DisplayFor(model => model.AreaPrivada)</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>@Html.DisplayNameFor(model => model.QntDormitorios): @Html.DisplayFor(model => model.QntDormitorios)</p>
+                    </div>
+                </div>
+                <div class="primary-color-row row">
+                    <div class="col-md-4">
+                        <p>@Html.DisplayNameFor(model => model.QntSuites): @Html.DisplayFor(model => model.QntSuites)</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>@Html.DisplayNameFor(model => model.QntBanheiros): @Html.DisplayFor(model => model.QntBanheiros)</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>@Html.DisplayNameFor(model => model.VagasGaragem): @Html.DisplayFor(model => model.VagasGaragem)</p>
+                    </div>
+                </div>
+                <div class="primary-color-row row">
+                    <div class="col-md-6">
+                        <p>@Html.DisplayNameFor(model => model.Cartorio): @Html.DisplayFor(model => model.Cartorio.NomeCartorio)</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>@Html.DisplayNameFor(model => model.NumeroRegistroImovel): @Html.DisplayFor(model => model.NumeroRegistroImovel)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Html.DisplayNameFor(model => model.DescricaoImovel)</h3>
+    </div>
+    <div class="panel-body panel-body-content">
+        <p>@Html.DisplayFor(model => model.DescricaoImovel)</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Visitas feitas ao imóvel</h3>
+            </div>
+            <div class="panel-body">
+                <div class="header-row row">
+                    <div class="col-md-7">
+                        <p>Interessado</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Data</p>
+                    </div>
+                </div>
+                @foreach (var v in ViewBag.visitas)
+                {
+                    <div class="primary-color-row row">
+                        <div class="col-md-7">
+                            <p>@v.Interessado.NomeCompleto</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>@v.Data.ToShortDateString()</p>
+                        </div>
+                        <div class="col-md-1">
+                            <a class="link-more" href="@Url.Action("Details", "Visita", new { id = v.ID })" title="Mais informações"><i class="fa fa-ellipsis-h"></i></a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    @*<div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3 class="panel-title">Propostas feitas ao imóvel</h3>
+                    </div>
+                    <div class="col-md-4 icons-edit-remove">
+                        <a href="criarProposta.html" title="Adicionar proposta"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="header-row row">
+                    <div class="col-md-4">
+                        <p>Interessado</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Valor</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Data</p>
+                    </div>
+                </div>
+                <div class="primary-color-row row">
+                    <div class="col-md-4">
+                        <p>INT1 - Vinicius Ueda</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>RS101.000,00</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>02/03/2018</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+</div>
+
+<a href="@Url.Action("Index", "Imovel")" title="Voltar para a listagem" class="voltar-icon"><i class="fa fa-arrow-left"></i></a>

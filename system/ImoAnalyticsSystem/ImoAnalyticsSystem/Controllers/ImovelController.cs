@@ -19,6 +19,7 @@ namespace ImoAnalyticsSystem.Controllers
         private TipoImovelBusiness tipoImovelBusiness = new TipoImovelBusiness();
         private CartorioBusiness cartorioBusiness = new CartorioBusiness();
         private ProprietarioBusiness proprietarioBusiness = new ProprietarioBusiness();
+        private VisitaBusiness visitaBusiness = new VisitaBusiness();
 
         // GET: Imovel
         [Authorize]
@@ -36,6 +37,8 @@ namespace ImoAnalyticsSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Imovel imovel = imovelBusiness.FindById(id);
+            var listaVisitas = visitaBusiness.GetVisitasByImovelId(id);
+            ViewBag.visitas = listaVisitas;
             if (imovel == null)
             {
                 return HttpNotFound();
@@ -129,25 +132,7 @@ namespace ImoAnalyticsSystem.Controllers
             string edit = "";
             if (ModelState.IsValid)
             {
-                if (upload != null && upload.ContentLength > 0)
-                {
-                    if(imovel.Files.Any(f => f.FileType == FileType.Foto))
-                    {
-                        //Remover imagem antiga
-                    }
-                    var imagem = new Imagem
-                    {
-                        FileName = System.IO.Path.GetFileName(upload.FileName),
-                        FileType = FileType.Foto,
-                        ContentType = upload.ContentType
-                    };
-                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
-                    {
-                        imagem.Content = reader.ReadBytes(upload.ContentLength);
-                    }
-                    imovel.Files = new List<Imagem> { imagem };
-                }
-                edit = imovelBusiness.Edit(imovel);
+                edit = imovelBusiness.Edit(imovel, upload);
                 if (edit.Equals("OK")) 
                     return RedirectToAction("Index");
             }

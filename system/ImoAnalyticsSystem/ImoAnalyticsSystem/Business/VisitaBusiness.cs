@@ -17,6 +17,11 @@ namespace ImoAnalyticsSystem.Business
             return db.Visita.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado).ToList();
         }
 
+        public List<Visita> GetVisitasByImovelId(int? idImovel)
+        {
+            return db.Visita.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado).Where(v => v.ImovelId == idImovel).ToList();
+        }
+
         public Visita FindById(int? id)
         {
             return db.Visita.Find(id);

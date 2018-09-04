@@ -67,7 +67,6 @@ label {
     margin: 0;
 }
 
-
 .header-row p {
     color: #fff;
     margin: 0;
@@ -215,6 +214,14 @@ body {
     padding: 20px 15px;
 }
 
+.panel-primary > .panel-body{
+    padding: 15px 0px;
+}
+
+.panel-primary > .panel-body.panel-body-content {
+    padding: 15px;
+}
+
 /********************************
 Custom text input
 ********************************/
@@ -285,7 +292,11 @@ Custom text input
 /********************************
 Custom checkbox
 ********************************/
-
+input[type=file] {
+    width: 100%;
+    margin: 20px 0px;
+    padding: 5px 5px;
+}
 
 /********************************
 Custom Radio Button
