@@ -17,9 +17,19 @@ namespace ImoAnalyticsSystem.Controllers
 
         // GET: Interessado
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(String searchString)
         {
-            return View(interessadoBusiness.GetInteressados());
+            List<Interessado> interessados;
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                interessados = interessadoBusiness.SearchInteressadosByNome(searchString);
+                if(interessados.Count() == 0)
+                    ViewBag.noResults = true;
+            }
+            else
+                interessados = interessadoBusiness.GetInteressados();
+
+            return View(interessados.OrderBy(i => i.NomeCompleto));
         }
 
         // GET: Interessado/Details/5

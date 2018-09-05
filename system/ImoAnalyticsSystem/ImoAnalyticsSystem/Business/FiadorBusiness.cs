@@ -17,6 +17,11 @@ namespace ImoAnalyticsSystem.Business
             return db.Fiador.ToList();
         }
 
+        public List<Fiador> SearchFiadoresByNome(String searchString)
+        {
+            return db.Fiador.Where(p => p.NomeCompleto.Contains(searchString)).ToList();
+        }
+
         public Fiador FindById(int? id)
         {
             return db.Fiador.Find(id);

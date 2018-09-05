@@ -120,7 +120,7 @@
     <div class="panel-heading">
         <h3 class="panel-title">@Html.DisplayNameFor(model => model.DescricaoImovel)</h3>
     </div>
-    <div class="panel-body panel-body-content">
+    <div class="panel-body panel-body">
         <p>@Html.DisplayFor(model => model.DescricaoImovel)</p>
     </div>
 </div>
@@ -131,30 +131,28 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Visitas feitas ao imóvel</h3>
             </div>
-            <div class="panel-body">
-                <div class="header-row row">
+            <div class="header-row row">
+                <div class="col-md-7">
+                    <p>Interessado</p>
+                </div>
+                <div class="col-md-4">
+                    <p>Data</p>
+                </div>
+            </div>
+            @foreach (var v in ViewBag.visitas)
+            {
+                <div class="primary-color-row row">
                     <div class="col-md-7">
-                        <p>Interessado</p>
+                        <p>@v.Interessado.NomeCompleto</p>
                     </div>
                     <div class="col-md-4">
-                        <p>Data</p>
+                        <p>@v.Data.ToShortDateString()</p>
+                    </div>
+                    <div class="col-md-1">
+                        <a class="link-more" href="@Url.Action("Details", "Visita", new { id = v.ID })" title="Mais informações"><i class="fa fa-ellipsis-h"></i></a>
                     </div>
                 </div>
-                @foreach (var v in ViewBag.visitas)
-                {
-                    <div class="primary-color-row row">
-                        <div class="col-md-7">
-                            <p>@v.Interessado.NomeCompleto</p>
-                        </div>
-                        <div class="col-md-4">
-                            <p>@v.Data.ToShortDateString()</p>
-                        </div>
-                        <div class="col-md-1">
-                            <a class="link-more" href="@Url.Action("Details", "Visita", new { id = v.ID })" title="Mais informações"><i class="fa fa-ellipsis-h"></i></a>
-                        </div>
-                    </div>
-                }
-            </div>
+            }
         </div>
     </div>
     @*<div class="col-md-6">

@@ -17,6 +17,11 @@ namespace ImoAnalyticsSystem.Business
             return db.Interessado.ToList();
         }
 
+        public List<Interessado> SearchInteressadosByNome(String searchString)
+        {
+            return db.Interessado.Where(p => p.NomeCompleto.Contains(searchString)).ToList();
+        }
+
         public Interessado FindById(int? id)
         {
             return db.Interessado.Find(id);

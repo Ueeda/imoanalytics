@@ -13,13 +13,23 @@ namespace ImoAnalyticsSystem.Controllers
 {
     public class ProprietarioController : Controller
     {
-        private ProprietarioBusiness proprietarioController = new ProprietarioBusiness();
+        private ProprietarioBusiness proprietarioBusiness = new ProprietarioBusiness();
 
         // GET: Proprietario
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(proprietarioController.GetProprietarios());
+            List<Proprietario> proprietarios;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                proprietarios = proprietarioBusiness.SearchProprietariosByNome(searchString);
+                if(proprietarios.Count() == 0)
+                    ViewBag.noResults = true;
+            }
+            else
+                proprietarios = proprietarioBusiness.GetProprietarios();               
+
+            return View(proprietarios.OrderBy(p => p.NomeCompleto));
         }
 
         // GET: Proprietario/Details/5
@@ -30,7 +40,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Proprietario proprietario = proprietarioController.FindById(id);
+            Proprietario proprietario = proprietarioBusiness.FindById(id);
             if (proprietario == null)
             {
                 return HttpNotFound();
@@ -56,7 +66,7 @@ namespace ImoAnalyticsSystem.Controllers
             string create = "";
             if (ModelState.IsValid)
             {
-                create = proprietarioController.Create(proprietario);
+                create = proprietarioBusiness.Create(proprietario);
                 if (create.Equals("OK"))
                     return RedirectToAction("Index");
             }
@@ -74,7 +84,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Proprietario proprietario = proprietarioController.FindById(id);
+            Proprietario proprietario = proprietarioBusiness.FindById(id);
             if (proprietario == null)
             {
                 return HttpNotFound();
@@ -93,7 +103,7 @@ namespace ImoAnalyticsSystem.Controllers
             string edit = "";
             if (ModelState.IsValid)
             {
-                edit = proprietarioController.Edit(proprietario);
+                edit = proprietarioBusiness.Edit(proprietario);
                 if (edit.Equals("OK"))
                     return RedirectToAction("Index");
             }
@@ -111,7 +121,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Proprietario proprietario = proprietarioController.FindById(id);
+            Proprietario proprietario = proprietarioBusiness.FindById(id);
             if (proprietario == null)
             {
                 return HttpNotFound();
@@ -125,8 +135,8 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            Proprietario proprietario = proprietarioController.FindById(id);
-            proprietarioController.Delete(proprietario);
+            Proprietario proprietario = proprietarioBusiness.FindById(id);
+            proprietarioBusiness.Delete(proprietario);
             return RedirectToAction("Index");
         }
 
@@ -134,7 +144,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (disposing)
             {
-                proprietarioController.Dispose();
+                proprietarioBusiness.Dispose();
             }
             base.Dispose(disposing);
         }

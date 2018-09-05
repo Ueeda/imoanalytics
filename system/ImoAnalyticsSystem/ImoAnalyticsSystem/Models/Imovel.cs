@@ -32,7 +32,6 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "CEP")]
         [Required(ErrorMessage = "O campo CEP é obrigatório.")]
-        [MaxLength(8, ErrorMessage = "O tamanho máximo do campo CEP é de 8 caracteres.")]
         public String Cep { get; set; }
 
         [Display(Name = "Bairro")]

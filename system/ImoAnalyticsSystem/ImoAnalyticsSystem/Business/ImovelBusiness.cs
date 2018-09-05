@@ -22,8 +22,22 @@ namespace ImoAnalyticsSystem.Business
             return db.Imovel.Include(s => s.Files).SingleOrDefault(s => s.ID == id);
         }
 
-        public string Create(Imovel imovel)
+        public string Create(Imovel imovel, HttpPostedFileBase upload)
         {
+            if (upload != null && upload.ContentLength > 0)
+            {
+                var imagem = new Imagem
+                {
+                    FileName = System.IO.Path.GetFileName(upload.FileName),
+                    FileType = FileType.Foto,
+                    ContentType = upload.ContentType
+                };
+                using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                {
+                    imagem.Content = reader.ReadBytes(upload.ContentLength);
+                }
+                imovel.Files = new List<Imagem> { imagem };
+            }
             db.Imovel.Add(imovel);
             db.SaveChanges();
             return "OK";

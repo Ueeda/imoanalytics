@@ -17,9 +17,19 @@ namespace ImoAnalyticsSystem.Controllers
 
         // GET: Fiador
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(String searchString)
         {
-            return View(fiadorBusiness.GetFiadores());
+            List<Fiador> fiadores;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                fiadores = fiadorBusiness.SearchFiadoresByNome(searchString);
+                if (fiadores.Count == 0)
+                    ViewBag.noResults = true;
+            }
+            else
+                fiadores = fiadorBusiness.GetFiadores();
+
+            return View(fiadores.OrderBy(f => f.NomeCompleto));
         }
 
         // GET: Fiador/Details/5

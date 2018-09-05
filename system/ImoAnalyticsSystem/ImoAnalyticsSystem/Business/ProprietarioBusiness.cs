@@ -17,6 +17,11 @@ namespace ImoAnalyticsSystem.Business
             return db.Proprietario.ToList();
         }
 
+        public List<Proprietario> SearchProprietariosByNome(String searchString)
+        {
+            return db.Proprietario.Where(p => p.NomeCompleto.Contains(searchString)).ToList();
+        }
+
         public Proprietario FindById(int? id)
         {
             return db.Proprietario.Find(id);

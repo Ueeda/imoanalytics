@@ -215,11 +215,11 @@ body {
 }
 
 .panel-primary > .panel-body{
-    padding: 15px 0px;
+    padding: 15px;
 }
 
-.panel-primary > .panel-body.panel-body-content {
-    padding: 15px;
+.panel-primary > .panel-body.search-list {
+    padding: 0 15px;
 }
 
 /********************************
@@ -239,12 +239,18 @@ Custom text input
     height: 50px;
     width: 50px;
     background-size: 20px;
-    background-image: url(images/search.svg);
+    background-image: url(Images/search.svg);
     background-repeat: no-repeat;
     background-position: center;
     color: transparent;
     background-color: transparent;
     border: 0;
+    transition: .3s ease-in-out;
+}
+
+.group input[type=submit]:hover {
+    background-color: #f3f3f3;
+    border-radius: 5px;
 }
 
 .group input[type=text],
