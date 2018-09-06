@@ -31,13 +31,13 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Proprietários  <b class="caret"></b></a>
+                        <a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Corretores  <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             @if (User.IsInRole("Gerente"))
                             {
-                                <li><@Html.ActionLink("Cadastrar-se", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })></li>
+                                <li>@Html.ActionLink("Cadastrar corretor", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                             }
-                            <li>@Html.ActionLink("Lista de Corretores", "Index", "Proprietario")</li>
+                            <li>@Html.ActionLink("Lista de Corretores", "Index", "Corretor")</li>
                         </ul>
                     </li>
                     <li class="dropdown">
