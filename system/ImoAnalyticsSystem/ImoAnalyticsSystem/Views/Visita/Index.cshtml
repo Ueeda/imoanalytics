@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ImoAnalyticsSystem.Models.Visita>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ImoAnalyticsSystem.Models.Visita>
 
 @{
     ViewBag.Title = "Visitas";
@@ -14,13 +15,13 @@
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-2">
                     <div class="group">
-                        @Html.TextBox("startTime", null, new { @type = "text", @placeholder = HttpUtility.HtmlDecode("De: "), @class = "effect-1 js-data" })
+                        @Html.TextBox("startTime", ViewBag.CurrentStart as DateTime?, new { @type = "text", @placeholder = HttpUtility.HtmlDecode("De: "), @class = "effect-1 js-data" })
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="group">
-                        @Html.TextBox("endTime", null, new { @type = "text", @placeholder = HttpUtility.HtmlDecode("Até: "), @class = "effect-1 js-data" })
+                        @Html.TextBox("endTime", ViewBag.CurrentEnd as DateTime?, new { @type = "text", @placeholder = HttpUtility.HtmlDecode("Até: "), @class = "effect-1 js-data" })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -36,13 +37,13 @@
     {
         <div class="header-row row">
             <div class="col-md-3">
-                <p>Código do @Html.DisplayNameFor(model => model.Imovel)</p>
+                <p>Código do Imóvel</p>
             </div>
             <div class="col-md-5">
-                <p>@Html.DisplayNameFor(model => model.Interessado)</p>
+                <p>Interessado</p>
             </div>
             <div class="col-md-3">
-                <p>@Html.DisplayNameFor(model => model.Data)</p>
+                <p>Data</p>
             </div>
         </div>
         foreach (var item in Model)
@@ -85,3 +86,6 @@
         }
     }
 </div>
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentStart = ViewBag.CurrentStart, currentEnd = ViewBag.CurrentEnd }))

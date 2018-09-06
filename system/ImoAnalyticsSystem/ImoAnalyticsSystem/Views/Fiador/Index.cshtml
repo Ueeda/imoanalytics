@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ImoAnalyticsSystem.Models.Fiador>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ImoAnalyticsSystem.Models.Fiador>
 
 @{
     ViewBag.Title = "Fiadores";
@@ -14,7 +15,7 @@
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="group">
-                        @Html.TextBox("searchString", null, new { @type = "text", @placeholder = HttpUtility.HtmlDecode("Pesquisar fiador por nome"), @class = "effect-1" })
+                        @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @type = "text", @placeholder = HttpUtility.HtmlDecode("Pesquisar fiador por nome"), @class = "effect-1" })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -30,13 +31,13 @@
     {
         <div class="header-row row">
             <div class="col-md-4">
-                <p>@Html.DisplayNameFor(model => model.NomeCompleto)</p>
+                <p>Nome</p>
             </div>
             <div class="col-md-3">
-                <p>@Html.DisplayNameFor(model => model.Telefone)</p>
+                <p>Telefone</p>
             </div>
             <div class="col-md-4">
-                <p>@Html.DisplayNameFor(model => model.Email)</p>
+                <p>E-mail</p>
             </div>
         </div>
         foreach (var item in Model)
@@ -73,3 +74,6 @@
         }
     }
 </div>
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))

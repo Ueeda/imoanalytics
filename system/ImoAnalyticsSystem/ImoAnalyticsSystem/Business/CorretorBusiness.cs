@@ -15,5 +15,11 @@ namespace ImoAnalyticsSystem.Business
         {
             return db.Users.ToList();
         }
+
+        public List<Corretor> SearchCorretoresByNome(String searchString)
+        {
+            return db.Users.Where(p => p.NomeCompleto.Contains(searchString)).ToList();
+        }
+
     }
 }

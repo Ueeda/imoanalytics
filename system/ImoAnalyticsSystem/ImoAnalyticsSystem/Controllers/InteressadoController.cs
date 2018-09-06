@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ImoAnalyticsSystem.Controllers
 {
@@ -17,9 +18,16 @@ namespace ImoAnalyticsSystem.Controllers
 
         // GET: Interessado
         [Authorize]
-        public ActionResult Index(String searchString)
+        public ActionResult Index(string currentFilter, string searchString, int? page)
         {
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
             List<Interessado> interessados;
+
             if(!String.IsNullOrEmpty(searchString))
             {
                 interessados = interessadoBusiness.SearchInteressadosByNome(searchString);
@@ -29,7 +37,10 @@ namespace ImoAnalyticsSystem.Controllers
             else
                 interessados = interessadoBusiness.GetInteressados();
 
-            return View(interessados.OrderBy(i => i.NomeCompleto));
+            int pageSize = 1;
+            int pageNumber = (page ?? 1);
+
+            return View(interessados.OrderBy(i => i.NomeCompleto).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Interessado/Details/5

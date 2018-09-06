@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ImoAnalyticsSystem.Controllers
 {
@@ -20,9 +21,27 @@ namespace ImoAnalyticsSystem.Controllers
 
         // GET: Visita
         [Authorize]
-        public ActionResult Index(DateTime? startTime, DateTime? endTime)
+        public ActionResult Index(DateTime? currentStart, DateTime? currentEnd, DateTime? startTime, DateTime? endTime, int? page)
         {
+            if (startTime.HasValue || endTime.HasValue)
+                page = 1;
+            else
+            {
+                if (startTime.HasValue)
+                    startTime = currentStart.Value.Date;
+                else
+                    startTime = currentStart;
+
+                if (endTime.HasValue)
+                    endTime = currentEnd.Value.Date;
+                else
+                    endTime = currentEnd;
+            }
+
+            ViewBag.CurrentStart = startTime;
+            ViewBag.CurrentEnd = endTime;
             List<Visita> visitas;
+
             if (startTime.HasValue && endTime.HasValue)
             {
                 //if (startTime > endTime)
@@ -53,7 +72,9 @@ namespace ImoAnalyticsSystem.Controllers
             else
                 visitas = visitaBusiness.GetVisitas();
 
-            return View(visitas.OrderBy(v => v.Data));
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(visitas.OrderBy(v => v.Data).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Visita/Details/5

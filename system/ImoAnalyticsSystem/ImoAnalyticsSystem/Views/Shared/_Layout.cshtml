@@ -31,6 +31,16 @@
                         </ul>
                     </li>
                     <li class="dropdown">
+                        <a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Proprietários  <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            @if (User.IsInRole("Gerente"))
+                            {
+                                <li><@Html.ActionLink("Cadastrar-se", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })></li>
+                            }
+                            <li>@Html.ActionLink("Lista de Corretores", "Index", "Proprietario")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
                         <a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Interessados  <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Criar interessado", "Create", "Interessado")</li>

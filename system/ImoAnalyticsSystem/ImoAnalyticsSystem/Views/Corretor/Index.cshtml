@@ -1,13 +1,13 @@
 ﻿@using PagedList.Mvc;
-@model PagedList.IPagedList<ImoAnalyticsSystem.Models.Proprietario>
+@model PagedList.IPagedList<ImoAnalyticsSystem.Models.Corretor>
 
 @{
-    ViewBag.Title = "Proprietários";
+    ViewBag.Title = "Corretores";
 }
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">Proprietários</h3>
+        <h3 class="panel-title">@ViewBag.Title</h3>
     </div>
     @using (Html.BeginForm())
     {
@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="group">
-                        @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @type = "text", @placeholder = HttpUtility.HtmlDecode("Pesquisar proprietário por nome"), @class = "effect-1" })
+                        @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @type = "text", @placeholder = HttpUtility.HtmlDecode("Pesquisar corretor por nome"), @class = "effect-1" })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -47,13 +47,13 @@
                     <p>@Html.DisplayFor(modelItem => item.NomeCompleto)</p>
                 </div>
                 <div class="col-md-3">
-                    <p>@Html.DisplayFor(modelItem => item.Telefone)</p>
+                    <p>@Html.DisplayFor(modelItem => item.PhoneNumber)</p>
                 </div>
                 <div class="col-md-4">
                     <p>@Html.DisplayFor(modelItem => item.Email)</p>
                 </div>
                 <div class="col-md-1">
-                    <a class="link-more" href="@Url.Action("Details", "Proprietario", new { id = item.ID })" title="Mais informações"><i class="fa fa-ellipsis-h"></i></a>
+                   @* <a class="link-more" href="@Url.Action("Details", "Corretor", new { id = item.ID })" title="Mais informações"><i class="fa fa-ellipsis-h"></i></a>*@
                 </div>
             </div>
         }
