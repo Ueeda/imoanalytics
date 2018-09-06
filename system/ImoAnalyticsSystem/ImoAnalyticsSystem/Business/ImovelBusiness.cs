@@ -17,6 +17,11 @@ namespace ImoAnalyticsSystem.Business
             return db.Imovel.ToList();
         }
 
+        public List<Imovel> GetImoveisDisponiveis()
+        {
+            return db.Imovel.Where(v => v.Disponivel == true).ToList();
+        }
+
         public Imovel FindById(int? id)
         {
             return db.Imovel.Include(s => s.Files).SingleOrDefault(s => s.ID == id);

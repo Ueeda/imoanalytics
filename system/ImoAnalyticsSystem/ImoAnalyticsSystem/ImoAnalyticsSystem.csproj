@@ -208,6 +208,7 @@
     <Compile Include="Business\InteressadoBusiness.cs" />
     <Compile Include="Business\ProprietarioBusiness.cs" />
     <Compile Include="Business\TipoImovelBusiness.cs" />
+    <Compile Include="Business\VendaBusiness.cs" />
     <Compile Include="Business\VisitaBusiness.cs" />
     <Compile Include="Controllers\CartorioController.cs" />
     <Compile Include="Controllers\ContratoDeLocacaoController.cs" />

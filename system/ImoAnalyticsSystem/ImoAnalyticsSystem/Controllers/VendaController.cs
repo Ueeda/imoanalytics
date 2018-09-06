@@ -1,4 +1,5 @@
-﻿using ImoAnalyticsSystem.Data;
+﻿using ImoAnalyticsSystem.Business;
+using ImoAnalyticsSystem.Data;
 using ImoAnalyticsSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,16 @@ namespace ImoAnalyticsSystem.Controllers
 {
     public class VendaController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private VendaBusiness vendaBusiness = new VendaBusiness();
+        private InteressadoBusiness interessadoBusiness = new InteressadoBusiness();
+        private ImovelBusiness imovelBusiness = new ImovelBusiness();
+        private CorretorBusiness corretorBusiness = new CorretorBusiness();
+        
         // GET: Venda
         [Authorize]
         public ActionResult Index()
         {
-            var vendas = db.Venda.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado);
-            return View(vendas.ToList());
+            return View(vendaBusiness.getVendas());
         }
 
         // GET: Venda/Details/5
@@ -30,7 +33,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Venda venda = db.Venda.Find(id);
+            Venda venda = vendaBusiness.FindById(id);
             if (venda == null)
             {
                 return HttpNotFound();
@@ -42,9 +45,9 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto");
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID");
-            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto");
+            ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto");
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "ID");
+            ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto");
             return View();
         }
 
@@ -56,18 +59,20 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "ID,DataVenda,ImovelId,CorretorId,InteressadoId,ValorVenda,ComissaoImobiliaria,ComissaoCorretor")] Venda venda)
         {
+            String create = "";
             if (ModelState.IsValid)
             {
-                venda.ComissaoImobiliaria = venda.ValorVenda * 0.06;
-                venda.ComissaoCorretor = venda.ComissaoImobiliaria * 0.2;
-                db.Venda.Add(venda);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                create = vendaBusiness.Create(venda);
+                if (create.Equals("OK"))
+                    return RedirectToAction("Index");
             }
 
-            ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", venda.CorretorId);
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID", venda.ImovelId);
-            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", venda.InteressadoId);
+            if (!create.Equals(""))
+                ModelState.AddModelError("Erro ao cadastrar venda.", create);
+
+            ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", venda.CorretorId);
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "ID", venda.ImovelId);
+            ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", venda.InteressadoId);
             return View(venda);
         }
 
@@ -79,14 +84,14 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Venda venda = db.Venda.Find(id);
+            Venda venda = vendaBusiness.FindById(id);
             if (venda == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", venda.CorretorId);
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID", venda.ImovelId);
-            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", venda.InteressadoId);
+            ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", venda.CorretorId);
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "ID", venda.ImovelId);
+            ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", venda.InteressadoId);
             return View(venda);
         }
 
@@ -98,17 +103,22 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Edit([Bind(Include = "ID,DataVenda,ImovelId,CorretorId,InteressadoId,ValorVenda,ComissaoImobiliaria,ComissaoCorretor")] Venda venda)
         {
+
+            string edit = "";
             if (ModelState.IsValid)
             {
-                venda.ComissaoImobiliaria = venda.ValorVenda * 0.06;
-                venda.ComissaoCorretor = venda.ComissaoImobiliaria * 0.2;
-                db.Entry(venda).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                edit = vendaBusiness.Edit(venda);
+                if (edit.Equals("OK"))
+                    return RedirectToAction("Index");
             }
-            ViewBag.CorretorId = new SelectList(db.Users, "ID", "NomeCompleto", venda.CorretorId);
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "ID", venda.ImovelId);
-            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", venda.InteressadoId);
+
+            if (!edit.Equals(""))
+                ModelState.AddModelError("Erro ao cadastrar venda.", edit);
+
+            ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", venda.CorretorId);
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "ID", venda.ImovelId);
+            ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", venda.InteressadoId);
             return View(venda);
         }
 
@@ -120,7 +130,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Venda venda = db.Venda.Find(id);
+            Venda venda = vendaBusiness.FindById(id);
             if (venda == null)
             {
                 return HttpNotFound();
@@ -134,9 +144,8 @@ namespace ImoAnalyticsSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Venda venda = db.Venda.Find(id);
-            db.Venda.Remove(venda);
-            db.SaveChanges();
+            Venda venda = vendaBusiness.FindById(id);
+            vendaBusiness.Delete(venda);
             return RedirectToAction("Index");
         }
 
@@ -144,7 +153,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                vendaBusiness.Dispose();
             }
             base.Dispose(disposing);
         }
