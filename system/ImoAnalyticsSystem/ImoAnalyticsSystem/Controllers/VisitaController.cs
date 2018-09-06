@@ -20,9 +20,40 @@ namespace ImoAnalyticsSystem.Controllers
 
         // GET: Visita
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(DateTime? startTime, DateTime? endTime)
         {
-            return View(visitaBusiness.GetVisitas());
+            List<Visita> visitas;
+            if (startTime.HasValue && endTime.HasValue)
+            {
+                //if (startTime > endTime)
+                if (Nullable.Compare(startTime, endTime) > 0)
+                {
+                    ViewBag.invalidRange = true;
+                    visitas = new List<Visita>();
+                }
+                else
+                {
+                    visitas = visitaBusiness.GetVisitasByStartAndEndTime(startTime, endTime);
+                    if (visitas.Count() == 0)
+                        ViewBag.noResults = true;
+                }                
+            }
+            else if (startTime.HasValue && endTime == null)
+            {
+                visitas = visitaBusiness.GetVisitasByStartTime(startTime);
+                if (visitas.Count() == 0)
+                    ViewBag.noResults = true;
+            }
+            else if (startTime == null && endTime.HasValue)
+            {
+                visitas = visitaBusiness.GetVisitasByEndTime(endTime);
+                if (visitas.Count() == 0)
+                    ViewBag.noResults = true;
+            }
+            else
+                visitas = visitaBusiness.GetVisitas();
+
+            return View(visitas.OrderBy(v => v.Data));
         }
 
         // GET: Visita/Details/5

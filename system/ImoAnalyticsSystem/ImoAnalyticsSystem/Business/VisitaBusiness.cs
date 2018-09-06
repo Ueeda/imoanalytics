@@ -14,12 +14,27 @@ namespace ImoAnalyticsSystem.Business
 
         public List<Visita> GetVisitas()
         {
-            return db.Visita.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado).ToList();
+            return db.Visita.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado).OrderBy(v => v.Data).ToList();
         }
 
         public List<Visita> GetVisitasByImovelId(int? idImovel)
         {
             return db.Visita.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado).Where(v => v.ImovelId == idImovel).OrderBy(v=> v.Data).ToList();
+        }
+
+        public List<Visita> GetVisitasByStartAndEndTime(DateTime? startTime, DateTime? endTime)
+        {
+            return db.Visita.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado).Where(v => v.Data >= startTime && v.Data <= endTime).ToList();
+        }
+
+        public List<Visita> GetVisitasByStartTime(DateTime? startTime)
+        {
+            return db.Visita.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado).Where(v => v.Data >= startTime).ToList();
+        }
+
+        public List<Visita> GetVisitasByEndTime(DateTime? endTime)
+        {
+            return db.Visita.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado).Where(v => v.Data <= endTime).ToList();
         }
 
         public Visita FindById(int? id)
