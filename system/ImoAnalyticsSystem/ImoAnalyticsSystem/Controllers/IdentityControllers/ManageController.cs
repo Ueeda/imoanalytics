@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ImoAnalyticsSystem.ViewModels.IdentityViewModels;
+using ImoAnalyticsSystem.Business;
+using ImoAnalyticsSystem.Models;
 
 namespace ImoAnalyticsSystem.Controllers
 {
@@ -15,6 +17,7 @@ namespace ImoAnalyticsSystem.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private CorretorBusiness corretorBusiness = new CorretorBusiness();
 
         public ManageController()
         {
@@ -55,12 +58,13 @@ namespace ImoAnalyticsSystem.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Sua senha foi alterada com sucesso"
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.ChangeInformationSuccess ? "As informações foram alteradas com sucesso."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -70,8 +74,10 @@ namespace ImoAnalyticsSystem.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-            };
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                CurrentCorretor = corretorBusiness.GetCurrentUser(userId),
+                IsGerente = User.IsInRole("Gerente")
+        };
             return View(model);
         }
 
@@ -245,6 +251,70 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         //
+        // GET: /Manage/Edit
+        public ActionResult Edit()
+        {
+            Corretor corretor = corretorBusiness.GetCurrentUser(User.Identity.GetUserId());
+            EditViewModel edit = new EditViewModel();
+
+            edit.Bairro = corretor.Bairro;
+            edit.Cep = corretor.Cep;
+            edit.Cidade = corretor.Cidade;
+            edit.Cpf = corretor.Cpf;
+            edit.Creci = corretor.Creci;
+            edit.DataNascimento = corretor.DataNascimento;
+            edit.Endereco = corretor.Endereco;
+            edit.Estado = corretor.Estado;
+            edit.NomeCompleto = corretor.NomeCompleto;
+            edit.Numero = corretor.Numero;
+            edit.PhoneNumber = corretor.PhoneNumber;
+            edit.Rg = corretor.Rg;
+            edit.IsGerente = User.IsInRole("Gerente");
+
+            return View(edit);
+        }
+
+        //
+        // POST: /Manage/Edit
+        public async Task<ActionResult> EditUser(EditViewModel edit)
+        {
+            if (!ModelState.IsValid)
+                return View(edit);
+            
+            Corretor corretor = corretorBusiness.GetCurrentUser(User.Identity.GetUserId());
+            corretor.Bairro = edit.Bairro;
+            corretor.Cep = edit.Cep;
+            corretor.Cidade = edit.Cidade;
+            corretor.Cpf = edit.Cpf;
+            corretor.Creci = edit.Creci;
+            corretor.DataNascimento = edit.DataNascimento;
+            corretor.Endereco = edit.Endereco;
+            corretor.Estado = edit.Estado;
+            corretor.NomeCompleto = edit.NomeCompleto;
+            corretor.Numero = edit.Numero;
+            corretor.PhoneNumber = edit.PhoneNumber;
+            corretor.Rg = edit.Rg;
+
+            var roles = await UserManager.GetRolesAsync(User.Identity.GetUserId());
+            await UserManager.RemoveFromRolesAsync(User.Identity.GetUserId(), roles.ToArray());
+
+            if (edit.IsGerente)
+                await this.UserManager.AddToRoleAsync(User.Identity.GetUserId(), "Gerente");
+            else
+                await this.UserManager.AddToRoleAsync(User.Identity.GetUserId(), "Corretor");
+
+            corretorBusiness.Edit(corretor);
+
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            if (user != null)
+            {
+                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+            }
+
+            return RedirectToAction("Index", new { Message = ManageMessageId.ChangeInformationSuccess });
+        }
+
+        //
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
         {
@@ -381,7 +451,8 @@ namespace ImoAnalyticsSystem.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
-            Error
+            Error,
+            ChangeInformationSuccess
         }
 
 #endregion

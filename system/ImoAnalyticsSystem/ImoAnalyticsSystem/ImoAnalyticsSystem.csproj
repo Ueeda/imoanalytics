@@ -424,6 +424,7 @@
     <Content Include="Views\Imobiliaria\Edit.cshtml" />
     <Content Include="Views\Imobiliaria\Index.cshtml" />
     <Content Include="Views\Corretor\Index.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\File\" />

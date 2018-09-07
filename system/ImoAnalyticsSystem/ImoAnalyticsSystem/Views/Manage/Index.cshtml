@@ -1,88 +1,166 @@
 ﻿@using ImoAnalyticsSystem.ViewModels.IdentityViewModels
 @model IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Detalhes da conta";
 }
 
-<h2>@ViewBag.Title.</h2>
+@if (ViewBag.StatusMessage != "")
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.StatusMessage
+    </div>
+}
 
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-        @*<dt>External Logins:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Manage", "ManageLogins") ]
-        </dd>*@
-        @*
-            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-             
-             See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-             
-             Uncomment the following block after you have set up two-factor authentication
-        *@
-        @*  
-            <dt>Phone Number:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
-                {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3 class="panel-title">@ViewBag.Title</h3>
+                </div>
+                <div class="col-md-4 icons-edit-remove">
+                    <a href="@Url.Action("Edit", "Manage", null)" title="Editar informações"><i class="fa fa-edit"></i></a>
+                    <a href="@Url.Action("ChangePassword", "Manage", null)" title="Alterar senha"><i class="fa fa-key"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="primary-color-row row">
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>@Html.DisplayNameFor(model => model.CurrentCorretor.NomeCompleto)</b></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>@Html.DisplayFor(model => model.CurrentCorretor.NomeCompleto)</p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>@Html.DisplayNameFor(model => model.CurrentCorretor.Cpf)</b></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>@Html.DisplayFor(model => model.CurrentCorretor.Cpf)</p>
+                </div>
+            </div>
+        </div>
+        <div class="primary-color-row row">
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>@Html.DisplayNameFor(model => model.CurrentCorretor.Rg)</b></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>@Html.DisplayFor(model => model.CurrentCorretor.Rg)</p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>@Html.DisplayNameFor(model => model.CurrentCorretor.DataNascimento)</b></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>@Html.DisplayFor(model => model.CurrentCorretor.DataNascimento)</p>
+                </div>
+            </div>
+        </div>
+        <div class="primary-color-row row">
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>@Html.DisplayNameFor(model => model.CurrentCorretor.PhoneNumber)</b></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>@Html.DisplayFor(model => model.CurrentCorretor.PhoneNumber)</p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>@Html.DisplayNameFor(model => model.CurrentCorretor.Cep)</b></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>@Html.DisplayFor(model => model.CurrentCorretor.Cep)</p>
+                </div>
+            </div>
+        </div>
+        <div class="primary-color-row row">
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>@Html.DisplayNameFor(model => model.CurrentCorretor.Endereco)</b></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>@Html.DisplayFor(model => model.CurrentCorretor.Endereco)</p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>@Html.DisplayNameFor(model => model.CurrentCorretor.Numero)</b></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>@Html.DisplayFor(model => model.CurrentCorretor.Numero)</p>
+                </div>
+            </div>
+        </div>
+        <div class="primary-color-row row">
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>@Html.DisplayNameFor(model => model.CurrentCorretor.Bairro)</b></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>@Html.DisplayFor(model => model.CurrentCorretor.Bairro)</p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>@Html.DisplayNameFor(model => model.CurrentCorretor.Cidade)</b></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>@Html.DisplayFor(model => model.CurrentCorretor.Cidade)</p>
+                </div>
+            </div>
+        </div>
+        <div class="primary-color-row row">
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>@Html.DisplayNameFor(model => model.CurrentCorretor.Estado)</b></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>@Html.DisplayFor(model => model.CurrentCorretor.Estado)</p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>Papel</b></p>
+                </div>
+                <div class="col-sm-6">
+                    @if (Model.IsGerente)
                     {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                        <p>Gerente</p>
                     }
-                }
-                else
-                {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
-                }
-            </dd>
-        *@
-        @*<dt>Two-Factor Authentication:</dt>
-        <dd>
-            <p>
-                There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication.
-            </p>
-            @if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    else
                     {
-                        @Html.AntiForgeryToken()
-                        <text>Enabled
-                        <input type="submit" value="Disable" class="btn btn-link" />
-                        </text>
+                        <p>Corretor</p>
                     }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                </div>
+            </div>
+        </div>
+        <div class="primary-color-row row">
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>@Html.DisplayNameFor(model => model.CurrentCorretor.Creci)</b></p>
+                </div>
+                <div class="col-sm-6">
+                    <p>@Html.DisplayFor(model => model.CurrentCorretor.Creci)</p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-6">
+                    <p><b>Ativo</b></p>
+                </div>
+                <div class="col-sm-6">
+                    @if (Model.CurrentCorretor.Ativo)
                     {
-                        @Html.AntiForgeryToken()
-                        <text>Disabled
-                        <input type="submit" value="Enable" class="btn btn-link" />
-                        </text>
+                        <p>Sim</p>
                     }
-                }
-        </dd>*@
-    </dl>
-</div>
+                    else
+                    {
+                        <p>Não</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>

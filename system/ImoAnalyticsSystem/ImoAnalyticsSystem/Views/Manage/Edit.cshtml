@@ -1,9 +1,9 @@
 ﻿@using ImoAnalyticsSystem.ViewModels.IdentityViewModels
-@model RegisterViewModel
+@model EditViewModel
 @{
-    ViewBag.Title = "Cadastro de corretor";
+    ViewBag.Title = "Editar informações";
 }
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("EditUser", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <div class="panel panel-primary">
@@ -15,27 +15,13 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Email).ToHtmlString()), @class = "effect-1" } })
-                        <span class="focus-border"></span>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="group">
                         @Html.EditorFor(model => model.NomeCompleto, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.NomeCompleto).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @type = "password", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Password).ToHtmlString()), @class = "effect-1" } })
-                        <span class="focus-border"></span>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="group">
-                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @type = "password", @placeholder = "Confirme a senha", @class = "effect-1" } })
+                        @Html.EditorFor(model => model.Creci, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Creci).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -113,23 +99,14 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Creci, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Creci).ToHtmlString()), @class = "effect-1" } })
-                        <span class="focus-border"></span>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="group">
                         @Html.CheckBoxFor(model => model.IsGerente)
                         @Html.LabelFor(model => model.IsGerente)
                     </div>
                 </div>
             </div>
             <div class="row buttons-row">
-                <div class="col-md-6 center">
-                    <input type="submit" value="Cadastrar" class="principal-button" />
-                </div>
-                <div class="col-md-6 center">
-                    <div class="principal-button-div">@Html.ActionLink("Limpar", "Create")</div>
+                <div class="col-md-12 center">
+                    <input type="submit" value="Salvar" class="principal-button" />
                 </div>
             </div>
         </div>
