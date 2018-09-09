@@ -30,13 +30,14 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Valor de venda")]
         [Required(ErrorMessage = "O valor da venda é obrigatória.")]
-        public double ValorVenda { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal ValorVenda { get; set; }
 
         [Display(Name = "Comissão da imobiliária")]
-        public double ComissaoImobiliaria { get; set; }
+        public decimal ComissaoImobiliaria { get; set; }
 
         [Display(Name = "Comissão do corretor")]
-        public double ComissaoCorretor { get; set; }
+        public decimal ComissaoCorretor { get; set; }
 
         public virtual Imovel Imovel { get; set; }
 

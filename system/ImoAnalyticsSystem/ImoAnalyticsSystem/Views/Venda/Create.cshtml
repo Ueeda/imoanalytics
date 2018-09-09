@@ -16,10 +16,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.DataVenda, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.DataVenda, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.DataVenda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.DataVenda).ToHtmlString()), @class = "effect-1 js-data" } })
+                        <span class="focus-border"></span>
+
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -52,10 +51,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @type = "text" } })
-                        <span class="highlight"></span>
-                        <span class="bar"></span>
-                        @Html.LabelFor(model => model.ValorVenda, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorVenda).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
+                        <span class="focus-border"></span>
+
                     </div>
                 </div>
             </div>
