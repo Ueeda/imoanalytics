@@ -33,14 +33,14 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Comissão de venda da imobiliária")]
         [Required(ErrorMessage = "O campo comissão de venda da imobiliária é obrigatório.")]
-        public double ComissaoImobiliariaVenda { get; set; }
+        public decimal ComissaoImobiliariaVenda { get; set; }
 
         [Display(Name = "Comissão de venda do corretor")]
         [Required(ErrorMessage = "O campo comissão de venda do corretor é obrigatório.")]
-        public double ComissaoCorretorVenda { get; set; }
+        public decimal ComissaoCorretorVenda { get; set; }
 
         [Display(Name = "Taxa de administração da locação")]
         [Required(ErrorMessage = "O campo taxa de administração da locação é obrigatório.")]
-        public double TaxaAdministracaoLocacao { get; set; }
+        public decimal TaxaAdministracaoLocacao { get; set; }
     }
 }

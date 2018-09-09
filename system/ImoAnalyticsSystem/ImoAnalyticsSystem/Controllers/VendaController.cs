@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ImoAnalyticsSystem.Controllers
 {
@@ -20,9 +21,62 @@ namespace ImoAnalyticsSystem.Controllers
         
         // GET: Venda
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(DateTime? currentStart, DateTime? currentEnd, DateTime? startTime, DateTime? endTime, int? page)
         {
-            return View(vendaBusiness.getVendas());
+            if (startTime.HasValue || endTime.HasValue)
+                page = 1;
+            else
+            {
+                if (startTime.HasValue)
+                    startTime = currentStart.Value.Date;
+                else
+                    startTime = currentStart;
+
+                if (endTime.HasValue)
+                    endTime = currentEnd.Value.Date;
+                else
+                    endTime = currentEnd;
+            }
+
+            ViewBag.CurrentStart = startTime;
+            ViewBag.CurrentEnd = endTime;
+            List<Venda> vendas;
+
+            if (startTime.HasValue && endTime.HasValue)
+            {
+                //if (startTime > endTime)
+                if (Nullable.Compare(startTime, endTime) > 0)
+                {
+                    ViewBag.invalidRange = true;
+                    vendas = new List<Venda>();
+                }
+                else
+                {
+                    vendas = vendaBusiness.GetVendasByStartAndEndTime(startTime, endTime);
+                    if (vendas.Count() == 0)
+                        ViewBag.noResults = true;
+                }
+
+            }
+            else if (startTime.HasValue && endTime == null)
+            {
+                vendas = vendaBusiness.GetVendasByStartTime(startTime);
+                if (vendas.Count() == 0)
+                    ViewBag.noResults = true;
+            }
+            else if (startTime == null && endTime.HasValue)
+            {
+                vendas = vendaBusiness.GetVendasByEndTime(endTime);
+                if (vendas.Count() == 0)
+                    ViewBag.noResults = true;
+            }
+            else
+                vendas = vendaBusiness.getVendas();
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(vendas.OrderBy(v => v.DataVenda).ToPagedList(pageNumber, pageSize));
+
         }
 
         // GET: Venda/Details/5

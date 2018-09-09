@@ -29,9 +29,9 @@ namespace ImoAnalyticsSystem
                 imobiliaria.Endereco = "Rua Arion Niepce da Silva";
                 imobiliaria.NomeImobiliaria = "Toyo Imoveis";
                 imobiliaria.TelefoneContato = "(41) 3014-8008";
-                imobiliaria.TaxaAdministracaoLocacao = 0.1;
-                imobiliaria.ComissaoCorretorVenda = 0.6;
-                imobiliaria.ComissaoImobiliariaVenda = 0.6;
+                imobiliaria.TaxaAdministracaoLocacao = (decimal)0.02;
+                imobiliaria.ComissaoCorretorVenda = (decimal)0.06;
+                imobiliaria.ComissaoImobiliariaVenda = (decimal)0.06;
                 context.Imobiliaria.Add(imobiliaria);
                 context.SaveChanges();
             }

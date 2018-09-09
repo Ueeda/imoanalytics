@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ImoAnalyticsSystem.Models.Venda>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ImoAnalyticsSystem.Models.Venda>
 
 @{
     ViewBag.Title = "Index";
@@ -7,39 +8,91 @@
     <div class="panel-heading">
         <h3 class="panel-title">Vendas</h3>
     </div>
-    <div class="header-row row">
-        <div class="col-md-4">
-            <p>Código do @Html.DisplayNameFor(model => model.Imovel)</p>
-        </div>
-        <div class="col-md-2">
-            <p>@Html.DisplayNameFor(model => model.Imovel.Bairro)</p>
-        </div>
-        <div class="col-md-3">
-            <p>@Html.DisplayNameFor(model => model.Interessado)</p>
-        </div>
-        <div class="col-md-2">
-            <p>@Html.DisplayNameFor(model => model.ValorVenda)</p>
-        </div>
-    </div>
-    @foreach (var item in Model)
+    @using (Html.BeginForm())
     {
-        <div class="primary-color-row row">
-            <div class="col-md-4">
-                <p>@Html.DisplayFor(modelItem => item.Imovel.ID)</p>
-            </div>
-            <div class="col-md-2">
-                <p>@Html.DisplayFor(modelItem => item.Imovel.Bairro)</p>
-            </div>
-            <div class="col-md-3">
-                <p>@Html.DisplayFor(modelItem => item.Interessado.NomeCompleto)</p>
-            </div>
-            <div class="col-md-2">
-                <p>R$@Html.DisplayFor(modelItem => item.ValorVenda)</p>
-            </div>
-            <div class="col-md-1">
-                <a class="link-more" href="@Url.Action("Details", "Venda", new { id = item.ID })" title="Mais informações"><i class="fa fa-ellipsis-h"></i></a>
+        <div class="panel-body search-list">
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <div class="group">
+                        @Html.TextBox("startTime", ViewBag.CurrentStart as DateTime?, new { @type = "text", @placeholder = HttpUtility.HtmlDecode("De: "), @class = "effect-1 js-data" })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="group">
+                        @Html.TextBox("endTime", ViewBag.CurrentEnd as DateTime?, new { @type = "text", @placeholder = HttpUtility.HtmlDecode("Até: "), @class = "effect-1 js-data" })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="group">
+                        <input type="submit" value="Pesquisar" />
+                    </div>
+                </div>
             </div>
         </div>
     }
+    @if (Model.Count() > 0)
+    {
+        <div class="header-row row">
+            <div class="col-md-4">
+                <p>Código do Imóvel</p>
+            </div>
+            <div class="col-md-2">
+                <p>Bairro</p>
+            </div>
+            <div class="col-md-3">
+                <p>Interessado</p>
+            </div>
+            <div class="col-md-2">
+                <p>Valor da Venda</p>
+            </div>
+        </div>
+        foreach (var item in Model)
+        {
+            <div class="primary-color-row row">
+                <div class="col-md-4">
+                    <p>@Html.DisplayFor(modelItem => item.Imovel.ID)</p>
+                </div>
+                <div class="col-md-2">
+                    <p>@Html.DisplayFor(modelItem => item.Imovel.Bairro)</p>
+                </div>
+                <div class="col-md-3">
+                    <p>@Html.DisplayFor(modelItem => item.Interessado.NomeCompleto)</p>
+                </div>
+                <div class="col-md-2">
+                    <p>@Html.DisplayFor(modelItem => item.ValorVenda)</p>
+                </div>
+                <div class="col-md-1">
+                    <a class="link-more" href="@Url.Action("Details", "Venda", new { id = item.ID })" title="Mais informações"><i class="fa fa-ellipsis-h"></i></a>
+                </div>
+            </div>
+        }
+
+
+    }
+    else
+    {
+        if (ViewBag.invalidRange == true)
+        {
+            <div class="primary-color-row row">
+                <center><p>O intervalo de tempo é inválido</p></center>
+            </div>
+        }
+        else if (ViewBag.noResults == true)
+        {
+            <div class="primary-color-row row">
+                <center><p>Não existem resultados para a busca</p></center>
+            </div>
+        }
+        else
+        {
+            <div class="primary-color-row row">
+                <center><p>Não existem @ViewBag.title.ToLower() cadastradas nesse intervalo</p></center>
+            </div>
+        }
+    }
 </div>
 
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentStart = ViewBag.CurrentStart, currentEnd = ViewBag.CurrentEnd }))

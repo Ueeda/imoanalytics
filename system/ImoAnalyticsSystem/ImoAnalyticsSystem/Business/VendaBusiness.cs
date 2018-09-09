@@ -20,6 +20,21 @@ namespace ImoAnalyticsSystem.Business
             return db.Venda.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado).ToList();
         }
 
+        public List<Venda> GetVendasByStartAndEndTime(DateTime? startTime, DateTime? endTime)
+        {
+            return db.Venda.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado).Where(v => v.DataVenda >= startTime && v.DataVenda <= endTime).ToList();
+        }
+
+        public List<Venda> GetVendasByStartTime(DateTime? startTime)
+        {
+            return db.Venda.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado).Where(v => v.DataVenda >= startTime).ToList();
+        }
+
+        public List<Venda> GetVendasByEndTime(DateTime? endTime)
+        {
+            return db.Venda.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado).Where(v => v.DataVenda <= endTime).ToList();
+        }
+
         public Venda FindById(int? id)
         {
             return db.Venda.Find(id);
