@@ -256,7 +256,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Images\search.svg" />
+    <Content Include="Content\Images\imovel-sem-foto.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -392,6 +392,7 @@
     <Content Include="Views\Manage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>

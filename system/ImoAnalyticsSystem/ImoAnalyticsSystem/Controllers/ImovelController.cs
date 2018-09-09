@@ -26,6 +26,7 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Index(int? page)
         {
+            ViewBag.Imoveis = true;
             int pageSize = 15;
             int pageNumber = (page ?? 1);
 
@@ -124,7 +125,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 edit = imovelBusiness.Edit(imovel, upload);
                 if (edit.Equals("OK")) 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", imovel.ID);
             }
             if (!edit.Equals(""))
                 ModelState.AddModelError("Erro ao criar o imovel: ", edit);

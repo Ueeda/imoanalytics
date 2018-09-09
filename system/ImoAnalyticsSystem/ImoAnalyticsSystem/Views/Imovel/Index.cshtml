@@ -9,7 +9,7 @@
         <div class="panel-heading">
             <h3 class="panel-title">Lista de imóveis</h3>
         </div>
-        <div class="row" style="padding: 10px;">
+        <div class="panel-body imovel-list">
             @foreach (var item in Model)
             {
                 <div class="col-md-4">
@@ -19,6 +19,10 @@
                                 @if (item.Files.Any(f => f.FileType == ImoAnalyticsSystem.Models.FileType.Foto))
                                 {
                                     <img src="~/File?id=@item.Files.First(f => f.FileType == ImoAnalyticsSystem.Models.FileType.Foto).ID" alt="foto-imovel" class="build-image" />
+                                }
+                                else
+                                {
+                                    <img src=@Url.Content( "~/Content/Images/imovel-sem-foto.jpg") alt="foto-imovel" class="build-image" />
                                 }
                             </div>
                         </a>
@@ -38,7 +42,9 @@
                     </div>
                 </div>
             }
+            <div class="col-sm-12">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+            </div>
         </div>
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
     </div>
 </div>
