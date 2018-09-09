@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ImoAnalyticsSystem.Controllers
 {
@@ -23,9 +24,12 @@ namespace ImoAnalyticsSystem.Controllers
 
         // GET: Imovel
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(imovelBusiness.GetImoveis());
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+
+            return View(imovelBusiness.GetImoveis().OrderBy(i => i.DataCadastro).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Imovel/Details/5
@@ -65,7 +69,7 @@ namespace ImoAnalyticsSystem.Controllers
         public ActionResult Create([Bind(Include = "ID,TituloImovel,Endereco,Complemento,Cidade,Estado,Numero,Cep,Bairro,AnoConstrucao,Venda,Locacao,AreaPrivada,AreaTotal,VagasGaragem,QntBanheiros,QntDormitorios,QntSuites,Disponivel,Reservado,ValorVenda,ValorLocacao,ValorIptu,NomeCondominio,ValorCondominio,NumeroRegistroImovel,DescricaoImovel,ProprietarioId,TipoImovelId,CartorioId")] Imovel imovel, HttpPostedFileBase upload)
         {
             try
-            {
+            {                
                 string create = "";
                 if (ModelState.IsValid)
                 {

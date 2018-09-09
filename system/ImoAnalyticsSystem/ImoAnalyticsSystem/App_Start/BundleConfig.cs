@@ -29,11 +29,8 @@ namespace ImoAnalyticsSystem
                       "~/Content/font-awesome.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/inputmask").Include(
-                "~/Scripts/Inputmask/inputmask.js",
-                "~/Scripts/Inputmask/jquery.inputmask.js",
-                "~/Scripts/Inputmask/inputmask.extensions.js",
-                "~/Scripts/Inputmask/inputmask.date.extensions.js",
-                "~/Scripts/Inputmask/inputmask.numeric.extensions.js"));
+                "~/Scripts/jquery.maskedinput.min.js",
+                "~/Scripts/jquery.moneymask.js"));
         }
     }
 }

@@ -159,11 +159,11 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="col-sm-6 group" style="padding: 0 10px 0 0">
-                        @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorVenda).ToHtmlString()), @class = "effect-1" } })
+                        @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorVenda).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
                         <span class="focus-border"></span>
                     </div>
                     <div class="col-sm-6 group" style="padding: 0 0 0 10px">
-                        @Html.EditorFor(model => model.ValorLocacao, new { htmlAttributes = new { @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorLocacao).ToHtmlString()), @class = "effect-1" } })
+                        @Html.EditorFor(model => model.ValorLocacao, new { htmlAttributes = new { @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorLocacao).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.ValorIptu, new { htmlAttributes = new { @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorIptu).ToHtmlString()), @class = "effect-1" } })
+                        @Html.EditorFor(model => model.ValorIptu, new { htmlAttributes = new { @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorIptu).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -191,7 +191,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.ValorCondominio, new { htmlAttributes = new { @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorCondominio).ToHtmlString()), @class = "effect-1" } })
+                        @Html.EditorFor(model => model.ValorCondominio, new { htmlAttributes = new { @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorCondominio).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>

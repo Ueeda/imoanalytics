@@ -84,15 +84,18 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Valor de venda")]
         [Required(ErrorMessage = "O campo valor de venda é obrigatório.")]
-        public double ValorVenda { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal ValorVenda { get; set; }
 
         [Display(Name = "Valor de locação")]
         [Required(ErrorMessage = "O campo valor de locação é obrigatório.")]
-        public double ValorLocacao { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal ValorLocacao { get; set; }
 
         [Display(Name = "Valor do IPTU")]
         [Required(ErrorMessage = "O campo valor do IPTU é obrigatório.")]
-        public double ValorIptu { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal ValorIptu { get; set; }
 
         [Display(Name = "Nome do condomínio")]
         [Required(ErrorMessage = "O campo nome do condomínio é obrigatório.")]

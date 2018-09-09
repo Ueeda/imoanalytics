@@ -1,46 +1,44 @@
-﻿@model IEnumerable<ImoAnalyticsSystem.Models.Imovel>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ImoAnalyticsSystem.Models.Imovel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista de imóveis";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TipoImovel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cartorio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Proprietario)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoImovel.Tipo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cartorio.NomeCartorio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Proprietario.NomeCompleto)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
-
-</table>
+<div class="col-md-9">
+    <div class="panel panel-primary filter">
+        <div class="panel-heading">
+            <h3 class="panel-title">Lista de imóveis</h3>
+        </div>
+        <div class="row" style="padding: 10px;">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="product-item">
+                        <a href="@Url.Action("Details", "Imovel", new { id = item.ID })">
+                            <div class="build-picture">
+                                @if (item.Files.Any(f => f.FileType == ImoAnalyticsSystem.Models.FileType.Foto))
+                                {
+                                    <img src="~/File?id=@item.Files.First(f => f.FileType == ImoAnalyticsSystem.Models.FileType.Foto).ID" alt="foto-imovel" class="build-image" />
+                                }
+                            </div>
+                        </a>
+                        <div class="build-description">
+                            <a href="@Url.Action("Details", "Imovel", new { id = item.ID })"><h4 class="build-title">@Html.DisplayFor(modelItem => item.TituloImovel)</h4></a>
+                            <p>@Html.DisplayFor(modelItem => item.Endereco)</p>
+                            @if (item.Venda)
+                            {
+                                <p class="preco">Valor venda: <b>@Html.DisplayFor(modelItem => item.ValorVenda)</b></p>
+                            }
+                            @if (item.Locacao)
+                            {
+                                <p class="preco">Valor locação: <b>@Html.DisplayFor(modelItem => item.ValorLocacao)</b></p>
+                            }
+                            <p class="preco">IPTU: <b>@Html.DisplayFor(modelItem => item.ValorIptu)</b></p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+</div>
