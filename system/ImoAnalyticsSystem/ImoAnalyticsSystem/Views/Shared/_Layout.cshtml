@@ -78,14 +78,25 @@
                 </ul>
             </div>
             <div class="col-md-2 center">
-                @Html.Partial("_LoginPartial")                
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </header>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-    </div>
+    @if (ViewBag.Imoveis == true)
+    {
+        <div class="body-content">
+            @RenderBody()
+            <hr />
+        </div>
+    }
+    else
+    {
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+        </div>
+    }
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

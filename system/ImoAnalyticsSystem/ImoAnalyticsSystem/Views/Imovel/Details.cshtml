@@ -23,6 +23,10 @@
                 {
                     <img src="~/File?id=@Model.Files.First(f => f.FileType == ImoAnalyticsSystem.Models.FileType.Foto).ID" alt="foto-imovel" class="build-image" />
                 }
+                else
+                {
+                    <img src=@Url.Content( "~/Content/Images/imovel-sem-foto.jpg") alt="foto-imovel" class="build-image" />
+                }
             </div>
             <div class="col-md-6">
                 <div class="primary-color-row row">
