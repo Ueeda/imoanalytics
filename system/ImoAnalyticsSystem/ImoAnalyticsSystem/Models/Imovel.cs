@@ -104,7 +104,8 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Valor do condomínio")]
         [Required(ErrorMessage = "O campo valor do condomínio é obrigatório.")]
-        public double ValorCondominio { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal ValorCondominio { get; set; }
 
         [Display(Name = "Número de registro de imóvel")]
         [Required(ErrorMessage = "O campo número de registro de imóvel é obrigatório.")]
@@ -139,10 +140,13 @@ namespace ImoAnalyticsSystem.Models
 
         public virtual ICollection<Imagem> Files { get; set; }
 
+        [Display(Name = "Proprietário")]
         public virtual Proprietario Proprietario { get; set; }
 
+        [Display(Name = "Cartório")]
         public virtual Cartorio Cartorio { get; set; }
 
+        [Display(Name = "Tipo de imóvel")]
         public virtual TipoImovel TipoImovel { get; set; }
     }
 }

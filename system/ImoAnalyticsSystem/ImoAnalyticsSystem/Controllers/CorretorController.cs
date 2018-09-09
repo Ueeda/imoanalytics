@@ -16,6 +16,7 @@ namespace ImoAnalyticsSystem.Controllers
         CorretorBusiness corretorBusiness = new CorretorBusiness();
         
         // GET: Corretor
+        [Authorize]
         public ActionResult Index(string currentFilter, string searchString, int? page)
         {
             if (searchString != null)
