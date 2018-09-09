@@ -252,6 +252,7 @@ namespace ImoAnalyticsSystem.Controllers
 
         //
         // GET: /Manage/Edit
+        [HttpGet]
         public ActionResult Edit()
         {
             Corretor corretor = corretorBusiness.GetCurrentUser(User.Identity.GetUserId());
@@ -276,42 +277,51 @@ namespace ImoAnalyticsSystem.Controllers
 
         //
         // POST: /Manage/Edit
-        public async Task<ActionResult> EditUser(EditViewModel edit)
+        [HttpPost]
+        public async Task<ActionResult> Edit(EditViewModel edit)
         {
-            if (!ModelState.IsValid)
-                return View(edit);
-            
-            Corretor corretor = corretorBusiness.GetCurrentUser(User.Identity.GetUserId());
-            corretor.Bairro = edit.Bairro;
-            corretor.Cep = edit.Cep;
-            corretor.Cidade = edit.Cidade;
-            corretor.Cpf = edit.Cpf;
-            corretor.Creci = edit.Creci;
-            corretor.DataNascimento = edit.DataNascimento;
-            corretor.Endereco = edit.Endereco;
-            corretor.Estado = edit.Estado;
-            corretor.NomeCompleto = edit.NomeCompleto;
-            corretor.Numero = edit.Numero;
-            corretor.PhoneNumber = edit.PhoneNumber;
-            corretor.Rg = edit.Rg;
-
-            var roles = await UserManager.GetRolesAsync(User.Identity.GetUserId());
-            await UserManager.RemoveFromRolesAsync(User.Identity.GetUserId(), roles.ToArray());
-
-            if (edit.IsGerente)
-                await this.UserManager.AddToRoleAsync(User.Identity.GetUserId(), "Gerente");
-            else
-                await this.UserManager.AddToRoleAsync(User.Identity.GetUserId(), "Corretor");
-
-            corretorBusiness.Edit(corretor);
-
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
+            string result = "";
+            if(ModelState.IsValid)
             {
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                Corretor corretor = corretorBusiness.GetCurrentUser(User.Identity.GetUserId());
+                corretor.Bairro = edit.Bairro;
+                corretor.Cep = edit.Cep;
+                corretor.Cidade = edit.Cidade;
+                corretor.Cpf = edit.Cpf;
+                corretor.Creci = edit.Creci;
+                corretor.DataNascimento = edit.DataNascimento;
+                corretor.Endereco = edit.Endereco;
+                corretor.Estado = edit.Estado;
+                corretor.NomeCompleto = edit.NomeCompleto;
+                corretor.Numero = edit.Numero;
+                corretor.PhoneNumber = edit.PhoneNumber;
+                corretor.Rg = edit.Rg;
+
+                result = corretorBusiness.Edit(corretor);
+
+                if (result.Equals("OK"))
+                {
+                    var roles = await UserManager.GetRolesAsync(User.Identity.GetUserId());
+                    await UserManager.RemoveFromRolesAsync(User.Identity.GetUserId(), roles.ToArray());
+
+                    if (edit.IsGerente)
+                        await this.UserManager.AddToRoleAsync(User.Identity.GetUserId(), "Gerente");
+                    else
+                        await this.UserManager.AddToRoleAsync(User.Identity.GetUserId(), "Corretor");
+
+                    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                    if (user != null)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    }
+
+                    return RedirectToAction("Index", new { Message = ManageMessageId.ChangeInformationSuccess });
+                }
             }
 
-            return RedirectToAction("Index", new { Message = ManageMessageId.ChangeInformationSuccess });
+            if(!result.Equals(""))
+                ModelState.AddModelError("Erro ao editar as informações: ", result);
+            return View(edit);
         }
 
         //

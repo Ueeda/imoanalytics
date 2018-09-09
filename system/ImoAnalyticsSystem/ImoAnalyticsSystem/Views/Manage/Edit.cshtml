@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Editar informações";
 }
-@using (Html.BeginForm("EditUser", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Edit", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <div class="panel panel-primary">

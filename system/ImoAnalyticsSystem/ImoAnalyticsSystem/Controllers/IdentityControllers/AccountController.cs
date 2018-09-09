@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ImoAnalyticsSystem.Models;
 using ImoAnalyticsSystem.ViewModels.IdentityViewModels;
+using ImoAnalyticsSystem.Business;
 
 namespace ImoAnalyticsSystem.Controllers
 {
@@ -18,6 +19,7 @@ namespace ImoAnalyticsSystem.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private CorretorBusiness corretorBusiness;
 
         public AccountController()
         {
@@ -152,39 +154,46 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Corretor { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
-
-                // Propriedades do corretor serão registradas aqui
-                user.Bairro = model.Bairro;
-                user.Cep = model.Cep;
-                user.Cidade = model.Cidade;
-                user.Cpf = model.Cpf;
-                user.Creci = model.Creci;
-                user.DataNascimento = model.DataNascimento;
-                user.Endereco = model.Endereco;
-                user.Estado = model.Estado;
-                user.NomeCompleto = model.NomeCompleto;
-                user.Numero = model.Numero;
-                user.Rg = model.Rg;
-                user.Ativo = true;
-
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                corretorBusiness = new CorretorBusiness();
+                string informationExists = corretorBusiness.ValidateInformation(model.Cpf, model.Creci, model.Rg, model.Email);
+                if (informationExists.Equals("OK"))
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                        
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    if(model.IsGerente)
-                        await this.UserManager.AddToRoleAsync(user.Id, "Gerente");
-                    else
-                        await this.UserManager.AddToRoleAsync(user.Id, "Corretor");
-                    return RedirectToAction("Index", "Home");
+                    var user = new Corretor { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber };
+
+                    // Propriedades do corretor serão registradas aqui
+                    user.Bairro = model.Bairro;
+                    user.Cep = model.Cep;
+                    user.Cidade = model.Cidade;
+                    user.Cpf = model.Cpf;
+                    user.Creci = model.Creci;
+                    user.DataNascimento = model.DataNascimento;
+                    user.Endereco = model.Endereco;
+                    user.Estado = model.Estado;
+                    user.NomeCompleto = model.NomeCompleto;
+                    user.Numero = model.Numero;
+                    user.Rg = model.Rg;
+                    user.Ativo = true;
+
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+                        // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                        if (model.IsGerente)
+                            await this.UserManager.AddToRoleAsync(user.Id, "Gerente");
+                        else
+                            await this.UserManager.AddToRoleAsync(user.Id, "Corretor");
+                        return RedirectToAction("Index", "Corretor");
+                    }
+                    AddErrors(result);
                 }
-                AddErrors(result);
+                if (!informationExists.Equals(""))
+                    ModelState.AddModelError("Erro ao cadastrar as informações: ", informationExists);
             }
 
             // If we got this far, something failed, redisplay form

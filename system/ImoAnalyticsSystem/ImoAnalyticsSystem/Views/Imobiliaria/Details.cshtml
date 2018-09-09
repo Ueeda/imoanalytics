@@ -1,74 +1,82 @@
 ﻿@model ImoAnalyticsSystem.Models.Imobiliaria
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Informações da imobiliária";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Imobiliaria</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NomeImobiliaria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NomeImobiliaria)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Endereco)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Endereco)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailContato)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmailContato)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TelefoneContato)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TelefoneContato)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ComissaoImobiliariaVenda)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ComissaoImobiliariaVenda)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ComissaoCorretorVenda)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ComissaoCorretorVenda)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TaxaAdministracaoLocacao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TaxaAdministracaoLocacao)
-        </dd>
-
-    </dl>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="panel-title">@ViewBag.Title</h3>
+            </div>
+            <div class="col-md-4 icons-edit-remove">
+                <a href="@Url.Action("Edit", "Imobiliaria", new { id = Model.ID })" title="Editar informações da imobiliária"><i class="fa fa-edit"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-12">
+            <div class="col-sm-2">
+                <p><b>@Html.DisplayNameFor(model => model.NomeImobiliaria)</b></p>
+            </div>
+            <div class="col-sm-10">
+                <p>@Html.DisplayFor(model => model.NomeImobiliaria)</p>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-12">
+            <div class="col-sm-2">
+                <p><b>@Html.DisplayNameFor(model => model.Endereco)</b></p>
+            </div>
+            <div class="col-sm-10">
+                <p>@Html.DisplayFor(model => model.Endereco)</p>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.TelefoneContato)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.TelefoneContato)</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.EmailContato)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.EmailContato)</p>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-4">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.ComissaoImobiliariaVenda)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.ComissaoImobiliariaVenda)</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.ComissaoCorretorVenda)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.ComissaoCorretorVenda)</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.TaxaAdministracaoLocacao)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.TaxaAdministracaoLocacao)</p>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
