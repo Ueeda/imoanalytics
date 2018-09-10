@@ -17,6 +17,6 @@
     $(".js-horario").mask('99:99');
     $(".js-dinheiro").maskMoney({
         decimal: ",",
-        thousands: "."
+        thousands: ""
     });
 });

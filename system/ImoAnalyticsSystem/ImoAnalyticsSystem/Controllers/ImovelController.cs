@@ -24,13 +24,153 @@ namespace ImoAnalyticsSystem.Controllers
 
         // GET: Imovel
         [Authorize]
-        public ActionResult Index(int? page)
+        public ActionResult Index(bool? currentLocacao, bool? currentVenda, bool? locacao, bool? venda,
+                                  decimal? currentVendaMin, decimal? currentVendaMax, decimal? vendaMin, decimal? vendaMax,
+                                  decimal? currentLocacaoMin, decimal? currentLocacaoMax, decimal? locacaoMin, decimal? locacaoMax,
+                                  string currentEndereco, string endereco,
+                                  string currentBairro, string bairro,
+                                  int? currentQuartos, int? quartos,
+                                  int? currentSuites, int? suites,
+                                  int? currentVagasGaragem, int? vagasGaragem,
+                                  int? currentBanheiros, int? banheiros,
+                                  int? currentTipoImovel, int? tipoImovel,
+                                  int? page)
         {
+            // Flag true para mostrar que o layout é para seguir o modelo de imóvel
             ViewBag.Imoveis = true;
-            int pageSize = 15;
+
+            if (locacao != null || venda != null || vendaMin != null || vendaMax != null ||
+                locacaoMin != null || locacaoMax != null || endereco != null || bairro != null|| 
+                quartos != null || suites != null || vagasGaragem != null || banheiros != null ||
+                tipoImovel != null)
+            {
+                page = 1;
+            }
+            else {
+                // Atribuir valores para a locação
+                if (locacao != null)
+                    locacao = Convert.ToBoolean(locacao);
+                else
+                {
+                    if (currentLocacao == null)
+                        locacao = true;
+                    else
+                        locacao = currentLocacao;
+                }
+
+                // Atribuir valores para a venda
+                if (venda != null)
+                    venda = Convert.ToBoolean(venda);
+                else
+                {
+                    if (currentVenda == null)
+                        venda = true;
+                    else
+                        venda = currentVenda;
+                }
+
+                if (vendaMin == null)
+                    vendaMin = currentVendaMin;
+
+                if (vendaMax == null)
+                    vendaMax = currentVendaMax;
+
+                if (locacaoMin == null)
+                    locacaoMin = currentLocacaoMin;
+
+                if (locacaoMax == null)
+                    locacaoMax = currentLocacaoMax;
+
+                if (endereco == null)
+                    endereco = currentEndereco;
+
+                if (bairro == null)
+                    bairro = currentBairro;
+
+                if (quartos == null)
+                    quartos = currentQuartos;
+
+                if (suites == null)
+                    suites = currentSuites;
+
+                if (vagasGaragem == null)
+                    vagasGaragem = currentVagasGaragem;
+
+                if (banheiros == null)
+                    banheiros = currentBanheiros;
+
+                if (tipoImovel == null)
+                    tipoImovel = currentTipoImovel;
+            }
+
+            ViewBag.TipoImovelId = new SelectList(tipoImovelBusiness.GetTiposImovel(), "ID", "Tipo", tipoImovel);
+
+            ViewBag.CurrentLocacao = locacao;
+            ViewBag.CurrentVenda = venda;
+            ViewBag.CurrentVendaMin = vendaMin;
+            ViewBag.CurrentVendaMax = vendaMax;
+            ViewBag.CurrentLocacaoMin = locacaoMin;
+            ViewBag.CurrentLocacaoMax = locacaoMax;
+            ViewBag.CurrentEndereco = endereco;
+            ViewBag.CurrentBairro = bairro;
+            ViewBag.CurrentQuartos = quartos;
+            ViewBag.CurrentSuites = suites;
+            ViewBag.CurrentVagasGaragem = vagasGaragem;
+            ViewBag.CurrentBanheiros = banheiros;
+            ViewBag.CurrentTipoImovel = tipoImovel;
+            List<Imovel> imoveis;
+            
+            if(locacao == true && venda == false)
+            {
+                imoveis = imovelBusiness.GetImoveisLocacao();
+            }
+            else if (locacao == false && venda == true)
+            {
+                imoveis = imovelBusiness.GetImoveisVenda();
+            }
+            else
+            {
+                imoveis = imovelBusiness.GetImoveisDisponiveis();
+            }
+
+            if (vendaMin != null)
+                imoveis = imoveis.Where(i => i.ValorVenda >= vendaMin).ToList();
+
+            if (vendaMax != null)
+                imoveis = imoveis.Where(i => i.ValorVenda <= vendaMax).ToList();
+
+            if (locacaoMin != null)
+                imoveis = imoveis.Where(i => i.ValorLocacao >= locacaoMin).ToList();
+
+            if (locacaoMax != null)
+                imoveis = imoveis.Where(i => i.ValorLocacao <= locacaoMax).ToList();
+
+            if (endereco != null)
+                imoveis = imoveis.Where(i => i.Endereco.Contains(endereco)).ToList();
+
+            if (bairro != null)
+                imoveis = imoveis.Where(i => i.Bairro.Contains(bairro)).ToList();
+
+            if (quartos != null)
+                imoveis = imoveis.Where(i => i.QntDormitorios == quartos).ToList();
+
+            if (suites != null)
+                imoveis = imoveis.Where(i => i.QntSuites == suites).ToList();
+
+            if (vagasGaragem != null)
+                imoveis = imoveis.Where(i => i.VagasGaragem == vagasGaragem).ToList();
+
+            if (banheiros != null)
+                imoveis = imoveis.Where(i => i.QntBanheiros == banheiros).ToList();
+
+            if (tipoImovel != null)
+                imoveis = imoveis.Where(i => i.TipoImovelId == tipoImovel).ToList();
+                
+
+            int pageSize = 1;
             int pageNumber = (page ?? 1);
 
-            return View(imovelBusiness.GetImoveis().OrderBy(i => i.DataCadastro).ToPagedList(pageNumber, pageSize));
+            return View(imoveis.OrderBy(i => i.DataCadastro).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Imovel/Details/5
@@ -125,7 +265,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 edit = imovelBusiness.Edit(imovel, upload);
                 if (edit.Equals("OK")) 
-                    return RedirectToAction("Details", imovel.ID);
+                    return RedirectToAction("Details", new { id = imovel.ID });
             }
             if (!edit.Equals(""))
                 ModelState.AddModelError("Erro ao criar o imovel: ", edit);

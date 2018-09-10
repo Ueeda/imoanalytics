@@ -12,7 +12,7 @@ namespace ImoAnalyticsSystem.Models
         public int ID { get; set; }
 
         [Display(Name = "Nome do interessado")]
-        [Required(ErrorMessage = "O nome completo é obrigatório")]
+        [Required(ErrorMessage = "O nome do interessado é obrigatório")]
         [MaxLength(250, ErrorMessage = "O tamanho máximo do nome é de 250 caracteres.")]
         public String NomeCompleto { get; set; }
 

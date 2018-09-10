@@ -222,6 +222,10 @@ body {
     padding: 0 15px;
 }
 
+.panel-primary > .panel-body.filter-body {
+    padding: 15px 0;
+}
+
 /********************************
 Custom text input
 ********************************/
@@ -258,6 +262,7 @@ Custom text input
 .group input[type=email], 
 .group input[type=date],
 .group input[type=password]{
+    background-color: transparent;
     font-size: 14px;
     padding: 10px 10px 10px 5px;
     display: block;
@@ -464,9 +469,9 @@ Filter fields
     padding-top: 0px;
 }
 
-.panel.panel-primary.filter .panel-body p {
+/*.panel.panel-primary.filter .panel-body p {
     padding-bottom: 0;
-}
+}*/
 
 .panel.panel-primary.filter .panel-body .group {
     margin: 0 0 10px;

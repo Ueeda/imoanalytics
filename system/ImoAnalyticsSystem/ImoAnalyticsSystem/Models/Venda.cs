@@ -39,10 +39,13 @@ namespace ImoAnalyticsSystem.Models
         [Display(Name = "Comissão do corretor")]
         public decimal ComissaoCorretor { get; set; }
 
+        [Display(Name = "Código do imóvel")]
         public virtual Imovel Imovel { get; set; }
 
+        [Display(Name = "Corretor")]
         public virtual Corretor Corretor { get; set; }
 
+        [Display(Name = "Interessado")]
         public virtual Interessado Interessado { get; set; }
     }
 }

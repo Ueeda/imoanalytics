@@ -37,10 +37,13 @@ namespace ImoAnalyticsSystem.Models
         [Display(Name = "Descrição da visita")]
         public String Descricao { get; set; }
 
+        [Display(Name = "Interessado")]
         public virtual Interessado Interessado { get; set; }
 
+        [Display(Name = "Corretor")]
         public virtual Corretor Corretor { get; set; }
 
+        [Display(Name = "Código do imóvel")]
         public virtual Imovel Imovel { get; set; }
     }
 }
