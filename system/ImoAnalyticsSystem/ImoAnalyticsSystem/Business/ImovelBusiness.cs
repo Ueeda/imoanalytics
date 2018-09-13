@@ -11,6 +11,7 @@ namespace ImoAnalyticsSystem.Business
     public class ImovelBusiness
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private ProprietarioBusiness proprietarioBusiness = new ProprietarioBusiness();
 
         public List<Imovel> GetImoveis()
         {
@@ -24,12 +25,12 @@ namespace ImoAnalyticsSystem.Business
 
         public List<Imovel> GetImoveisLocacao()
         {
-            return db.Imovel.Where(v => v.Locacao == true).ToList();
+            return GetImoveisDisponiveis().Where(v => v.Locacao == true).ToList();
         }
 
         public List<Imovel> GetImoveisVenda()
         {
-            return db.Imovel.Where(v => v.Venda == true).ToList();
+            return GetImoveisDisponiveis().Where(v => v.Venda == true).ToList();
         }
 
         public Imovel FindById(int? id)
@@ -55,6 +56,7 @@ namespace ImoAnalyticsSystem.Business
             }
             db.Imovel.Add(imovel);
             db.SaveChanges();
+            proprietarioBusiness.UpdateActive(imovel.ProprietarioId);
             return "OK";
         }
 
@@ -85,6 +87,7 @@ namespace ImoAnalyticsSystem.Business
             }
             db.Entry(imovelToUpdate).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
+            proprietarioBusiness.UpdateActive(imovel.ProprietarioId);
             return "OK";
         }
 

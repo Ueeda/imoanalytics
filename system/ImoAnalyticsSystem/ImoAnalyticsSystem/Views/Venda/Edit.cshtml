@@ -1,7 +1,7 @@
 ﻿@model ImoAnalyticsSystem.Models.Venda
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar informações da venda código " + Model.ID;
 }
 @using (Html.BeginForm())
 {
@@ -9,7 +9,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">Editar Venda</h3>
+        <h3 class="panel-title">@ViewBag.Title</h3>
     </div>
     <div class="panel-body">
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })

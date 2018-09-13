@@ -226,6 +226,14 @@ body {
     padding: 15px 0;
 }
 
+.panel-primary > .panel-body.imovel-list {
+    padding-top: 0px;
+}
+
+.panel-primary > .panel-body.imovel-list .col-md-4{
+    padding-top: 15px;
+}
+
 /********************************
 Custom text input
 ********************************/
@@ -513,7 +521,7 @@ Imovel list
 .build-description {
     padding: 0px 5px;
     background: #eee;
-    height: 100%;
+    height: 160px;
 }
 
 .build-title {

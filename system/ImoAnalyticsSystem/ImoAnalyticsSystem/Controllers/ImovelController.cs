@@ -134,16 +134,16 @@ namespace ImoAnalyticsSystem.Controllers
             }
 
             if (vendaMin != null)
-                imoveis = imoveis.Where(i => i.ValorVenda >= vendaMin).ToList();
+                imoveis = imoveis.Where(i => i.ValorVenda >= vendaMin && i.Venda == true).ToList();
 
             if (vendaMax != null)
-                imoveis = imoveis.Where(i => i.ValorVenda <= vendaMax).ToList();
+                imoveis = imoveis.Where(i => i.ValorVenda <= vendaMax && i.Venda == true).ToList();
 
             if (locacaoMin != null)
-                imoveis = imoveis.Where(i => i.ValorLocacao >= locacaoMin).ToList();
+                imoveis = imoveis.Where(i => i.ValorLocacao >= locacaoMin && i.Locacao == true).ToList();
 
             if (locacaoMax != null)
-                imoveis = imoveis.Where(i => i.ValorLocacao <= locacaoMax).ToList();
+                imoveis = imoveis.Where(i => i.ValorLocacao <= locacaoMax && i.Locacao == true).ToList();
 
             if (endereco != null)
                 imoveis = imoveis.Where(i => i.Endereco.Contains(endereco)).ToList();
@@ -169,7 +169,7 @@ namespace ImoAnalyticsSystem.Controllers
             if(imoveis.Count() == 0 && imovelBusiness.GetImoveis().Count() > 0)
                 ViewBag.noResults = true;
 
-            int pageSize = 15;
+            int pageSize = 9;
             int pageNumber = (page ?? 1);
 
             return View(imoveis.OrderBy(i => i.DataCadastro).ToPagedList(pageNumber, pageSize));

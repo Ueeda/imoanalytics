@@ -14,6 +14,7 @@ namespace ImoAnalyticsSystem.Business
         private ApplicationDbContext db = new ApplicationDbContext();
         private ImobiliariaBusiness imobiliariaBusiness = new ImobiliariaBusiness();
         private ImovelBusiness imovelBusiness = new ImovelBusiness();
+        private ProprietarioBusiness proprietarioBusiness = new ProprietarioBusiness();
 
         public List<Venda> getVendas()
         {

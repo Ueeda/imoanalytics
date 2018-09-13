@@ -78,17 +78,17 @@ namespace ImoAnalyticsSystem.Models
         [Required(ErrorMessage = "O campo número de suítes é obrigatório.")]
         public int QntSuites { get; set; }
 
+        [Display(Name = "Disponível")]
         public Boolean Disponivel { get; set; } = true;
 
+        [Display(Name = "Reservado")]
         public Boolean Reservado { get; set; } = false;
 
         [Display(Name = "Valor de venda")]
-        //[Required(ErrorMessage = "O campo valor de venda é obrigatório.")]
         [DataType(DataType.Currency)]
         public decimal ValorVenda { get; set; }
 
         [Display(Name = "Valor de locação")]
-        //[Required(ErrorMessage = "O campo valor de locação é obrigatório.")]
         [DataType(DataType.Currency)]
         public decimal ValorLocacao { get; set; }
 
@@ -116,6 +116,7 @@ namespace ImoAnalyticsSystem.Models
         [MaxLength(500, ErrorMessage = "O tamanho máximo do campo descrição do imóvel é de 50 caracteres.")]
         public String DescricaoImovel { get; set; }
 
+        [Display(Name = "Ativo")]
         public Boolean Ativo { get; set; } = true;
 
         [Display(Name = "Tipo de imóvel")]

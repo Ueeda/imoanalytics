@@ -34,9 +34,11 @@ namespace ImoAnalyticsSystem.Models
         public decimal ValorVenda { get; set; }
 
         [Display(Name = "Comissão da imobiliária")]
+        [DataType(DataType.Currency)]
         public decimal ComissaoImobiliaria { get; set; }
 
         [Display(Name = "Comissão do corretor")]
+        [DataType(DataType.Currency)]
         public decimal ComissaoCorretor { get; set; }
 
         [Display(Name = "Código do imóvel")]
