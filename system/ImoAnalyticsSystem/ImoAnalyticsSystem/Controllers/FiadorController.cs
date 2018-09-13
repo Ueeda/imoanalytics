@@ -37,7 +37,7 @@ namespace ImoAnalyticsSystem.Controllers
             else
                 fiadores = fiadorBusiness.GetFiadores();
 
-            int pageSize = 1;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
             return View(fiadores.OrderBy(f => f.NomeCompleto).ToPagedList(pageNumber, pageSize));

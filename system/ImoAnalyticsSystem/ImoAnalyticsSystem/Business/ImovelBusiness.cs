@@ -88,6 +88,14 @@ namespace ImoAnalyticsSystem.Business
             return "OK";
         }
 
+        public void Unavailable(int id)
+        {
+            Imovel imovel = FindById(id);
+            imovel.Disponivel = false;
+            db.Entry(imovel).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+        }
+
         public void Delete(Imovel imovel)
         {
             db.Imovel.Remove(imovel);

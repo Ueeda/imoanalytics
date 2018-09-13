@@ -45,7 +45,7 @@ namespace ImoAnalyticsSystem.Business
         {
             var tipo = db.TipoImovel.Where
                 (
-                    t => t.Tipo == tipoImovel.Tipo
+                    t => String.Compare(t.Tipo, tipoImovel.Tipo, false) == 0 && t.ID != tipoImovel.ID
                 );
 
             if (tipo.Count() == 0)

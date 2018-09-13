@@ -83,12 +83,12 @@ namespace ImoAnalyticsSystem.Models
         public Boolean Reservado { get; set; } = false;
 
         [Display(Name = "Valor de venda")]
-        [Required(ErrorMessage = "O campo valor de venda é obrigatório.")]
+        //[Required(ErrorMessage = "O campo valor de venda é obrigatório.")]
         [DataType(DataType.Currency)]
         public decimal ValorVenda { get; set; }
 
         [Display(Name = "Valor de locação")]
-        [Required(ErrorMessage = "O campo valor de locação é obrigatório.")]
+        //[Required(ErrorMessage = "O campo valor de locação é obrigatório.")]
         [DataType(DataType.Currency)]
         public decimal ValorLocacao { get; set; }
 

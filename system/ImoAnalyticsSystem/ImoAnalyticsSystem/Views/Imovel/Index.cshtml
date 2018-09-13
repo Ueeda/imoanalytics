@@ -2,7 +2,7 @@
 @model PagedList.IPagedList<ImoAnalyticsSystem.Models.Imovel>
 
 @{
-    ViewBag.Title = "Lista de imóveis";
+    ViewBag.Title = "Imóveis";
 }
 @using (Html.BeginForm())
 {
@@ -137,47 +137,65 @@
         <div class="panel-heading">
             <h3 class="panel-title">Lista de imóveis</h3>
         </div>
-        <div class="panel-body imovel-list">
-            @foreach (var item in Model)
-            {
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <a href="@Url.Action("Details", "Imovel", new { id = item.ID })">
-                            <div class="build-picture">
-                                @if (item.Files.Any(f => f.FileType == ImoAnalyticsSystem.Models.FileType.Foto))
+        @if (Model.Count() > 0)
+        {
+            <div class="panel-body imovel-list">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="product-item">
+                            <a href="@Url.Action("Details", "Imovel", new { id = item.ID })">
+                                <div class="build-picture">
+                                    @if (item.Files.Any(f => f.FileType == ImoAnalyticsSystem.Models.FileType.Foto))
+                                    {
+                                        <img src="~/File?id=@item.Files.First(f => f.FileType == ImoAnalyticsSystem.Models.FileType.Foto).ID" alt="foto-imovel" class="build-image" />
+                                    }
+                                    else
+                                    {
+                                        <img src=@Url.Content( "~/Content/Images/imovel-sem-foto.jpg") alt="foto-imovel" class="build-image" />
+                                    }
+                                </div>
+                            </a>
+                            <div class="build-description">
+                                <a href="@Url.Action("Details", "Imovel", new { id = item.ID })"><h4 class="build-title">@Html.DisplayFor(modelItem => item.TituloImovel)</h4></a>
+                                <p>@Html.DisplayFor(modelItem => item.Endereco)</p>
+                                @if (item.Venda)
                                 {
-                                    <img src="~/File?id=@item.Files.First(f => f.FileType == ImoAnalyticsSystem.Models.FileType.Foto).ID" alt="foto-imovel" class="build-image" />
+                                    <p class="preco">Valor venda: <b>@Html.DisplayFor(modelItem => item.ValorVenda)</b></p>
                                 }
-                                else
+                                @if (item.Locacao)
                                 {
-                                    <img src=@Url.Content( "~/Content/Images/imovel-sem-foto.jpg") alt="foto-imovel" class="build-image" />
+                                    <p class="preco">Valor locação: <b>@Html.DisplayFor(modelItem => item.ValorLocacao)</b></p>
                                 }
+                                <p class="preco">IPTU: <b>@Html.DisplayFor(modelItem => item.ValorIptu)</b></p>
                             </div>
-                        </a>
-                        <div class="build-description">
-                            <a href="@Url.Action("Details", "Imovel", new { id = item.ID })"><h4 class="build-title">@Html.DisplayFor(modelItem => item.TituloImovel)</h4></a>
-                            <p>@Html.DisplayFor(modelItem => item.Endereco)</p>
-                            @if (item.Venda)
-                            {
-                                <p class="preco">Valor venda: <b>@Html.DisplayFor(modelItem => item.ValorVenda)</b></p>
-                            }
-                            @if (item.Locacao)
-                            {
-                                <p class="preco">Valor locação: <b>@Html.DisplayFor(modelItem => item.ValorLocacao)</b></p>
-                            }
-                            <p class="preco">IPTU: <b>@Html.DisplayFor(modelItem => item.ValorIptu)</b></p>
                         </div>
                     </div>
+                }
+                <div class="col-sm-12">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentLocacao = ViewBag.CurrentLocacao, currentVenda = ViewBag.CurrentVenda,
+                       currentVendaMin = ViewBag.CurrentVendaMin, currentVendaMax = ViewBag.CurrentVendaMax, currentLocacaoMin = ViewBag.CurrentLocacaoMin,
+                       currentLocacaoMax = ViewBag.CurrentLocacaoMax, currentEndereco = ViewBag.CurrentEndereco, currentBairro = ViewBag.CurrentBairro,
+                       currentQuartos = ViewBag.CurrentQuartos, currentSuites = ViewBag.CurrentSuites, currentVagasGaragem = ViewBag.CurrentVagasGaragem,
+                       currentBanheiros = ViewBag.CurrentBanheiros, currentTipoImovel = ViewBag.CurrentTipoImovel
+                    }))
+                </div>
+            </div>
+        }
+        else
+        {
+            if (ViewBag.noResults == true)
+            {
+                <div class="primary-color-row row">
+                    <center><p>Não existem resultados para a busca</p></center>
                 </div>
             }
-            <div class="col-sm-12">
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentLocacao = ViewBag.CurrentLocacao, currentVenda = ViewBag.CurrentVenda,
-               currentVendaMin = ViewBag.CurrentVendaMin, currentVendaMax = ViewBag.CurrentVendaMax, currentLocacaoMin = ViewBag.CurrentLocacaoMin,
-               currentLocacaoMax = ViewBag.CurrentLocacaoMax, currentEndereco = ViewBag.CurrentEndereco, currentBairro = ViewBag.CurrentBairro,
-               currentQuartos = ViewBag.CurrentQuartos, currentSuites = ViewBag.CurrentSuites, currentVagasGaragem = ViewBag.CurrentVagasGaragem,
-               currentBanheiros = ViewBag.CurrentBanheiros, currentTipoImovel = ViewBag.CurrentTipoImovel
-            }))
-            </div>
-        </div>
+            else
+            {
+                <div class="primary-color-row row">
+                    <center><p>Não existem @ViewBag.title.ToLower() cadastrados</p></center>
+                </div>
+            }
+        }
     </div>
 </div>

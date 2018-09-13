@@ -70,6 +70,7 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Renda")]
         [Required(ErrorMessage = "A renda do fiador é obrigatória.")]
-        public double Renda { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal Renda { get; set; }
     }
 }

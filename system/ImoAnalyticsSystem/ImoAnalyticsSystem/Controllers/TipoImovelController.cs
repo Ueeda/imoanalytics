@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ImoAnalyticsSystem.Controllers
 {
@@ -17,9 +18,12 @@ namespace ImoAnalyticsSystem.Controllers
 
         // GET: TipoImovel
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(tipoImovelController.GetTiposImovel());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            return View(tipoImovelController.GetTiposImovel().ToPagedList(pageNumber, pageSize));
         }
 
         // GET: TipoImovel/Details/5

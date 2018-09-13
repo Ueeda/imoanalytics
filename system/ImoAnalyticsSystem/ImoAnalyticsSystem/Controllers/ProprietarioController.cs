@@ -37,7 +37,7 @@ namespace ImoAnalyticsSystem.Controllers
             else
                 proprietarios = proprietarioBusiness.GetProprietarios();
 
-            int pageSize = 1;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
             return View(proprietarios.OrderBy(p => p.NomeCompleto).ToPagedList(pageNumber, pageSize));

@@ -1,7 +1,7 @@
 ﻿@model ImoAnalyticsSystem.Models.Imovel
 
 @{
-    ViewBag.Title = "Editar imóvel código " + Model.ID;
+    ViewBag.Title = "Editar imóvel código: " + Model.ID;
 }
 
 @using (Html.BeginForm("Edit", "Imovel", null, FormMethod.Post, new { enctype = "multipart/form-data" }))

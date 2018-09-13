@@ -26,7 +26,8 @@ namespace ImoAnalyticsSystem.Business
         {
             var nome = db.Cartorio.Where
                 (
-                    c => c.NomeCartorio == cartorio.NomeCartorio
+                    c => String.Compare(c.NomeCartorio, cartorio.NomeCartorio, false) == 0
+                    //c => c.NomeCartorio == cartorio.NomeCartorio
                 );
 
             if(nome.Count() == 0)
@@ -45,7 +46,8 @@ namespace ImoAnalyticsSystem.Business
         {
             var nome = db.Cartorio.Where
                 (
-                    c => c.NomeCartorio == cartorio.NomeCartorio
+                    c => String.Compare(c.NomeCartorio, cartorio.NomeCartorio, false) == 0 && c.ID != cartorio.ID
+                    //c => c.NomeCartorio == cartorio.NomeCartorio
                 );
 
             if (nome.Count() == 0)

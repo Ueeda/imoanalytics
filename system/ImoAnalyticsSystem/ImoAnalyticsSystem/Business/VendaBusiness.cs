@@ -13,7 +13,7 @@ namespace ImoAnalyticsSystem.Business
 
         private ApplicationDbContext db = new ApplicationDbContext();
         private ImobiliariaBusiness imobiliariaBusiness = new ImobiliariaBusiness();
-
+        private ImovelBusiness imovelBusiness = new ImovelBusiness();
 
         public List<Venda> getVendas()
         {
@@ -43,6 +43,7 @@ namespace ImoAnalyticsSystem.Business
         public String Create(Venda venda)
         {
             CalculaComissoes(venda);
+            imovelBusiness.Unavailable(venda.ImovelId);
             db.Venda.Add(venda);
             db.SaveChanges();
             return "OK";

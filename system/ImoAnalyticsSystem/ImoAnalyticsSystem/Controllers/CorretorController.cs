@@ -36,7 +36,7 @@ namespace ImoAnalyticsSystem.Controllers
             else
                 corretores = corretorBusiness.GetCorretores();
 
-            int pageSize = 1;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(corretores.OrderBy(c => c.NomeCompleto).ToPagedList(pageNumber, pageSize));
         }

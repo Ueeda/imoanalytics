@@ -17,7 +17,7 @@ namespace ImoAnalyticsSystem.Controllers
         private InteressadoBusiness interessadoBusiness = new InteressadoBusiness();
 
         // GET: Interessado
-        [Authorize]
+        [Authorize(Roles = "Gerente")]
         public ActionResult Index(string currentFilter, string searchString, int? page)
         {
             if (searchString != null)
@@ -37,7 +37,7 @@ namespace ImoAnalyticsSystem.Controllers
             else
                 interessados = interessadoBusiness.GetInteressados();
 
-            int pageSize = 1;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
             return View(interessados.OrderBy(i => i.NomeCompleto).ToPagedList(pageNumber, pageSize));

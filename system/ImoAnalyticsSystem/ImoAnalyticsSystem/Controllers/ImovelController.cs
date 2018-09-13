@@ -165,9 +165,11 @@ namespace ImoAnalyticsSystem.Controllers
 
             if (tipoImovel != null)
                 imoveis = imoveis.Where(i => i.TipoImovelId == tipoImovel).ToList();
-                
+            
+            if(imoveis.Count() == 0 && imovelBusiness.GetImoveis().Count() > 0)
+                ViewBag.noResults = true;
 
-            int pageSize = 1;
+            int pageSize = 15;
             int pageNumber = (page ?? 1);
 
             return View(imoveis.OrderBy(i => i.DataCadastro).ToPagedList(pageNumber, pageSize));
