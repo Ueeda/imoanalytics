@@ -17,6 +17,11 @@ namespace ImoAnalyticsSystem.Business
             return db.Cartorio.ToList();
         }
 
+        public List<Cartorio> SearchCartoriosByNome(String searchString)
+        {
+            return db.Cartorio.Where(p => p.NomeCartorio.Contains(searchString)).ToList();
+        }
+
         public Cartorio FindById(int? id)
         {
             return db.Cartorio.Find(id);
