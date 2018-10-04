@@ -10,17 +10,11 @@ namespace ImoAnalyticsSystem.Models
     {
         [Key]
         public int ID { get; set; }
-
         public String CodigoLocacao { get; set; }
-
-        public DateTime DataOperacao { get; set; }
-        
+        public DateTime DataOperacao { get; set; }        
         public int ImovelId { get; set; }
-
         public int InteressadoId { get; set; }
-
-        public int ContratoDeLocacaoId { get; set; }
-        
+        public int ContratoDeLocacaoId { get; set; }        
         public int FiadorId { get; set; }
         
         public virtual Imovel Imovel { get; set; }
