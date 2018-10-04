@@ -17,6 +17,10 @@ namespace ImoAnalyticsSystem.Models
         [MaxLength(50, ErrorMessage = "O tamanho máximo do campo título do imóvel é de 50 caracteres.")]
         public String TituloImovel { get; set; }
 
+        [Display(Name = "Numero de referência")]
+        [Required(ErrorMessage = "O campo código de referência é obrigatório")]
+        public String CodigoReferencia { get; set; }
+
         [Display(Name = "Endereço")]
         [Required(ErrorMessage = "O campo endereço é obrigatório.")]
         [MaxLength(250, ErrorMessage = "O tamanho máximo do campo endereço é de 250 caracteres.")]
@@ -149,5 +153,8 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Tipo de imóvel")]
         public virtual TipoImovel TipoImovel { get; set; }
+
+     
+        
     }
 }

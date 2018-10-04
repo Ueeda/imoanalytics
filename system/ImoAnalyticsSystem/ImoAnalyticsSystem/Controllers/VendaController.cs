@@ -100,7 +100,7 @@ namespace ImoAnalyticsSystem.Controllers
         public ActionResult Create()
         {
             ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto");
-            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "ID");
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "CodigoReferencia");
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto");
             return View();
         }
@@ -125,7 +125,7 @@ namespace ImoAnalyticsSystem.Controllers
                 ModelState.AddModelError("Erro ao cadastrar venda.", create);
 
             ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", venda.CorretorId);
-            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "ID", venda.ImovelId);
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "CodigoReferencia", venda.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", venda.InteressadoId);
             return View(venda);
         }
@@ -144,7 +144,7 @@ namespace ImoAnalyticsSystem.Controllers
                 return HttpNotFound();
             }
             ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", venda.CorretorId);
-            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "ID", venda.ImovelId);
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "CodigoReferencia", venda.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", venda.InteressadoId);
             return View(venda);
         }
@@ -171,7 +171,7 @@ namespace ImoAnalyticsSystem.Controllers
                 ModelState.AddModelError("Erro ao cadastrar venda.", edit);
 
             ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", venda.CorretorId);
-            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "ID", venda.ImovelId);
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "CodigoReferencia", venda.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", venda.InteressadoId);
             return View(venda);
         }

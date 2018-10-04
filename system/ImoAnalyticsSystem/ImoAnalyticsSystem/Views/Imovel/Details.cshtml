@@ -1,7 +1,7 @@
 ﻿@model ImoAnalyticsSystem.Models.Imovel
 
 @{
-    ViewBag.Title = "Detalhes do imóvel código " + Model.ID;
+    ViewBag.Title = "Detalhes do imóvel código " + Model.CodigoReferencia;
 }
 
 <div class="panel panel-primary">
@@ -28,96 +28,96 @@
                     <img src=@Url.Content( "~/Content/Images/imovel-sem-foto.jpg") alt="foto-imovel" class="build-image" />
                 }
             </div>
-            <div class="col-md-6">
-                <div class="primary-color-row row">
-                    <div class="col-md-6">
-                        <p>@Html.DisplayNameFor(model => model.ValorLocacao): @Html.DisplayFor(model => model.ValorLocacao)</p>
+                        <div class="col-md-6">
+                    <div class="primary-color-row row">
+                        <div class="col-md-6">
+                            <p>@Html.DisplayNameFor(model => model.ValorLocacao): @Html.DisplayFor(model => model.ValorLocacao)</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>@Html.DisplayNameFor(model => model.ValorVenda): @Html.DisplayFor(model => model.ValorVenda)</p>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <p>@Html.DisplayNameFor(model => model.ValorVenda): @Html.DisplayFor(model => model.ValorVenda)</p>
+                    <div class="primary-color-row row">
+                        <div class="col-md-12">
+                            <p>@Html.DisplayNameFor(model => model.Endereco): @Html.DisplayFor(model => model.Endereco)</p>
+                        </div>
                     </div>
-                </div>
-                <div class="primary-color-row row">
-                    <div class="col-md-12">
-                        <p>@Html.DisplayNameFor(model => model.Endereco): @Html.DisplayFor(model => model.Endereco)</p>
+                    <div class="primary-color-row row">
+                        <div class="col-md-4">
+                            <p>@Html.DisplayNameFor(model => model.Numero): @Html.DisplayFor(model => model.Numero)</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>@Html.DisplayNameFor(model => model.Bairro): @Html.DisplayFor(model => model.Bairro)</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>@Html.DisplayNameFor(model => model.Cep): @Html.DisplayFor(model => model.Cep)</p>
+                        </div>
                     </div>
-                </div>
-                <div class="primary-color-row row">
-                    <div class="col-md-4">
-                        <p>@Html.DisplayNameFor(model => model.Numero): @Html.DisplayFor(model => model.Numero)</p>
+                    <div class="primary-color-row row">
+                        <div class="col-md-4">
+                            <p>@Html.DisplayNameFor(model => model.Cidade): @Html.DisplayFor(model => model.Cidade)</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>@Html.DisplayNameFor(model => model.Estado): @Html.DisplayFor(model => model.Estado)</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>@Html.DisplayNameFor(model => model.ValorIptu): @Html.DisplayFor(model => model.ValorIptu)</p>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <p>@Html.DisplayNameFor(model => model.Bairro): @Html.DisplayFor(model => model.Bairro)</p>
+                    <div class="primary-color-row row">
+                        <div class="col-md-6">
+                            <p>@Html.DisplayNameFor(model => model.Proprietario): @Html.DisplayFor(model => model.Proprietario.NomeCompleto)</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>@Html.DisplayNameFor(model => model.ValorCondominio): @Html.DisplayFor(model => model.ValorCondominio)</p>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <p>@Html.DisplayNameFor(model => model.Cep): @Html.DisplayFor(model => model.Cep)</p>
+                    <div class="primary-color-row row">
+                        <div class="col-md-12">
+                            <p>@Html.DisplayNameFor(model => model.TipoImovel): @Html.DisplayFor(model => model.TipoImovel.Tipo)</p>
+                        </div>
                     </div>
-                </div>
-                <div class="primary-color-row row">
-                    <div class="col-md-4">
-                        <p>@Html.DisplayNameFor(model => model.Cidade): @Html.DisplayFor(model => model.Cidade)</p>
+                    <div class="primary-color-row row">
+                        <div class="col-md-8">
+                            <p>@Html.DisplayNameFor(model => model.NomeCondominio): @Html.DisplayFor(model => model.NomeCondominio)</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>@Html.DisplayNameFor(model => model.AnoConstrucao): @Html.DisplayFor(model => model.AnoConstrucao)</p>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <p>@Html.DisplayNameFor(model => model.Estado): @Html.DisplayFor(model => model.Estado)</p>
+                    <div class="primary-color-row row">
+                        <div class="col-md-4">
+                            <p>@Html.DisplayNameFor(model => model.AreaTotal): @Html.DisplayFor(model => model.AreaTotal)</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>@Html.DisplayNameFor(model => model.AreaPrivada): @Html.DisplayFor(model => model.AreaPrivada)</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>@Html.DisplayNameFor(model => model.QntDormitorios): @Html.DisplayFor(model => model.QntDormitorios)</p>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <p>@Html.DisplayNameFor(model => model.ValorIptu): @Html.DisplayFor(model => model.ValorIptu)</p>
+                    <div class="primary-color-row row">
+                        <div class="col-md-4">
+                            <p>@Html.DisplayNameFor(model => model.QntSuites): @Html.DisplayFor(model => model.QntSuites)</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>@Html.DisplayNameFor(model => model.QntBanheiros): @Html.DisplayFor(model => model.QntBanheiros)</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>@Html.DisplayNameFor(model => model.VagasGaragem): @Html.DisplayFor(model => model.VagasGaragem)</p>
+                        </div>
                     </div>
-                </div>
-                <div class="primary-color-row row">
-                    <div class="col-md-6">
-                        <p>@Html.DisplayNameFor(model => model.Proprietario): @Html.DisplayFor(model => model.Proprietario.NomeCompleto)</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p>@Html.DisplayNameFor(model => model.ValorCondominio): @Html.DisplayFor(model => model.ValorCondominio)</p>
-                    </div>
-                </div>
-                <div class="primary-color-row row">
-                    <div class="col-md-12">
-                        <p>@Html.DisplayNameFor(model => model.TipoImovel): @Html.DisplayFor(model => model.TipoImovel.Tipo)</p>
-                    </div>
-                </div>
-                <div class="primary-color-row row">
-                    <div class="col-md-8">
-                        <p>@Html.DisplayNameFor(model => model.NomeCondominio): @Html.DisplayFor(model => model.NomeCondominio)</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>@Html.DisplayNameFor(model => model.AnoConstrucao): @Html.DisplayFor(model => model.AnoConstrucao)</p>
-                    </div>
-                </div>
-                <div class="primary-color-row row">
-                    <div class="col-md-4">
-                        <p>@Html.DisplayNameFor(model => model.AreaTotal): @Html.DisplayFor(model => model.AreaTotal)</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>@Html.DisplayNameFor(model => model.AreaPrivada): @Html.DisplayFor(model => model.AreaPrivada)</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>@Html.DisplayNameFor(model => model.QntDormitorios): @Html.DisplayFor(model => model.QntDormitorios)</p>
-                    </div>
-                </div>
-                <div class="primary-color-row row">
-                    <div class="col-md-4">
-                        <p>@Html.DisplayNameFor(model => model.QntSuites): @Html.DisplayFor(model => model.QntSuites)</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>@Html.DisplayNameFor(model => model.QntBanheiros): @Html.DisplayFor(model => model.QntBanheiros)</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>@Html.DisplayNameFor(model => model.VagasGaragem): @Html.DisplayFor(model => model.VagasGaragem)</p>
-                    </div>
-                </div>
-                <div class="primary-color-row row">
-                    <div class="col-md-6">
-                        <p>@Html.DisplayNameFor(model => model.Cartorio): @Html.DisplayFor(model => model.Cartorio.NomeCartorio)</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p>@Html.DisplayNameFor(model => model.NumeroRegistroImovel): @Html.DisplayFor(model => model.NumeroRegistroImovel)</p>
+                    <div class="primary-color-row row">
+                        <div class="col-md-6">
+                            <p>@Html.DisplayNameFor(model => model.Cartorio): @Html.DisplayFor(model => model.Cartorio.NomeCartorio)</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>@Html.DisplayNameFor(model => model.NumeroRegistroImovel): @Html.DisplayFor(model => model.NumeroRegistroImovel)</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 
 <div class="panel panel-primary">

@@ -98,7 +98,7 @@ namespace ImoAnalyticsSystem.Controllers
         public ActionResult Create()
         {
             ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "Id", "NomeCompleto");
-            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "ID");
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "CodigoReferencia");
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto");
             return View();
         }
@@ -122,7 +122,7 @@ namespace ImoAnalyticsSystem.Controllers
             if (!create.Equals(""))
                 ModelState.AddModelError("Erro ao criar a visita: ", create);
             ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", visita.CorretorId);
-            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "ID", visita.ImovelId);
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "CodigoReferencia", visita.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", visita.InteressadoId);
             return View(visita);
         }
@@ -141,7 +141,7 @@ namespace ImoAnalyticsSystem.Controllers
                 return HttpNotFound();
             }
             ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", visita.CorretorId);
-            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "ID", visita.ImovelId);
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "CodigoReferencia", visita.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", visita.InteressadoId);
             return View(visita);
         }
@@ -164,7 +164,7 @@ namespace ImoAnalyticsSystem.Controllers
             if (!edit.Equals(""))
                 ModelState.AddModelError("Erro ao criar a visita: ", edit);
             ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", visita.CorretorId);
-            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "ID", visita.ImovelId);
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "CodigoReferencia", visita.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", visita.InteressadoId);
             return View(visita);
         }
