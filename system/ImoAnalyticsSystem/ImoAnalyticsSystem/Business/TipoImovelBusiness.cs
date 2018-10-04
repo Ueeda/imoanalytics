@@ -12,6 +12,11 @@ namespace ImoAnalyticsSystem.Business
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public List<TipoImovel> GetTiposImoveisByName(String search)
+        {
+            return db.TipoImovel.Where(p => p.Tipo.Contains(search)).ToList();
+        }
+
         public List<TipoImovel> GetTiposImovel()
         {
             return db.TipoImovel.ToList();

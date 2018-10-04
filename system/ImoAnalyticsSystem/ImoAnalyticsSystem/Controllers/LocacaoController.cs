@@ -1,5 +1,6 @@
 ﻿using ImoAnalyticsSystem.Data;
 using ImoAnalyticsSystem.Models;
+using ImoAnalyticsSystem.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -55,8 +56,13 @@ namespace ImoAnalyticsSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include = "ID,DataLocacao,ImovelId,InteressadoId,ContratoDeLocacaoId,FiadorId")] Locacao locacao)
+        public ActionResult Create(LocacaoViewModel model)
         {
+            var locacao = new Locacao { DataOperacao = model.DataOperacao, InteressadoId = model.InteressadoId, ImovelId = model.ImovelId, FiadorId = model.FiadorId};
+            var contratoLocacao = new ContratoDeLocacao { Valor = model.Valor, DataInicio = model.DataInicio, DataFim = model.DataFim, DataPagamento = model.DataPagamento};
+
+            locacao.ContratoDeLocacao = contratoLocacao;
+            
             if (ModelState.IsValid)
             {
                 db.Locacao.Add(locacao);

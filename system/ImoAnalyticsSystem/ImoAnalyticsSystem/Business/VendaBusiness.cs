@@ -43,20 +43,42 @@ namespace ImoAnalyticsSystem.Business
 
         public String Create(Venda venda)
         {
-            CalculaComissoes(venda);
-            imovelBusiness.Unavailable(venda.ImovelId);
-            db.Venda.Add(venda);
-            db.SaveChanges();
-            return "OK";
+            var codigo = db.Venda.Where
+                (
+                    v => v.CodigoVenda == venda.CodigoVenda
+                );
+            if (codigo.Count() == 0)
+            {
+                CalculaComissoes(venda);
+                imovelBusiness.Unavailable(venda.ImovelId);
+                db.Venda.Add(venda);
+                db.SaveChanges();
+                return "OK";
+            }
+            string response = "";
+            if (codigo.Count() != 0)
+                response += "Já existe uma venda com o código registrado no sistema.";
+            return response;
         }
 
         public String Edit(Venda venda)
         {
-            CalculaComissoes(venda);
-            db.Entry(venda).State = EntityState.Modified;
-            CalculaComissoes(venda);
-            db.SaveChanges();
-            return "OK";
+            var codigo = db.Venda.Where
+                (
+                    v => v.CodigoVenda == venda.CodigoVenda && v.ID != venda.ID
+                );
+            if (codigo.Count() == 0)
+            {
+                CalculaComissoes(venda);
+                db.Entry(venda).State = EntityState.Modified;
+                CalculaComissoes(venda);
+                db.SaveChanges();
+                return "OK";
+            }
+            string response = "";
+            if (codigo.Count() != 0)
+                response += "Já existe uma venda com o código registrado no sistema.";
+            return response;
         }
 
         public void Delete(Venda venda)

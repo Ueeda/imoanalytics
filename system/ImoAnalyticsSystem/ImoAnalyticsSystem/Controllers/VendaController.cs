@@ -111,7 +111,7 @@ namespace ImoAnalyticsSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include = "ID,DataVenda,ImovelId,CorretorId,InteressadoId,ValorVenda,ComissaoImobiliaria,ComissaoCorretor")] Venda venda)
+        public ActionResult Create([Bind(Include = "ID,DataVenda,ImovelId,CorretorId,InteressadoId,ValorVenda,CodigoVenda,ComissaoImobiliaria,ComissaoCorretor")] Venda venda)
         {
             String create = "";
             if (ModelState.IsValid)
@@ -155,7 +155,7 @@ namespace ImoAnalyticsSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "ID,DataVenda,ImovelId,CorretorId,InteressadoId,ValorVenda,ComissaoImobiliaria,ComissaoCorretor")] Venda venda)
+        public ActionResult Edit([Bind(Include = "ID,DataVenda,ImovelId,CorretorId,InteressadoId,CodigoVenda,ValorVenda,ComissaoImobiliaria,ComissaoCorretor")] Venda venda)
         {
 
             string edit = "";

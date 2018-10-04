@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ImoAnalyticsSystem.Controllers
 {
@@ -16,9 +17,29 @@ namespace ImoAnalyticsSystem.Controllers
 
         // GET: Cartorio
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, string searchString, int? page)
         {
-            return View(cartorioBusiness.GetCartorios());
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+            List<Cartorio> cartorios;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                cartorios = cartorioBusiness.SearchCartoriosByNome(searchString);
+                if (cartorios.Count() == 0)
+                    ViewBag.noResults = true;
+            }
+            else
+                cartorios = cartorioBusiness.GetCartorios();
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            return View(cartorios.OrderBy(t => t.NomeCartorio).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Cartorio/Details/5

@@ -14,16 +14,33 @@ namespace ImoAnalyticsSystem.Controllers
 {
     public class TipoImovelController : Controller
     {
-        private TipoImovelBusiness tipoImovelController = new TipoImovelBusiness();
+        private TipoImovelBusiness tipoImovelBusiness = new TipoImovelBusiness();
 
         // GET: TipoImovel
         [Authorize]
-        public ActionResult Index(int? page)
+        public ActionResult Index(string currentFilter, string searchString, int? page)
         {
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+            List<TipoImovel> tiposImovel;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                tiposImovel = tipoImovelBusiness.GetTiposImoveisByName(searchString);
+                if (tiposImovel.Count() == 0)
+                    ViewBag.noResults = true;
+            }
+            else
+                tiposImovel = tipoImovelBusiness.GetTiposImovel();
+
             int pageSize = 10;
             int pageNumber = (page ?? 1);
 
-            return View(tipoImovelController.GetTiposImovel().ToPagedList(pageNumber, pageSize));
+            return View(tiposImovel.OrderBy(t => t.Tipo).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: TipoImovel/Details/5
@@ -34,7 +51,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoImovel tipoImovel = tipoImovelController.FindById(id);
+            TipoImovel tipoImovel = tipoImovelBusiness.FindById(id);
             if (tipoImovel == null)
             {
                 return HttpNotFound();
@@ -60,7 +77,7 @@ namespace ImoAnalyticsSystem.Controllers
             string create = "";
             if (ModelState.IsValid)
             {
-                create = tipoImovelController.Create(tipoImovel);
+                create = tipoImovelBusiness.Create(tipoImovel);
                 if(create.Equals("OK"))
                     return RedirectToAction("Index");
             }
@@ -78,7 +95,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoImovel tipoImovel = tipoImovelController.FindById(id);
+            TipoImovel tipoImovel = tipoImovelBusiness.FindById(id);
             if (tipoImovel == null)
             {
                 return HttpNotFound();
@@ -97,7 +114,7 @@ namespace ImoAnalyticsSystem.Controllers
             string edit = "";
             if (ModelState.IsValid)
             {
-                edit = tipoImovelController.Create(tipoImovel);
+                edit = tipoImovelBusiness.Create(tipoImovel);
                 if (edit.Equals("OK"))
                     return RedirectToAction("Index");
             }
@@ -115,7 +132,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoImovel tipoImovel = tipoImovelController.FindById(id);
+            TipoImovel tipoImovel = tipoImovelBusiness.FindById(id);
             if (tipoImovel == null)
             {
                 return HttpNotFound();
@@ -129,8 +146,8 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
-            TipoImovel tipoImovel = tipoImovelController.FindById(id);
-            tipoImovelController.Delete(tipoImovel);
+            TipoImovel tipoImovel = tipoImovelBusiness.FindById(id);
+            tipoImovelBusiness.Delete(tipoImovel);
             return RedirectToAction("Index");
         }
 
@@ -138,7 +155,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (disposing)
             {
-                tipoImovelController.Dispose();
+                tipoImovelBusiness.Dispose();
             }
             base.Dispose(disposing);
         }

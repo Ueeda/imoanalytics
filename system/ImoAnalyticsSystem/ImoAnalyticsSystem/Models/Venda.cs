@@ -49,5 +49,9 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Interessado")]
         public virtual Interessado Interessado { get; set; }
+
+        [Display(Name = "Código da venda")]
+        [Required(ErrorMessage = "O valor da venda é obrigatória.")]
+        public String CodigoVenda { get; set; }
     }
 }
