@@ -52,6 +52,6 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Código da venda")]
         [Required(ErrorMessage = "O valor da venda é obrigatória.")]
-        public int CodigoVenda { get; set; }
+        public String CodigoVenda { get; set; }
     }
 }
