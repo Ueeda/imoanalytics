@@ -16,47 +16,44 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="group">
-                    @Html.EditorFor(model => model.DataVenda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.DataVenda).ToHtmlString()), @class = "effect-1 js-data" } })
+                    <p>@Html.LabelFor(m => m.DataVenda)</p>
+                    @Html.EditorFor(model => model.DataVenda, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-data" } })
                     <span class="focus-border"></span>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="col-sm-4" style="display: flex; height: 75px; align-items: center; justify-content: center;">
-                    <label style="display: flex; width: 100%; font-size: 14px; align-items: center;">Código do Imóvel</label>
-                </div>
-                <div class="col-md-8">
-                    @Html.DropDownList("ImovelId", null, htmlAttributes: new { @class = "   " })
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="col-sm-4" style="display: flex; height: 75px; align-items: center; justify-content: center;">
-                    @Html.LabelFor(model => model.CorretorId, htmlAttributes: new { @class = "control-label col-md-2", @style = "display: flex; width: 100%; font-size: 14px; align-items: center;" })
-                </div>
-                <div class="col-md-8">
-                    @Html.DropDownList("CorretorId", null, htmlAttributes: new { @class = "" })
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="col-sm-4" style="display: flex; height: 75px; align-items: center; justify-content: center;">
-                    @Html.LabelFor(model => model.InteressadoId, htmlAttributes: new { @class = "control-label col-md-2", @style = "display: flex; width: 100%; font-size: 14px; align-items: center;" })
-                </div>
-                <div class="col-md-8">
-                    @Html.DropDownList("InteressadoId", null, htmlAttributes: new { @class = "" })
+                <div class="group">
+                    <p>@Html.LabelFor(model => model.ImovelId)</p>
+                    @Html.DropDownList("ImovelId", ViewBag.ImovelId as SelectList, htmlAttributes: new { @class = "" })
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="group">
-                    @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorVenda).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
+                    <p>@Html.LabelFor(model => model.CorretorId)</p>
+                    @Html.DropDownList("CorretorId", ViewBag.CorretorId as SelectList, htmlAttributes: new { @class = "" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="group">
+                    <p>@Html.LabelFor(model => model.InteressadoId)</p>
+                    @Html.DropDownList("InteressadoId", ViewBag.InteressadoId as SelectList, htmlAttributes: new { @class = "" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="group">
+                    <p>@Html.LabelFor(m => m.ValorVenda)</p>
+                    @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-dinheiro" } })
                     <span class="focus-border"></span>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="group">
-                    @Html.EditorFor(model => model.CodigoVenda, new { htmlAttributes = new { @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.CodigoVenda).ToHtmlString()), @class = "effect-1" } })
+                    <p>@Html.LabelFor(m => m.CodigoVenda)</p>
+                    @Html.EditorFor(model => model.CodigoVenda, new { htmlAttributes = new { @type = "text", @class = "effect-1" } })
                     <span class="focus-border"></span>
                 </div>
             </div>

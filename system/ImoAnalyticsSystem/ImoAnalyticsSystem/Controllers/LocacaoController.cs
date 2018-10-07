@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ImoAnalyticsSystem.Controllers
 {
@@ -21,10 +22,60 @@ namespace ImoAnalyticsSystem.Controllers
 
         // GET: Locacao
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(DateTime? currentStart, DateTime? currentEnd, DateTime? startTime, DateTime? endTime, int? page)
         {
-            var locacaos = locacaoBusiness.GetLocacoes();
-            return View(locacaos);
+            if (startTime.HasValue || endTime.HasValue)
+                page = 1;
+            else
+            {
+                if (startTime.HasValue)
+                    startTime = currentStart.Value.Date;
+                else
+                    startTime = currentStart;
+
+                if (endTime.HasValue)
+                    endTime = currentEnd.Value.Date;
+                else
+                    endTime = currentEnd;
+            }
+
+            ViewBag.CurrentStart = startTime;
+            ViewBag.CurrentEnd = endTime;
+            List<Locacao> locacoes;
+
+            if (startTime.HasValue && endTime.HasValue)
+            {
+                if (Nullable.Compare(startTime, endTime) > 0)
+                {
+                    ViewBag.invalidRange = true;
+                    locacoes = new List<Locacao>();
+                }
+                else
+                {
+                    locacoes = locacaoBusiness.GetLocacoesByStartAndEndTime(startTime, endTime);
+                    if (locacoes.Count() == 0)
+                        ViewBag.noResults = true;
+                }
+
+            }
+            else if (startTime.HasValue && endTime == null)
+            {
+                locacoes = locacaoBusiness.GetLocacoesByStartTime(startTime);
+                if (locacoes.Count() == 0)
+                    ViewBag.noResults = true;
+            }
+            else if (startTime == null && endTime.HasValue)
+            {
+                locacoes = locacaoBusiness.GetLocacoesByEndTime(endTime);
+                if (locacoes.Count() == 0)
+                    ViewBag.noResults = true;
+            }
+            else
+                locacoes = locacaoBusiness.GetLocacoes();
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(locacoes.OrderBy(l => l.DataOperacao).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Locacao/Details/5

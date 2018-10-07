@@ -265,6 +265,10 @@ Custom text input
     border-radius: 5px;
 }
 
+.group p{
+    margin-bottom: 0px;
+}
+
 .group input[type=text],
 .group input[type=number],
 .group input[type=email], 
@@ -276,7 +280,8 @@ Custom text input
     display: block;
     width: 100%;
     border: none;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    margin-top: -10px;
 }
 
 .group input[type=text]:focus,
@@ -313,7 +318,7 @@ Custom checkbox
 ********************************/
 input[type=file] {
     width: 100%;
-    margin: 20px 0px;
+    margin: 10px 0px;
     padding: 5px 5px;
 }
 
@@ -396,7 +401,7 @@ Custom Select Drop Down
 ********************************/
 select {
     width: 100%;
-    margin: 20px 0px;
+    margin: 0px;
     padding: 11px 5px;
     border-color: #eee;
 }

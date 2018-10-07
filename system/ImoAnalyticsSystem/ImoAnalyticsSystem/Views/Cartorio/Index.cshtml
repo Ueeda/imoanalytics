@@ -15,7 +15,8 @@
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="group">
-                        @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @type = "text", @placeholder = HttpUtility.HtmlDecode("Pesquisar tipo de imóvel por nome"), @class = "effect-1" })
+                        <p>Pesquisar cartório por nome</p>
+                        @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @type = "text", @class = "effect-1" })
                         <span class="focus-border"></span>
                     </div>
                 </div>

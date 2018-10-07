@@ -44,7 +44,6 @@ namespace ImoAnalyticsSystem.Controllers
 
             if (startTime.HasValue && endTime.HasValue)
             {
-                //if (startTime > endTime)
                 if (Nullable.Compare(startTime, endTime) > 0)
                 {
                     ViewBag.invalidRange = true;

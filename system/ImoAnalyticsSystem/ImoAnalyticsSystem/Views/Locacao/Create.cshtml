@@ -16,47 +16,15 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.DataOperacao, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.DataOperacao).ToHtmlString()), @class = "effect-1 js-data" } })
+                        <p>@Html.LabelFor(m => m.DataOperacao)</p>
+                        @Html.EditorFor(model => model.DataOperacao, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-data" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.CodigoLocacao, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.CodigoLocacao).ToHtmlString()), @class = "effect-1" } })
-                        <span class="focus-border"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="col-sm-4" style="display: flex; height: 75px; align-items: center; justify-content: center;">
-                        @Html.LabelFor(model => model.ImovelId, htmlAttributes: new { @class = "control-label col-md-2", @style = "display: flex; width: 100%; font-size: 14px; align-items: center;" })
-                    </div>
-                    <div class="col-md-8">
-                        @Html.DropDownList("ImovelId", ViewBag.ImovelId as SelectList, "Selecione um imóvel", htmlAttributes: new { @class = "form-control" })
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="col-sm-4" style="display: flex; height: 75px; align-items: center; justify-content: center;">
-                        @Html.LabelFor(model => model.InteressadoId, htmlAttributes: new { @class = "control-label col-md-2", @style = "display: flex; width: 100%; font-size: 14px; align-items: center;" })
-                    </div>
-                    <div class="col-md-8">
-                        @Html.DropDownList("InteressadoId", ViewBag.InteressadoId as SelectList, "Selecione um interessado", htmlAttributes: new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="col-sm-4" style="display: flex; height: 75px; align-items: center; justify-content: center;">
-                        @Html.LabelFor(model => model.FiadorId, htmlAttributes: new { @class = "control-label col-md-2", @style = "display: flex; width: 100%; font-size: 14px; align-items: center;" })
-                    </div>
-                    <div class="col-md-8">
-                        @Html.DropDownList("FiadorId", ViewBag.FiadorId as SelectList, "Selecione um fiador", htmlAttributes: new { @class = "form-control" })
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="group">
-                        @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Valor).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
+                        <p>@Html.LabelFor(m => m.CodigoLocacao)</p>
+                        @Html.EditorFor(model => model.CodigoLocacao, new { htmlAttributes = new { @type = "text", @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -64,13 +32,28 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.DataInicio).ToHtmlString()), @class = "effect-1 js-data" } })
-                        <span class="focus-border"></span>
+                        <p>@Html.LabelFor(model => model.ImovelId)</p>
+                        @Html.DropDownList("ImovelId", ViewBag.ImovelId as SelectList, "Selecione um imóvel", htmlAttributes: new { @class = "" })
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.DataFim, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.DataFim).ToHtmlString()), @class = "effect-1 js-data" } })
+                        <p>@Html.LabelFor(model => model.InteressadoId)</p>
+                        @Html.DropDownList("InteressadoId", ViewBag.InteressadoId as SelectList, "Selecione um interessado", htmlAttributes: new { @class = "" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="group">
+                        <p>@Html.LabelFor(model => model.FiadorId)</p>
+                        @Html.DropDownList("FiadorId", ViewBag.FiadorId as SelectList, "Selecione um fiador", htmlAttributes: new { @class = "" })
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="group">
+                        <p>@Html.LabelFor(model => model.Valor)</p>
+                        @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-dinheiro" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -78,7 +61,24 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.DataPagamento, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.DataPagamento).ToHtmlString()), @class = "effect-1" } })
+                        <p>@Html.LabelFor(model => model.DataInicio)</p>
+                        @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-data" } })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="group">
+                        <p>@Html.LabelFor(model => model.DataFim)</p>
+                        @Html.EditorFor(model => model.DataFim, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-data" } })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="group">
+                        <p>@Html.LabelFor(model => model.DataPagamento)</p>
+                        @Html.EditorFor(model => model.DataPagamento, new { htmlAttributes = new { @type = "number", @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>

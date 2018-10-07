@@ -16,34 +16,29 @@
             @Html.ValidationSummary(false, "", new { @class = "text-danger" })
             <div class="row">
                 <div class="col-md-6">
-                    <div class="col-sm-4" style="display: flex; height: 75px; align-items: center; justify-content: center;">
-                        @Html.LabelFor(model => model.InteressadoId, htmlAttributes: new { @class = "control-label col-md-2", @style = "display: flex; width: 100%; font-size: 14px; align-items: center;" })
-                    </div>
-                    <div class="col-md-8">
-                        @Html.DropDownList("InteressadoId", null, htmlAttributes: new { @class = "" })
+                    <div class="group">
+                        <p>@Html.LabelFor(model => model.Interessado)</p>
+                        @Html.DropDownList("InteressadoId", ViewBag.InteressadoId as SelectList, htmlAttributes: new { @class = "" })
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="col-sm-4" style="display: flex; height: 75px; align-items: center; justify-content: center;">
-                        <label style="display: flex; width: 100%; font-size: 14px; align-items: center;">Código do Imóvel</label>
-                    </div>
-                    <div class="col-md-8">
-                        @Html.DropDownList("ImovelId", null, htmlAttributes: new { @class = "   " })
+                    <div class="group">
+                        <p>@Html.LabelFor(model => model.ImovelId)</p>
+                        @Html.DropDownList("ImovelId", ViewBag.ImovelId as SelectList, htmlAttributes: new { @class = "   " })
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="col-sm-4" style="display: flex; height: 75px; align-items: center; justify-content: center;">
-                        @Html.LabelFor(model => model.CorretorId, htmlAttributes: new { @class = "control-label col-md-2", @style = "display: flex; width: 100%; font-size: 14px; align-items: center;" })
-                    </div>
-                    <div class="col-md-8">
-                        @Html.DropDownList("CorretorId", null, htmlAttributes: new { @class = "" })
+                    <div class="group">
+                        <p>@Html.LabelFor(model => model.CorretorId)</p>
+                        @Html.DropDownList("CorretorId", ViewBag.CorretorId as SelectList, htmlAttributes: new { @class = "" })
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Data).ToHtmlString()), @class = "effect-1 js-data" } })
+                        <p>@Html.LabelFor(model => model.Data)</p>
+                        @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-data" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -51,15 +46,16 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="group">
-                        @Html.EditorFor(model => model.Horario, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Horario).ToHtmlString()), @class = "effect-1 js-horario" } })
+                        <p>@Html.LabelFor(model => model.Horario)</p>
+                        @Html.EditorFor(model => model.Horario, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-horario" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label" })
-                    @Html.TextAreaFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control", cols = 40, rows = 10, placeholder = "Descrição da visita" } })
+                    <p>@Html.LabelFor(model => model.Descricao)</p>
+                    @Html.TextAreaFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control", @cols = 40, @rows = 10, @placeholder = "Descrição da visita" } })
                 </div>
             </div>
             <div class="row buttons-row">

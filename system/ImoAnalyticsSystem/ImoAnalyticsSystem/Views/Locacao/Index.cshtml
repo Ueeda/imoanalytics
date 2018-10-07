@@ -1,58 +1,101 @@
-﻿@model IEnumerable<ImoAnalyticsSystem.Models.Locacao>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ImoAnalyticsSystem.Models.Locacao>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Locações";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ContratoDeLocacao.ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fiador.NomeCompleto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Imovel.TituloImovel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Interessado.NomeCompleto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataLocacao)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">@ViewBag.Title</h3>
+    </div>
+    @using (Html.BeginForm())
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContratoDeLocacao.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fiador.NomeCompleto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Imovel.TituloImovel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Interessado.NomeCompleto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataLocacao)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
+        <div class="panel-body search-list">
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <div class="group">
+                        <p>De:</p>
+                        @Html.TextBox("startTime", ViewBag.CurrentStart as DateTime?, new { @type = "text", @class = "effect-1 js-data" })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="group">
+                        <p>Até:</p>
+                        @Html.TextBox("endTime", ViewBag.CurrentEnd as DateTime?, new { @type = "text", @class = "effect-1 js-data" })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="group">
+                        <input type="submit" value="Pesquisar" />
+                    </div>
+                </div>
+            </div>
+        </div>
     }
+    @if (Model.Count() > 0)
+    {
+        <div class="header-row row">
+            <div class="col-md-3">
+                <p>Código da locação</p>
+            </div>
+            <div class="col-md-3">
+                <p>Código do imóvel</p>
+            </div>
+            <div class="col-md-3">
+                <p>Interessado</p>
+            </div>
+            <div class="col-md-2">
+                <p>Valor da locação</p>
+            </div>
+        </div>
+        foreach (var item in Model)
+        {
+            <div class="primary-color-row row">
+                <div class="col-md-3">
+                    <p>@Html.DisplayFor(modelItem => item.CodigoLocacao)</p>
+                </div>
+                <div class="col-md-3">
+                    <p>@Html.DisplayFor(modelItem => item.Imovel.CodigoReferencia)</p>
+                </div>
+                <div class="col-md-3">
+                    <p>@Html.DisplayFor(modelItem => item.Interessado.NomeCompleto)</p>
+                </div>
+                <div class="col-md-2">
+                    <p>@Html.DisplayFor(modelItem => item.ContratoDeLocacao.Valor)</p>
+                </div>
+                <div class="col-md-1">
+                    <a class="link-more" href="@Url.Action("Details", "Locacao", new { id = item.ID })" title="Mais informações"><i class="fa fa-ellipsis-h"></i></a>
+                </div>
+            </div>
+        }
 
-</table>
+
+    }
+    else
+    {
+        if (ViewBag.invalidRange == true)
+        {
+            <div class="primary-color-row row">
+                <center><p>O intervalo de tempo é inválido</p></center>
+            </div>
+        }
+        else if (ViewBag.noResults == true)
+        {
+            <div class="primary-color-row row">
+                <center><p>Não existem resultados para a busca</p></center>
+            </div>
+        }
+        else
+        {
+            <div class="primary-color-row row">
+                <center><p>Não existem @ViewBag.title.ToLower() cadastradas nesse intervalo</p></center>
+            </div>
+        }
+    }
+</div>
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentStart = ViewBag.CurrentStart, currentEnd = ViewBag.CurrentEnd }))

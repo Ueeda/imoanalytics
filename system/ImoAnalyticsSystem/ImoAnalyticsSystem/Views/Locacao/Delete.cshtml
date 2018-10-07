@@ -1,65 +1,75 @@
 ﻿@model ImoAnalyticsSystem.Models.Locacao
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Deletar locação";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Locacao</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ContratoDeLocacao.ID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ContratoDeLocacao.ID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fiador.NomeCompleto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fiador.NomeCompleto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Imovel.TituloImovel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Imovel.TituloImovel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Interessado.NomeCompleto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Interessado.NomeCompleto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataLocacao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataLocacao)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Tem certeza que quer deletar a locação código @Model.CodigoLocacao?</h3>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-12">
+                <p><b>@Html.DisplayNameFor(model => model.DataOperacao):</b> @Html.DisplayFor(model => model.DataOperacao)</p>
+            </div>
         </div>
-    }
+        <div class="col-sm-6">
+            <div class="col-sm-12">
+                <p><b>Código do @Html.DisplayNameFor(model => model.Imovel): </b> @Html.DisplayFor(model => model.Imovel.CodigoReferencia)</p>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-12">
+                <p><b>@Html.DisplayNameFor(model => model.Interessado): </b> @Html.DisplayFor(model => model.Interessado.NomeCompleto)</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-12">
+                <p><b>@Html.DisplayNameFor(model => model.Fiador):</b> @Html.DisplayFor(model => model.Fiador.NomeCompleto)</p>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-12">
+                <p><b>@Html.DisplayNameFor(model => model.ContratoDeLocacao.DataInicio):</b> @Html.DisplayFor(model => model.ContratoDeLocacao.DataInicio)</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-12">
+                <p><b>@Html.DisplayNameFor(model => model.ContratoDeLocacao.DataFim):</b> @Html.DisplayFor(model => model.ContratoDeLocacao.DataFim)</p>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.ContratoDeLocacao.Valor):</b> @Html.DisplayFor(model => model.ContratoDeLocacao.Valor)</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.ContratoDeLocacao.ValorTaxaAdm):</b> @Html.DisplayFor(model => model.ContratoDeLocacao.ValorTaxaAdm)</p>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.ContratoDeLocacao.DataPagamento):</b> @Html.DisplayFor(model => model.ContratoDeLocacao.DataPagamento)</p>
+            </div>
+        </div>
+    </div>
 </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Deletar" class="principal-button" /> <br /><br />
+        <a href="@Url.Action("Details", "Locacao", new { id = Model.ID })" title="Voltar para os detalhes da venda" class="voltar-icon"><i class="fa fa-arrow-left"></i></a>
+    </div>
+}
