@@ -44,5 +44,7 @@ namespace ImoAnalyticsSystem.ViewModels
         [Display(Name = "Fiador")]
         [Required(ErrorMessage = "O fiador é obrigatório.")]
         public int FiadorId { get; set; }
+
+        public int LocacaoId { get; set; }
     }
 }

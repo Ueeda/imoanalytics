@@ -92,6 +92,7 @@ namespace ImoAnalyticsSystem.Controllers
                 return HttpNotFound();
             }
             LocacaoViewModel model = new LocacaoViewModel();
+            model.LocacaoId = locacao.ID;
             model.CodigoLocacao = locacao.CodigoLocacao;
             model.DataOperacao = locacao.DataOperacao;
             model.FiadorId = locacao.FiadorId;
@@ -119,9 +120,9 @@ namespace ImoAnalyticsSystem.Controllers
             string edit = "";
             if (ModelState.IsValid)
             {
-                edit = locacaoBusiness.Edit(model, ViewBag.LocacaoId);
+                edit = locacaoBusiness.Edit(model, model.LocacaoId);
                 if (edit.Equals("OK"))
-                    return RedirectToAction("Details", new { id = ViewBag.LocacaoId });
+                    return RedirectToAction("Details", new { id = model.LocacaoId });
             }
 
             if (!edit.Equals(""))
