@@ -13,6 +13,7 @@
     </div>
     <div class="panel-body">
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <input type="hidden" value="@ViewBag.IdImovelAntigo" name="IdImovelAntigo" />
         <div class="row">
             <div class="col-md-6">
                 <div class="group">

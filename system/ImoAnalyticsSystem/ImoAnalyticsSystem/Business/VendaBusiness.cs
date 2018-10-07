@@ -14,7 +14,6 @@ namespace ImoAnalyticsSystem.Business
         private ApplicationDbContext db = new ApplicationDbContext();
         private ImobiliariaBusiness imobiliariaBusiness = new ImobiliariaBusiness();
         private ImovelBusiness imovelBusiness = new ImovelBusiness();
-        private ProprietarioBusiness proprietarioBusiness = new ProprietarioBusiness();
 
         public List<Venda> GetVendas()
         {
@@ -61,7 +60,7 @@ namespace ImoAnalyticsSystem.Business
             return response;
         }
 
-        public String Edit(Venda venda)
+        public String Edit(Venda venda, int IdImovelAntigo)
         {
             var codigo = db.Venda.Where
                 (
@@ -69,6 +68,8 @@ namespace ImoAnalyticsSystem.Business
                 );
             if (codigo.Count() == 0)
             {
+                if (IdImovelAntigo != venda.ImovelId)
+                    imovelBusiness.ChangeUnavailable(IdImovelAntigo, venda.ImovelId);
                 CalculaComissoes(venda);
                 db.Entry(venda).State = EntityState.Modified;
                 db.SaveChanges();

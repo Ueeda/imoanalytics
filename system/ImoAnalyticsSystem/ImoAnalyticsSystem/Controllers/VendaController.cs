@@ -145,6 +145,7 @@ namespace ImoAnalyticsSystem.Controllers
             ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", venda.CorretorId);
             ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "CodigoReferencia", venda.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", venda.InteressadoId);
+            ViewBag.IdImovelAntigo = venda.ImovelId;
             return View(venda);
         }
 
@@ -154,14 +155,14 @@ namespace ImoAnalyticsSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "ID,DataVenda,ImovelId,CorretorId,InteressadoId,CodigoVenda,ValorVenda,ComissaoImobiliaria,ComissaoCorretor")] Venda venda)
+        public ActionResult Edit([Bind(Include = "ID,DataVenda,ImovelId,CorretorId,InteressadoId,CodigoVenda,ValorVenda,ComissaoImobiliaria,ComissaoCorretor")] Venda venda, int IdImovelAntigo)
         {
-
+            int oldId = IdImovelAntigo;
             string edit = "";
             if (ModelState.IsValid)
             {
 
-                edit = vendaBusiness.Edit(venda);
+                edit = vendaBusiness.Edit(venda, IdImovelAntigo);
                 if (edit.Equals("OK"))
                     return RedirectToAction("Index");
             }
