@@ -71,7 +71,7 @@ namespace ImoAnalyticsSystem.Controllers
                     ViewBag.noResults = true;
             }
             else
-                vendas = vendaBusiness.getVendas();
+                vendas = vendaBusiness.GetVendas();
 
             int pageSize = 10;
             int pageNumber = (page ?? 1);

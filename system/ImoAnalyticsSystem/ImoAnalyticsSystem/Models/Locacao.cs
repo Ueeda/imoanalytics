@@ -13,6 +13,7 @@ namespace ImoAnalyticsSystem.Models
 
         public String CodigoLocacao { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime DataOperacao { get; set; }
         
         public int ImovelId { get; set; }

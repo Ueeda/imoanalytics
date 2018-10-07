@@ -10,7 +10,8 @@ namespace ImoAnalyticsSystem.ViewModels
     {
         [Display(Name = "Valor do aluguel")]
         [Required(ErrorMessage = "O valor da locação é obrigatória.")]
-        public double Valor { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal Valor { get; set; }
 
         [Display(Name = "Data de início")]
         [Required(ErrorMessage = "A data de início da locacao é obrigatória.")]
@@ -24,9 +25,12 @@ namespace ImoAnalyticsSystem.ViewModels
         [Required(ErrorMessage = "A data de pagamento é obrigatória.")]
         public int DataPagamento { get; set; }
 
+        [Display(Name = "Código da locacação")]
+        [Required(ErrorMessage = "O código da locação é obrigatória.")]
+        public String CodigoLocacao { get; set; }
+
         [Display(Name = "Data da locação")]
         [Required(ErrorMessage = "A data de locação é obrigatória.")]
-        [DataType(DataType.Date)]
         public DateTime DataOperacao { get; set; }
 
         [Display(Name = "Imóvel")]
