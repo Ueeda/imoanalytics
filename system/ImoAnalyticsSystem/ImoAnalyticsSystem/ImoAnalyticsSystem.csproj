@@ -211,6 +211,7 @@
     <Compile Include="Business\ImovelBusiness.cs" />
     <Compile Include="Business\InteressadoBusiness.cs" />
     <Compile Include="Business\LocacaoBusiness.cs" />
+    <Compile Include="Business\PropostaBusiness.cs" />
     <Compile Include="Business\ProprietarioBusiness.cs" />
     <Compile Include="Business\TipoImovelBusiness.cs" />
     <Compile Include="Business\VendaBusiness.cs" />

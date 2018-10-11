@@ -276,7 +276,7 @@ Custom text input
 .group input[type=password]{
     background-color: transparent;
     font-size: 14px;
-    padding: 10px 10px 10px 5px;
+    padding: 10px 10px 10px 0px;
     display: block;
     width: 100%;
     border: none;

@@ -159,7 +159,9 @@
             }
         </div>
     </div>
-    @*<div class="col-md-6">
+
+
+    <div class="col-md-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
@@ -167,36 +169,41 @@
                         <h3 class="panel-title">Propostas feitas ao imóvel</h3>
                     </div>
                     <div class="col-md-4 icons-edit-remove">
-                        <a href="criarProposta.html" title="Adicionar proposta"><i class="fa fa-plus"></i></a>
+                        <a class="link-more" href="@Url.Action("Create", "Proposta", new { id = Model.ID })" title="Adicionar proposta"><i class="fa fa-plus"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="panel-body">
-                <div class="header-row row">
-                    <div class="col-md-4">
-                        <p>Interessado</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Valor</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Data</p>
-                    </div>
+            <div class="header-row row">
+                <div class="col-md-5">
+                    <p>Interessado</p>
                 </div>
-                <div class="primary-color-row row">
-                    <div class="col-md-4">
-                        <p>INT1 - Vinicius Ueda</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>RS101.000,00</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>02/03/2018</p>
-                    </div>
+                <div class="col-md-3">
+                    <p>Valor</p>
+                </div>
+                <div class="col-md-3">
+                    <p>Data</p>
                 </div>
             </div>
+
+                @foreach (var p in ViewBag.propostas)
+                {
+                    <div class="primary-color-row row">
+                        <div class="col-md-5">
+                            <p>@p.Interessado.NomeCompleto</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>@p.Valor</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>@p.Data.ToShortDateString()</p>
+                        </div>
+                        <div class="col-md-1">
+                            <a class="link-more" href="@Url.Action("Details", "Proposta", new { id = p.ID })" title="Mais informações"><i class="fa fa-ellipsis-h"></i></a>
+                        </div>
+                    </div>
+                }
         </div>
-    </div>*@
+    </div>
 </div>
 
 <a href="@Url.Action("Index", "Imovel")" title="Voltar para a listagem" class="voltar-icon"><i class="fa fa-arrow-left"></i></a>

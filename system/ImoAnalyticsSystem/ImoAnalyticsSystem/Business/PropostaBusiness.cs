@@ -20,7 +20,7 @@ namespace ImoAnalyticsSystem.Business
 
         }
 
-        public List<Proposta> GetVisitasByImovelId(int? idImovel)
+        public List<Proposta> GetPropostasByImovelId(int? idImovel)
         {
             return db.Proposta.Include(p => p.Imovel).Include(p => p.Interessado).Where(p => p.ImovelId == idImovel).OrderBy(p => p.Data).ToList();
         }

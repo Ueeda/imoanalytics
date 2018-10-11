@@ -183,9 +183,12 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            PropostaBusiness propostaBusiness = new PropostaBusiness();
             Imovel imovel = imovelBusiness.FindById(id);
             var listaVisitas = visitaBusiness.GetVisitasByImovelId(id);
+            var listaProposta = propostaBusiness.GetPropostasByImovelId(id);
             ViewBag.visitas = listaVisitas;
+            ViewBag.propostas = listaProposta;
             if (imovel == null)
             {
                 return HttpNotFound();

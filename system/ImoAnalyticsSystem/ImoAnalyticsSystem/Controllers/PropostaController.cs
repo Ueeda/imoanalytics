@@ -40,10 +40,19 @@ namespace ImoAnalyticsSystem.Controllers
         }
 
         // GET: Proposta/Create
+        //[Authorize]
+        //public ActionResult Create()
+        //{
+        //    ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel");
+        //    ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto");
+        //    return View();
+        //}
+
+        // GET: Proposta/Create
         [Authorize]
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel");
+            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", id);
             ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto");
             return View();
         }
