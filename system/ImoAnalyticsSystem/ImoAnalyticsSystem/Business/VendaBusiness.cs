@@ -12,11 +12,8 @@ namespace ImoAnalyticsSystem.Business
     {
 
         private ApplicationDbContext db = new ApplicationDbContext();
-        private ImobiliariaBusiness imobiliariaBusiness = new ImobiliariaBusiness();
-        private ImovelBusiness imovelBusiness = new ImovelBusiness();
-        private ProprietarioBusiness proprietarioBusiness = new ProprietarioBusiness();
 
-        public List<Venda> getVendas()
+        public List<Venda> GetVendas()
         {
             return db.Venda.Include(v => v.Corretor).Include(v => v.Imovel).Include(v => v.Interessado).ToList();
         }
@@ -43,14 +40,15 @@ namespace ImoAnalyticsSystem.Business
 
         public String Create(Venda venda)
         {
+            ImovelBusiness imovelBusiness = new ImovelBusiness();
             var codigo = db.Venda.Where
                 (
                     v => v.CodigoVenda == venda.CodigoVenda
                 );
             if (codigo.Count() == 0)
             {
-                CalculaComissoes(venda);
                 imovelBusiness.Unavailable(venda.ImovelId);
+                CalculaComissoes(venda);
                 db.Venda.Add(venda);
                 db.SaveChanges();
                 return "OK";
@@ -61,17 +59,19 @@ namespace ImoAnalyticsSystem.Business
             return response;
         }
 
-        public String Edit(Venda venda)
+        public String Edit(Venda venda, int IdImovelAntigo)
         {
+            ImovelBusiness imovelBusiness = new ImovelBusiness();
             var codigo = db.Venda.Where
                 (
                     v => v.CodigoVenda == venda.CodigoVenda && v.ID != venda.ID
                 );
             if (codigo.Count() == 0)
             {
+                if (IdImovelAntigo != venda.ImovelId)
+                    imovelBusiness.ChangeUnavailable(IdImovelAntigo, venda.ImovelId);
                 CalculaComissoes(venda);
                 db.Entry(venda).State = EntityState.Modified;
-                CalculaComissoes(venda);
                 db.SaveChanges();
                 return "OK";
             }
@@ -94,12 +94,10 @@ namespace ImoAnalyticsSystem.Business
         
         public void CalculaComissoes(Venda venda)
         {
+            ImobiliariaBusiness imobiliariaBusiness = new ImobiliariaBusiness();
             Imobiliaria imobiliaria = imobiliariaBusiness.GetInstance();
             venda.ComissaoImobiliaria = venda.ValorVenda * imobiliaria.ComissaoImobiliariaVenda;
             venda.ComissaoCorretor = venda.ComissaoImobiliaria * imobiliaria.ComissaoCorretorVenda;
         }
-
-
-
     }
 }

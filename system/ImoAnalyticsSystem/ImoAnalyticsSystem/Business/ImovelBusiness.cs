@@ -99,6 +99,17 @@ namespace ImoAnalyticsSystem.Business
             db.SaveChanges();
         }
 
+        public void ChangeUnavailable(int oldId, int newId)
+        {
+            Imovel oldImovel = this.FindById(oldId);
+            Imovel newImovel = this.FindById(newId);
+            oldImovel.Disponivel = true;
+            newImovel.Disponivel = false;
+            db.Entry(oldImovel).State = System.Data.Entity.EntityState.Modified;
+            db.Entry(newImovel).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+        }
+
         public void Delete(Imovel imovel)
         {
             db.Imovel.Remove(imovel);

@@ -44,7 +44,6 @@ namespace ImoAnalyticsSystem.Controllers
 
             if (startTime.HasValue && endTime.HasValue)
             {
-                //if (startTime > endTime)
                 if (Nullable.Compare(startTime, endTime) > 0)
                 {
                     ViewBag.invalidRange = true;
@@ -71,7 +70,7 @@ namespace ImoAnalyticsSystem.Controllers
                     ViewBag.noResults = true;
             }
             else
-                vendas = vendaBusiness.getVendas();
+                vendas = vendaBusiness.GetVendas();
 
             int pageSize = 10;
             int pageNumber = (page ?? 1);
@@ -144,8 +143,11 @@ namespace ImoAnalyticsSystem.Controllers
                 return HttpNotFound();
             }
             ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", venda.CorretorId);
-            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "CodigoReferencia", venda.ImovelId);
+            var imoveisDisp = imovelBusiness.GetImoveisDisponiveis();
+            imoveisDisp.Add(imovelBusiness.FindById(venda.ImovelId));
+            ViewBag.ImovelId = new SelectList(imoveisDisp, "ID", "CodigoReferencia", venda.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", venda.InteressadoId);
+            ViewBag.IdImovelAntigo = venda.ImovelId;
             return View(venda);
         }
 
@@ -155,14 +157,12 @@ namespace ImoAnalyticsSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "ID,DataVenda,ImovelId,CorretorId,InteressadoId,CodigoVenda,ValorVenda,ComissaoImobiliaria,ComissaoCorretor")] Venda venda)
+        public ActionResult Edit([Bind(Include = "ID,DataVenda,ImovelId,CorretorId,InteressadoId,CodigoVenda,ValorVenda,ComissaoImobiliaria,ComissaoCorretor")] Venda venda, int IdImovelAntigo)
         {
-
             string edit = "";
             if (ModelState.IsValid)
             {
-
-                edit = vendaBusiness.Edit(venda);
+                edit = vendaBusiness.Edit(venda, IdImovelAntigo);
                 if (edit.Equals("OK"))
                     return RedirectToAction("Index");
             }
@@ -171,8 +171,11 @@ namespace ImoAnalyticsSystem.Controllers
                 ModelState.AddModelError("Erro ao cadastrar venda.", edit);
 
             ViewBag.CorretorId = new SelectList(corretorBusiness.GetCorretores(), "ID", "NomeCompleto", venda.CorretorId);
-            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "CodigoReferencia", venda.ImovelId);
+            var imoveisDisp = imovelBusiness.GetImoveisDisponiveis();
+            imoveisDisp.Add(imovelBusiness.FindById(venda.ImovelId));
+            ViewBag.ImovelId = new SelectList(imoveisDisp, "ID", "CodigoReferencia", venda.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", venda.InteressadoId);
+            ViewBag.IdImovelAntigo = venda.ImovelId;
             return View(venda);
         }
 
