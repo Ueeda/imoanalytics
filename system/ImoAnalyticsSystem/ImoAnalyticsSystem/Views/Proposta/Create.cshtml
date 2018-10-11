@@ -1,55 +1,66 @@
 ﻿@model ImoAnalyticsSystem.Models.Proposta
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Criar proposta";
 }
-
-<h2>Create</h2>
-
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Proposta</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.InteressadoId, "InteressadoId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("InteressadoId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.InteressadoId, "", new { @class = "text-danger" })
-            </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">@ViewBag.Title</h3>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImovelId, "ImovelId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ImovelId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ImovelId, "", new { @class = "text-danger" })
+        <div class="panel-body">
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-sm-12" style="display: flex; height: 75px; align-items: center; justify-content: center;">
+                        <label style="display: flex; width: 100%; font-size: 14px; align-items: center;">Código do Imóvel</label>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.DropDownList("ImovelId", null, htmlAttributes: new { @class = "   " })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-sm-12" style="display: flex; height: 75px; align-items: center; justify-content: center;">
+                        @Html.LabelFor(model => model.InteressadoId, htmlAttributes: new { @class = "control-label col-md-2", @style = "display: flex; width: 100%; font-size: 14px; align-items: center;" })
+                    </div>
+                    <div class="col-md-12">
+                        @Html.DropDownList("InteressadoId", null, htmlAttributes: new { @class = "" })
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="group">
+                        <p> @Html.LabelFor(model => model.Data) </p>
+                        @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Data).ToHtmlString()), @class = "effect-1 js-data" } })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="group">
+                        <p> @Html.LabelFor(model => model.Valor) </p>
+                        @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Valor).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="row buttons-row">
+                <div class="col-md-6 center">
+                    <input type="submit" value="Cadastrar" class="principal-button" />
+                </div>
+                <div class="col-md-6 center">
+                    <div class="principal-button-div">@Html.ActionLink("Limpar", "Create")</div>
+                </div>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

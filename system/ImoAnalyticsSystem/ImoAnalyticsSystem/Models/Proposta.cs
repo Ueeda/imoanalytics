@@ -19,9 +19,16 @@ namespace ImoAnalyticsSystem.Models
         [Required(ErrorMessage = "O imóvel para fazer a proposta é obrigatório.")]
         public int ImovelId { get; set; }
 
+        [Display(Name = "Data da proposta")]
+        [Required(ErrorMessage = "A data da proposta é obrigatória.")]
+        [DataType(DataType.Date)]
+        public DateTime Data { get; set; }
+
         [Display(Name = "Valor")]
         [Required(ErrorMessage = "O valor da proposta é obrigatória.")]
-        public double Valor { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal Valor { get; set; }
+
 
         public virtual Interessado Interessado { get; set; }
 

@@ -1,42 +1,55 @@
 ﻿@model ImoAnalyticsSystem.Models.Proposta
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhe da proposta";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Proposta</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Imovel.TituloImovel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Imovel.TituloImovel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Interessado.NomeCompleto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Interessado.NomeCompleto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Valor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Valor)
-        </dd>
-
-    </dl>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="panel-title">@ViewBag.Title</h3>
+            </div>
+            <div class="col-md-4 icons-edit-remove">
+                <a href="@Url.Action("Edit", "Proposta", new { id = Model.ID })" title="Editar proposta"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("Delete", "Proposta", new { id = Model.ID })" title="Remover proposta"><i class="fa fa-trash"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Imovel.TituloImovel)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Imovel.TituloImovel)</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Interessado.NomeCompleto)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Interessado.NomeCompleto)</p>
+            </div>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Data)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Data)</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <p><b>@Html.DisplayNameFor(model => model.Valor)</b></p>
+            </div>
+            <div class="col-sm-6">
+                <p>@Html.DisplayFor(model => model.Valor)</p>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

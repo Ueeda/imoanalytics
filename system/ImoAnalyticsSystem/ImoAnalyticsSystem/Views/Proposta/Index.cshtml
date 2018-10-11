@@ -1,46 +1,53 @@
 ﻿@model IEnumerable<ImoAnalyticsSystem.Models.Proposta>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Propostas";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Imovel.TituloImovel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Interessado.NomeCompleto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Valor)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">@ViewBag.Title</h3>
+    </div>
+   
+    @if (Model.Count() > 0)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Imovel.TituloImovel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Interessado.NomeCompleto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Valor)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
+    <div class="header-row row">
+        <div class="col-md-2">
+            <p>Titulo do Imóvel</p>
+        </div>
+        <div class="col-md-5">
+            <p>Interessado</p>
+        </div>
+        <div class="col-md-2">
+            <p>Data</p>
+        </div>
+        <div class="col-md-2">
+            <p>Valor</p>
+        </div>
 
-</table>
+    </div>
+        foreach (var item in Model)
+        {
+    <div class="primary-color-row row">
+        <div class="col-md-2">
+            <p>@Html.DisplayFor(modelItem => item.Imovel.TituloImovel)</p>
+        </div>
+        <div class="col-md-5">
+            <p>@Html.DisplayFor(modelItem => item.Interessado.NomeCompleto)</p>
+        </div>
+        <div class="col-md-2">
+            <p>@Html.DisplayFor(modelItem => item.Data)</p>
+        </div>
+        <div class="col-md-2">
+            <p>@Html.DisplayFor(modelItem => item.Valor)</p>
+        </div>
+        <div class="col-md-1">
+            <a class="link-more" href="@Url.Action("Details", "Proposta", new { id = item.ID })" title="Mais informações"><i class="fa fa-ellipsis-h"></i></a>
+        </div>
+    </div>
+        }
+    }
+</div>
+
+
