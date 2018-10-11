@@ -68,8 +68,9 @@ namespace ImoAnalyticsSystem.Business
             return response;
         }
 
-        public string Edit(LocacaoViewModel model, int locacaoId)
+        public string Edit(LocacaoViewModel model, int locacaoId, int IdImovelAntigo)
         {
+            ImovelBusiness imovelBusiness = new ImovelBusiness();
             var codigo = db.Locacao.Where
                 (
                     c => String.Compare(model.CodigoLocacao, c.CodigoLocacao, false) == 0 && c.ID != locacaoId
@@ -88,6 +89,8 @@ namespace ImoAnalyticsSystem.Business
                 locacao.ContratoDeLocacao.DataPagamento = model.DataPagamento;
                 locacao.ContratoDeLocacao.Valor = model.Valor;
 
+                if (IdImovelAntigo != locacao.ImovelId)
+                    imovelBusiness.ChangeUnavailable(IdImovelAntigo, model.ImovelId);
                 this.CalculaTaxaAdm(locacao);
                 db.Entry(locacao).State = EntityState.Modified;
                 db.SaveChanges();

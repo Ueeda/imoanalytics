@@ -14,18 +14,19 @@
         <div class="panel-body">
             @Html.ValidationSummary(false, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.LocacaoId)
+            <input type="hidden" value="@ViewBag.IdImovelAntigo" name="IdImovelAntigo" />
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(m => m.DataOperacao)</p>
-                        @Html.EditorFor(model => model.DataOperacao, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-data"} })
+                        @Html.EditorFor(model => model.DataOperacao, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-data" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(m => m.CodigoLocacao)</p>
-                        @Html.EditorFor(model => model.CodigoLocacao, new { htmlAttributes = new { @type = "text", @class = "effect-1"} })
+                        @Html.EditorFor(model => model.CodigoLocacao, new { htmlAttributes = new { @type = "text", @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -34,13 +35,13 @@
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.ImovelId)</p>
-                        @Html.DropDownList("ImovelId", ViewBag.ImovelId as SelectList, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("ImovelId", null, htmlAttributes: new { @class = "" })
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.InteressadoId)</p>
-                        @Html.DropDownList("InteressadoId", ViewBag.InteressadoId as SelectList, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("InteressadoId", null, htmlAttributes: new { @class = "" })
                     </div>
                 </div>
             </div>
@@ -48,13 +49,13 @@
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.FiadorId)</p>
-                        @Html.DropDownList("FiadorId", ViewBag.FiadorId as SelectList, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("FiadorId", null, htmlAttributes: new { @class = "" })
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.Valor)</p>
-                        @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-dinheiro"} })
+                        @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-dinheiro" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -63,14 +64,14 @@
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.DataInicio)</p>
-                        @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-data"} })
+                        @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-data" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.DataFim)</p>
-                        @Html.EditorFor(model => model.DataFim, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-data"} })
+                        @Html.EditorFor(model => model.DataFim, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-data" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -79,7 +80,7 @@
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.DataPagamento)</p>
-                        @Html.EditorFor(model => model.DataPagamento, new { htmlAttributes = new { @type = "number", @class = "effect-1"} })
+                        @Html.EditorFor(model => model.DataPagamento, new { htmlAttributes = new { @type = "number", @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>

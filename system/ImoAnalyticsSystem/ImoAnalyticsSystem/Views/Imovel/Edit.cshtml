@@ -212,13 +212,13 @@
                 <div class="col-md-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.TipoImovelId)</p>
-                        @Html.DropDownList("TipoImovelId", ViewBag.TipoImovelId as SelectList, htmlAttributes: new { @class = "" })
+                        @Html.DropDownList("TipoImovelId", null, htmlAttributes: new { @class = "" })
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.CartorioId)</p>
-                        @Html.DropDownList("CartorioId", ViewBag.CartorioId as SelectList, htmlAttributes: new { @class = "" })
+                        @Html.DropDownList("CartorioId", null, htmlAttributes: new { @class = "" })
                     </div>
                 </div>
             </div>
@@ -226,7 +226,7 @@
                 <div class="col-md-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.ProprietarioId)</p>
-                        @Html.DropDownList("ProprietarioId", ViewBag.ProprietarioId as SelectList, htmlAttributes: new { @class = "" })
+                        @Html.DropDownList("ProprietarioId", null, htmlAttributes: new { @class = "" })
                     </div>
                 </div>
             </div>

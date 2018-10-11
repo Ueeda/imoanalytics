@@ -150,13 +150,16 @@ namespace ImoAnalyticsSystem.Controllers
             model.ImovelId = locacao.ImovelId;
             model.InteressadoId = locacao.InteressadoId;
             ViewBag.FiadorId = new SelectList(fiadorBusiness.GetFiadores(), "ID", "NomeCompleto", model.FiadorId);
-            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "CodigoReferencia", model.ImovelId);
+            var imoveisDisp = imovelBusiness.GetImoveisDisponiveis();
+            imoveisDisp.Add(imovelBusiness.FindById(model.ImovelId));
+            ViewBag.ImovelId = new SelectList(imoveisDisp, "ID", "CodigoReferencia", model.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", model.InteressadoId);
             model.Valor = locacao.ContratoDeLocacao.Valor;
             model.DataInicio = locacao.ContratoDeLocacao.DataInicio;
             model.DataFim = locacao.ContratoDeLocacao.DataFim;
             model.DataPagamento = locacao.ContratoDeLocacao.DataPagamento;
             ViewBag.LocacaoId = locacao.ID;
+            ViewBag.IdImovelAntigo = model.ImovelId;
             return View(model);
         }
 
@@ -166,12 +169,12 @@ namespace ImoAnalyticsSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit(LocacaoViewModel model)
+        public ActionResult Edit(LocacaoViewModel model, int IdImovelAntigo)
         {
             string edit = "";
             if (ModelState.IsValid)
             {
-                edit = locacaoBusiness.Edit(model, model.LocacaoId);
+                edit = locacaoBusiness.Edit(model, model.LocacaoId, IdImovelAntigo);
                 if (edit.Equals("OK"))
                     return RedirectToAction("Details", new { id = model.LocacaoId });
             }
@@ -180,8 +183,11 @@ namespace ImoAnalyticsSystem.Controllers
                 ModelState.AddModelError("Erro ao editar a locação: ", edit);
 
             ViewBag.FiadorId = new SelectList(fiadorBusiness.GetFiadores(), "ID", "NomeCompleto", model.FiadorId);
-            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveisDisponiveis(), "ID", "CodigoReferencia", model.ImovelId);
+            var imoveisDisp = imovelBusiness.GetImoveisDisponiveis();
+            imoveisDisp.Add(imovelBusiness.FindById(model.ImovelId));
+            ViewBag.ImovelId = new SelectList(imoveisDisp, "ID", "CodigoReferencia", model.ImovelId);
             ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", model.InteressadoId);
+            ViewBag.IdImovelAntigo = model.ImovelId;
             return View(model);
         }
 
