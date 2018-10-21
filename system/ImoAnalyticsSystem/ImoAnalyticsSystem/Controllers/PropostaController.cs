@@ -50,9 +50,9 @@ namespace ImoAnalyticsSystem.Controllers
 
         // GET: Proposta/Create
         [Authorize]
-        public ActionResult Create(int id)
+        public ActionResult Create(int? idImovel)
         {
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", id);
+            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", idImovel);
             ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto");
             return View();
         }

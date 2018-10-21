@@ -18,13 +18,13 @@
                 <div class="col-md-6">
                     <div class="group" >
                         @Html.LabelFor(model => model.Imovel)
-                        @Html.DropDownList("ImovelId", null, htmlAttributes: new { @class = "", @disabled = "true" })
+                        @Html.DropDownList("ImovelId", ViewBag.ImovelId as SelectList, htmlAttributes: new { @class = "", @disabled = "true" })
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="group">
                         <p> @Html.LabelFor(model => model.Interessado) </p>
-                        @Html.DropDownList("InteressadoId", null, htmlAttributes: new { @class = "" })
+                        @Html.DropDownList("InteressadoId", ViewBag.InteressadoId as SelectList, htmlAttributes: new { @class = "" })
                     </div>
                 </div>
             </div>

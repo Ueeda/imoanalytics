@@ -373,11 +373,6 @@
     <Content Include="Views\Cartorio\Details.cshtml" />
     <Content Include="Views\Cartorio\Edit.cshtml" />
     <Content Include="Views\Cartorio\Index.cshtml" />
-    <Content Include="Views\ContratoDeLocacao\Create.cshtml" />
-    <Content Include="Views\ContratoDeLocacao\Delete.cshtml" />
-    <Content Include="Views\ContratoDeLocacao\Details.cshtml" />
-    <Content Include="Views\ContratoDeLocacao\Edit.cshtml" />
-    <Content Include="Views\ContratoDeLocacao\Index.cshtml" />
     <Content Include="Views\Fiador\Create.cshtml" />
     <Content Include="Views\Fiador\Delete.cshtml" />
     <Content Include="Views\Fiador\Details.cshtml" />
@@ -435,6 +430,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ContratoDeLocacao\" />
     <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>

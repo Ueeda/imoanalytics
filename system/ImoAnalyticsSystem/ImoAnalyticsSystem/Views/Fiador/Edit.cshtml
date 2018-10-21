@@ -18,14 +18,14 @@
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.NomeCompleto)</p>
-                        @Html.EditorFor(model => model.NomeCompleto, new { htmlAttributes = new { @type = "text", @class = "effect-1" } })
+                        @Html.EditorFor(model => model.NomeCompleto, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.NomeCompleto).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.Cpf)</p>
-                        @Html.EditorFor(model => model.Cpf, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-cpf" } })
+                        @Html.EditorFor(model => model.Cpf, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Cpf).ToHtmlString()), @class = "effect-1 js-cpf" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -34,14 +34,14 @@
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.Rg)</p>
-                        @Html.EditorFor(model => model.Rg, new { htmlAttributes = new { @type = "text", @class = "effect-1" } })
+                        @Html.EditorFor(model => model.Rg, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Rg).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.DataNascimento)</p>
-                        @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-data" } })
+                        @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.DataNascimento).ToHtmlString()), @class = "effect-1 js-data" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -50,14 +50,14 @@
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.Telefone)</p>
-                        @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-telefone" } })
+                        @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Telefone).ToHtmlString()), @class = "effect-1 js-telefone" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.Cep)</p>
-                        @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-cep" } })
+                        @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Cep).ToHtmlString()), @class = "effect-1 js-cep" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -66,14 +66,14 @@
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.Endereco)</p>
-                        @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @type = "text", @class = "effect-1" } })
+                        @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Endereco).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.Numero)</p>
-                        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @type = "text", @class = "effect-1" } })
+                        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Numero).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -82,14 +82,14 @@
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.Bairro)</p>
-                        @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @type = "text", @class = "effect-1" } })
+                        @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Bairro).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.Cidade)</p>
-                        @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @type = "text", @class = "effect-1" } })
+                        @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Cidade).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -98,14 +98,14 @@
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.Estado)</p>
-                        @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @type = "text", @class = "effect-1" } })
+                        @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Estado).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.Email)</p>
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @type = "text", @class = "effect-1" } })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @type = "email", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Email).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -114,14 +114,14 @@
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.RegistroDeImovel)</p>
-                        @Html.EditorFor(model => model.RegistroDeImovel, new { htmlAttributes = new { @type = "text", @class = "effect-1" } })
+                        @Html.EditorFor(model => model.RegistroDeImovel, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.RegistroDeImovel).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.Renda)</p>
-                        @Html.EditorFor(model => model.Renda, new { htmlAttributes = new { @type = "text", @class = "effect-1 js-dinheiro" } })
+                        @Html.EditorFor(model => model.Renda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Renda).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>

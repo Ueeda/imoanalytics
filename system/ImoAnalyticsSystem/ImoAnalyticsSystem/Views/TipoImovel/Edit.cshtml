@@ -17,7 +17,7 @@
             <div class="col-sm-6">
                 <div class="group">
                     <p>@Html.LabelFor(m => m.Tipo)</p>
-                    @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @type = "text", @class = "effect-1" } })
+                    @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Tipo).ToHtmlString()), @class = "effect-1" } })
                     <span class="focus-border"></span>
                 </div>
             </div>

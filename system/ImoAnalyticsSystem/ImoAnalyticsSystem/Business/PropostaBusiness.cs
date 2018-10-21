@@ -32,7 +32,6 @@ namespace ImoAnalyticsSystem.Business
 
         public string Create(Proposta proposta)
         {
-
             db.Proposta.Add(proposta);
             db.SaveChanges();
             return "OK";
