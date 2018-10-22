@@ -50,9 +50,13 @@ namespace ImoAnalyticsSystem.Controllers
 
         // GET: Proposta/Create
         [Authorize]
-        public ActionResult Create(int? idImovel)
+        public ActionResult Create(int? ImovelId)
         {
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", idImovel);
+            ImovelBusiness imovelBusiness = new ImovelBusiness();
+            Imovel imovel = imovelBusiness.FindById(ImovelId);
+            ViewBag.IsLocacao = imovel.Locacao;
+            ViewBag.IsVenda = imovel.Venda;
+            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", ImovelId);
             ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto");
             return View();
         }
@@ -81,6 +85,10 @@ namespace ImoAnalyticsSystem.Controllers
             
             ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", proposta.ImovelId);
             ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", proposta.InteressadoId);
+            ImovelBusiness imovelBusiness = new ImovelBusiness();
+            Imovel imovel = imovelBusiness.FindById(proposta.ImovelId);
+            ViewBag.IsLocacao = imovel.Locacao;
+            ViewBag.IsVenda = imovel.Venda;
             return View(proposta);
         }
 
@@ -99,6 +107,10 @@ namespace ImoAnalyticsSystem.Controllers
             }
             ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", proposta.ImovelId);
             ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", proposta.InteressadoId);
+            ImovelBusiness imovelBusiness = new ImovelBusiness();
+            Imovel imovel = imovelBusiness.FindById(proposta.ImovelId);
+            ViewBag.IsLocacao = imovel.Locacao;
+            ViewBag.IsVenda = imovel.Venda;
             return View(proposta);
         }
 
@@ -124,6 +136,10 @@ namespace ImoAnalyticsSystem.Controllers
 
             ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", proposta.ImovelId);
             ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", proposta.InteressadoId);
+            ImovelBusiness imovelBusiness = new ImovelBusiness();
+            Imovel imovel = imovelBusiness.FindById(proposta.ImovelId);
+            ViewBag.IsLocacao = imovel.Locacao;
+            ViewBag.IsVenda = imovel.Venda;
             return View(proposta);
         }
 

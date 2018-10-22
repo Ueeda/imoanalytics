@@ -29,6 +29,9 @@ namespace ImoAnalyticsSystem.Models
         [DataType(DataType.Currency)]
         public decimal Valor { get; set; }
 
+        [Display(Name = "Tipo da proposta")]
+        [Required(ErrorMessage = "O tipo da proposta é obrigatória.")]
+        public string TipoProposta { get; set; }
 
         public virtual Interessado Interessado { get; set; }
 

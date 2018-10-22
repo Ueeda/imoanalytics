@@ -44,6 +44,22 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="group">
+                        <p> @Html.LabelFor(model => model.TipoProposta) </p>
+
+                        @if (ViewBag.IsVenda == true)
+                        {
+                            @Html.RadioButtonFor(model => model.TipoProposta, "Venda")@:Venda
+                        }
+                        @if (ViewBag.IsLocacao == true)
+                        {
+                            @Html.RadioButtonFor(model => model.TipoProposta, "Locacao")@:Locação
+                        }
+                    </div>
+                </div>
+            </div>
 
             <div class="row buttons-row">
                 <div class="col-md-6 center">
