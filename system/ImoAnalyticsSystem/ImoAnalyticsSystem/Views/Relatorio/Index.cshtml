@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Lista de relatórios do sistema";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="panel-title">@ViewBag.Title</h3>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="primary-color-row row">
+            <div class="col-sm-12">
+                <dl>
+                    <dt>Relatórios padrões do sistema</dt>
+                    <dd>@Html.ActionLink("- Preço médio de venda atualmente", "PrecoMedioVendaAtual", "Relatorio")</dd>
+                    <dd>@Html.ActionLink("- Preço médio de locação atualmente", "PrecoMedioLocacaoAtual", "Relatorio")</dd>
+                    <dd>@Html.ActionLink("- Vendas feitas por corretor nos últimos 4 meses", "VendasPorCorretorUltimosQuatroMeses", "Relatorio")</dd>
+                    <dd>@Html.ActionLink("- Vendas X Locação nos últimos 4 meses", "OperacoesUltimosQuatroMeses", "Relatorio")</dd>
+                    <dd>@Html.ActionLink("- Estatísticas de determinado bairro", "EstatisticaBairros", "Relatorio")</dd>
+                    <dt>Relatórios salvos pelo corretor</dt>
+                    <dt>Relatórios públicos</dt>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>

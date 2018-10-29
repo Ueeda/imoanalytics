@@ -1,0 +1,12 @@
+﻿@model DotNet.Highcharts.Highcharts
+@{
+    ViewBag.Title = "Relatório de estatísticas do bairro " + ViewBag.Bairro;
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">@ViewBag.Title</h3>
+    </div>
+    <div class="panel-body">
+        @(Model)
+    </div>
+</div>

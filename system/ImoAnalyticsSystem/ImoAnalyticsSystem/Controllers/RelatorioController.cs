@@ -16,11 +16,185 @@ namespace ImoAnalyticsSystem.Controllers
     public class RelatorioController : Controller
     {
         // GET: Relatorio
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
+        // GET: PrecoMedioVendaAtual
+        [HttpGet]
+        [Authorize]
+        public ActionResult PrecoMedioVendaAtual()
+        {
+            TipoImovelBusiness tipoImovelBusiness = new TipoImovelBusiness();
+            ImovelBusiness imovelBusiness = new ImovelBusiness();
+            var tiposImovel = tipoImovelBusiness.GetTiposImovel();
+            Dictionary<string, decimal> precosMedio = new Dictionary<string, decimal>();
+            List<Series> conteudoGrafico = new List<Series>();
+            List<string> legenda = new List<string>();
+            legenda.Add(" ");
+
+            foreach (TipoImovel tipoImovel in tiposImovel)
+            {
+                var imoveisTipo = imovelBusiness.GetImoveisDisponiveis().Where(m => m.Venda == true && m.TipoImovel.Tipo.Contains(tipoImovel.Tipo));
+                decimal somaPrecos = 0;
+
+                if (imoveisTipo.Count() > 0)
+                {
+                    foreach (Imovel imovel in imoveisTipo)
+                        somaPrecos += imovel.ValorVenda;
+                    precosMedio.Add(tipoImovel.Tipo, (somaPrecos / imoveisTipo.Count()));
+                }
+            }
+
+            foreach(string tipo in precosMedio.Keys)
+            {
+                List<object> dados = new List<object>();
+                dados.Add(precosMedio.FirstOrDefault(c => c.Key == tipo).Value);
+                conteudoGrafico.Add(new Series
+                {
+                    Name = tipo,
+                    Data = new DotNet.Highcharts.Helpers.Data(dados.ToArray())
+                });
+            }
+
+            Highcharts columnChart = new Highcharts("barchart");
+
+            columnChart.InitChart(new Chart()
+            {
+                Type = DotNet.Highcharts.Enums.ChartTypes.Bar,
+                BackgroundColor = new BackColorOrGradient(System.Drawing.Color.White),
+                Style = "fontWeight: 'bold', fontSize: '17px'",
+                BorderColor = System.Drawing.Color.LightBlue,
+                BorderRadius = 0,
+                BorderWidth = 3
+            });
+            columnChart.SetTitle(new Title()
+            {
+                Text = "Preço médio dos imóveis"
+            });
+            columnChart.SetSubtitle(new Subtitle()
+            {
+                Text = "Disponíveis para venda"
+            });
+            columnChart.SetXAxis(new XAxis()
+            {
+                Type = AxisTypes.Category,
+                Title = new XAxisTitle() { Text = "Tipos de imóvel", Style = "fontWeight: 'bold', fontSize: '14px'" },
+                Categories = legenda.ToArray()
+            });
+            columnChart.SetYAxis(new YAxis()
+            {
+                Title = new YAxisTitle()
+                {
+                    Text = "Valor médio",
+                    Style = "fontWeight: 'bold', fontSize: '14px'"
+                },
+                ShowFirstLabel = true,
+                ShowLastLabel = true,
+                Min = 0
+            });
+            columnChart.SetLegend(new Legend
+            {
+                Enabled = true,
+                BorderColor = System.Drawing.Color.CornflowerBlue,
+                BorderRadius = 6,
+                BackgroundColor = new BackColorOrGradient(ColorTranslator.FromHtml("#EEE"))
+            });
+            columnChart.SetSeries(conteudoGrafico.ToArray());
+
+            return View(columnChart);
+        }
+
+        // GET: PrecoMedioLocacaoAtual
+        [HttpGet]
+        [Authorize]
+        public ActionResult PrecoMedioLocacaoAtual()
+        {
+            TipoImovelBusiness tipoImovelBusiness = new TipoImovelBusiness();
+            ImovelBusiness imovelBusiness = new ImovelBusiness();
+            var tiposImovel = tipoImovelBusiness.GetTiposImovel();
+            Dictionary<string, decimal> precosMedio = new Dictionary<string, decimal>();
+            List<Series> conteudoGrafico = new List<Series>();
+            List<string> legenda = new List<string>();
+            legenda.Add(" ");
+
+            foreach (TipoImovel tipoImovel in tiposImovel)
+            {
+                var imoveisTipo = imovelBusiness.GetImoveisDisponiveis().Where(m => m.Locacao == true && m.TipoImovel.Tipo.Contains(tipoImovel.Tipo));
+                decimal somaPrecos = 0;
+
+                if (imoveisTipo.Count() > 0)
+                {
+                    foreach (Imovel imovel in imoveisTipo)
+                        somaPrecos += imovel.ValorLocacao;
+                    precosMedio.Add(tipoImovel.Tipo, (somaPrecos / imoveisTipo.Count()));
+                }
+            }
+
+            foreach (string tipo in precosMedio.Keys)
+            {
+                List<object> dados = new List<object>();
+                dados.Add(precosMedio.FirstOrDefault(c => c.Key == tipo).Value);
+                conteudoGrafico.Add(new Series
+                {
+                    Name = tipo,
+                    Data = new DotNet.Highcharts.Helpers.Data(dados.ToArray())
+                });
+            }
+
+            Highcharts columnChart = new Highcharts("barchart");
+
+            columnChart.InitChart(new Chart()
+            {
+                Type = DotNet.Highcharts.Enums.ChartTypes.Bar,
+                BackgroundColor = new BackColorOrGradient(System.Drawing.Color.White),
+                Style = "fontWeight: 'bold', fontSize: '17px'",
+                BorderColor = System.Drawing.Color.LightBlue,
+                BorderRadius = 0,
+                BorderWidth = 3
+            });
+            columnChart.SetTitle(new Title()
+            {
+                Text = "Preço médio dos imóveis"
+            });
+            columnChart.SetSubtitle(new Subtitle()
+            {
+                Text = "disponíveis para locação"
+            });
+            columnChart.SetXAxis(new XAxis()
+            {
+                Type = AxisTypes.Category,
+                Title = new XAxisTitle() { Text = "Tipos de imóvel", Style = "fontWeight: 'bold', fontSize: '14px'" },
+                Categories = legenda.ToArray()
+            });
+            columnChart.SetYAxis(new YAxis()
+            {
+                Title = new YAxisTitle()
+                {
+                    Text = "Valor médio",
+                    Style = "fontWeight: 'bold', fontSize: '14px'"
+                },
+                ShowFirstLabel = true,
+                ShowLastLabel = true,
+                Min = 0
+            });
+            columnChart.SetLegend(new Legend
+            {
+                Enabled = true,
+                BorderColor = System.Drawing.Color.CornflowerBlue,
+                BorderRadius = 6,
+                BackgroundColor = new BackColorOrGradient(ColorTranslator.FromHtml("#EEE"))
+            });
+            columnChart.SetSeries(conteudoGrafico.ToArray());
+
+            return View(columnChart);
+        }
+
+        // GET: OperacoesUltimosQuatroMeses
+        [HttpGet]
+        [Authorize]
         public ActionResult OperacoesUltimosQuatroMeses()
         {
             DateTime? relatorioArg1 = DateTime.Now;
@@ -110,6 +284,9 @@ namespace ImoAnalyticsSystem.Controllers
             return View(columnChart);
         }
 
+        // GET: VendasPorCorretorUltimosQuatroMeses
+        [HttpGet]
+        [Authorize]
         public ActionResult VendasPorCorretorUltimosQuatroMeses()
         {
             DateTime? relatorioArg1 = DateTime.Now;
@@ -157,7 +334,7 @@ namespace ImoAnalyticsSystem.Controllers
                 });
             }
 
-            Highcharts columnChart = new Highcharts("columnchart");
+            Highcharts columnChart = new Highcharts("linechart");
             columnChart.InitChart(new Chart()
             {
                 Type = DotNet.Highcharts.Enums.ChartTypes.Line,
@@ -200,6 +377,121 @@ namespace ImoAnalyticsSystem.Controllers
                 BackgroundColor = new BackColorOrGradient(ColorTranslator.FromHtml("#EEE"))
             });
             columnChart.SetSeries(conteudoGrafico.ToArray());
+            return View(columnChart);
+        }
+
+        // GET: PrecoMedioBairro
+        [HttpGet]
+        [Authorize]
+        public ActionResult EstatisticaBairros()
+        {
+            return View();
+        }
+
+        // POST: PrecoMedioBairro
+        [HttpPost]
+        public ActionResult EstatisticaBairros(string bairro)
+        {
+            if(!bairro.Equals(""))
+                return RedirectToAction("EstatisticaBairrosGrafico", new { Bairro = bairro });
+            ModelState.AddModelError("Erro", "É preciso informar um bairro para gerar o relatório.");
+            return View();
+        }
+
+        // GET: PrecoMedioBairro
+        [HttpGet]
+        [Authorize]
+        public ActionResult EstatisticaBairrosGrafico(string bairro)
+        {
+            if(bairro == null)
+                return RedirectToAction("EstatisticaBairros");
+
+            LocacaoBusiness locacaoBusiness = new LocacaoBusiness();
+            VendaBusiness vendaBusiness = new VendaBusiness();
+            ImovelBusiness imovelBusiness = new ImovelBusiness();
+            VisitaBusiness visitaBusiness = new VisitaBusiness();
+            List<Series> conteudoGrafico = new List<Series>();
+
+            var vendas = vendaBusiness.GetVendas().Where(v => v.Imovel.Bairro.Contains(bairro)).Count();
+            var locacoes = locacaoBusiness.GetLocacoes().Where(l => l.Imovel.Bairro.Contains(bairro)).Count();
+            var imoveisDisponiveis = imovelBusiness.GetImoveisDisponiveis().Where(i => i.Bairro.Contains(bairro)).Count();
+            var imoveis = imovelBusiness.GetImoveis().Where(i => i.Bairro.Contains(bairro)).Count();
+            var visitas = visitaBusiness.GetVisitas().Where(v => v.Imovel.Bairro.Contains(bairro)).Count();
+
+            conteudoGrafico.Add(new Series
+            {
+                Name = "Vendas concluídas",
+                Data = new DotNet.Highcharts.Helpers.Data(new object [] { vendas })
+            });
+
+            conteudoGrafico.Add(new Series
+            {
+                Name = "Locações realizadas",
+                Data = new DotNet.Highcharts.Helpers.Data(new object[] { locacoes })
+            });
+
+            conteudoGrafico.Add(new Series
+            {
+                Name = "Imóveis disponíveis",
+                Data = new DotNet.Highcharts.Helpers.Data(new object[] { imoveisDisponiveis })
+            });
+
+            conteudoGrafico.Add(new Series
+            {
+                Name = "Imóveis cadastrados",
+                Data = new DotNet.Highcharts.Helpers.Data(new object[] { imoveis })
+            });
+
+            conteudoGrafico.Add(new Series
+            {
+                Name = "Visitas realizadas",
+                Data = new DotNet.Highcharts.Helpers.Data(new object[] { visitas })
+            });
+
+            Highcharts columnChart = new Highcharts("columnchart");
+            columnChart.InitChart(new Chart()
+            {
+                Type = DotNet.Highcharts.Enums.ChartTypes.Column,
+                BackgroundColor = new BackColorOrGradient(System.Drawing.Color.White),
+                Style = "fontWeight: 'bold', fontSize: '17px'",
+                BorderColor = System.Drawing.Color.LightBlue,
+                BorderRadius = 0,
+                BorderWidth = 3
+            });
+            columnChart.SetTitle(new Title()
+            {
+                Text = "Estatísticas do bairro"
+            });
+            columnChart.SetSubtitle(new Subtitle()
+            {
+                Text = bairro
+            });
+            columnChart.SetXAxis(new XAxis()
+            {
+                Type = AxisTypes.Category,
+                Title = new XAxisTitle() { Text = "Atividades", Style = "fontWeight: 'bold', fontSize: '14px'" },
+                Categories = new[] { " " }
+            });
+            columnChart.SetYAxis(new YAxis()
+            {
+                Title = new YAxisTitle()
+                {
+                    Text = "Ocorrências",
+                    Style = "fontWeight: 'bold', fontSize: '14px'"
+                },
+                ShowFirstLabel = true,
+                ShowLastLabel = true,
+                Min = 0
+            });
+            columnChart.SetLegend(new Legend
+            {
+                Enabled = true,
+                BorderColor = System.Drawing.Color.CornflowerBlue,
+                BorderRadius = 6,
+                BackgroundColor = new BackColorOrGradient(ColorTranslator.FromHtml("#EEE"))
+            });
+            columnChart.SetSeries(conteudoGrafico.ToArray());
+            ViewBag.Bairro = bairro;
             return View(columnChart);
         }
     }

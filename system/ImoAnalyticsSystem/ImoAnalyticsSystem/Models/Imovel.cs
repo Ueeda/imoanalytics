@@ -154,7 +154,8 @@ namespace ImoAnalyticsSystem.Models
         [Display(Name = "Tipo de imóvel")]
         public virtual TipoImovel TipoImovel { get; set; }
 
-     
-        
+        [ForeignKey("ImovelId")]
+        public virtual ICollection<MudancaPreco> HistoricoPrecos { get; set; }
+
     }
 }

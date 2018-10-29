@@ -250,6 +250,7 @@
     <Compile Include="Models\Imovel.cs" />
     <Compile Include="Models\Interessado.cs" />
     <Compile Include="Models\Locacao.cs" />
+    <Compile Include="Models\MudancaPreco.cs" />
     <Compile Include="Models\Proposta.cs" />
     <Compile Include="Models\Proprietario.cs" />
     <Compile Include="Models\TipoImovel.cs" />
@@ -427,6 +428,11 @@
     <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\Relatorio\OperacoesUltimosQuatroMeses.cshtml" />
     <Content Include="Views\Relatorio\VendasPorCorretorUltimosQuatroMeses.cshtml" />
+    <Content Include="Views\Relatorio\PrecoMedioVendaAtual.cshtml" />
+    <Content Include="Views\Relatorio\PrecoMedioLocacaoAtual.cshtml" />
+    <Content Include="Views\Relatorio\Index.cshtml" />
+    <Content Include="Views\Relatorio\EstatisticaBairros.cshtml" />
+    <Content Include="Views\Relatorio\EstatisticaBairrosGrafico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

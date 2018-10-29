@@ -54,6 +54,26 @@ namespace ImoAnalyticsSystem.Business
                 }
                 imovel.Files = new List<Imagem> { imagem };
             }
+
+            imovel.DataCadastro = DateTime.Now;
+            var historico = new MudancaPreco();
+            historico.Locacao = imovel.Locacao;
+            historico.Venda = imovel.Venda;
+            if (imovel.Venda)
+                historico.ValorVenda = imovel.ValorVenda;
+            else
+                historico.ValorVenda = 0;
+
+            if (imovel.Locacao)
+                historico.ValorLocacao = imovel.ValorLocacao;
+            else
+                historico.ValorLocacao = 0;
+
+            historico.DataMudanca = DateTime.Now;
+            
+            imovel.HistoricoPrecos = new List<MudancaPreco>();
+            imovel.HistoricoPrecos.Add(historico);
+
             db.Imovel.Add(imovel);
             db.SaveChanges();
             proprietarioBusiness.UpdateActive(imovel.ProprietarioId);
@@ -62,6 +82,28 @@ namespace ImoAnalyticsSystem.Business
 
         public string Edit(Imovel imovel, HttpPostedFileBase upload)
         {
+            //MudancaPreco historico = null;
+            //if (imovel.HistoricoPrecos.Count() > 0)
+            //    historico = imovel.HistoricoPrecos.ElementAt(0);
+
+            //if (imovel.Locacao != historico.Locacao || imovel.Venda != historico.Venda || imovel.ValorVenda != historico.ValorVenda || imovel.ValorLocacao != historico.ValorLocacao || historico == null)
+            //{
+            //    var historicoNew = new MudancaPreco();
+            //    historicoNew.Locacao = imovel.Locacao;
+            //    historicoNew.Venda = imovel.Venda;
+            //    if (historicoNew.Venda)
+            //        historicoNew.ValorVenda = imovel.ValorVenda;
+            //    else
+            //        historicoNew.ValorVenda = 0;
+
+            //    if (historicoNew.Locacao)
+            //        historicoNew.ValorLocacao = imovel.ValorLocacao;
+            //    else
+            //        historicoNew.ValorLocacao = 0;
+
+            //    historicoNew.DataMudanca = DateTime.Now;
+            //    imovel.HistoricoPrecos.Add(historicoNew);
+            //}
             db.Entry(imovel).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 
@@ -85,6 +127,8 @@ namespace ImoAnalyticsSystem.Business
                 }
                 imovelToUpdate.Files = new List<Imagem> { imagem };
             }
+
+            
             db.Entry(imovelToUpdate).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             proprietarioBusiness.UpdateActive(imovel.ProprietarioId);

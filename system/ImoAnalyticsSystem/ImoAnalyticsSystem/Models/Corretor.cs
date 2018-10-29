@@ -24,6 +24,7 @@ namespace ImoAnalyticsSystem.Models
         public String Rg { get; set; }
 
         [Display(Name = "Data de nascimento")]
+        [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
 
         [Display(Name = "CEP")]
