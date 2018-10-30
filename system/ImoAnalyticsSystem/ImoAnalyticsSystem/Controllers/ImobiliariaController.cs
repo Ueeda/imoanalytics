@@ -87,7 +87,7 @@ namespace ImoAnalyticsSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "ID,NomeImobiliaria,Endereco,EmailContato,TelefoneContato,ComissaoImobiliariaVenda,ComissaoCorretorVenda,TaxaAdministracaoLocacao")] Imobiliaria imobiliaria)
+        public ActionResult Edit([Bind(Include = "ID,NomeImobiliaria,Endereco,Numero,Complemento,Cidade,Estado,EmailContato,TelefoneContato,ComissaoImobiliariaVenda,ComissaoCorretorVenda,TaxaAdministracaoLocacao")] Imobiliaria imobiliaria)
         {
             if (ModelState.IsValid)
             {

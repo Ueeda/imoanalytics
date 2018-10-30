@@ -1,7 +1,7 @@
 ﻿@model ImoAnalyticsSystem.Models.Proposta
 
 @{
-    ViewBag.Title = "Detalhe da proposta";
+    ViewBag.Title = "Detalhe da proposta realizada em " + Model.Data + " para o imóvel " + Model.Imovel.CodigoReferencia;
 }
 
 <div class="panel panel-primary">

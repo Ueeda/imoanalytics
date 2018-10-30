@@ -380,7 +380,7 @@ namespace ImoAnalyticsSystem.Controllers
             return View(columnChart);
         }
 
-        // GET: PrecoMedioBairro
+        // GET: EstatisticaBairros
         [HttpGet]
         [Authorize]
         public ActionResult EstatisticaBairros()
@@ -388,7 +388,7 @@ namespace ImoAnalyticsSystem.Controllers
             return View();
         }
 
-        // POST: PrecoMedioBairro
+        // POST: EstatisticaBairros
         [HttpPost]
         public ActionResult EstatisticaBairros(string bairro)
         {
@@ -398,7 +398,7 @@ namespace ImoAnalyticsSystem.Controllers
             return View();
         }
 
-        // GET: PrecoMedioBairro
+        // GET: EstatisticaBairrosGrafico
         [HttpGet]
         [Authorize]
         public ActionResult EstatisticaBairrosGrafico(string bairro)

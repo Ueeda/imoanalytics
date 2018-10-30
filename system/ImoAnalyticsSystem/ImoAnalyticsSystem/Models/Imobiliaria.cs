@@ -21,6 +21,25 @@ namespace ImoAnalyticsSystem.Models
         [MaxLength(250, ErrorMessage = "O tamanho máximo do campo endereço é de 250 caracteres.")]
         public String Endereco { get; set; }
 
+        [Display(Name = "Número")]
+        [Required(ErrorMessage = "O campo número é obrigatório.")]
+        public int Numero { get; set; }
+
+        [Display(Name = "Complemento")]
+        [Required(ErrorMessage = "O campo complemento é obrigatório.")]
+        [MaxLength(50, ErrorMessage = "O tamanho máximo do campo complemento é de 50 caracteres.")]
+        public String Complemento { get; set; }
+
+        [Display(Name = "Cidade")]
+        [Required(ErrorMessage = "O campo cidade é obrigatório.")]
+        [MaxLength(250, ErrorMessage = "O tamanho máximo do campo cidade é de 250 caracteres.")]
+        public String Cidade { get; set; }
+
+        [Display(Name = "Estado")]
+        [Required(ErrorMessage = "O campo estado é obrigatório.")]
+        [MaxLength(250, ErrorMessage = "O tamanho máximo do campo estado é de 100 caracteres.")]
+        public String Estado { get; set; }
+
         [Display(Name = "E-mail de contato")]
         [Required(ErrorMessage = "O campo e-mail de contato é obrigatório.")]
         [EmailAddress]

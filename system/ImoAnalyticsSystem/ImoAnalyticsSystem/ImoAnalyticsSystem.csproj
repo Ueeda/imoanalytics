@@ -254,6 +254,7 @@
     <Compile Include="Models\MudancaPreco.cs" />
     <Compile Include="Models\Proposta.cs" />
     <Compile Include="Models\Proprietario.cs" />
+    <Compile Include="Models\Relatorio.cs" />
     <Compile Include="Models\TipoImovel.cs" />
     <Compile Include="Models\Venda.cs" />
     <Compile Include="Models\Visita.cs" />

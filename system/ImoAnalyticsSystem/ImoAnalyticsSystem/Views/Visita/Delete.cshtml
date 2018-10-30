@@ -1,53 +1,44 @@
 ﻿@model ImoAnalyticsSystem.Models.Visita
 
 @{
-    ViewBag.Title = "Excluir visita número " + Model.ID;
+    ViewBag.Title = "tem certeza que deseja deletar a visita realizada ao imóvel " + Model.Imovel.CodigoReferencia + " no dia " + Model.Data + "?";
 }
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
-            <div class="col-md-8">
-                <h3 class="panel-title">Tem certeza que quer deletar essa visita?</h3>
-            </div>
-            <div class="col-md-4 icons-edit-remove">
-                <a href="@Url.Action("Edit", "Visita", new { id = Model.ID })" title="Editar visita"><i class="fa fa-edit"></i></a>
-                <a href="@Url.Action("Delete", "Visita", new { id = Model.ID })" title="Remover visita"><i class="fa fa-trash"></i></a>
+            <div class="col-md-12">
+                <h3 class="panel-title">@ViewBag.Title</h3>
             </div>
         </div>
     </div>
     <div class="primary-color-row row">
-        <div class="col-sm-6">
-            <div class="col-sm-6">
-                <p><b>@Html.DisplayNameFor(model => model.Corretor.NomeCompleto)</b></p>
-            </div>
-            <div class="col-sm-6">
-                <p>@Html.DisplayFor(model => model.Corretor.NomeCompleto)</p>
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <p><b>@Html.DisplayNameFor(model => model.Corretor.NomeCompleto): </b> @Html.DisplayFor(model => model.Corretor.NomeCompleto)</p>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="col-sm-6">
-                <p><b>Código do @Html.DisplayNameFor(model => model.Imovel)</b></p>
-            </div>
-            <div class="col-sm-6">
-                <p>@Html.DisplayFor(model => model.Imovel.ID)</p>
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <p><b>Código do @Html.DisplayNameFor(model => model.Imovel): </b> @Html.DisplayFor(model => model.Imovel.CodigoReferencia)</p>
             </div>
         </div>
     </div>
     <div class="primary-color-row row">
-        <div class="col-sm-6">
-            <div class="col-sm-6">
-                <p><b>@Html.DisplayNameFor(model => model.Interessado)</b></p>
-            </div>
-            <div class="col-sm-6">
-                <p>@Html.DisplayFor(model => model.Interessado.NomeCompleto)</p>
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <p><b>@Html.DisplayNameFor(model => model.Interessado): </b> @Html.DisplayFor(model => model.Interessado.NomeCompleto)</p>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="col-sm-6">
-                <p><b>@Html.DisplayNameFor(model => model.Data)</b></p>
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <p><b>@Html.DisplayNameFor(model => model.Data): </b> @Html.DisplayFor(model => model.Data)</p>
             </div>
-            <div class="col-sm-6">
-                <p>@Html.DisplayFor(model => model.Data)</p>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <p><b>@Html.DisplayNameFor(model => model.Horario): </b> @Html.DisplayFor(model => model.Horario)</p>
             </div>
         </div>
     </div>

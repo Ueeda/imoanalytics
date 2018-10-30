@@ -27,6 +27,10 @@ namespace ImoAnalyticsSystem
                 imobiliaria = new Imobiliaria();
                 imobiliaria.EmailContato = "contato@toyoimoveis.com.br";
                 imobiliaria.Endereco = "Rua Arion Niepce da Silva";
+                imobiliaria.Numero = 250;
+                imobiliaria.Complemento = "Loja 01";
+                imobiliaria.Cidade = "Curitiba";
+                imobiliaria.Estado = "Paraná";
                 imobiliaria.NomeImobiliaria = "Toyo Imoveis";
                 imobiliaria.TelefoneContato = "(41) 3014-8008";
                 imobiliaria.TaxaAdministracaoLocacao = (decimal)0.02;

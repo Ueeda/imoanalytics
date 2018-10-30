@@ -67,7 +67,7 @@ namespace ImoAnalyticsSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include = "ID,InteressadoId,ImovelId,Data,Valor")] Proposta proposta)
+        public ActionResult Create([Bind(Include = "ID,InteressadoId,ImovelId,Data,Valor,TipoProposta")] Proposta proposta)
         {
 
             string create = "";
@@ -76,7 +76,7 @@ namespace ImoAnalyticsSystem.Controllers
                 create = propostaBusiness.Create(proposta);
                 if (create.Equals("OK"))
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", "Imovel", new { id = proposta.ImovelId });
                 }
             }
 
@@ -120,15 +120,15 @@ namespace ImoAnalyticsSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "ID,InteressadoId,ImovelId,Data,Valor")] Proposta proposta)
+        public ActionResult Edit([Bind(Include = "ID,InteressadoId,ImovelId,Data,Valor,TipoProposta")] Proposta proposta)
         {
             string edit = "";
             if (ModelState.IsValid)
             {
                 edit = propostaBusiness.Edit(proposta);
                 if (edit.Equals("OK"))
-                    return RedirectToAction("Index");
-               
+                    return RedirectToAction("Details", "Imovel", new { id = proposta.ImovelId });
+
             }
 
             if(!edit.Equals(""))
@@ -167,7 +167,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             Proposta proposta = propostaBusiness.FindById(id);
             propostaBusiness.Delete(proposta);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Imovel");
         }
 
         protected override void Dispose(bool disposing)
