@@ -55,24 +55,9 @@ namespace ImoAnalyticsSystem.Business
                 imovel.Files = new List<Imagem> { imagem };
             }
 
-            imovel.DataCadastro = DateTime.Now;
-            var historico = new MudancaPreco();
-            historico.Locacao = imovel.Locacao;
-            historico.Venda = imovel.Venda;
-            if (imovel.Venda)
-                historico.ValorVenda = imovel.ValorVenda;
-            else
-                historico.ValorVenda = 0;
-
-            if (imovel.Locacao)
-                historico.ValorLocacao = imovel.ValorLocacao;
-            else
-                historico.ValorLocacao = 0;
-
-            historico.DataMudanca = DateTime.Now;
-            
-            imovel.HistoricoPrecos = new List<MudancaPreco>();
-            imovel.HistoricoPrecos.Add(historico);
+            imovel.DataCadastro = DateTime.Now.Date;
+            MudancaPrecoBusiness mudancaPrecoBusiness = new MudancaPrecoBusiness();
+            mudancaPrecoBusiness.StartNewHistory(imovel);
 
             db.Imovel.Add(imovel);
             db.SaveChanges();
@@ -82,31 +67,8 @@ namespace ImoAnalyticsSystem.Business
 
         public string Edit(Imovel imovel, HttpPostedFileBase upload)
         {
-            var historico = db.MudancaPreco.Where(p => p.ImovelId == imovel.ID).ToList();
-            MudancaPreco ultimaMudanca = null;
-            if (historico.Count() > 0)
-                ultimaMudanca = historico.ElementAt(historico.Count - 1);
-
-            if (imovel.Locacao != ultimaMudanca.Locacao || imovel.Venda != ultimaMudanca.Venda || imovel.ValorVenda != ultimaMudanca.ValorVenda || imovel.ValorLocacao != ultimaMudanca.ValorLocacao || ultimaMudanca == null)
-            {
-                var historicoNew = new MudancaPreco();
-                historicoNew.Locacao = imovel.Locacao;
-                historicoNew.Venda = imovel.Venda;
-                if (historicoNew.Venda)
-                    historicoNew.ValorVenda = imovel.ValorVenda;
-                else
-                    historicoNew.ValorVenda = 0;
-
-                if (historicoNew.Locacao)
-                    historicoNew.ValorLocacao = imovel.ValorLocacao;
-                else
-                    historicoNew.ValorLocacao = 0;
-
-                historicoNew.DataMudanca = DateTime.Now;
-                historicoNew.ImovelId = imovel.ID;
-                db.MudancaPreco.Add(historicoNew);
-            }
-
+            MudancaPrecoBusiness mudancaPrecoBusiness = new MudancaPrecoBusiness();
+            mudancaPrecoBusiness.Create(imovel);
             db.Entry(imovel).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 

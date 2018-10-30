@@ -172,7 +172,7 @@ namespace ImoAnalyticsSystem.Controllers
             int pageSize = 9;
             int pageNumber = (page ?? 1);
 
-            return View(imoveis.OrderBy(i => i.DataCadastro).ToPagedList(pageNumber, pageSize));
+            return View(imoveis.OrderBy(i => i.CodigoReferencia).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Imovel/Details/5
