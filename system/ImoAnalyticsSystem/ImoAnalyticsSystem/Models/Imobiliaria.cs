@@ -26,9 +26,13 @@ namespace ImoAnalyticsSystem.Models
         public int Numero { get; set; }
 
         [Display(Name = "Complemento")]
-        [Required(ErrorMessage = "O campo complemento é obrigatório.")]
         [MaxLength(50, ErrorMessage = "O tamanho máximo do campo complemento é de 50 caracteres.")]
         public String Complemento { get; set; }
+
+        [Display(Name = "Bairro")]
+        [Required(ErrorMessage = "O campo bairro é obrigatório.")]
+        [MaxLength(150, ErrorMessage = "O tamanho máximo do campo bairro é de 150 caracteres.")]
+        public String Bairro { get; set; }
 
         [Display(Name = "Cidade")]
         [Required(ErrorMessage = "O campo cidade é obrigatório.")]

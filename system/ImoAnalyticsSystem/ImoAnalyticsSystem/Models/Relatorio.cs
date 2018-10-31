@@ -7,6 +7,7 @@ namespace ImoAnalyticsSystem.Models
 {
     public class Relatorio
     {
+        public int ID { get; set; }
         public String TituloRelatorio { get; set; }
         public Boolean Privado { get; set; }
         public DateTime DataInicio { get; set; }
