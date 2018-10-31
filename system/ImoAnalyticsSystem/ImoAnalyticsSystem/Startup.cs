@@ -29,7 +29,7 @@ namespace ImoAnalyticsSystem
                 imobiliaria.Endereco = "Rua Arion Niepce da Silva";
                 imobiliaria.Numero = 250;
                 imobiliaria.Complemento = "Loja 01";
-                imobiliaria.Bairro = "Portão",
+                imobiliaria.Bairro = "Portão";
                 imobiliaria.Cidade = "Curitiba";
                 imobiliaria.Estado = "Paraná";
                 imobiliaria.NomeImobiliaria = "Toyo Imoveis";

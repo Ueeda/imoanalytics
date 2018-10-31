@@ -33,11 +33,52 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
+                        <p>@Html.LabelFor(model => model.Numero)</p>
+                        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Numero).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="group">
+                        <p>@Html.LabelFor(model => model.Complemento)</p>
+                        @Html.EditorFor(model => model.Complemento, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Complemento).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="group">
+                        <p>@Html.LabelFor(model => model.Bairro)</p>
+                        @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Bairro).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="group">
+                        <p>@Html.LabelFor(model => model.Cidade)</p>
+                        @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Cidade).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="group">
+                        <p>@Html.LabelFor(model => model.Estado)</p>
+                        @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Estado).ToHtmlString()), @class = "effect-1" } })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="group">
                         <p>@Html.LabelFor(model => model.EmailContato)</p>
                         @Html.EditorFor(model => model.EmailContato, new { htmlAttributes = new { @type = "email", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.EmailContato).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.TelefoneContato)</p>
@@ -45,23 +86,23 @@
                         <span class="focus-border"></span>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.ComissaoImobiliariaVenda)</p>
                         @Html.EditorFor(model => model.ComissaoImobiliariaVenda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ComissaoImobiliariaVenda).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
-                <div class="col-sm-4">
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.ComissaoCorretorVenda)</p>
                         @Html.EditorFor(model => model.ComissaoCorretorVenda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ComissaoCorretorVenda).ToHtmlString()), @class = "effect-1" } })
                         <span class="focus-border"></span>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="group">
                         <p>@Html.LabelFor(model => model.TaxaAdministracaoLocacao)</p>
                         @Html.EditorFor(model => model.TaxaAdministracaoLocacao, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.TaxaAdministracaoLocacao).ToHtmlString()), @class = "effect-1" } })
