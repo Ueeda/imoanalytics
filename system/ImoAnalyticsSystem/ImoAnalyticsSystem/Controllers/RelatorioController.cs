@@ -494,5 +494,26 @@ namespace ImoAnalyticsSystem.Controllers
             ViewBag.Bairro = bairro;
             return View(columnChart);
         }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult RelatorioComFiltro(int? id)
+        {
+            RelatorioBusiness relatorioBusiness = new RelatorioBusiness();
+            TipoImovelBusiness tipoImovelBusiness = new TipoImovelBusiness();
+            ViewBag.Imoveis = true;
+
+            if (id == null)
+            {
+                ViewBag.TipoImovelId = new SelectList(tipoImovelBusiness.GetTiposImovel(), "ID", "Tipo");
+                return View();
+            }
+                
+            else
+            {
+                Relatorio relatorio = relatorioBusiness.FindById(id);
+                return View(relatorio);
+            }
+        }
     }
 }

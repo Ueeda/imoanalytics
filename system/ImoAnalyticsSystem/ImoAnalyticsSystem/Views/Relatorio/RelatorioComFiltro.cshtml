@@ -1,0 +1,237 @@
+﻿@model ImoAnalyticsSystem.Models.Relatorio
+@{
+    ViewBag.Title = "Relatório gerado com filtros";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="col-md-3">
+        <div class="panel panel-primary filter">
+            <div class="panel-heading">
+                <h3 class="panel-title">Filtros</h3>
+            </div>
+
+            <div class="panel-body filter-body">
+                <div class="primary-color-row row">
+                    <div class="col-md-12">
+                        <p>Tipo de relatório</p>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Imovel, new { id = TipoRelatorio.Imovel }) <label for="Imovel">Imóvel</label>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Acao, new { id = TipoRelatorio.Acao }) <label for="Acao">Locação/Venda/Visita</label>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Estatisticas, new { id = TipoRelatorio.Estatisticas }) <label for="Estatisticas">Estatísticas Gerais</label>
+                    </div>
+                </div>
+                @*<div class="primary-color-row row estatisticas-filter imovel-filter acao-filter hide">
+            <div class="col-md-12">
+                <p>
+                    @Html.EditorFor(model => model.Privado)
+                    @Html.LabelFor(m => m.Privado)
+                </p>
+            </div>
+        </div>*@
+                <div class="primary-color-row row acao-filter hide">
+                    <div class="col-md-12">
+                        <p>Tipo da ação</p>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Locacao, new { id = TipoAcao.Locacao }) <label for="Locacao">Locação</label>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Venda, new { id = TipoAcao.Venda }) <label for="Venda">Venda</label>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Visita, new { id = TipoAcao.Visita }) <label for="Visita">Visita</label>
+                    </div>
+                </div>
+                <div class="primary-color-row row imovel-filter valor-venda-filter hide">
+                    <div class="col-md-12">
+                        <p>@Html.LabelFor(m => m.ValorVenda)</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorVenda).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="primary-color-row row imovel-filter valor-locacao-filter hide">
+                    <div class="col-md-12">
+                        <p>@Html.LabelFor(m => m.ValorLocacao)</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.EditorFor(model => model.ValorLocacao, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorLocacao).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="primary-color-row row imovel-filter acao-filter hide">
+                    <div class="col-md-12">
+                        <p>@Html.LabelFor(m => m.Endereco)</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Endereco).ToHtmlString()), @class = "effect-1" } })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter hide">
+                    <div class="col-md-12">
+                        <p>@Html.LabelFor(m => m.Bairro)</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Bairro).ToHtmlString()), @class = "effect-1" } })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter hide">
+                    <div class="col-md-12">
+                        <p>@Html.LabelFor(m => m.DataInicio)</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.DataInicio).ToHtmlString()), @class = "effect-1 js-data" } })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter hide">
+                    <div class="col-md-12">
+                        <p>@Html.LabelFor(m => m.DataFim)</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.EditorFor(model => model.DataFim, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.DataFim).ToHtmlString()), @class = "effect-1 js-data" } })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter hide">
+                    <div class="col-md-12">
+                        <p>Tipo de Imóvel</p>
+                        @Html.DropDownList("tipoImovel", ViewBag.TipoImovelId as SelectList, "Selecione um tipo de imóvel", htmlAttributes: new { @class = "" })
+                    </div>
+                </div>
+                <div class="primary-color-row row imovel-filter acao-filter hide">
+                    <div class="col-md-12">
+                        <p>@Html.LabelFor(m => m.QntdBanheiros)</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.EditorFor(model => model.QntdBanheiros, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdBanheiros).ToHtmlString()), @class = "effect-1" } })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="primary-color-row row imovel-filter acao-filter hide">
+                    <div class="col-md-12">
+                        <p>@Html.LabelFor(m => m.QntdDormitorios)</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.EditorFor(model => model.QntdDormitorios, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdDormitorios).ToHtmlString()), @class = "effect-1" } })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="primary-color-row row imovel-filter acao-filter hide">
+                    <div class="col-md-12">
+                        <p>@Html.LabelFor(m => m.QntdSuites)</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.EditorFor(model => model.QntdSuites, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdSuites).ToHtmlString()), @class = "effect-1" } })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="primary-color-row row imovel-filter acao-filter hide">
+                    <div class="col-md-12">
+                        <p>@Html.LabelFor(m => m.QntdVagasGaragem)</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.EditorFor(model => model.QntdVagasGaragem, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdVagasGaragem).ToHtmlString()), @class = "effect-1" } })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+
+        $("input:radio[name='TipoRelatorio']").change(function () {
+            if ($("input[name='TipoRelatorio']:checked").val() == 1) {
+                $(".estatisticas-filter input").val("");
+                $(".estatisticas-filter").addClass("hide");
+                $(".acao-filter input[type='text']").val("");
+                $(".acao-filter input[type='number']").val("");
+                $(".acao-filter").addClass("hide");
+                $(".valor-locacao-filter input").val("");
+                $(".valor-locacao-filter").addClass("hide");
+                $(".valor-venda-filter input").val("");
+                $(".valor-venda-filter").addClass("hide");
+                $(".imovel-filter").removeClass("hide");
+                $("input[name='TipoAcao']").prop("checked", false);
+            }
+            if ($("input[name='TipoRelatorio']:checked").val() == 2) {
+                $(".estatisticas-filter input").val("");
+                $(".estatisticas-filter").addClass("hide");
+                $(".imovel-filter input").val("");
+                $(".valor-locacao-filter input").val("");
+                $(".valor-locacao-filter").addClass("hide");
+                $(".valor-venda-filter input").val("");
+                $(".valor-venda-filter").addClass("hide");
+                $(".imovel-filter").addClass("hide");
+                $(".acao-filter").removeClass("hide");
+                $("input[name='TipoAcao']").prop("checked", false);
+            }
+            if ($("input[name='TipoRelatorio']:checked").val() == 3) {
+                $(".estatisticas-filter input").val("");
+                $(".estatisticas-filter").addClass("hide");
+                $(".valor-locacao-filter input").val("");
+                $(".valor-locacao-filter").addClass("hide");
+                $(".valor-venda-filter input").val("");
+                $(".valor-venda-filter").addClass("hide");
+                $(".acao-filter input[text]").val("");
+                $(".acao-filter input[type='text']").val("");
+                $(".acao-filter input[type='number']").val("");
+                $(".acao-filter").addClass("hide");
+                $(".estatisticas-filter").removeClass("hide");
+                $("input[name='TipoAcao']").prop("checked", false);
+            }
+        });
+        
+        $("input:radio[name='TipoAcao']").change(function () {
+            if ($("input[name='TipoAcao']:checked").val() == 1) {
+                $(".valor-locacao-filter").removeClass("hide");
+                $(".valor-venda-filter input").val("");
+                $(".valor-venda-filter").addClass("hide");    
+            }
+            if ($("input[name='TipoAcao']:checked").val() == 2) {
+                $(".valor-venda-filter").removeClass("hide");
+                $(".valor-locacao-filter input").val("");
+                $(".valor-locacao-filter").addClass("hide");
+            }
+            if ($("input[name='TipoAcao']:checked").val() == 3) {
+                $(".valor-venda-filter input").val("");
+                $(".valor-venda-filter").addClass("hide");
+                $(".valor-locacao-filter input").val("");
+                $(".valor-locacao-filter").addClass("hide");
+            }
+        });
+    });
+</script>

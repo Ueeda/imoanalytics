@@ -1,0 +1,6 @@
+﻿@model ImoAnalyticsSystem.Models.TipoRelatorio
+@foreach (var value in Enum.GetValues(typeof(ImoAnalyticsSystem.Models.TipoRelatorio)))
+{
+    @Html.RadioButtonFor(m => m, value)
+    @Html.Label(value.ToString())
+}

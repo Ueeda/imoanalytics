@@ -47,5 +47,7 @@ namespace ImoAnalyticsSystem.Data
         public virtual DbSet<Imagem> Imagens { get; set; }
 
         public virtual DbSet<MudancaPreco> MudancaPreco { get; set; }
+
+        public virtual DbSet<Relatorio> Relatorio { get; set; }
     }
 }

@@ -217,6 +217,7 @@
     <Compile Include="Business\MudancaPrecoBusiness.cs" />
     <Compile Include="Business\PropostaBusiness.cs" />
     <Compile Include="Business\ProprietarioBusiness.cs" />
+    <Compile Include="Business\RelatorioBusiness.cs" />
     <Compile Include="Business\TipoImovelBusiness.cs" />
     <Compile Include="Business\VendaBusiness.cs" />
     <Compile Include="Business\VisitaBusiness.cs" />
@@ -435,6 +436,8 @@
     <Content Include="Views\Relatorio\Index.cshtml" />
     <Content Include="Views\Relatorio\EstatisticaBairros.cshtml" />
     <Content Include="Views\Relatorio\EstatisticaBairrosGrafico.cshtml" />
+    <Content Include="Views\Relatorio\RelatorioComFiltro.cshtml" />
+    <Content Include="Views\Shared\TipoRelatorio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
