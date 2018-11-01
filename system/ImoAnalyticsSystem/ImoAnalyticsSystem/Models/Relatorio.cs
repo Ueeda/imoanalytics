@@ -58,6 +58,11 @@ namespace ImoAnalyticsSystem.Models
         [Display(Name = "Tipo de imóvel")]
         public int TipoImovelId { get; set; }
 
+        [Display(Name = "Área total máxima")]
+        public int AreaTotalMáxima { get; set; }
+
+        [Display(Name = "Área total mínima")]
+        public int AreaTotalMinima { get; set; }
 
         public String CorretorId { get; set; }
 
