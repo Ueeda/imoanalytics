@@ -11,6 +11,11 @@ namespace ImoAnalyticsSystem.Business
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public List<MudancaPreco> ListAll()
+        {
+            return db.MudancaPreco.ToList();
+        }
+
         public void StartNewHistory(Imovel imovel)
         {
             var historico = new MudancaPreco();
@@ -27,6 +32,7 @@ namespace ImoAnalyticsSystem.Business
                 historico.ValorLocacao = 0;
 
             historico.DataMudanca = DateTime.Now;
+            historico.FirstRegister = true;
 
             imovel.HistoricoPrecos = new List<MudancaPreco>();
             imovel.HistoricoPrecos.Add(historico);
@@ -79,6 +85,7 @@ namespace ImoAnalyticsSystem.Business
 
                 historicoNew.DataMudanca = DateTime.Now;
                 historicoNew.ImovelId = imovel.ID;
+                historicoNew.FirstRegister = true;
                 db.MudancaPreco.Add(historicoNew);
                 db.SaveChanges();
             }

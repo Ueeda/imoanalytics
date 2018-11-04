@@ -17,6 +17,7 @@ namespace ImoAnalyticsSystem.Models
         public decimal? ValorLocacao { get; set; }
         public bool Venda { get; set; }
         public bool Locacao { get; set; }
+        public bool FirstRegister { get; set; }
 
         public int ImovelId { get; set; }
         public virtual Imovel Imovel { get; set; }

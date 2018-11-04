@@ -20,16 +20,37 @@
                         <p>Tipo de relatório</p>
                     </div>
                     <div class="col-md-12">
-                        @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Imovel, new { id = TipoRelatorio.Imovel }) <label for="Imovel">Imóvel</label>
+                        @if (Model.TipoRelatorio == TipoRelatorio.Imovel)
+                        {
+                            @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Imovel, new { id = TipoRelatorio.Imovel, @checked = "true" }) <label for="Imovel">Imóvel</label>
+                        }
+                        else
+                        {
+                            @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Imovel, new { id = TipoRelatorio.Imovel }) <label for="Imovel">Imóvel</label>
+                        }
                     </div>
                     <div class="col-md-12">
-                        @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Acao, new { id = TipoRelatorio.Acao }) <label for="Acao">Locação/Venda/Visita</label>
+                        @if (Model.TipoRelatorio == TipoRelatorio.Acao)
+                        {
+                            @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Acao, new { id = TipoRelatorio.Acao, @checked = "true" }) <label for="Acao">Locação/Venda/Visita</label>
+                        }
+                        else
+                        {
+                            @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Acao, new { id = TipoRelatorio.Acao }) <label for="Acao">Locação/Venda/Visita</label>
+                        }
                     </div>
                     <div class="col-md-12">
-                        @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Estatisticas, new { id = TipoRelatorio.Estatisticas }) <label for="Estatisticas">Estatísticas Gerais</label>
+                        @if (Model.TipoRelatorio == TipoRelatorio.Estatisticas)
+                        {
+                            @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Estatisticas, new { id = TipoRelatorio.Estatisticas, @checked = "true" }) <label for="Estatisticas">Estatísticas Gerais</label>
+                        }
+                        else
+                        {
+                            @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Estatisticas, new { id = TipoRelatorio.Estatisticas }) <label for="Estatisticas">Estatísticas Gerais</label>
+                        }
                     </div>
                 </div>
-                <div class="primary-color-row row acao-filter hide">
+                <div class="primary-color-row row acao-filter">
                     <div class="col-md-12">
                         <p>Tipo da ação</p>
                     </div>
@@ -43,7 +64,7 @@
                         @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Visita, new { id = TipoAcao.Visita }) <label for="Visita">Visita</label>
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter valor-venda-filter hide">
+                <div class="primary-color-row row imovel-filter valor-venda-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.ValorVenda)</p>
                     </div>
@@ -54,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter valor-locacao-filter hide">
+                <div class="primary-color-row row imovel-filter valor-locacao-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.ValorLocacao)</p>
                     </div>
@@ -65,7 +86,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter acao-filter hide">
+                <div class="primary-color-row row imovel-filter acao-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.Endereco)</p>
                     </div>
@@ -76,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter hide">
+                <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.Bairro)</p>
                     </div>
@@ -87,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter hide">
+                <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.DataInicio)</p>
                     </div>
@@ -98,7 +119,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter hide">
+                <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.DataFim)</p>
                     </div>
@@ -109,13 +130,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter hide">
+                <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter">
                     <div class="col-md-12">
                         <p>Tipo de Imóvel</p>
                         @Html.DropDownList("tipoImovel", ViewBag.TipoImovelId as SelectList, "Selecione um tipo de imóvel", htmlAttributes: new { @class = "" })
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter acao-filter hide">
+                <div class="primary-color-row row imovel-filter acao-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.QntdBanheiros)</p>
                     </div>
@@ -126,7 +147,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter acao-filter hide">
+                <div class="primary-color-row row imovel-filter acao-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.QntdDormitorios)</p>
                     </div>
@@ -137,7 +158,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter acao-filter hide">
+                <div class="primary-color-row row imovel-filter acao-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.QntdSuites)</p>
                     </div>
@@ -148,7 +169,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter acao-filter hide">
+                <div class="primary-color-row row imovel-filter acao-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.QntdVagasGaragem)</p>
                     </div>

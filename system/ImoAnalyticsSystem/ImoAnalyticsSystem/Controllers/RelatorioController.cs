@@ -572,41 +572,41 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 legenda.Add(data.ToString("MMMM yyyy"));
             }
-
-            model.Chart.InitChart(new Chart()
-            {
-                Type = DotNet.Highcharts.Enums.ChartTypes.Line,
-                BackgroundColor = new BackColorOrGradient(System.Drawing.Color.White),
-                Style = "fontWeight: 'bold', fontSize: '17px'",
-                BorderColor = System.Drawing.Color.LightBlue,
-                BorderRadius = 0,
-                BorderWidth = 3
-            });
-
-            if(model.TituloRelatorio != null)
-                model.Chart.SetTitle(new Title() { Text = model.TituloRelatorio });
-            else
-                model.Chart.SetTitle(new Title() { Text = "Relatório com filtro" });
-
-            model.Chart.SetSubtitle(new Subtitle()
-            {
-                Text = "Personalizado"
-            });
-            model.Chart.SetXAxis(new XAxis()
-            {
-                Type = AxisTypes.Category,
-                Title = new XAxisTitle() { Text = "", Style = "fontWeight: 'bold', fontSize: '14px'" },
-                Categories = legenda.Count() > 1 ? legenda.ToArray() : new string[] { "" }
-            });
-            model.Chart.SetLegend(new Legend
-            {
-                Enabled = true,
-                BorderColor = System.Drawing.Color.CornflowerBlue,
-                BorderRadius = 6,
-                BackgroundColor = new BackColorOrGradient(ColorTranslator.FromHtml("#EEE"))
-            });
+            
             if (model.TipoRelatorio == TipoRelatorio.Acao)
             {
+                model.Chart.InitChart(new Chart()
+                {
+                    Type = DotNet.Highcharts.Enums.ChartTypes.Line,
+                    BackgroundColor = new BackColorOrGradient(System.Drawing.Color.White),
+                    Style = "fontWeight: 'bold', fontSize: '17px'",
+                    BorderColor = System.Drawing.Color.LightBlue,
+                    BorderRadius = 0,
+                    BorderWidth = 3
+                });
+
+                if (model.TituloRelatorio != null)
+                    model.Chart.SetTitle(new Title() { Text = model.TituloRelatorio });
+                else
+                    model.Chart.SetTitle(new Title() { Text = "Relatório com filtro" });
+
+                model.Chart.SetSubtitle(new Subtitle()
+                {
+                    Text = "Personalizado"
+                });
+                model.Chart.SetXAxis(new XAxis()
+                {
+                    Type = AxisTypes.Category,
+                    Title = new XAxisTitle() { Text = "", Style = "fontWeight: 'bold', fontSize: '14px'" },
+                    Categories = legenda.Count() > 1 ? legenda.ToArray() : new string[] { "" }
+                });
+                model.Chart.SetLegend(new Legend
+                {
+                    Enabled = true,
+                    BorderColor = System.Drawing.Color.CornflowerBlue,
+                    BorderRadius = 6,
+                    BackgroundColor = new BackColorOrGradient(ColorTranslator.FromHtml("#EEE"))
+                });
                 LocacaoBusiness locacaoBusiness = new LocacaoBusiness();
                 VendaBusiness vendaBusiness = new VendaBusiness();
                 VisitaBusiness visitaBusiness = new VisitaBusiness();
@@ -745,10 +745,95 @@ namespace ImoAnalyticsSystem.Controllers
             }
             else if(model.TipoRelatorio == TipoRelatorio.Estatisticas)
             {
+                model.Chart.InitChart(new Chart()
+                {
+                    Type = DotNet.Highcharts.Enums.ChartTypes.Column,
+                    BackgroundColor = new BackColorOrGradient(System.Drawing.Color.White),
+                    Style = "fontWeight: 'bold', fontSize: '17px'",
+                    BorderColor = System.Drawing.Color.LightBlue,
+                    BorderRadius = 0,
+                    BorderWidth = 3
+                });
+
+                if (model.TituloRelatorio != null)
+                    model.Chart.SetTitle(new Title() { Text = model.TituloRelatorio });
+                else
+                    model.Chart.SetTitle(new Title() { Text = "Relatório com filtro" });
+
+                model.Chart.SetSubtitle(new Subtitle()
+                {
+                    Text = "Personalizado"
+                });
+                model.Chart.SetXAxis(new XAxis()
+                {
+                    Type = AxisTypes.Category,
+                    Title = new XAxisTitle() { Text = "", Style = "fontWeight: 'bold', fontSize: '14px'" },
+                    Categories = legenda.Count() > 1 ? legenda.ToArray() : new string[] { "" }
+                });
+                model.Chart.SetLegend(new Legend
+                {
+                    Enabled = true,
+                    BorderColor = System.Drawing.Color.CornflowerBlue,
+                    BorderRadius = 6,
+                    BackgroundColor = new BackColorOrGradient(ColorTranslator.FromHtml("#EEE"))
+                });
                 LocacaoBusiness locacaoBusiness = new LocacaoBusiness();
                 VendaBusiness vendaBusiness = new VendaBusiness();
                 ImovelBusiness imovelBusiness = new ImovelBusiness();
                 VisitaBusiness visitaBusiness = new VisitaBusiness();
+                MudancaPrecoBusiness mudancaPrecoBusiness = new MudancaPrecoBusiness();
+                Dictionary<string, List<Object>> estatisticasPorMes = new Dictionary<string, List<Object>>();
+
+                var locacoes = locacaoBusiness.GetLocacoes();
+                var vendas = vendaBusiness.GetVendas();
+                var visitas = visitaBusiness.GetVisitas();
+                var historicoImoveis = mudancaPrecoBusiness.ListAll();
+
+                if(model.Bairro != null)
+                {
+                    locacoes = locacoes.Where(l => l.Imovel.Bairro.Contains(model.Bairro)).ToList();
+                    vendas = vendas.Where(l => l.Imovel.Bairro.Contains(model.Bairro)).ToList();
+                    visitas = visitas.Where(l => l.Imovel.Bairro.Contains(model.Bairro)).ToList();
+                    historicoImoveis = historicoImoveis.Where(l => l.Imovel.Bairro.Contains(model.Bairro)).ToList();
+                }
+
+                List<Object> estatisticaMes = new List<Object>();
+                foreach (DateTime data in datas)
+                {
+                    estatisticaMes.Add(locacoes.Where(l => l.DataOperacao.Year == data.Year && l.DataOperacao.Month == data.Month).ToList().Count());
+                }
+                estatisticasPorMes.Add("Locacação", estatisticaMes);
+
+                estatisticaMes = new List<Object>();
+                foreach (DateTime data in datas)
+                {
+                    estatisticaMes.Add(vendas.Where(l => l.DataVenda.Year == data.Year && l.DataVenda.Month == data.Month).ToList().Count());
+                }
+                estatisticasPorMes.Add("Venda", estatisticaMes);
+
+                estatisticaMes = new List<Object>();
+                foreach (DateTime data in datas)
+                {
+                    estatisticaMes.Add(visitas.Where(l => l.Data.Year == data.Year && l.Data.Month == data.Month).ToList().Count());
+                }
+                estatisticasPorMes.Add("Visita", estatisticaMes);
+
+                estatisticaMes = new List<Object>();
+                foreach (DateTime data in datas)
+                {
+                    estatisticaMes.Add(historicoImoveis.Where(l => l.FirstRegister == true && l.DataMudanca.Month == data.Month && l.DataMudanca.Year == data.Year).ToList().Count());
+                }
+                estatisticasPorMes.Add("Imóveis cadastrados", estatisticaMes);
+
+                foreach (string data in estatisticasPorMes.Keys)
+                {
+                    var estatisticas = estatisticasPorMes.FirstOrDefault(c => c.Key == data).Value;
+                    conteudoGrafico.Add(new Series
+                    {
+                        Name = data,
+                        Data = new DotNet.Highcharts.Helpers.Data(estatisticas.ToArray())
+                    });
+                }
             }
             else if (model.TipoRelatorio == TipoRelatorio.Imovel)
             {
@@ -756,6 +841,17 @@ namespace ImoAnalyticsSystem.Controllers
             }
             model.Chart.SetSeries(conteudoGrafico.ToArray());
             return View(model);
+        }
+
+        [ActionName("RelatorioComFiltroGrafico")]
+        [HttpPost]
+        [Authorize]
+        public ActionResult RelatorioComFiltroGrafico1(RelatorioViewModel model)
+        {
+            TipoImovelBusiness tipoImovelBusiness = new TipoImovelBusiness();
+            ViewBag.TipoImovelId = new SelectList(tipoImovelBusiness.GetTiposImovel(), "ID", "Tipo", model.TipoImovelId);
+            ViewBag.Imoveis = true;
+            return RedirectToAction("RelatorioComFiltroGrafico", model);
         }
     }
 }
