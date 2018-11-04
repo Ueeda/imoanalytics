@@ -11,6 +11,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ImoAnalyticsSystem.Controllers
 {
@@ -315,5 +316,127 @@ namespace ImoAnalyticsSystem.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // GET: Imovel/ImportExcel
+        [HttpGet]
+        [Authorize]
+        public ActionResult ImportExcel()
+        {
+            ViewBag.ImportSuccess = "";
+            ViewBag.ImportError = "";
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult ImportExcel(HttpPostedFileBase upload)
+        {
+
+            int contador = 0;
+            
+
+            if (upload != null && upload.ContentLength > 0)
+            {
+                Excel.Workbook MyBook = null;
+                Excel.Application MyApp = null;
+                Excel.Worksheet MySheet = null;
+                var path = Path.GetFileName(upload.FileName);        
+      
+                MyApp = new Excel.Application();
+                MyApp.Visible = false;
+                MyBook = MyApp.Workbooks.Open(path);
+                MySheet = (Excel.Worksheet)MyBook.Sheets[1];
+                var lastRow = MySheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Row;
+               
+                for (int index = 2; index < lastRow; index++)
+                {
+
+                    System.Array MyValues = (System.Array)MySheet.get_Range("A" +
+                    index.ToString(), "AB" + index.ToString()).Cells.Value;               
+
+                    Imovel imovel = new Imovel();
+                    TipoImovel tipoImovel;
+                    Proprietario proprietario;
+                    Cartorio cartorio;
+
+
+
+                    imovel.TituloImovel = MyValues.GetValue(1, 1).ToString();
+                    imovel.Endereco = MyValues.GetValue(1, 2).ToString();
+                    imovel.Complemento = MyValues.GetValue(1, 3).ToString();
+                    imovel.Numero =  Convert.ToInt32(MyValues.GetValue(1, 4));
+                    imovel.Cep = MyValues.GetValue(1, 5).ToString();
+                    imovel.Bairro = MyValues.GetValue(1, 6).ToString();
+                    imovel.AnoConstrucao = Convert.ToInt32(MyValues.GetValue(1, 7));
+                    imovel.Venda = Convert.ToBoolean(MyValues.GetValue(1, 8).ToString());
+                    imovel.Locacao = Convert.ToBoolean(MyValues.GetValue(1, 9).ToString());
+                    imovel.AreaPrivada = Convert.ToInt32(MyValues.GetValue(1, 10));
+                    imovel.AreaTotal = Convert.ToInt32(MyValues.GetValue(1, 11));
+                    imovel.VagasGaragem = Convert.ToInt32(MyValues.GetValue(1, 12));
+                    imovel.QntBanheiros = Convert.ToInt32(MyValues.GetValue(1, 13));
+                    imovel.QntDormitorios = Convert.ToInt32(MyValues.GetValue(1, 14));
+                    imovel.QntSuites = Convert.ToInt32(MyValues.GetValue(1, 15));
+                    imovel.ValorVenda = Convert.ToDecimal(MyValues.GetValue(1, 16));
+                    imovel.ValorLocacao = Convert.ToDecimal(MyValues.GetValue(1, 17));
+                    imovel.ValorIptu = Convert.ToDecimal(MyValues.GetValue(1, 18));
+                    imovel.NomeCondominio = MyValues.GetValue(1, 19).ToString();
+                    imovel.ValorCondominio = Convert.ToDecimal(MyValues.GetValue(1, 20));
+                    imovel.NumeroRegistroImovel = Convert.ToInt32(MyValues.GetValue(1, 21));
+                    imovel.DescricaoImovel = MyValues.GetValue(1, 22).ToString();
+
+                    tipoImovel = tipoImovelBusiness.FindByName(MyValues.GetValue(1, 23).ToString());
+                    if (tipoImovel != null)
+                        imovel.TipoImovelId = tipoImovel.ID;
+
+                    cartorio = cartorioBusiness.FindByName(MyValues.GetValue(1, 24).ToString());
+                    if (cartorio != null)
+                        imovel.CartorioId = cartorio.ID;
+
+                    proprietario = proprietarioBusiness.FindByCpf(MyValues.GetValue(1, 25).ToString());
+                    if (proprietario != null)
+                        imovel.ProprietarioId = proprietario.ID;
+
+                    imovel.Cidade = MyValues.GetValue(1, 26).ToString();
+                    imovel.Estado = MyValues.GetValue(1, 27).ToString();
+                    imovel.CodigoReferencia = MyValues.GetValue(1, 28).ToString();
+
+                    if (tipoImovel != null && cartorio != null && proprietario != null)
+                    {
+                        string response = imovelBusiness.Create(imovel, null);
+                        if (response != "OK")
+                        {
+                            contador++;
+                        }
+
+                    }
+                    else
+                        contador++;
+                        
+                }
+                
+
+                MyBook.Close(0);
+                MyApp.Quit();
+            }
+
+            if(contador == 0)
+            {
+
+                ViewBag.ImportSuccess = "Todos os registros foram importados com sucesso.";
+                ViewBag.ImportError = "";
+            }else
+            {
+
+                ViewBag.ImportSuccess = "";
+                ViewBag.ImportError = "Não foi possível importar " + contador + " registro(s).";
+
+            } 
+
+             
+            return View();
+        }
+
+
+
     }
 }
