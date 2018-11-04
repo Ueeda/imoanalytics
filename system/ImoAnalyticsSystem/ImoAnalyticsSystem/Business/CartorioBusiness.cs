@@ -27,6 +27,13 @@ namespace ImoAnalyticsSystem.Business
             return db.Cartorio.Find(id);
         }
 
+        public Cartorio FindByName(string name)
+        {
+
+            return db.Cartorio.Where(p => p.NomeCartorio.Equals(name)).FirstOrDefault();
+
+        }
+
         public string Create(Cartorio cartorio)
         {
             var nome = db.Cartorio.Where

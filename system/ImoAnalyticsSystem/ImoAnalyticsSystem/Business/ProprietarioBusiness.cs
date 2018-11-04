@@ -27,6 +27,13 @@ namespace ImoAnalyticsSystem.Business
             return db.Proprietario.Find(id);
         }
 
+        public Proprietario FindByCpf(string cpf)
+        {
+
+            return db.Proprietario.Where(p => p.Cpf.Equals(cpf)).FirstOrDefault();
+
+        }
+        
         public void UpdateActive(int id)
         {
             Proprietario proprietario = FindById(id);

@@ -27,6 +27,13 @@ namespace ImoAnalyticsSystem.Business
             return db.TipoImovel.Find(id);
         }
 
+        public TipoImovel FindByName(string name)
+        {
+
+            return db.TipoImovel.Where(p => p.Tipo.Equals(name)).FirstOrDefault();
+
+        }
+
         public string Create(TipoImovel tipoImovel)
         {
             var tipo = db.TipoImovel.Where
