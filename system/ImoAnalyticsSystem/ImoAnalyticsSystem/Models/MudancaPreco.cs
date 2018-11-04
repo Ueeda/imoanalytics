@@ -13,8 +13,8 @@ namespace ImoAnalyticsSystem.Models
 
         [DataType(DataType.Date)]
         public DateTime DataMudanca { get; set; }
-        public decimal ValorVenda { get; set; }
-        public decimal ValorLocacao { get; set; }
+        public decimal? ValorVenda { get; set; }
+        public decimal? ValorLocacao { get; set; }
         public bool Venda { get; set; }
         public bool Locacao { get; set; }
 

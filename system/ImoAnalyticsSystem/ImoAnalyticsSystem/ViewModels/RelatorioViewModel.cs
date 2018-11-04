@@ -1,16 +1,15 @@
-﻿using System;
+﻿using DotNet.Highcharts;
+using ImoAnalyticsSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace ImoAnalyticsSystem.Models
+namespace ImoAnalyticsSystem.ViewModels
 {
-    public class Relatorio
+    public class RelatorioViewModel
     {
-        [Key]
-        public int ID { get; set; }
-
         [Display(Name = "Tipo da ação")]
         public TipoRelatorio TipoRelatorio { get; set; }
 
@@ -19,11 +18,11 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Relatório privado")]
         public Boolean Privado { get; set; }
-
+        
         [Display(Name = "Data início do relatório")]
         [DataType(DataType.Date)]
         public DateTime DataInicio { get; set; }
-
+        
         [Display(Name = "Data fim do relatório")]
         [DataType(DataType.Date)]
         public DateTime DataFim { get; set; }
@@ -64,33 +63,6 @@ namespace ImoAnalyticsSystem.Models
         [Display(Name = "Área total mínima")]
         public int? AreaTotalMinima { get; set; }
 
-        public String CorretorId { get; set; }
-
-        [Display(Name = "Corretor")]
-        public virtual Corretor Corretor { get; set; }
-    }
-
-    public enum TipoRelatorio
-    {
-        [Display(Name = "Imóvel")]
-        Imovel = 1,
-
-        [Display(Name = "Locação/Venda/Visita")]
-        Acao = 2,
-
-        [Display(Name = "Estatísticas gerais")]
-        Estatisticas = 3    
-    }
-
-    public enum TipoAcao
-    {
-        [Display(Name = "Locação")]
-        Locacao = 1,
-
-        [Display(Name = "Venda")]
-        Venda = 2,
-
-        [Display(Name = "Visita")]
-        Visita = 3
+        public Highcharts Chart { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model ImoAnalyticsSystem.Models.Relatorio
+﻿@model ImoAnalyticsSystem.ViewModels.RelatorioViewModel
 @{
     ViewBag.Title = "Relatório gerado com filtros";
 }
@@ -12,6 +12,7 @@
             </div>
 
             <div class="panel-body filter-body">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                 <div class="primary-color-row row">
                     <div class="col-md-12">
                         <p>Tipo de relatório</p>
@@ -26,14 +27,6 @@
                         @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Estatisticas, new { id = TipoRelatorio.Estatisticas }) <label for="Estatisticas">Estatísticas Gerais</label>
                     </div>
                 </div>
-                @*<div class="primary-color-row row estatisticas-filter imovel-filter acao-filter hide">
-            <div class="col-md-12">
-                <p>
-                    @Html.EditorFor(model => model.Privado)
-                    @Html.LabelFor(m => m.Privado)
-                </p>
-            </div>
-        </div>*@
                 <div class="primary-color-row row acao-filter hide">
                     <div class="col-md-12">
                         <p>Tipo da ação</p>
@@ -164,7 +157,11 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row buttons-row">
+                    <div class="col-md-12 center">
+                        <input type="submit" value="Gerar Relatório" class="principal-button" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>

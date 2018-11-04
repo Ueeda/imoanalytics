@@ -40,64 +40,86 @@ namespace ImoAnalyticsSystem.Business
 
         public string Create(Imovel imovel, HttpPostedFileBase upload)
         {
-            if (upload != null && upload.ContentLength > 0)
+            var codigo = db.Imovel.Where
+                (
+                    i => String.Compare(i.CodigoReferencia, imovel.CodigoReferencia, false) == 0
+                );
+            if (codigo.Count() == 0)
             {
-                var imagem = new Imagem
+                if (upload != null && upload.ContentLength > 0)
                 {
-                    FileName = System.IO.Path.GetFileName(upload.FileName),
-                    FileType = FileType.Foto,
-                    ContentType = upload.ContentType
-                };
-                using (var reader = new System.IO.BinaryReader(upload.InputStream))
-                {
-                    imagem.Content = reader.ReadBytes(upload.ContentLength);
+                    var imagem = new Imagem
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Foto,
+                        ContentType = upload.ContentType
+                    };
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        imagem.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    imovel.Files = new List<Imagem> { imagem };
                 }
-                imovel.Files = new List<Imagem> { imagem };
+
+                imovel.DataCadastro = DateTime.Now.Date;
+                MudancaPrecoBusiness mudancaPrecoBusiness = new MudancaPrecoBusiness();
+                mudancaPrecoBusiness.StartNewHistory(imovel);
+
+                db.Imovel.Add(imovel);
+                db.SaveChanges();
+                proprietarioBusiness.UpdateActive(imovel.ProprietarioId);
+                return "OK";
             }
-
-            imovel.DataCadastro = DateTime.Now.Date;
-            MudancaPrecoBusiness mudancaPrecoBusiness = new MudancaPrecoBusiness();
-            mudancaPrecoBusiness.StartNewHistory(imovel);
-
-            db.Imovel.Add(imovel);
-            db.SaveChanges();
-            proprietarioBusiness.UpdateActive(imovel.ProprietarioId);
-            return "OK";
+            string response = "";
+            if (codigo.Count() != 0)
+                response += "Já existe um imóvel com o código registrado no sistema.";
+            return response;
         }
 
         public string Edit(Imovel imovel, HttpPostedFileBase upload)
         {
-            MudancaPrecoBusiness mudancaPrecoBusiness = new MudancaPrecoBusiness();
-            mudancaPrecoBusiness.Create(imovel);
-            db.Entry(imovel).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-
-            var imovelToUpdate = this.FindById(imovel.ID);
-            if (upload != null && upload.ContentLength > 0)
+            var codigo = db.Imovel.Where
+                (
+                    i => String.Compare(i.CodigoReferencia, imovel.CodigoReferencia, false) == 0 && i.ID != imovel.ID
+                );
+            if (codigo.Count() == 0)
             {
-                if (imovelToUpdate.Files.Any(f => f.FileType == FileType.Foto))
-                {
-                    //Remover imagem antiga
-                    db.Imagens.Remove(imovelToUpdate.Files.First(f => f.FileType == FileType.Foto));
-                }
-                var imagem = new Imagem
-                {
-                    FileName = System.IO.Path.GetFileName(upload.FileName),
-                    FileType = FileType.Foto,
-                    ContentType = upload.ContentType
-                };
-                using (var reader = new System.IO.BinaryReader(upload.InputStream))
-                {
-                    imagem.Content = reader.ReadBytes(upload.ContentLength);
-                }
-                imovelToUpdate.Files = new List<Imagem> { imagem };
-            }
+                MudancaPrecoBusiness mudancaPrecoBusiness = new MudancaPrecoBusiness();
+                mudancaPrecoBusiness.Create(imovel);
+                db.Entry(imovel).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
 
-            
-            db.Entry(imovelToUpdate).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            proprietarioBusiness.UpdateActive(imovel.ProprietarioId);
-            return "OK";
+                var imovelToUpdate = this.FindById(imovel.ID);
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    if (imovelToUpdate.Files.Any(f => f.FileType == FileType.Foto))
+                    {
+                        //Remover imagem antiga
+                        db.Imagens.Remove(imovelToUpdate.Files.First(f => f.FileType == FileType.Foto));
+                    }
+                    var imagem = new Imagem
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Foto,
+                        ContentType = upload.ContentType
+                    };
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        imagem.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    imovelToUpdate.Files = new List<Imagem> { imagem };
+                }
+
+
+                db.Entry(imovelToUpdate).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                proprietarioBusiness.UpdateActive(imovel.ProprietarioId);
+                return "OK";
+            }
+            string response = "";
+            if (codigo.Count() != 0)
+                response += "Já existe um imóvel com o código registrado no sistema.";
+            return response;
         }
 
         public void Unavailable(int id)

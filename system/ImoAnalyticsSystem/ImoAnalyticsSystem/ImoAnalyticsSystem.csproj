@@ -265,6 +265,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\LocacaoViewModel.cs" />
+    <Compile Include="ViewModels\RelatorioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\imovel-sem-foto.jpg" />
@@ -438,6 +439,7 @@
     <Content Include="Views\Relatorio\EstatisticaBairrosGrafico.cshtml" />
     <Content Include="Views\Relatorio\RelatorioComFiltro.cshtml" />
     <Content Include="Views\Shared\TipoRelatorio.cshtml" />
+    <Content Include="Views\Relatorio\RelatorioComFiltroGrafico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

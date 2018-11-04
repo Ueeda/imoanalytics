@@ -32,7 +32,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Imobiliaria imobiliaria = db.Imobiliaria.Find(id);
+            Imobiliaria imobiliaria = imobiliariaBusiness.GetInstance();
             if (imobiliaria == null)
             {
                 return HttpNotFound();
@@ -89,12 +89,15 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Edit([Bind(Include = "ID,NomeImobiliaria,Endereco,Numero,Complemento,Bairro,Cidade,Estado,EmailContato,TelefoneContato,ComissaoImobiliariaVenda,ComissaoCorretorVenda,TaxaAdministracaoLocacao")] Imobiliaria imobiliaria)
         {
+            string edit = "";
             if (ModelState.IsValid)
             {
-                db.Entry(imobiliaria).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                edit = imobiliariaBusiness.Edit(imobiliaria);
+                if (edit.Equals("OK"))
+                    return RedirectToAction("Index");
             }
+            if (!edit.Equals(""))
+                ModelState.AddModelError("Erro ao editar o cartório: ", edit);
             return View(imobiliaria);
         }
 

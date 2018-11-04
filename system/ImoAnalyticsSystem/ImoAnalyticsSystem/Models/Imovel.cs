@@ -90,11 +90,11 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Valor de venda")]
         [DataType(DataType.Currency)]
-        public decimal ValorVenda { get; set; }
+        public decimal? ValorVenda { get; set; }
 
         [Display(Name = "Valor de locação")]
         [DataType(DataType.Currency)]
-        public decimal ValorLocacao { get; set; }
+        public decimal? ValorLocacao { get; set; }
 
         [Display(Name = "Valor do IPTU")]
         [Required(ErrorMessage = "O campo valor do IPTU é obrigatório.")]

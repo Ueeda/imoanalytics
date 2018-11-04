@@ -13,7 +13,6 @@ namespace ImoAnalyticsSystem.Controllers
 {
     public class PropostaController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         private PropostaBusiness propostaBusiness = new PropostaBusiness();
         // GET: Proposta
         [Authorize]
@@ -52,12 +51,13 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Create(int? ImovelId)
         {
+            InteressadoBusiness interessadoBusiness = new InteressadoBusiness();
             ImovelBusiness imovelBusiness = new ImovelBusiness();
             Imovel imovel = imovelBusiness.FindById(ImovelId);
             ViewBag.IsLocacao = imovel.Locacao;
             ViewBag.IsVenda = imovel.Venda;
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", ImovelId);
-            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto");
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveis(), "ID", "CodigoReferencia", ImovelId);
+            ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto");
             return View();
         }
 
@@ -82,10 +82,12 @@ namespace ImoAnalyticsSystem.Controllers
 
             if (!create.Equals(""))
                 ModelState.AddModelError("Erro ao criar o cartório: ", create);
-            
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", proposta.ImovelId);
-            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", proposta.InteressadoId);
+
+            InteressadoBusiness interessadoBusiness = new InteressadoBusiness();
             ImovelBusiness imovelBusiness = new ImovelBusiness();
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveis(), "ID", "CodigoReferencia", proposta.ImovelId);
+            ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", proposta.InteressadoId);
+            
             Imovel imovel = imovelBusiness.FindById(proposta.ImovelId);
             ViewBag.IsLocacao = imovel.Locacao;
             ViewBag.IsVenda = imovel.Venda;
@@ -105,9 +107,11 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", proposta.ImovelId);
-            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", proposta.InteressadoId);
             ImovelBusiness imovelBusiness = new ImovelBusiness();
+            InteressadoBusiness interessadoBusiness = new InteressadoBusiness();
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveis(), "ID", "CodigoReferencia", proposta.ImovelId);
+            ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", proposta.InteressadoId);
+            
             Imovel imovel = imovelBusiness.FindById(proposta.ImovelId);
             ViewBag.IsLocacao = imovel.Locacao;
             ViewBag.IsVenda = imovel.Venda;
@@ -134,9 +138,11 @@ namespace ImoAnalyticsSystem.Controllers
             if(!edit.Equals(""))
                 ModelState.AddModelError("Erro ao editar o proposta: ", edit);
 
-            ViewBag.ImovelId = new SelectList(db.Imovel, "ID", "TituloImovel", proposta.ImovelId);
-            ViewBag.InteressadoId = new SelectList(db.Interessado, "ID", "NomeCompleto", proposta.InteressadoId);
+            InteressadoBusiness interessadoBusiness = new InteressadoBusiness();
             ImovelBusiness imovelBusiness = new ImovelBusiness();
+            ViewBag.ImovelId = new SelectList(imovelBusiness.GetImoveis(), "ID", "CodigoReferencia", proposta.ImovelId);
+            ViewBag.InteressadoId = new SelectList(interessadoBusiness.GetInteressados(), "ID", "NomeCompleto", proposta.InteressadoId);
+            
             Imovel imovel = imovelBusiness.FindById(proposta.ImovelId);
             ViewBag.IsLocacao = imovel.Locacao;
             ViewBag.IsVenda = imovel.Venda;
@@ -174,7 +180,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                propostaBusiness.Dispose();
             }
             base.Dispose(disposing);
         }
