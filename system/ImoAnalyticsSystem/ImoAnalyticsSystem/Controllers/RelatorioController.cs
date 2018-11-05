@@ -541,7 +541,7 @@ namespace ImoAnalyticsSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("RelatorioComFiltroGrafico", model);
+                return RedirectToActionPermanent("RelatorioComFiltroGrafico", model);
             }
             TipoImovelBusiness tipoImovelBusiness = new TipoImovelBusiness();
             ViewBag.Imoveis = true;
@@ -800,28 +800,36 @@ namespace ImoAnalyticsSystem.Controllers
                 List<Object> estatisticaMes = new List<Object>();
                 foreach (DateTime data in datas)
                 {
-                    estatisticaMes.Add(locacoes.Where(l => l.DataOperacao.Year == data.Year && l.DataOperacao.Month == data.Month).ToList().Count());
+                    var tmp = locacoes;
+                    tmp = tmp.Where(c => c.DataOperacao.Year == data.Year && c.DataOperacao.Month == data.Month).ToList();
+                    estatisticaMes.Add(tmp.Count());
                 }
                 estatisticasPorMes.Add("Locacação", estatisticaMes);
 
                 estatisticaMes = new List<Object>();
                 foreach (DateTime data in datas)
                 {
-                    estatisticaMes.Add(vendas.Where(l => l.DataVenda.Year == data.Year && l.DataVenda.Month == data.Month).ToList().Count());
+                    var tmp = vendas;
+                    tmp = tmp.Where(c => c.DataVenda.Year == data.Year && c.DataVenda.Month == data.Month).ToList();
+                    estatisticaMes.Add(tmp.Count());
                 }
                 estatisticasPorMes.Add("Venda", estatisticaMes);
 
                 estatisticaMes = new List<Object>();
                 foreach (DateTime data in datas)
                 {
-                    estatisticaMes.Add(visitas.Where(l => l.Data.Year == data.Year && l.Data.Month == data.Month).ToList().Count());
+                    var tmp = visitas;
+                    tmp = tmp.Where(c => c.Data.Year == data.Year && c.Data.Month == data.Month).ToList();
+                    estatisticaMes.Add(tmp.Count());
                 }
                 estatisticasPorMes.Add("Visita", estatisticaMes);
 
                 estatisticaMes = new List<Object>();
                 foreach (DateTime data in datas)
                 {
-                    estatisticaMes.Add(historicoImoveis.Where(l => l.FirstRegister == true && l.DataMudanca.Month == data.Month && l.DataMudanca.Year == data.Year).ToList().Count());
+                    var tmp = historicoImoveis;
+                    tmp = tmp.Where(l => l.FirstRegister == true && l.DataMudanca.Month == data.Month && l.DataMudanca.Year == data.Year).ToList();
+                    estatisticaMes.Add(tmp.Count());
                 }
                 estatisticasPorMes.Add("Imóveis cadastrados", estatisticaMes);
 
@@ -851,7 +859,7 @@ namespace ImoAnalyticsSystem.Controllers
             TipoImovelBusiness tipoImovelBusiness = new TipoImovelBusiness();
             ViewBag.TipoImovelId = new SelectList(tipoImovelBusiness.GetTiposImovel(), "ID", "Tipo", model.TipoImovelId);
             ViewBag.Imoveis = true;
-            return RedirectToAction("RelatorioComFiltroGrafico", model);
+            return RedirectToActionPermanent("RelatorioComFiltroGrafico", model);
         }
     }
 }

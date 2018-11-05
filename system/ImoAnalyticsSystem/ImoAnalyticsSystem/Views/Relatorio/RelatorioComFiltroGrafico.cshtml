@@ -1,8 +1,7 @@
 ﻿@model ImoAnalyticsSystem.ViewModels.RelatorioViewModel
 @{
-                /**/
 
-                ViewBag.Title = "Relatório de estatísticas do bairro " + ViewBag.Bairro;
+  ViewBag.Title = "Relatório de estatísticas do bairro " + ViewBag.Bairro;
 }
 
 @using (Html.BeginForm())
@@ -55,13 +54,56 @@
                         <p>Tipo da ação</p>
                     </div>
                     <div class="col-md-12">
-                        @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Locacao, new { id = TipoAcao.Locacao }) <label for="Locacao">Locação</label>
+                        @if (Model.TipoRelatorio == TipoRelatorio.Acao)
+                        {
+                            if (Model.TipoAcao == TipoAcao.Locacao)
+                            {
+                                @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Locacao, new { id = TipoAcao.Locacao, @checked = "true" }) <label for="Locacao">Locação</label>
+                            }
+                            else
+                            {
+                                @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Locacao, new { id = TipoAcao.Locacao }) <label for="Locacao">Locação</label>
+                            }
+                        }
+                        else
+                        {
+                            @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Locacao, new { id = TipoAcao.Locacao, @disabled = "true" }) <label for="Locacao">Locação</label>
+                        }
                     </div>
                     <div class="col-md-12">
-                        @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Venda, new { id = TipoAcao.Venda }) <label for="Venda">Venda</label>
+                        @if (Model.TipoRelatorio == TipoRelatorio.Acao)
+                        {
+                            if (Model.TipoAcao == TipoAcao.Venda)
+                            {
+                                @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Venda, new { id = TipoAcao.Venda, @checked = "true" }) <label for="Venda">Venda</label>
+                            }
+                            else
+                            {
+                                @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Venda, new { id = TipoAcao.Venda }) <label for="Venda">Venda</label>
+                            }
+                        }
+                        else
+                        {
+                            @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Venda, new { id = TipoAcao.Venda, @disabled = "true" }) <label for="Venda">Venda</label>
+                        }
                     </div>
                     <div class="col-md-12">
-                        @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Visita, new { id = TipoAcao.Visita }) <label for="Visita">Visita</label>
+                        @if (Model.TipoRelatorio == TipoRelatorio.Acao)
+                        {
+                            if (Model.TipoAcao == TipoAcao.Visita)
+                            {
+                                @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Visita, new { id = TipoAcao.Visita, @checked = "true" }) <label for="Visita">Visita</label>
+                            }
+                            else
+                            {
+                                @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Visita, new { id = TipoAcao.Visita }) <label for="Visita">Visita</label>
+                            }
+                        }
+                        else
+                        {
+                            @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Visita, new { id = TipoAcao.Visita, @disabled = "true" }) <label for="Visita">Visita</label>
+                        }
+
                     </div>
                 </div>
                 <div class="primary-color-row row imovel-filter valor-venda-filter">
@@ -70,7 +112,14 @@
                     </div>
                     <div class="col-md-12">
                         <div class="group">
-                            @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorVenda).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
+                            @if (Model.TipoRelatorio == TipoRelatorio.Imovel && Model.TipoAcao == TipoAcao.Venda)
+                            {
+                                @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorVenda).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
+                            }
+                            else
+                            {
+                                @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorVenda).ToHtmlString()), @class = "effect-1 js-dinheiro", @disabled = "true" } })
+                            }
                             <span class="focus-border"></span>
                         </div>
                     </div>
@@ -81,7 +130,14 @@
                     </div>
                     <div class="col-md-12">
                         <div class="group">
-                            @Html.EditorFor(model => model.ValorLocacao, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorLocacao).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
+                            @if (Model.TipoRelatorio == TipoRelatorio.Imovel && Model.TipoAcao == TipoAcao.Locacao)
+                            {
+                                @Html.EditorFor(model => model.ValorLocacao, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorLocacao).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
+                            }
+                            else
+                            {
+                                @Html.EditorFor(model => model.ValorLocacao, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorLocacao).ToHtmlString()), @class = "effect-1 js-dinheiro", @disabled = "true" } })
+                            }
                             <span class="focus-border"></span>
                         </div>
                     </div>
@@ -92,7 +148,14 @@
                     </div>
                     <div class="col-md-12">
                         <div class="group">
-                            @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Endereco).ToHtmlString()), @class = "effect-1" } })
+                            @if (Model.TipoRelatorio == TipoRelatorio.Imovel || Model.TipoRelatorio == TipoRelatorio.Acao)
+                            {
+                                @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Endereco).ToHtmlString()), @class = "effect-1" } })
+                            }
+                            else
+                            {
+                                @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.Endereco).ToHtmlString()), @class = "effect-1", @disabled = "true" } })
+                            }
                             <span class="focus-border"></span>
                         </div>
                     </div>
@@ -125,7 +188,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="group">
-                            @Html.EditorFor(model => model.DataFim, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.DataFim).ToHtmlString()), @class = "effect-1 js-data" } })
+                            @Html.EditorFor(model => model.DataFim, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.DataFim).ToHtmlString()), @class = "effect-1 js-data" } })
                             <span class="focus-border"></span>
                         </div>
                     </div>
@@ -142,7 +205,14 @@
                     </div>
                     <div class="col-md-12">
                         <div class="group">
-                            @Html.EditorFor(model => model.QntdBanheiros, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdBanheiros).ToHtmlString()), @class = "effect-1" } })
+                            @if (Model.TipoRelatorio == TipoRelatorio.Imovel || Model.TipoRelatorio == TipoRelatorio.Acao)
+                            {
+                                @Html.EditorFor(model => model.QntdBanheiros, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdBanheiros).ToHtmlString()), @class = "effect-1" } })
+                            }
+                            else
+                            {
+                                @Html.EditorFor(model => model.QntdBanheiros, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdBanheiros).ToHtmlString()), @class = "effect-1", @disabled = "true" } })
+                            }
                             <span class="focus-border"></span>
                         </div>
                     </div>
@@ -153,7 +223,14 @@
                     </div>
                     <div class="col-md-12">
                         <div class="group">
-                            @Html.EditorFor(model => model.QntdDormitorios, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdDormitorios).ToHtmlString()), @class = "effect-1" } })
+                            @if (Model.TipoRelatorio == TipoRelatorio.Imovel || Model.TipoRelatorio == TipoRelatorio.Acao)
+                            {
+                                @Html.EditorFor(model => model.QntdDormitorios, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdDormitorios).ToHtmlString()), @class = "effect-1" } })
+                            }
+                            else
+                            {
+                                @Html.EditorFor(model => model.QntdDormitorios, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdDormitorios).ToHtmlString()), @class = "effect-1", @disabled = "true" } })
+                            }
                             <span class="focus-border"></span>
                         </div>
                     </div>
@@ -164,7 +241,14 @@
                     </div>
                     <div class="col-md-12">
                         <div class="group">
-                            @Html.EditorFor(model => model.QntdSuites, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdSuites).ToHtmlString()), @class = "effect-1" } })
+                            @if (Model.TipoRelatorio == TipoRelatorio.Imovel || Model.TipoRelatorio == TipoRelatorio.Acao)
+                            {
+                                @Html.EditorFor(model => model.QntdSuites, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdSuites).ToHtmlString()), @class = "effect-1" } })
+                            }
+                            else
+                            {
+                                @Html.EditorFor(model => model.QntdSuites, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdSuites).ToHtmlString()), @class = "effect-1", @disabled = "true" } })
+                            }
                             <span class="focus-border"></span>
                         </div>
                     </div>
@@ -175,7 +259,14 @@
                     </div>
                     <div class="col-md-12">
                         <div class="group">
-                            @Html.EditorFor(model => model.QntdVagasGaragem, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdVagasGaragem).ToHtmlString()), @class = "effect-1" } })
+                            @if (Model.TipoRelatorio == TipoRelatorio.Imovel || Model.TipoRelatorio == TipoRelatorio.Acao)
+                            {
+                                @Html.EditorFor(model => model.QntdVagasGaragem, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdVagasGaragem).ToHtmlString()), @class = "effect-1" } })
+                            }
+                            else
+                            {
+                                @Html.EditorFor(model => model.QntdVagasGaragem, new { htmlAttributes = new { @type = "number", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.QntdVagasGaragem).ToHtmlString()), @class = "effect-1", @disabled = "true" } })
+                            }
                             <span class="focus-border"></span>
                         </div>
                     </div>
@@ -220,48 +311,48 @@
             }
             if ($("input[name='TipoRelatorio']:checked").val() == 2) {
                 $(".estatisticas-filter input").val("");
-                $(".estatisticas-filter").addClass("hide");
+                $(".estatisticas-filter input").prop("disabled",true);
                 $(".imovel-filter input").val("");
                 $(".valor-locacao-filter input").val("");
-                $(".valor-locacao-filter").addClass("hide");
+                $(".valor-locacao-filter input").prop("disabled", true);
                 $(".valor-venda-filter input").val("");
-                $(".valor-venda-filter").addClass("hide");
-                $(".imovel-filter").addClass("hide");
-                $(".acao-filter").removeClass("hide");
+                $(".valor-venda-filter input").prop("disabled", true);
+                $(".imovel-filter input").prop("disabled", true);
+                $(".acao-filter input").removeAttr("disabled");
                 $("input[name='TipoAcao']").prop("checked", false);
             }
             if ($("input[name='TipoRelatorio']:checked").val() == 3) {
                 $(".estatisticas-filter input").val("");
-                $(".estatisticas-filter").addClass("hide");
+                $(".estatisticas-filter input").prop("disable", true);
                 $(".valor-locacao-filter input").val("");
-                $(".valor-locacao-filter").addClass("hide");
+                $(".valor-locacao-filter input").prop("disable", true);
                 $(".valor-venda-filter input").val("");
-                $(".valor-venda-filter").addClass("hide");
+                $(".valor-venda-filter input").prop("disabled", true);
                 $(".acao-filter input[text]").val("");
                 $(".acao-filter input[type='text']").val("");
                 $(".acao-filter input[type='number']").val("");
-                $(".acao-filter").addClass("hide");
-                $(".estatisticas-filter").removeClass("hide");
+                $(".acao-filter input").prop("disabled", true);
+                $(".estatisticas-filter input").removeAttr("disabled");
                 $("input[name='TipoAcao']").prop("checked", false);
             }
         });
 
         $("input:radio[name='TipoAcao']").change(function () {
-            if ($("input[name='TipoAcao']:checked").val() == 1) {
-                $(".valor-locacao-filter").removeClass("hide");
-                $(".valor-venda-filter input").val("");
-                $(".valor-venda-filter").addClass("hide");
-            }
             if ($("input[name='TipoAcao']:checked").val() == 2) {
-                $(".valor-venda-filter").removeClass("hide");
+                $(".valor-locacao-filter input").prop("disabled", true);
                 $(".valor-locacao-filter input").val("");
-                $(".valor-locacao-filter").addClass("hide");
+                $(".valor-venda-filter input").removeAttr("disabled");
+            }
+            if ($("input[name='TipoAcao']:checked").val() == 1) {
+                $(".valor-venda-filter input").prop("disabled", true);
+                $(".valor-venda-filter input").val("");
+                $(".valor-locacao-filter input").removeAttr("disabled");
             }
             if ($("input[name='TipoAcao']:checked").val() == 3) {
                 $(".valor-venda-filter input").val("");
-                $(".valor-venda-filter").addClass("hide");
+                $(".valor-venda-filter input").prop("disabled", true);
                 $(".valor-locacao-filter input").val("");
-                $(".valor-locacao-filter").addClass("hide");
+                $(".valor-locacao-filter input").pop("disable", true);
             }
         });
     });
