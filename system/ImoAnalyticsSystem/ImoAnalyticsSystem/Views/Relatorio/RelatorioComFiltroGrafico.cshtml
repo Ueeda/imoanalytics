@@ -318,8 +318,6 @@
                 @using (Html.BeginForm("SalvarRelatorio", "Relatorio", FormMethod.Post))
                 {
                     @Html.HiddenFor(x => x.ID)
-                    @Html.HiddenFor(x => x.AreaTotalMaxima)
-                    @Html.HiddenFor(x => x.AreaTotalMinima)
                     @Html.HiddenFor(x => x.Bairro)
                     @Html.HiddenFor(x => x.DataFim)
                     @Html.HiddenFor(x => x.DataInicio)
@@ -339,6 +337,12 @@
                     <input type="submit" value="Salvar" class="principal-button" style="margin: 15px" />
                 }
             </div>
+            @if (ViewBag.Mensagem != "")
+            {
+                <div class="col-md-7">
+                    <p style="margin-top: 10px;">@ViewBag.Mensagem</p>
+                </div>
+            }
         </div>
     </div>
 </div>

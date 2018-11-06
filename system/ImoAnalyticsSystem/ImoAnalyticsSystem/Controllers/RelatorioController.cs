@@ -889,8 +889,104 @@ namespace ImoAnalyticsSystem.Controllers
                 MudancaPrecoBusiness mudancaPrecoBusiness = new MudancaPrecoBusiness();
 
                 var imoveisDisponiveis = imovelBusiness.GetImoveisDisponiveis();
-                
 
+                if (model.Endereco != null)
+                    imoveisDisponiveis = imoveisDisponiveis.Where(i => i.Endereco.Equals(model.Endereco)).ToList();
+
+                if (model.Bairro != null)
+                    imoveisDisponiveis = imoveisDisponiveis.Where(i => i.Bairro.Equals(model.Bairro)).ToList();
+
+                if (model.TipoImovelId != null)
+                    imoveisDisponiveis = imoveisDisponiveis.Where(i => i.TipoImovelId == model.TipoImovelId).ToList();
+
+                if (model.QntdBanheiros != null)
+                    imoveisDisponiveis = imoveisDisponiveis.Where(i => i.QntBanheiros == model.QntdBanheiros).ToList();
+
+                if (model.QntdDormitorios != null)
+                    imoveisDisponiveis = imoveisDisponiveis.Where(i => i.QntDormitorios == model.QntdDormitorios).ToList();
+
+                if (model.QntdSuites != null)
+                    imoveisDisponiveis = imoveisDisponiveis.Where(i => i.QntSuites == model.QntdSuites).ToList();
+
+                if (model.QntdVagasGaragem != null)
+                    imoveisDisponiveis = imoveisDisponiveis.Where(i => i.VagasGaragem == model.QntdVagasGaragem).ToList();
+
+                Dictionary<int, List<decimal?>> historicoPrecos = new Dictionary<int, List<decimal?>>();
+
+                foreach (Imovel imovel in imoveisDisponiveis)
+                    historicoPrecos.Add(imovel.ID, new List<decimal?>());
+
+                foreach(var data in datas)
+                {
+                    foreach(int idImovel in historicoPrecos.Keys)
+                    {
+                        var historicoMudancas = mudancaPrecoBusiness.ListAll().Where(i => i.ImovelId == idImovel).OrderBy(i => i.DataMudanca).ToList();
+                        if(historicoMudancas.Count() <= 0)
+                        {
+                            historicoPrecos[idImovel].Add(0);
+                            continue;
+                        }
+
+                        decimal? valorValidoPeriodo = 0;
+                        foreach(var mudanca in historicoMudancas)
+                        {
+                            if(mudanca.DataMudanca.Month <= data.Month && mudanca.DataMudanca.Year <= data.Year)
+                            {
+                                var imovelTmp = imovelBusiness.FindById(idImovel);
+                                valorValidoPeriodo = imovelTmp.ValorVenda;
+                            }
+                        }
+                        historicoPrecos[idImovel].Add(valorValidoPeriodo);
+                    }
+                }
+
+                Dictionary<String, decimal?> dataPrecoMedio = new Dictionary<string, decimal?>();
+                List<Object> quantidadeImoveisMedia = new List<Object>();
+
+                for(int i = datas.Count() -1; i >= 0; i--)
+                {
+                    var data = datas.ElementAt(i);
+                    decimal? precoMedio = 0;
+                    int imoveisMedia = 0;
+                    foreach(int idImovel in historicoPrecos.Keys)
+                    {
+                        var listaPrecos = historicoPrecos[idImovel];
+                        var preco = listaPrecos.ElementAt(i);
+                        if(preco != 0)
+                        {
+                            precoMedio += preco;
+                            imoveisMedia++;
+                        }
+                    }
+
+                    if (imoveisMedia > 0)
+                        dataPrecoMedio.Add(data.ToString("MMMM yyyy"), precoMedio / imoveisMedia);
+                    else
+                        dataPrecoMedio.Add(data.ToString("MMMM yyyy"), 0);
+
+                    quantidadeImoveisMedia.Add(imoveisMedia);
+                }
+
+                List<Object> estatisticasMes = new List<Object>();
+
+                foreach (string data in dataPrecoMedio.Keys)
+                {
+                    var estatisticas = dataPrecoMedio.FirstOrDefault(c => c.Key == data).Value;
+                    estatisticasMes.Add(estatisticas);
+                }
+
+                conteudoGrafico.Add(new Series
+                {
+                    Name = "Preco Médio",
+                    Data = new DotNet.Highcharts.Helpers.Data(estatisticasMes.ToArray())
+                });
+
+                conteudoGrafico.Add(new Series
+                {
+                    Name = "Quantidade de imóveis para a média",
+                    Data = new DotNet.Highcharts.Helpers.Data(quantidadeImoveisMedia.ToArray())
+                });
+                ViewBag.Mensagem = "Existe uma diferença de unidade conhecida, entre valor médio do imóvel (unidade milhar e maiores) e quantidade de imóveis (unidade normalmente em volta das dezenas ou centenas). Para vizualizar a quantidade de imóveis, é necessário esconder o valor médio do imóvel";
             }
             model.Chart.SetSeries(conteudoGrafico.ToArray());
             return View(model);
