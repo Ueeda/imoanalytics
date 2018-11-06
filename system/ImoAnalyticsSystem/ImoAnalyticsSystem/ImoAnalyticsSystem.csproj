@@ -437,6 +437,8 @@
     <Content Include="Views\Shared\TipoRelatorio.cshtml" />
     <Content Include="Views\Relatorio\RelatorioComFiltroGrafico.cshtml" />
     <Content Include="Views\Imovel\ImportExcel.cshtml" />
+    <Content Include="Views\Relatorio\SalvarRelatorio.cshtml" />
+    <Content Include="Views\Relatorio\RelatorioComFiltroGrafico1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

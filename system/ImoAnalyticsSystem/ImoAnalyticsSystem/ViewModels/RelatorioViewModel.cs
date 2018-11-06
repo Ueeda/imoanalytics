@@ -10,6 +10,8 @@ namespace ImoAnalyticsSystem.ViewModels
 {
     public class RelatorioViewModel
     {
+        public int? ID { get; set; }
+
         [Display(Name = "Tipo da ação")]
         public TipoRelatorio TipoRelatorio { get; set; }
 
@@ -33,10 +35,10 @@ namespace ImoAnalyticsSystem.ViewModels
         [Display(Name = "Endereço")]
         public String Endereco { get; set; }
 
-        [Display(Name = "Valor de venda")]
+        [Display(Name = "Valor da venda")]
         public decimal? ValorVenda { get; set; }
 
-        [Display(Name = "Valor de locação")]
+        [Display(Name = "Valor da locação")]
         public decimal? ValorLocacao { get; set; }
 
         [Display(Name = "Quartos")]
@@ -56,12 +58,6 @@ namespace ImoAnalyticsSystem.ViewModels
 
         [Display(Name = "Tipo de imóvel")]
         public int? TipoImovelId { get; set; }
-
-        [Display(Name = "Área total máxima")]
-        public int? AreaTotalMaxima { get; set; }
-
-        [Display(Name = "Área total mínima")]
-        public int? AreaTotalMinima { get; set; }
 
         public Highcharts Chart { get; set; }
     }

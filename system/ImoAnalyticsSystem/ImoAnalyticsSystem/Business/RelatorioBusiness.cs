@@ -2,6 +2,7 @@
 using ImoAnalyticsSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -16,9 +17,9 @@ namespace ImoAnalyticsSystem.Business
             return db.Relatorio.ToList();
         }
 
-        public List<Relatorio> GetAllPublic()
+        public List<Relatorio> GetAllPublic(string id)
         {
-            return db.Relatorio.Where(r => r.Privado == false).ToList();
+            return db.Relatorio.Where(r => r.Privado == false && !r.Corretor.Id.Equals(id)).ToList();
         }
 
         public List<Relatorio> GetAllFromUser(string id)
@@ -29,6 +30,20 @@ namespace ImoAnalyticsSystem.Business
         public Relatorio FindById(int? id)
         {
             return db.Relatorio.Find(id);
+        }
+
+        public string Create(Relatorio relatorio)
+        {
+            db.Relatorio.Add(relatorio);
+            db.SaveChanges();
+            return "OK";
+        }
+
+        public string Edit(Relatorio relatorio)
+        {
+            db.Entry(relatorio).State = EntityState.Modified;
+            db.SaveChanges();
+            return "OK";
         }
     }
 }

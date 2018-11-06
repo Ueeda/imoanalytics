@@ -5,6 +5,7 @@ using DotNet.Highcharts.Options;
 using ImoAnalyticsSystem.Business;
 using ImoAnalyticsSystem.Models;
 using ImoAnalyticsSystem.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -20,6 +21,14 @@ namespace ImoAnalyticsSystem.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            RelatorioBusiness relatorioBusiness = new RelatorioBusiness();
+
+            var relatoriosCorretor = relatorioBusiness.GetAllFromUser(User.Identity.GetUserId());
+            var relatoriosPublicos = relatorioBusiness.GetAllPublic(User.Identity.GetUserId());
+
+            ViewBag.RelatoriosUsuario = relatoriosCorretor;
+            ViewBag.RelatoriosPublicos = relatoriosPublicos;
+
             return View();
         }
 
@@ -509,13 +518,10 @@ namespace ImoAnalyticsSystem.Controllers
                 ViewBag.TipoImovelId = new SelectList(tipoImovelBusiness.GetTiposImovel(), "ID", "Tipo");
                 return View();
             }
-                
             else
             {
                 Relatorio relatorio = relatorioBusiness.FindById(id);
                 RelatorioViewModel model = new RelatorioViewModel();
-                model.AreaTotalMinima = relatorio.AreaTotalMinima;
-                model.AreaTotalMaxima = relatorio.AreaTotalMaxima;
                 model.Bairro = relatorio.Bairro;
                 model.DataFim = relatorio.DataFim;
                 model.DataInicio = relatorio.DataInicio;
@@ -531,6 +537,7 @@ namespace ImoAnalyticsSystem.Controllers
                 model.TituloRelatorio = relatorio.TituloRelatorio;
                 model.ValorLocacao = relatorio.ValorLocacao;
                 model.ValorVenda = relatorio.ValorVenda;
+                model.ID = relatorio.ID;
                 return RedirectToAction("RelatorioComFiltroGrafico", model);
             }
         }
@@ -845,6 +852,44 @@ namespace ImoAnalyticsSystem.Controllers
             }
             else if (model.TipoRelatorio == TipoRelatorio.Imovel)
             {
+                model.Chart.InitChart(new Chart()
+                {
+                    Type = DotNet.Highcharts.Enums.ChartTypes.Line,
+                    BackgroundColor = new BackColorOrGradient(System.Drawing.Color.White),
+                    Style = "fontWeight: 'bold', fontSize: '17px'",
+                    BorderColor = System.Drawing.Color.LightBlue,
+                    BorderRadius = 0,
+                    BorderWidth = 3
+                });
+
+                if (model.TituloRelatorio != null)
+                    model.Chart.SetTitle(new Title() { Text = model.TituloRelatorio });
+                else
+                    model.Chart.SetTitle(new Title() { Text = "Relatório com filtro" });
+
+                model.Chart.SetSubtitle(new Subtitle()
+                {
+                    Text = "Personalizado"
+                });
+                model.Chart.SetXAxis(new XAxis()
+                {
+                    Type = AxisTypes.Category,
+                    Title = new XAxisTitle() { Text = "", Style = "fontWeight: 'bold', fontSize: '14px'" },
+                    Categories = legenda.Count() > 1 ? legenda.ToArray() : new string[] { "" }
+                });
+                model.Chart.SetLegend(new Legend
+                {
+                    Enabled = true,
+                    BorderColor = System.Drawing.Color.CornflowerBlue,
+                    BorderRadius = 6,
+                    BackgroundColor = new BackColorOrGradient(ColorTranslator.FromHtml("#EEE"))
+                });
+
+                ImovelBusiness imovelBusiness = new ImovelBusiness();
+                MudancaPrecoBusiness mudancaPrecoBusiness = new MudancaPrecoBusiness();
+
+                var imoveisDisponiveis = imovelBusiness.GetImoveisDisponiveis();
+                
 
             }
             model.Chart.SetSeries(conteudoGrafico.ToArray());
@@ -860,6 +905,42 @@ namespace ImoAnalyticsSystem.Controllers
             ViewBag.TipoImovelId = new SelectList(tipoImovelBusiness.GetTiposImovel(), "ID", "Tipo", model.TipoImovelId);
             ViewBag.Imoveis = true;
             return RedirectToActionPermanent("RelatorioComFiltroGrafico", model);
+        }
+        
+        [Authorize]
+        public ActionResult SalvarRelatorio(RelatorioViewModel model)
+        {
+            RelatorioBusiness relatorioBusiness = new RelatorioBusiness();
+            Relatorio relatorio = new Relatorio();
+            if (model.ID != null)
+                relatorio = relatorioBusiness.FindById(model.ID);
+
+            relatorio.Bairro = model.Bairro;
+            relatorio.CorretorId = User.Identity.GetUserId();
+            relatorio.DataFim = model.DataFim;
+            relatorio.DataInicio = model.DataInicio;
+            relatorio.Endereco = model.Endereco;
+            relatorio.Privado = model.Privado;
+            relatorio.QntdBanheiros = model.QntdBanheiros;
+            relatorio.QntdDormitorios = model.QntdDormitorios;
+            relatorio.QntdSuites = model.QntdSuites;
+            relatorio.QntdVagasGaragem = model.QntdVagasGaragem;
+            relatorio.TipoAcao = model.TipoAcao;
+            relatorio.TipoImovelId = model.TipoImovelId;
+            relatorio.TipoRelatorio = model.TipoRelatorio;
+            relatorio.ValorLocacao = model.ValorLocacao;
+            relatorio.ValorVenda = model.ValorVenda;
+
+            if (model.TituloRelatorio != null)
+                relatorio.TituloRelatorio = model.TituloRelatorio;
+            else
+                relatorio.TituloRelatorio = "Relatório sem título salvo no dia " + DateTime.Now.ToString("dd/MM/yyyy");
+
+            if (model.ID == null)
+                relatorioBusiness.Create(relatorio);
+            else
+                relatorioBusiness.Edit(relatorio);
+            return RedirectToAction("Index");
         }
     }
 }

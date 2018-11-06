@@ -43,6 +43,14 @@ namespace ImoAnalyticsSystem.Models
         [MaxLength(250, ErrorMessage = "O tamanho máximo do campo bairro é de 50 caracteres.")]
         public String Bairro { get; set; }
 
+        [Display(Name = "Cidade")]
+        [Required(ErrorMessage = "A cidade precisa ser informada.")]
+        public string Cidade { get; set; }
+
+        [Display(Name = "Estado")]
+        [Required(ErrorMessage = "O estado precisa ser informado.")]
+        public string Estado { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Data de cadastro")]
@@ -134,14 +142,6 @@ namespace ImoAnalyticsSystem.Models
         [Display(Name = "Proprietário")]
         [Required(ErrorMessage = "O proprietário precisa ser informado.")]
         public int ProprietarioId { get; set; }
-
-        [Display(Name = "Cidade")]
-        [Required(ErrorMessage = "A cidade precisa ser informada.")]
-        public string Cidade { get; set; }
-
-        [Display(Name = "Estado")]
-        [Required(ErrorMessage = "O estado precisa ser informado.")]
-        public string Estado { get; set; }
 
         public virtual ICollection<Imagem> Files { get; set; }
 

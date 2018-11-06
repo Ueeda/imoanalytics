@@ -14,6 +14,26 @@
 
             <div class="panel-body filter-body">
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @Html.HiddenFor(x => x.ID)
+                <div class="primary-color-row row">
+                    <div class="col-md-12">
+                        <p>@Html.LabelFor(m => m.TituloRelatorio)</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.EditorFor(model => model.TituloRelatorio, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.TituloRelatorio).ToHtmlString()), @class = "effect-1" } })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="primary-color-row row">
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.CheckBoxFor(model => model.Privado, new { @style = "margin-top: 20px;" })
+                            @Html.LabelFor(model => model.Privado)
+                        </div>
+                    </div>
+                </div>
                 <div class="primary-color-row row">
                     <div class="col-md-12">
                         <p>Tipo de relatório</p>
@@ -106,13 +126,13 @@
 
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter valor-venda-filter">
+                <div class="primary-color-row row valor-venda-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.ValorVenda)</p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
-                            @if (Model.TipoRelatorio == TipoRelatorio.Imovel && Model.TipoAcao == TipoAcao.Venda)
+                            @if (@*Model.TipoRelatorio == TipoRelatorio.Imovel ||*@ (Model.TipoRelatorio == TipoRelatorio.Acao && Model.TipoAcao == TipoAcao.Venda))
                             {
                                 @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorVenda).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
                             }
@@ -124,13 +144,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter valor-locacao-filter">
+                <div class="primary-color-row row valor-locacao-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.ValorLocacao)</p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
-                            @if (Model.TipoRelatorio == TipoRelatorio.Imovel && Model.TipoAcao == TipoAcao.Locacao)
+                            @if (@*Model.TipoRelatorio == TipoRelatorio.Imovel ||*@ (Model.TipoRelatorio == TipoRelatorio.Acao && Model.TipoAcao == TipoAcao.Locacao))
                             {
                                 @Html.EditorFor(model => model.ValorLocacao, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorLocacao).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
                             }
@@ -284,10 +304,41 @@
 <div class="col-md-9">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">@ViewBag.Title</h3>
+            <div class="row">
+                <div class="col-md-8">
+                    <h3 class="panel-title">@ViewBag.Title</h3>
+                </div>
+            </div>
         </div>
         <div class="panel-body">
             @(Model.Chart)
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                @using (Html.BeginForm("SalvarRelatorio", "Relatorio", FormMethod.Post))
+                {
+                    @Html.HiddenFor(x => x.ID)
+                    @Html.HiddenFor(x => x.AreaTotalMaxima)
+                    @Html.HiddenFor(x => x.AreaTotalMinima)
+                    @Html.HiddenFor(x => x.Bairro)
+                    @Html.HiddenFor(x => x.DataFim)
+                    @Html.HiddenFor(x => x.DataInicio)
+                    @Html.HiddenFor(x => x.Endereco)
+                    @Html.HiddenFor(x => x.Privado)
+                    @Html.HiddenFor(x => x.QntdBanheiros)
+                    @Html.HiddenFor(x => x.QntdDormitorios)
+                    @Html.HiddenFor(x => x.QntdSuites)
+                    @Html.HiddenFor(x => x.QntdVagasGaragem)
+                    @Html.HiddenFor(x => x.TipoAcao)
+                    @Html.HiddenFor(x => x.TipoImovelId)
+                    @Html.HiddenFor(x => x.TipoRelatorio)
+                    @Html.HiddenFor(x => x.TituloRelatorio)
+                    @Html.HiddenFor(x => x.ValorLocacao)
+                    @Html.HiddenFor(x => x.ValorVenda)
+
+                    <input type="submit" value="Salvar" class="principal-button" style="margin: 15px" />
+                }
+            </div>
         </div>
     </div>
 </div>
@@ -298,15 +349,15 @@
         $("input:radio[name='TipoRelatorio']").change(function () {
             if ($("input[name='TipoRelatorio']:checked").val() == 1) {
                 $(".estatisticas-filter input").val("");
-                $(".estatisticas-filter").addClass("hide");
+                $(".estatisticas-filter input").prop("disabled", true);
                 $(".acao-filter input[type='text']").val("");
                 $(".acao-filter input[type='number']").val("");
-                $(".acao-filter").addClass("hide");
+                $(".acao-filter input").prop("disabled", true);
                 $(".valor-locacao-filter input").val("");
-                $(".valor-locacao-filter").addClass("hide");
+                $(".valor-locacao-filter input").prop("disabled", true);
                 $(".valor-venda-filter input").val("");
-                $(".valor-venda-filter").addClass("hide");
-                $(".imovel-filter").removeClass("hide");
+                $(".valor-venda-filter input").prop("disabled", true);
+                $(".imovel-filter input").removeAttr("disabled");
                 $("input[name='TipoAcao']").prop("checked", false);
             }
             if ($("input[name='TipoRelatorio']:checked").val() == 2) {

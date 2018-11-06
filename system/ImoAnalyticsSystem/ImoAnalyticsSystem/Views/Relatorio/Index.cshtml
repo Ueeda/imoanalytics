@@ -22,7 +22,15 @@
                     <dd>@Html.ActionLink("- Vendas X Locação nos últimos 4 meses", "OperacoesUltimosQuatroMeses", "Relatorio")</dd>
                     <dd>@Html.ActionLink("- Estatísticas de determinado bairro", "EstatisticaBairros", "Relatorio")</dd>
                     <dt>Relatórios salvos pelo corretor</dt>
+                    @foreach (var relat in ViewBag.RelatoriosUsuario)
+                    {
+                        <dd><a href="@Url.Action("RelatorioComFiltro", "Relatorio", new { id = relat.ID })">- @relat.TituloRelatorio</a> </dd>
+                    }
                     <dt>Relatórios públicos</dt>
+                    @foreach (var relat in ViewBag.RelatoriosPublicos)
+                    {
+                        <dd><a href="@Url.Action("RelatorioComFiltro", "Relatorio", new { id = relat.ID })">@relat.TituloRelatorio</a> </dd>
+                    }
                 </dl>
             </div>
         </div>

@@ -15,6 +15,25 @@
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                 <div class="primary-color-row row">
                     <div class="col-md-12">
+                        <p>@Html.LabelFor(m => m.TituloRelatorio)</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.EditorFor(model => model.TituloRelatorio, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.TituloRelatorio).ToHtmlString()), @class = "effect-1"} })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="primary-color-row row">
+                    <div class="col-md-12">
+                        <div class="group">
+                            @Html.CheckBoxFor(model => model.Privado, new { @style = "margin-top: 20px;" })
+                            @Html.LabelFor(model => model.Privado)
+                        </div>
+                    </div>
+                </div>
+                <div class="primary-color-row row">
+                    <div class="col-md-12">
                         <p>Tipo de relatório</p>
                     </div>
                     <div class="col-md-12">
@@ -41,7 +60,7 @@
                         @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Visita, new { id = TipoAcao.Visita, @disabled = "true" }) <label for="Visita">Visita</label>
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter valor-venda-filter">
+                <div class="primary-color-row row valor-venda-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.ValorVenda)</p>
                     </div>
@@ -52,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="primary-color-row row imovel-filter valor-locacao-filter">
+                <div class="primary-color-row row valor-locacao-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.ValorLocacao)</p>
                     </div>
@@ -173,15 +192,15 @@
         $("input:radio[name='TipoRelatorio']").change(function () {
             if ($("input[name='TipoRelatorio']:checked").val() == 1) {
                 $(".estatisticas-filter input").val("");
-                $(".estatisticas-filter").addClass("hide");
+                $(".estatisticas-filter input").prop("disabled", true);
                 $(".acao-filter input[type='text']").val("");
                 $(".acao-filter input[type='number']").val("");
-                $(".acao-filter").addClass("hide");
+                $(".acao-filter input").prop("disabled", true);
                 $(".valor-locacao-filter input").val("");
-                $(".valor-locacao-filter").addClass("hide");
+                $(".valor-locacao-filter input").prop("disabled", true);
                 $(".valor-venda-filter input").val("");
-                $(".valor-venda-filter").addClass("hide");
-                $(".imovel-filter").removeClass("hide");
+                $(".valor-venda-filter input").prop("disabled", true);
+                $(".imovel-filter input").removeAttr("disabled");
                 $("input[name='TipoAcao']").prop("checked", false);
             }
             if ($("input[name='TipoRelatorio']:checked").val() == 2) {
