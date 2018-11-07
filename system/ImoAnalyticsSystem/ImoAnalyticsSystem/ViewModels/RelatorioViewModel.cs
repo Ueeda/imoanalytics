@@ -59,6 +59,9 @@ namespace ImoAnalyticsSystem.ViewModels
         [Display(Name = "Tipo de imóvel")]
         public int? TipoImovelId { get; set; }
 
+        [Display(Name = "Buscar média de preço para")]
+        public TipoAcao TipoMediaImovel { get; set; }
+
         public Highcharts Chart { get; set; }
     }
 }

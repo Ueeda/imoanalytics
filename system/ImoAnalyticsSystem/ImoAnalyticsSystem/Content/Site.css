@@ -28,7 +28,7 @@ label {
 }
 
 .primary-color {
-    color: #ee3236;
+    color: #03b4df;
 }
 
 .primary-color-row {
@@ -63,7 +63,7 @@ label {
 }
 
 .header-row {
-    background-color: #ee3236;
+    background-color: #03b4df;
     margin: 0;
 }
 
@@ -98,11 +98,11 @@ label {
 
 .principal-button {
     display: table;
-    border: 3px solid #ee3236;
+    border: 3px solid #03b4df;
     overflow: hidden;
     position: relative;
     background: transparent;
-    color: #ee3236;
+    color: #03b4df;
     padding: 15px 75px;
     transition: .3s all ease-in-out;
 }
@@ -117,9 +117,9 @@ label {
 
 .principal-button-div a {
     display: table;
-    border: 3px solid #ee3236;
+    border: 3px solid #03b4df;
     cursor: pointer;
-    color: #ee3236;
+    color: #03b4df;
     font-family: "Lato", sans-serif;
     font-size: 14px;
     position: relative;
@@ -134,7 +134,7 @@ label {
 
 .principal-button:hover,
 .principal-button-div:hover {
-    background: #ee3236;
+    background: #03b4df;
     color: #fff;
 }
 
@@ -166,13 +166,13 @@ Menu
 
 .nav > li > a:hover {
     background-color: transparent;
-    color: #ee3236;
+    color: #03b4df;
 }
 
 .nav .open > a,
 .nav .open > a:focus,
 .nav .open > a:hover {
-    background-color: #ee3236;
+    background-color: #03b4df;
     color: #fff;
 }
 
@@ -181,7 +181,7 @@ header .nav.nav-pills .dropdown .dropdown-toggle .fa-bars {
 }
 
 .dropdown-menu {
-    background-color: #ee3236;
+    background-color: #03b4df;
     border: none;
     padding: 0px;
     min-width: 140px;
@@ -210,7 +210,7 @@ body {
 .panel-primary > .panel-heading {
     border: 0;
     border-radius: 0;
-    background-color: #ee3236;
+    background-color: #03b4df;
     padding: 20px 15px;
 }
 
@@ -284,6 +284,14 @@ Custom text input
     margin-top: -10px;
 }
 
+.group input[disabled] {
+    background-color: #d8d8d8;
+}
+
+.panel.panel-primary.filter .panel-body select[disabled] {
+    background: #d8d8d8;
+}
+
 .group input[type=text]:focus,
 .group input[type=number]:focus,
 .group input[type=email]:focus, 
@@ -304,7 +312,7 @@ Custom text input
     left: 0;
     width: 0;
     height: 2px;
-    background-color: #ee3236;
+    background-color: #03b4df;
     transition: 0.4s;
 }
 
@@ -348,7 +356,7 @@ Custom Radio Button
 }
 
 .md-radio input[type="radio"]:checked + label:before {
-    border-color: #ee3236;
+    border-color: #03b4df;
     animation: ripple 0.2s linear forwards;
 }
 
@@ -389,7 +397,7 @@ Custom Radio Button
     width: 10px;
     height: 10px;
     transform: scale(0);
-    background: #ee3236;
+    background: #03b4df;
 }
 
 .md-radio.md-radio-inline {
@@ -406,9 +414,9 @@ select {
     border-color: #eee;
 }
 
-select:focus {
-    outline-color: #ee3236;
-}
+    select:focus {
+        outline-color: #03b4df;
+    }
 
 select:disabled {
     background-color: #ebebe4;
@@ -422,7 +430,7 @@ textarea {
     height: 100px;
     padding: 10px;
     resize: none;
-    outline-color: #ee3236;
+    outline-color: #03b4df;
     border-color: #eee;
 }
 
@@ -538,6 +546,6 @@ Imovel list
 }
 
 .build-title:hover {
-    color: #ee3236;
+    color: #03b4df;
     text-decoration: none;
 }

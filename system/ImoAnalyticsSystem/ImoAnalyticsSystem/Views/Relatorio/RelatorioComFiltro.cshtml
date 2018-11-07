@@ -8,7 +8,7 @@
     <div class="col-md-3">
         <div class="panel panel-primary filter">
             <div class="panel-heading">
-                <h3 class="panel-title">Filtros</h3>
+                    <h3 class="panel-title">Filtros</h3>
             </div>
 
             <div class="panel-body filter-body">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="primary-color-row row">
                     <div class="col-md-12">
-                        <p>Tipo de relatório</p>
+                        <p>Tipo de relatório<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="Cada vez que o campo tipo relatório for alterado, os campos serão limpados"></i></p>
                     </div>
                     <div class="col-md-12">
                         @Html.RadioButtonFor(m => m.TipoRelatorio, (int)TipoRelatorio.Imovel, new { id = TipoRelatorio.Imovel }) <label for="Imovel">Imóvel</label>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="primary-color-row row acao-filter">
                     <div class="col-md-12">
-                        <p>Tipo da ação</p>
+                        <p>Tipo da ação<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando a opção Locação/Venda/Visita em Tipo Relatório for marcada"></i></p>
                     </div>
                     <div class="col-md-12">
                         @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Locacao, new { id = TipoAcao.Locacao, @disabled = "true" }) <label for="Locacao">Locação</label>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="primary-color-row row valor-venda-filter">
                     <div class="col-md-12">
-                        <p>@Html.LabelFor(m => m.ValorVenda)</p>
+                        <p>@Html.LabelFor(m => m.ValorVenda)<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando a opção Locação/Venda/Visita em Tipo Relatório e a opção Venda em Tipo da ação for marcada"></i></p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
@@ -73,7 +73,7 @@
                 </div>
                 <div class="primary-color-row row valor-locacao-filter">
                     <div class="col-md-12">
-                        <p>@Html.LabelFor(m => m.ValorLocacao)</p>
+                        <p>@Html.LabelFor(m => m.ValorLocacao)<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando a opção Locação/Venda/Visita em Tipo Relatório e a opção Locaçãoz' em Tipo da ação for marcada"></i></p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
@@ -201,6 +201,7 @@
                 $(".valor-venda-filter input").val("");
                 $(".valor-venda-filter input").prop("disabled", true);
                 $(".imovel-filter input").removeAttr("disabled");
+                $(".imovel-filter select").removeAttr("disabled");
                 $("input[name='TipoAcao']").prop("checked", false);
             }
             if ($("input[name='TipoRelatorio']:checked").val() == 2) {
@@ -213,6 +214,7 @@
                 $(".valor-venda-filter input").prop("disabled", true);
                 $(".imovel-filter input").prop("disabled", true);
                 $(".acao-filter input").removeAttr("disabled");
+                $(".acao-filter select").removeAttr("disabled");
                 $("input[name='TipoAcao']").prop("checked", false);
             }
             if ($("input[name='TipoRelatorio']:checked").val() == 3) {
@@ -227,6 +229,7 @@
                 $(".acao-filter input[type='number']").val("");
                 $(".acao-filter input").prop("disabled", true);
                 $(".estatisticas-filter input").removeAttr("disabled");
+                $(".estatisticas-filter select").removeAttr("disabled");
                 $("input[name='TipoAcao']").prop("checked", false);
             }
         });

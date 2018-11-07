@@ -19,4 +19,6 @@
         decimal: ",",
         thousands: ""
     });
+
+    $('[data-toggle="tooltip"]').tooltip();
 });

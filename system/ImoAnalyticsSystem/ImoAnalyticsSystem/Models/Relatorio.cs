@@ -62,6 +62,9 @@ namespace ImoAnalyticsSystem.Models
 
         [Display(Name = "Corretor")]
         public virtual Corretor Corretor { get; set; }
+
+        [Display(Name = "Buscar média de preço para")]
+        public TipoAcao TipoMediaImovel { get; set; }
     }
 
     public enum TipoRelatorio

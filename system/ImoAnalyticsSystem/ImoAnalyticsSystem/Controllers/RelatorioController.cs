@@ -584,7 +584,7 @@ namespace ImoAnalyticsSystem.Controllers
             {
                 model.Chart.InitChart(new Chart()
                 {
-                    Type = DotNet.Highcharts.Enums.ChartTypes.Line,
+                    Type = DotNet.Highcharts.Enums.ChartTypes.Column,
                     BackgroundColor = new BackColorOrGradient(System.Drawing.Color.White),
                     Style = "fontWeight: 'bold', fontSize: '17px'",
                     BorderColor = System.Drawing.Color.LightBlue,
@@ -605,7 +605,7 @@ namespace ImoAnalyticsSystem.Controllers
                 {
                     Type = AxisTypes.Category,
                     Title = new XAxisTitle() { Text = "", Style = "fontWeight: 'bold', fontSize: '14px'" },
-                    Categories = legenda.Count() > 1 ? legenda.ToArray() : new string[] { "" }
+                    Categories = new string[] { "" }
                 });
                 model.Chart.SetLegend(new Legend
                 {
@@ -710,6 +710,18 @@ namespace ImoAnalyticsSystem.Controllers
                         });
                     }
 
+                    model.Chart.SetYAxis(new YAxis()
+                    {
+                        Title = new YAxisTitle()
+                        {
+                            Text = "Quantidade de vendas",
+                            Style = "fontWeight: 'bold', fontSize: '14px'"
+                        },
+                        ShowFirstLabel = true,
+                        ShowLastLabel = true,
+                        Min = 0
+                    });
+
                 }
                 else if (model.TipoAcao == TipoAcao.Visita)
                 {
@@ -748,6 +760,18 @@ namespace ImoAnalyticsSystem.Controllers
                             Data = new DotNet.Highcharts.Helpers.Data(visitaMes.ToArray())
                         });
                     }
+
+                    model.Chart.SetYAxis(new YAxis()
+                    {
+                        Title = new YAxisTitle()
+                        {
+                            Text = "Quantidade de visitas",
+                            Style = "fontWeight: 'bold', fontSize: '14px'"
+                        },
+                        ShowFirstLabel = true,
+                        ShowLastLabel = true,
+                        Min = 0
+                    });
                 }
             }
             else if(model.TipoRelatorio == TipoRelatorio.Estatisticas)
@@ -760,6 +784,18 @@ namespace ImoAnalyticsSystem.Controllers
                     BorderColor = System.Drawing.Color.LightBlue,
                     BorderRadius = 0,
                     BorderWidth = 3
+                });
+
+                model.Chart.SetYAxis(new YAxis()
+                {
+                    Title = new YAxisTitle()
+                    {
+                        Text = "Quantidade de ocorrências",
+                        Style = "fontWeight: 'bold', fontSize: '14px'"
+                    },
+                    ShowFirstLabel = true,
+                    ShowLastLabel = true,
+                    Min = 0
                 });
 
                 if (model.TituloRelatorio != null)
