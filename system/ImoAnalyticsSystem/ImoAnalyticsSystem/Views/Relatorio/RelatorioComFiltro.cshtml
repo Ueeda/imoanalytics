@@ -73,7 +73,7 @@
                 </div>
                 <div class="primary-color-row row valor-locacao-filter">
                     <div class="col-md-12">
-                        <p>@Html.LabelFor(m => m.ValorLocacao)<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando a opção Locação/Venda/Visita em Tipo Relatório e a opção Locaçãoz' em Tipo da ação for marcada"></i></p>
+                        <p>@Html.LabelFor(m => m.ValorLocacao)<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando a opção Locação/Venda/Visita em Tipo Relatório e a opção Locação em Tipo da ação for marcada"></i></p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="primary-color-row row imovel-filter acao-filter">
                     <div class="col-md-12">
-                        <p>@Html.LabelFor(m => m.Endereco)</p>
+                        <p>@Html.LabelFor(m => m.Endereco)<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando a opção Imóvel ou Locação/Venda/Visita em Tipo Relatório forem marcadas"></i></p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
@@ -95,7 +95,7 @@
                 </div>
                 <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter">
                     <div class="col-md-12">
-                        <p>@Html.LabelFor(m => m.Bairro)</p>
+                        <p>@Html.LabelFor(m => m.Bairro)<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando qualquer opção em Tipo Relatório for marcada"></i></p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
@@ -106,7 +106,7 @@
                 </div>
                 <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter">
                     <div class="col-md-12">
-                        <p>@Html.LabelFor(m => m.DataInicio)</p>
+                        <p>@Html.LabelFor(m => m.DataInicio)<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando qualquer opção em Tipo Relatório for marcada"></i></p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
@@ -117,7 +117,7 @@
                 </div>
                 <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter">
                     <div class="col-md-12">
-                        <p>@Html.LabelFor(m => m.DataFim)</p>
+                        <p>@Html.LabelFor(m => m.DataFim)<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando qualquer opção em Tipo Relatório for marcada"></i></p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
@@ -128,13 +128,13 @@
                 </div>
                 <div class="primary-color-row row imovel-filter estatisticas-filter acao-filter">
                     <div class="col-md-12">
-                        <p>Tipo de Imóvel</p>
+                        <p>Tipo de Imóvel<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando qualquer opção em Tipo Relatório for marcada"></i></p>
                         @Html.DropDownList("tipoImovel", ViewBag.TipoImovelId as SelectList, "Selecione um tipo de imóvel", htmlAttributes: new { @class = "", @disabled = "true" })
                     </div>
                 </div>
                 <div class="primary-color-row row imovel-filter acao-filter">
                     <div class="col-md-12">
-                        <p>@Html.LabelFor(m => m.QntdBanheiros)</p>
+                        <p>@Html.LabelFor(m => m.QntdBanheiros)<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando a opção Imóvel ou Locação/Venda/Visita em Tipo Relatório forem marcadas"></i></p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
@@ -145,7 +145,7 @@
                 </div>
                 <div class="primary-color-row row imovel-filter acao-filter">
                     <div class="col-md-12">
-                        <p>@Html.LabelFor(m => m.QntdDormitorios)</p>
+                        <p>@Html.LabelFor(m => m.QntdDormitorios)<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando a opção Imóvel ou Locação/Venda/Visita em Tipo Relatório forem marcadas"></i></p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
@@ -156,7 +156,7 @@
                 </div>
                 <div class="primary-color-row row imovel-filter acao-filter">
                     <div class="col-md-12">
-                        <p>@Html.LabelFor(m => m.QntdSuites)</p>
+                        <p>@Html.LabelFor(m => m.QntdSuites)<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando a opção Imóvel ou Locação/Venda/Visita em Tipo Relatório forem marcadas"></i></p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
@@ -167,7 +167,7 @@
                 </div>
                 <div class="primary-color-row row imovel-filter acao-filter">
                     <div class="col-md-12">
-                        <p>@Html.LabelFor(m => m.QntdVagasGaragem)</p>
+                        <p>@Html.LabelFor(m => m.QntdVagasGaragem)<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando a opção Imóvel ou Locação/Venda/Visita em Tipo Relatório forem marcadas"></i></p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
