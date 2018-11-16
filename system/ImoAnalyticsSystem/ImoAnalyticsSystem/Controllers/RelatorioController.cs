@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace ImoAnalyticsSystem.Controllers
 {
@@ -30,6 +31,65 @@ namespace ImoAnalyticsSystem.Controllers
             ViewBag.RelatoriosPublicos = relatoriosPublicos;
 
             return View();
+        }
+
+        // GET: ListarTodosRelatoriosSalvosUsuario
+        [Authorize]
+        [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
+        public ActionResult ListarTodosRelatoriosSalvosUsuario(string currentFilter, string searchString, int? page)
+        {
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+            RelatorioBusiness relatorioBusiness = new RelatorioBusiness();
+
+            var relatoriosCorretor = relatorioBusiness.GetAllFromUser(User.Identity.GetUserId());
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                relatoriosCorretor = relatoriosCorretor.Where(r => r.TituloRelatorio.Contains(searchString)).ToList();
+                if (relatoriosCorretor.Count() == 0)
+                    ViewBag.noResults = true;
+            }
+
+            ViewBag.RelatoriosUsuarioCount = relatoriosCorretor.Count();
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            return View(relatoriosCorretor.ToPagedList(pageNumber, pageSize));
+        }
+
+        // GET: ListarTodosRelatoriosPublicos
+        [Authorize]
+        public ActionResult ListarTodosRelatoriosPublicos(string currentFilter, string searchString, int? page)
+        {
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+            RelatorioBusiness relatorioBusiness = new RelatorioBusiness();
+
+            var relatoriosPublicos = relatorioBusiness.GetAllPublic(User.Identity.GetUserId());
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                relatoriosPublicos = relatoriosPublicos.Where(r => r.TituloRelatorio.Contains(searchString)).ToList();
+                if(relatoriosPublicos.Count() == 0)
+                    ViewBag.noResults = true;
+            }
+
+            ViewBag.RelatoriosPublicosCount = relatoriosPublicos.Count();
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            return View(relatoriosPublicos.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: PrecoMedioVendaAtual

@@ -1,38 +1,35 @@
 ﻿
 @{
-    ViewBag.Title = "Lista de relatórios do sistema";
+    ViewBag.Title = "Lista de relatórios padrão do sistema";
 }
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <div class="row">
-            <div class="col-md-8">
-                <h3 class="panel-title">@ViewBag.Title</h3>
-            </div>
+        <h3 class="panel-title">@ViewBag.Title</h3>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-md-12">
+            <p>@Html.ActionLink("Preço médio de venda atualmente", "PrecoMedioVendaAtual", "Relatorio")</p>
         </div>
     </div>
-    <div class="panel-body">
-        <div class="primary-color-row row">
-            <div class="col-sm-12">
-                <dl>
-                    <dt>Relatórios padrões do sistema</dt>
-                    <dd>@Html.ActionLink("- Preço médio de venda atualmente", "PrecoMedioVendaAtual", "Relatorio")</dd>
-                    <dd>@Html.ActionLink("- Preço médio de locação atualmente", "PrecoMedioLocacaoAtual", "Relatorio")</dd>
-                    <dd>@Html.ActionLink("- Vendas feitas por corretor nos últimos 4 meses", "VendasPorCorretorUltimosQuatroMeses", "Relatorio")</dd>
-                    <dd>@Html.ActionLink("- Vendas X Locação nos últimos 4 meses", "OperacoesUltimosQuatroMeses", "Relatorio")</dd>
-                    <dd>@Html.ActionLink("- Estatísticas de determinado bairro", "EstatisticaBairros", "Relatorio")</dd>
-                    <dt>Relatórios salvos pelo corretor</dt>
-                    @foreach (var relat in ViewBag.RelatoriosUsuario)
-                    {
-                        <dd><a href="@Url.Action("RelatorioComFiltro", "Relatorio", new { id = relat.ID })">- @relat.TituloRelatorio</a> </dd>
-                    }
-                    <dt>Relatórios públicos</dt>
-                    @foreach (var relat in ViewBag.RelatoriosPublicos)
-                    {
-                        <dd><a href="@Url.Action("RelatorioComFiltro", "Relatorio", new { id = relat.ID })">@relat.TituloRelatorio</a> </dd>
-                    }
-                </dl>
-            </div>
+    <div class="primary-color-row row">
+        <div class="col-md-12">
+            <p>@Html.ActionLink("Preço médio de locação atualmente", "PrecoMedioLocacaoAtual", "Relatorio")</p>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-md-12">
+            <p>@Html.ActionLink("Vendas feitas por corretor nos últimos 4 meses", "VendasPorCorretorUltimosQuatroMeses", "Relatorio")</p>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-md-12">
+            <p>@Html.ActionLink("Vendas X Locação nos últimos 4 meses", "OperacoesUltimosQuatroMeses", "Relatorio")</p>
+        </div>
+    </div>
+    <div class="primary-color-row row">
+        <div class="col-md-12">
+            <p>@Html.ActionLink("Estatísticas de determinado bairro", "EstatisticaBairros", "Relatorio")</p>
         </div>
     </div>
 </div>

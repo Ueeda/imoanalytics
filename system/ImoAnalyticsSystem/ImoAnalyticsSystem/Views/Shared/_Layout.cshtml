@@ -80,7 +80,14 @@
                             <li>@Html.ActionLink("Lista de visitas", "Index", "Visita")</li>
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("Relatórios", "Index", "Relatorio")</li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle primary-color" data-toggle="dropdown">Relatório  <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Relatórios padrões", "Index", "Relatorio")</li>
+                            <li>@Html.ActionLink("Relatórios públicos", "ListarTodosRelatoriosPublicos", "Relatorio")</li>
+                            <li>@Html.ActionLink("Relatórios salvos pelo usuário", "ListarTodosRelatoriosSalvosUsuario", "Relatorio")</li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-2 center">

@@ -1,0 +1,65 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ImoAnalyticsSystem.Models.Relatorio>
+
+@{
+    ViewBag.Title = "Relatórios salvos";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">@ViewBag.Title</h3>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="panel-body search-list">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="group">
+                        <p>Pesquisar relatório pelo título</p>
+                        @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @type = "text", @class = "effect-1" })
+                        <span class="focus-border"></span>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="group">
+                        <input type="submit" value="Pesquisar" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @if (ViewBag.RelatoriosUsuarioCount > 0)
+    {
+        <div class="header-row row">
+            <div class="col-md-11">
+                <p>Título do relatório</p>
+            </div>
+        </div>
+        foreach (var relat in Model)
+        {
+            <div class="primary-color-row row">
+                <div class="col-md-12">
+                    <p><a href="@Url.Action("RelatorioComFiltro", "Relatorio", new { id = relat.ID })">@relat.TituloRelatorio</a></p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        if (ViewBag.noResults == true)
+        {
+            <div class="primary-color-row row">
+                <center><p>Não existem resultados para a busca</p></center>
+            </div>
+        }
+        else
+        {
+            <div class="primary-color-row row">
+                <center><p>Não existem @ViewBag.title.ToLower() cadastrados</p></center>
+            </div>
+        }
+    }
+</div>
+
+@Html.PagedListPager(Model, page => Url.Action("ListarTodosRelatoriosSalvosUsuario",
+    new { page, currentFilter = ViewBag.CurrentFilter }))

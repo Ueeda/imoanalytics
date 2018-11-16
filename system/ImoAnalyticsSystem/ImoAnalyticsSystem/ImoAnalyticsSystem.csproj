@@ -439,6 +439,8 @@
     <Content Include="Views\Imovel\ImportExcel.cshtml" />
     <Content Include="Views\Relatorio\SalvarRelatorio.cshtml" />
     <Content Include="Views\Relatorio\RelatorioComFiltroGrafico1.cshtml" />
+    <Content Include="Views\Relatorio\ListarTodosRelatoriosSalvosUsuario.cshtml" />
+    <Content Include="Views\Relatorio\ListarTodosRelatoriosPublicos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
