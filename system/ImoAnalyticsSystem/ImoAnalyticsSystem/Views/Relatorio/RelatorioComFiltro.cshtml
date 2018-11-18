@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="group">
-                            @Html.EditorFor(model => model.TituloRelatorio, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.TituloRelatorio).ToHtmlString()), @class = "effect-1"} })
+                            @Html.EditorFor(model => model.TituloRelatorio, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.TituloRelatorio).ToHtmlString()), @class = "effect-1" } })
                             <span class="focus-border"></span>
                         </div>
                     </div>
@@ -58,6 +58,17 @@
                     </div>
                     <div class="col-md-12">
                         @Html.RadioButtonFor(m => m.TipoAcao, (int)TipoAcao.Visita, new { id = TipoAcao.Visita, @disabled = "true" }) <label for="Visita">Visita</label>
+                    </div>
+                </div>
+                <div class="primary-color-row row imovel-filter">
+                    <div class="col-md-12">
+                        <p>Buscar média de preço para<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando a opção Imóvel em Tipo Relatório for marcada"></i></p>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.RadioButtonFor(m => m.TipoMediaImovel, (int)TipoAcao.Locacao, new { id = "LocacaoMedia", @disabled = "true" }) <label for="LocacaoMedia">Locação</label>
+                    </div>
+                    <div class="col-md-12">
+                        @Html.RadioButtonFor(m => m.TipoMediaImovel, (int)TipoAcao.Venda, new { id = "VendaMedia", @disabled = "true" }) <label for="VendaMedia">Venda</label>
                     </div>
                 </div>
                 <div class="primary-color-row row valor-venda-filter">

@@ -126,20 +126,60 @@
 
                     </div>
                 </div>
+                <div class="primary-color-row row imovel-filter">
+                    <div class="col-md-12">
+                        <p>Buscar média de preço para<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando a opção Imóvel em Tipo Relatório for marcada"></i></p>
+                    </div>
+                    <div class="col-md-12">
+                        @if (Model.TipoRelatorio == TipoRelatorio.Imovel)
+                        {
+                            if (Model.TipoMediaImovel == TipoAcao.Locacao)
+                            {
+                                @Html.RadioButtonFor(m => m.TipoMediaImovel, (int)TipoAcao.Locacao, new { id = TipoAcao.Locacao, @checked = "true" }) <label for="Locacao">Locação</label>
+                            }
+                            else
+                            {
+                                @Html.RadioButtonFor(m => m.TipoMediaImovel, (int)TipoAcao.Locacao, new { id = TipoAcao.Locacao }) <label for="Locacao">Locação</label>
+                            }
+                        }
+                        else
+                        {
+                            @Html.RadioButtonFor(m => m.TipoMediaImovel, (int)TipoAcao.Locacao, new { id = TipoAcao.Locacao, @disabled = "true" }) <label for="Locacao">Locação</label>
+                        }
+                    </div>
+                    <div class="col-md-12">
+                        @if (Model.TipoRelatorio == TipoRelatorio.Imovel)
+                        {
+                            if (Model.TipoMediaImovel == TipoAcao.Venda)
+                            {
+                                @Html.RadioButtonFor(m => m.TipoMediaImovel, (int)TipoAcao.Venda, new { id = TipoAcao.Venda, @checked = "true" }) <label for="Venda">Venda</label>
+                            }
+                            else
+                            {
+                                @Html.RadioButtonFor(m => m.TipoMediaImovel, (int)TipoAcao.Venda, new { id = TipoAcao.Venda }) <label for="Venda">Venda</label>
+                            }
+                        }
+                        else
+                        {
+                            @Html.RadioButtonFor(m => m.TipoMediaImovel, (int)TipoAcao.Venda, new { id = TipoAcao.Venda, @disabled = "true" }) <label for="Venda">Venda</label>
+                        }
+                    </div>
+                </div>
                 <div class="primary-color-row row valor-venda-filter">
                     <div class="col-md-12">
                         <p>@Html.LabelFor(m => m.ValorVenda)<i class="fa fa-info-circle" style="padding-left: 10px;" data-toggle="tooltip" data-placement="right" title="O campo só será habilitado quando a opção Locação/Venda/Visita em Tipo Relatório e a opção Venda em Tipo da ação for marcada"></i></p>
                     </div>
                     <div class="col-md-12">
                         <div class="group">
-                            @if (@*Model.TipoRelatorio == TipoRelatorio.Imovel ||*@ (Model.TipoRelatorio == TipoRelatorio.Acao && Model.TipoAcao == TipoAcao.Venda))
-                            {
-                                @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorVenda).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
-                            }
-                            else
-                            {
-                                @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorVenda).ToHtmlString()), @class = "effect-1 js-dinheiro", @disabled = "true" } })
-                            }
+                            @if (@*Model.TipoRelatorio == TipoRelatorio.Imovel ||*@ /**/
+                                                                                                   (Model.TipoRelatorio == TipoRelatorio.Acao && Model.TipoAcao == TipoAcao.Venda))
+                                            {
+                                                @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorVenda).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
+                                            }
+                                            else
+                                            {
+                                                @Html.EditorFor(model => model.ValorVenda, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorVenda).ToHtmlString()), @class = "effect-1 js-dinheiro", @disabled = "true" } })
+                                            }
                             <span class="focus-border"></span>
                         </div>
                     </div>
@@ -150,14 +190,15 @@
                     </div>
                     <div class="col-md-12">
                         <div class="group">
-                            @if (@*Model.TipoRelatorio == TipoRelatorio.Imovel ||*@ (Model.TipoRelatorio == TipoRelatorio.Acao && Model.TipoAcao == TipoAcao.Locacao))
-                            {
-                                @Html.EditorFor(model => model.ValorLocacao, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorLocacao).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
-                            }
-                            else
-                            {
-                                @Html.EditorFor(model => model.ValorLocacao, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorLocacao).ToHtmlString()), @class = "effect-1 js-dinheiro", @disabled = "true" } })
-                            }
+                            @if (@*Model.TipoRelatorio == TipoRelatorio.Imovel ||*@ /**/
+                                                                                                   (Model.TipoRelatorio == TipoRelatorio.Acao && Model.TipoAcao == TipoAcao.Locacao))
+                                            {
+                                                @Html.EditorFor(model => model.ValorLocacao, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorLocacao).ToHtmlString()), @class = "effect-1 js-dinheiro" } })
+                                            }
+                                            else
+                                            {
+                                                @Html.EditorFor(model => model.ValorLocacao, new { htmlAttributes = new { @type = "text", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.ValorLocacao).ToHtmlString()), @class = "effect-1 js-dinheiro", @disabled = "true" } })
+                                            }
                             <span class="focus-border"></span>
                         </div>
                     </div>

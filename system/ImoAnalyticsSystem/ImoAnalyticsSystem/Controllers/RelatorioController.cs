@@ -598,6 +598,7 @@ namespace ImoAnalyticsSystem.Controllers
                 model.ValorLocacao = relatorio.ValorLocacao;
                 model.ValorVenda = relatorio.ValorVenda;
                 model.ID = relatorio.ID;
+                model.TipoMediaImovel = relatorio.TipoMediaImovel;
                 return RedirectToAction("RelatorioComFiltroGrafico", model);
             }
         }
@@ -1029,7 +1030,10 @@ namespace ImoAnalyticsSystem.Controllers
                             if(mudanca.DataMudanca.Month <= data.Month && mudanca.DataMudanca.Year <= data.Year)
                             {
                                 var imovelTmp = imovelBusiness.FindById(idImovel);
-                                valorValidoPeriodo = imovelTmp.ValorVenda;
+                                if (model.TipoMediaImovel == TipoAcao.Venda) 
+                                    valorValidoPeriodo = imovelTmp.ValorVenda;
+                                else if (model.TipoMediaImovel == TipoAcao.Locacao)
+                                    valorValidoPeriodo = imovelTmp.ValorLocacao;
                             }
                         }
                         historicoPrecos[idImovel].Add(valorValidoPeriodo);
@@ -1122,6 +1126,7 @@ namespace ImoAnalyticsSystem.Controllers
             relatorio.TipoRelatorio = model.TipoRelatorio;
             relatorio.ValorLocacao = model.ValorLocacao;
             relatorio.ValorVenda = model.ValorVenda;
+            relatorio.TipoMediaImovel = model.TipoMediaImovel;
 
             if (model.TituloRelatorio != null)
                 relatorio.TituloRelatorio = model.TituloRelatorio;
