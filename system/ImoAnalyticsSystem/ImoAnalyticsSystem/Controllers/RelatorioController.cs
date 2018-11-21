@@ -1139,5 +1139,155 @@ namespace ImoAnalyticsSystem.Controllers
                 relatorioBusiness.Edit(relatorio);
             return RedirectToAction("Index");
         }
+
+        // GET: EstatisticaBairros
+        [HttpGet]
+        [Authorize]
+        public ActionResult QuantidadeVisitas()
+        {
+            return View();
+        }
+
+        // POST: EstatisticaBairros
+        [HttpPost]
+        public ActionResult QuantidadeVisitas(DateTime? dataInicio, DateTime? dataFim)
+        {
+
+
+            if (dataInicio != null || dataFim != null)
+                return RedirectToAction("QuantidadeVisitasGrafico", new { DataInicio = dataInicio, DataFim = dataFim });
+            ModelState.AddModelError("Erro", "É preciso informar o range de data para gerar o relatório.");
+            return View();
+        }
+
+        // GET: EstatisticaBairrosGrafico
+        [HttpGet]
+        [Authorize]
+        public ActionResult QuantidadeVisitasGrafico(DateTime? dataInicio, DateTime? dataFim)
+        {          
+            if (dataInicio == null || dataFim == null)
+                return RedirectToAction("QuantidadeVisitas");
+
+
+            VisitaBusiness visitaBusiness = new VisitaBusiness();
+            List<Series> conteudoGrafico = new List<Series>();
+            DateTime dataFimNovo = (DateTime)dataFim;
+            DateTime dataInicioNovo = (DateTime)dataInicio;
+            List<DateTime> datas = new List<DateTime>();
+            List<String> legenda = new List<String>();
+
+            ViewBag.dataInicio = dataInicioNovo.ToShortDateString();
+            ViewBag.dataFim = dataFimNovo.ToShortDateString();
+
+
+            // var vendas = vendaBusiness.GetVendas().Where(v => v.Imovel.Bairro.Contains(bairro)).Count();
+            // var locacoes = locacaoBusiness.GetLocacoes().Where(l => l.Imovel.Bairro.Contains(bairro)).Count();
+            // var imoveisDisponiveis = imovelBusiness.GetImoveisDisponiveis().Where(i => i.Bairro.Contains(bairro)).Count();
+            // var imoveis = imovelBusiness.GetImoveis().Where(i => i.Bairro.Contains(bairro)).Count();
+
+            //comparação retroativa dos meses
+            while (DateTime.Compare(dataFimNovo, dataInicioNovo) >= 0)
+            {
+                datas.Add(dataFimNovo);
+                dataFimNovo = dataFimNovo.AddMonths(-1);
+
+            }
+            //preenchimento da legenda por mês
+            foreach (DateTime data in datas)
+            {
+                legenda.Add(data.ToString("MMMM yyyy"));
+
+            }
+
+            List<Object> numeroVisitas = new List<Object>();
+
+            //Get de todas as visitas dentro do mês correspondente da lista de datas
+            foreach (DateTime data in datas)
+            {
+                var visitasMes = visitaBusiness.GetVisitas().Where(v => v.Data.Month == data.Month && v.Data.Year == data.Year).Count();
+            
+                    numeroVisitas.Add(visitasMes);
+                
+            }
+
+            //Pegar o elementos através de quantidade reduzindo até zerar
+            for (int i = numeroVisitas.Count() - 1; i >= 0; i--)
+            {
+                //Pegar a data através de sua posição na lista de datas
+                DateTime data = datas.ElementAt(i);
+                List<Object> visitasMes = new List<Object>();
+                //Pegar o número de visitas correspondente as datas 
+                visitasMes.Add(numeroVisitas.ElementAt(i));
+
+
+                if ((int)numeroVisitas.ElementAt(i) > 0)
+                {
+                    conteudoGrafico.Add(new Series
+                    {
+                        //Populando o gráfico
+                        Name = data.ToString("MMMM yyyy"),
+                        Data = new DotNet.Highcharts.Helpers.Data(visitasMes.ToArray())
+
+
+                    });
+
+                }
+
+            }
+            /*
+            conteudoGrafico.Add(new Series
+            {
+                Name = "Vendas concluídas",
+                Data = new DotNet.Highcharts.Helpers.Data(new object[] { vendas })
+            });
+            */
+
+
+            Highcharts columnChart = new Highcharts("columnchart");
+            columnChart.InitChart(new Chart()
+            {
+                Type = DotNet.Highcharts.Enums.ChartTypes.Column,
+                BackgroundColor = new BackColorOrGradient(System.Drawing.Color.White),
+                Style = "fontWeight: 'bold', fontSize: '17px'",
+                BorderColor = System.Drawing.Color.LightBlue,
+                BorderRadius = 0,
+                BorderWidth = 3
+            });
+            columnChart.SetTitle(new Title()
+            {
+                Text = "Quantidas de visitas x Mês"
+            });
+            columnChart.SetSubtitle(new Subtitle()
+            {
+                Text = "Visita"
+            });
+            columnChart.SetXAxis(new XAxis()
+            {
+                Type = AxisTypes.Category,
+                Title = new XAxisTitle() { Text = "Atividades", Style = "fontWeight: 'bold', fontSize: '14px'" },
+                Categories = new[] { " " }
+            });
+            columnChart.SetYAxis(new YAxis()
+            {
+                Title = new YAxisTitle()
+                {
+                    Text = "Ocorrências",
+                    Style = "fontWeight: 'bold', fontSize: '14px'"
+                },
+                ShowFirstLabel = true,
+                ShowLastLabel = true,
+                Min = 0
+            });
+            columnChart.SetLegend(new Legend
+            {
+                Enabled = true,
+                BorderColor = System.Drawing.Color.CornflowerBlue,
+                BorderRadius = 6,
+                BackgroundColor = new BackColorOrGradient(ColorTranslator.FromHtml("#EEE"))
+            });
+            columnChart.SetSeries(conteudoGrafico.ToArray());
+            return View(columnChart);
+        }
+
     }
 }

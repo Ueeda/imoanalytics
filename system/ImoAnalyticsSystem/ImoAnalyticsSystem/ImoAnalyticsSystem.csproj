@@ -441,6 +441,8 @@
     <Content Include="Views\Relatorio\RelatorioComFiltroGrafico1.cshtml" />
     <Content Include="Views\Relatorio\ListarTodosRelatoriosSalvosUsuario.cshtml" />
     <Content Include="Views\Relatorio\ListarTodosRelatoriosPublicos.cshtml" />
+    <Content Include="Views\Relatorio\QuantidadeVisitasGrafico.cshtml" />
+    <Content Include="Views\Relatorio\QuantidadeVisitas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
