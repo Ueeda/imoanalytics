@@ -14,7 +14,7 @@
             <div class="col-md-2 center">
                 <h1 class="primary-color brand-text">ImoAnalytics</h1>
             </div>
-            <div class="col-md-8 center">
+            <div class="col-md-8 center hidden-xs">
                 <ul class="nav nav-pills">
                     <li class="dropdown">
                         <a class="dropdown-toggle primary-color" data-toggle="dropdown">Imóveis  <b class="caret"></b></a>
@@ -86,11 +86,12 @@
                             <li>@Html.ActionLink("Relatórios padrões", "Index", "Relatorio")</li>
                             <li>@Html.ActionLink("Relatórios públicos", "ListarTodosRelatoriosPublicos", "Relatorio")</li>
                             <li>@Html.ActionLink("Relatórios salvos pelo usuário", "ListarTodosRelatoriosSalvosUsuario", "Relatorio")</li>
+                            <li>@Html.ActionLink("Relatórios com filtros", "RelatorioComFiltro", "Relatorio")</li>
                         </ul>
                     </li>
                 </ul>
             </div>
-            <div class="col-md-2 center">
+            <div class="col-md-2 center hidden-xs">
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

@@ -31,6 +31,7 @@ namespace ImoAnalyticsSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Proposta proposta = propostaBusiness.FindById(id);
+            ViewBag.CalculoComissao = proposta.ComissaoProposta * proposta.Valor;
             if (proposta == null)
             {
                 return HttpNotFound();
@@ -67,7 +68,7 @@ namespace ImoAnalyticsSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Create([Bind(Include = "ID,InteressadoId,ImovelId,Data,Valor,TipoProposta")] Proposta proposta)
+        public ActionResult Create([Bind(Include = "ID,InteressadoId,ImovelId,Data,Valor,TipoProposta,ComissaoProposta")] Proposta proposta)
         {
 
             string create = "";
@@ -124,7 +125,7 @@ namespace ImoAnalyticsSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "ID,InteressadoId,ImovelId,Data,Valor,TipoProposta")] Proposta proposta)
+        public ActionResult Edit([Bind(Include = "ID,InteressadoId,ImovelId,Data,Valor,TipoProposta,ComissaoProposta")] Proposta proposta)
         {
             string edit = "";
             if (ModelState.IsValid)

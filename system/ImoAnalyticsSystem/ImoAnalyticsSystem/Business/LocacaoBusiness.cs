@@ -51,7 +51,7 @@ namespace ImoAnalyticsSystem.Business
             if (codigo.Count() == 0)
             {
                 ImovelBusiness imovelBusiness = new ImovelBusiness();
-                var locacao = new Locacao { DataOperacao = model.DataOperacao, InteressadoId = model.InteressadoId, ImovelId = model.ImovelId, FiadorId = model.FiadorId };
+                var locacao = new Locacao { DataOperacao = model.DataOperacao, InteressadoId = model.InteressadoId, ImovelId = model.ImovelId, FiadorId = model.FiadorId, CodigoLocacao = model.CodigoLocacao };
                 var contratoLocacao = new ContratoDeLocacao { Valor = model.Valor, DataInicio = model.DataInicio, DataFim = model.DataFim, DataPagamento = model.DataPagamento };
 
                 locacao.ContratoDeLocacao = contratoLocacao;

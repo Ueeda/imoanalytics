@@ -33,6 +33,10 @@ namespace ImoAnalyticsSystem.Models
         [Required(ErrorMessage = "O tipo da proposta é obrigatória.")]
         public string TipoProposta { get; set; }
 
+        [Display(Name = "Comissão da proposta")]
+        [Required(ErrorMessage = "O campo comissão da proposta é obrigatório.")]
+        public decimal ComissaoProposta { get; set; }
+
         public virtual Interessado Interessado { get; set; }
 
         public virtual Imovel Imovel { get; set; }

@@ -42,8 +42,8 @@ namespace ImoAnalyticsSystem.Business
         {
             var codigo = db.Imovel.Where
                 (
-                    i => String.Compare(i.CodigoReferencia, imovel.CodigoReferencia, false) == 0
-                );
+                    i => i.CodigoReferencia.Equals(imovel.CodigoReferencia)
+                ).ToList();
             if (codigo.Count() == 0)
             {
                 if (upload != null && upload.ContentLength > 0)
@@ -62,8 +62,26 @@ namespace ImoAnalyticsSystem.Business
                 }
 
                 imovel.DataCadastro = DateTime.Now.Date;
-                MudancaPrecoBusiness mudancaPrecoBusiness = new MudancaPrecoBusiness();
-                mudancaPrecoBusiness.StartNewHistory(imovel);
+                //MudancaPrecoBusiness mudancaPrecoBusiness = new MudancaPrecoBusiness();
+                //mudancaPrecoBusiness.StartNewHistory(imovel);
+                var historico = new MudancaPreco();
+                historico.Locacao = imovel.Locacao;
+                historico.Venda = imovel.Venda;
+                if (imovel.Venda)
+                    historico.ValorVenda = imovel.ValorVenda;
+                else
+                    historico.ValorVenda = 0;
+
+                if (imovel.Locacao)
+                    historico.ValorLocacao = imovel.ValorLocacao;
+                else
+                    historico.ValorLocacao = 0;
+
+                historico.DataMudanca = DateTime.Now;
+                historico.FirstRegister = true;
+
+                imovel.HistoricoPrecos = new List<MudancaPreco>();
+                imovel.HistoricoPrecos.Add(historico);
 
                 db.Imovel.Add(imovel);
                 db.SaveChanges();
@@ -80,7 +98,7 @@ namespace ImoAnalyticsSystem.Business
         {
             var codigo = db.Imovel.Where
                 (
-                    i => String.Compare(i.CodigoReferencia, imovel.CodigoReferencia, false) == 0 && i.ID != imovel.ID
+                    i => i.CodigoReferencia.Equals(imovel.CodigoReferencia) && i.ID != imovel.ID
                 );
             if (codigo.Count() == 0)
             {

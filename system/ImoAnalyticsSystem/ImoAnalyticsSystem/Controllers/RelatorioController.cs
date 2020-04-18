@@ -416,7 +416,7 @@ namespace ImoAnalyticsSystem.Controllers
             });
             columnChart.SetTitle(new Title()
             {
-                Text = "Vendas X locações"
+                Text = "Vendas pro corretor"
             });
             columnChart.SetSubtitle(new Subtitle()
             {
